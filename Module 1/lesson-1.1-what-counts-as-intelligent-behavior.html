@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 1.1 | What Counts as Intelligent Behavior?</title>
+  <style>
+    :root { --navy:#17365d; --blue:#2f75b5; --gold:#c58a18; --pale:#eef4fb; --ink:#1f2937; --muted:#52606d; --line:#cdd8e5; --white:#fff; --green:#2e6b4d; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#f5f7fa; color:var(--ink); font-family:Arial, Helvetica, sans-serif; line-height:1.62; }
+    .page { width:min(1000px, 94vw); margin:32px auto 48px; background:var(--white); border:1px solid var(--line); box-shadow:0 2px 12px rgba(23,54,93,.10); }
+    header { padding:34px 48px 28px; background:var(--navy); color:#fff; border-bottom:6px solid var(--gold); }
+    .eyebrow { margin:0 0 8px; color:#d9e8f7; font-size:.86rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
+    h1 { margin:0; font-family:Georgia, 'Times New Roman', serif; font-size:2.35rem; line-height:1.15; }
+    .subtitle { margin:10px 0 0; font-size:1.08rem; color:#eaf2fa; }
+    .content { padding:34px 48px 48px; }
+    .meta { display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin:0 0 28px; }
+    .meta div { background:var(--pale); border-left:4px solid var(--blue); padding:11px 13px; font-size:.92rem; }
+    .meta strong { display:block; color:var(--navy); font-size:.76rem; letter-spacing:.04em; text-transform:uppercase; }
+    h2 { margin:35px 0 12px; padding-bottom:7px; border-bottom:2px solid #dce7f2; color:var(--navy); font-family:Georgia, 'Times New Roman', serif; font-size:1.55rem; }
+    h3 { color:#234f7d; margin:23px 0 8px; font-size:1.12rem; }
+    .focus, .notice, .success, .submission { margin:20px 0; padding:18px 20px; }
+    .focus { background:#fff8e8; border:1px solid #ead29b; border-left:6px solid var(--gold); }
+    .notice { background:#f5f9fd; border:1px solid #b9cfe6; border-left:6px solid var(--blue); }
+    .success { background:#f2faf5; border:1px solid #b9d9c6; border-left:6px solid var(--green); }
+    .submission { background:#f8f4fb; border:1px solid #d9c8e8; border-left:6px solid #8054a0; }
+    .step { margin:18px 0; padding:18px 20px; border:1px solid var(--line); border-radius:3px; }
+    .step-head { display:flex; gap:12px; align-items:baseline; margin-bottom:8px; }
+    .num { display:inline-block; min-width:31px; height:31px; padding:4px 0; border-radius:50%; background:var(--navy); color:#fff; font-weight:700; text-align:center; }
+    .time { margin-left:auto; color:var(--muted); font-size:.9rem; font-weight:700; }
+    ol, ul { padding-left:24px; }
+    .sort-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin:14px 0; }
+    .card { padding:14px; background:#fafcff; border:1px solid var(--line); }
+    .fallback { margin:14px 0; padding:15px; background:#fbfbfb; border:1px dashed #94a8bb; }
+    table { width:100%; border-collapse:collapse; margin:16px 0; }
+    th, td { border:1px solid var(--line); padding:10px; vertical-align:top; text-align:left; }
+    th { background:var(--navy); color:#fff; }
+    tr:nth-child(even) td { background:#f8fbfe; }
+    .checklist li { margin:7px 0; }
+    .footer { margin-top:38px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
+    @media (max-width:700px) { header, .content { padding:26px 22px; } .meta, .sort-grid { grid-template-columns:1fr; } h1 { font-size:1.85rem; } .step-head { flex-wrap:wrap; } .time { margin-left:0; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="eyebrow">AI Literacy • Module 1 • Lesson 1.1</p>
+      <h1>What Counts as Intelligent Behavior?</h1>
+      <p class="subtitle">Lesson activity and guided application</p>
+    </header>
+    <section class="content">
+      <div class="meta">
+        <div><strong>Estimated time</strong>45–55 minutes</div>
+        <div><strong>Lesson type</strong>Concept + classification practice</div>
+        <div><strong>Submit today</strong>A Careful Description</div>
+        <div><strong>Module project</strong>AI Field Guide: system shortlist</div>
+      </div>
+
+      <section class="focus"><strong>Today’s Focus Question:</strong> When does a system’s behavior justify calling it intelligent—and what should we avoid assuming from that label?</section>
+
+      <h2>What you will be able to do</h2>
+      <ul>
+        <li>Describe at least four behaviors commonly associated with intelligence.</li>
+        <li>Distinguish fixed automation from systems that sense, represent, decide, or adapt.</li>
+        <li>Explain why “intelligent” is both a useful and contested label.</li>
+      </ul>
+
+      <section class="notice"><strong>What you need:</strong> the Lesson 1.1 reading, a way to write 150–200 words in Canvas, and the willingness to describe a familiar system carefully. You do not need to create an account for any outside website.</section>
+
+      <h2>Lesson sequence</h2>
+
+      <section class="step">
+        <div class="step-head"><span class="num">1</span><h3>Retrieve and predict</h3><span class="time">5 minutes</span></div>
+        <p>Return to the prediction you made before reading: name one device or app that seems “smart.” In 2–3 sentences, explain what it does that led you to use that word.</p>
+        <p>Then answer this question before moving on: <strong>What evidence would convince you that a system adapts rather than merely follows a fixed rule?</strong></p>
+      </section>
+
+      <section class="step">
+        <div class="step-head"><span class="num">2</span><h3>Experience: What is the system doing?</h3><span class="time">10 minutes</span></div>
+        <p>Sort each case into the category that is best supported by the information provided: <strong>fixed automation, pattern-based AI, human judgment,</strong> or <strong>uncertain / need more information.</strong> The goal is not to force every example into a simple box. The goal is to notice what evidence is missing.</p>
+        <div class="sort-grid">
+          <div class="card"><strong>A.</strong> A timer turns classroom lights off at 10:00 p.m.</div>
+          <div class="card"><strong>B.</strong> A map app changes a route after detecting traffic delays.</div>
+          <div class="card"><strong>C.</strong> A teacher decides whether an excuse for late work is fair.</div>
+          <div class="card"><strong>D.</strong> A photo app groups images that may show the same person.</div>
+          <div class="card"><strong>E.</strong> A calculator adds two numbers.</div>
+          <div class="card"><strong>F.</strong> A chatbot writes an answer to a history question.</div>
+        </div>
+        <div class="fallback"><strong>Canvas text fallback:</strong> Make a four-column table in your notes. Place A–F under the category you think fits best. Next to each letter, write one reason. For at least one example, write: “I need more information about …”</div>
+        <p><strong>Check your reasoning.</strong> A and E are examples of fixed automation as described. B and D likely involve pattern-based processes, although the exact process requires more evidence. C is human judgment. F may involve pattern-based AI, but its fluent output does not by itself establish understanding, accuracy, or wisdom.</p>
+      </section>
+
+      <section class="step">
+        <div class="step-head"><span class="num">3</span><h3>Use the four-question system check</h3><span class="time">8 minutes</span></div>
+        <p>Choose either the map app, photo organizer, or chatbot from Step 2. Complete the table in your notes. Use cautious language when you are inferring rather than observing.</p>
+        <table>
+          <thead><tr><th>Question</th><th>Your notes</th></tr></thead>
+          <tbody>
+            <tr><td>What does the system receive?</td><td>List likely inputs.</td></tr>
+            <tr><td>What does it produce?</td><td>List likely outputs.</td></tr>
+            <tr><td>What process seems to connect the two?</td><td>State what you know and what you infer.</td></tr>
+            <tr><td>What changes over time?</td><td>Describe adaptation, updating, or uncertainty.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="step">
+        <div class="step-head"><span class="num">4</span><h3>Guided Practice 1.1</h3><span class="time">8–10 minutes</span></div>
+        <p>Complete the <strong>Guided Practice 1.1</strong> Canvas quiz. You may retake it. Read the feedback after each response; the explanations are part of the lesson.</p>
+        <ul>
+          <li>Identify fixed automation from an example.</li>
+          <li>Choose the best question for distinguishing a fixed-rule system from a learning system.</li>
+          <li>Explain why impressive output does not automatically prove understanding.</li>
+          <li>Match inputs, outputs, and adaptation to examples.</li>
+          <li>Rewrite a vague claim about an app into a cautious, observable claim.</li>
+        </ul>
+      </section>
+
+      <section class="step">
+        <div class="step-head"><span class="num">5</span><h3>Independent application: A Careful Description</h3><span class="time">15–20 minutes</span></div>
+        <p>Open <strong>Assignment 1.1 — A Careful Description</strong> and submit your response in Canvas. You will choose one everyday system and describe it using the four-question system check.</p>
+        <p><strong>Do not use AI to generate your submission.</strong> You may use a reliable source to verify a factual detail, but cite or link it and write the description in your own words.</p>
+      </section>
+
+      <section class="step">
+        <div class="step-head"><span class="num">6</span><h3>Build your AI Field Guide</h3><span class="time">5 minutes</span></div>
+        <p>In your AI Lab Notebook, list <strong>five candidate systems</strong> for your Module 1 AI Field Guide. Include where you encounter each system. Choose systems from at least three settings, such as school, home, entertainment, transportation, shopping, sports, health/fitness, or creative work.</p>
+        <p>At least one system should be a case you are not yet sure deserves the label “AI.” That uncertainty is useful; you will investigate it later.</p>
+      </section>
+
+      <section class="success">
+        <h3>Success checklist</h3>
+        <ul class="checklist">
+          <li>I can distinguish a fixed rule from evidence of adaptation.</li>
+          <li>I described a system using inputs, outputs, process, and change over time.</li>
+          <li>I avoided assuming that impressive output proves understanding or wisdom.</li>
+          <li>I completed Guided Practice 1.1 and read the feedback.</li>
+          <li>I submitted A Careful Description and added five candidate systems to my notebook.</li>
+        </ul>
+      </section>
+
+      <section class="submission">
+        <h3>AI Lab Notebook entry</h3>
+        <p>Submit 4–6 sentences or add them to your recurring notebook assignment:</p>
+        <ol>
+          <li>Which example in the sort was hardest to classify?</li>
+          <li>What information would help you classify it more confidently?</li>
+          <li>Did you use AI assistance today? If yes, name the tool and state exactly what it helped with. If no, write: <em>No AI assistance used.</em></li>
+        </ol>
+      </section>
+
+      <h2>What comes next</h2>
+      <p>In Lesson 1.2, you will separate terms that people often blur together: computer science, algorithm, automation, artificial intelligence, and machine learning. Clear vocabulary will make your Field Guide more accurate.</p>
+      <p class="footer">AI Literacy • Module 1 • Lesson 1.1 | This lesson is self-contained. If an external interactive is unavailable, complete the Canvas text fallback above.</p>
+    </section>
+  </main>
+</body>
+</html>
