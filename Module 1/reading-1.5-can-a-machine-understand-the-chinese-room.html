@@ -6,17 +6,14 @@
 <title>Reading 1.5 — Can a Machine Understand? The Chinese Room</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/scholar.css">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
 <style>
   .page{max-width:860px}
-  .reading p{font-size:1.09rem}
-  .reading > p:first-of-type::first-letter{
-    float:left;font-size:3.6rem;line-height:.85;padding:.1em .12em 0 0;color:var(--teal-deep);font-weight:700
-  }
+  .reading p{font-size:1.06rem}
   .terms{list-style:none;padding:0;margin:.8rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem}
-  .terms li{margin:0;padding:.8rem .95rem;background:#fff;border:1px solid var(--rule);border-top:4px solid var(--teal);border-radius:var(--radius)}
-  .terms li strong{display:block;font-family:var(--sans);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+  .terms li{margin:0;padding:.8rem .95rem;background:var(--paper-2);border:1px solid var(--rule);border-top:3px solid var(--teal);border-radius:var(--radius)}
+  .terms li strong{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
   .vocab{list-style:none;padding:0;margin:.6rem 0}
   .vocab li{margin:0;padding:.5rem 0;border-bottom:1px solid var(--rule)}
   .vocab li:last-child{border-bottom:0}
@@ -26,23 +23,24 @@
 
   /* Room diagram */
   .views{display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
-  .view{font-family:var(--sans);font-weight:600;font-size:.9rem;padding:.4rem .9rem;border-radius:999px;border:1.5px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}
-  .view[aria-selected="true"]{background:var(--teal-deep);border-color:var(--teal-deep);color:#fff}
+  .view{font-family:var(--mono);font-weight:500;font-size:.8rem;letter-spacing:.03em;padding:.4rem .9rem;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}
+  .view[aria-selected="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px var(--glow)}
   .view:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-  .plate-svg{background:#fff;border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.4rem;overflow:hidden}
-  #roomSvg{display:block;width:100%;height:auto;color:var(--teal-deep)}
+  /* Blueprint panel: cyan line work on navy, faint drafting grid */
+  .plate-svg{background:var(--navy);background-image:linear-gradient(rgba(79,209,232,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(79,209,232,.07) 1px,transparent 1px);background-size:24px 24px;border:1px solid var(--teal-deep);border-radius:var(--radius);padding:.4rem;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(79,209,232,.25)}
+  #roomSvg{display:block;width:100%;height:auto;color:var(--cyan)}
   #roomSvg .ink{stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
   #roomSvg .thick{stroke-width:2.4}
   #roomSvg .thin{stroke-width:1}
-  #roomSvg .paper{fill:#fff}
+  #roomSvg .paper{fill:var(--navy)}
   /* Labels get a white halo so they stay readable over lines and hatching. */
-  #roomSvg .lbl{font-family:var(--serif);font-style:italic;font-size:16px;fill:var(--ink);paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
+  #roomSvg .lbl{font-family:var(--sans);font-style:normal;font-size:15px;fill:#e8f3f7;paint-order:stroke;stroke:var(--navy);stroke-width:5px;stroke-linejoin:round}
   #roomSvg .lbl.small{font-size:15px}
-  #roomSvg .lbl.term{font-family:var(--sans);font-style:normal;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;fill:#8a5a12}
-  #roomSvg .sym{font-family:var(--sym);font-size:16px;fill:var(--teal-deep)}
-  #roomSvg .qmark{font-family:var(--serif);font-weight:700;font-size:72px;fill:var(--gold)}
+  #roomSvg .lbl.term{font-family:var(--mono);font-style:normal;font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;fill:var(--cyan)}
+  #roomSvg .sym{font-family:var(--sym);font-size:15px;fill:#ffffff}
+  #roomSvg .qmark{font-family:var(--mono);font-weight:600;font-size:72px;fill:var(--gold)}
   #roomSvg .qmark.big{font-size:120px}
-  #roomSvg .veil{opacity:.9}
+  #roomSvg .veil{opacity:.55}
   #roomSvg .inside,#roomSvg .outside,#roomSvg .question,#roomSvg .inside text,#roomSvg .outside text{transition:opacity .4s}
   #roomSvg[data-view="inside"] .outside,#roomSvg[data-view="inside"] .question{opacity:0}
   #roomSvg[data-view="outside"] .inside,#roomSvg[data-view="outside"] .question{opacity:0}
