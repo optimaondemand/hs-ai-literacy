@@ -301,6 +301,8 @@
   }
   if(window.ResizeObserver)new ResizeObserver(fit).observe(document.body);
   window.addEventListener('resize',fit);
+  window.addEventListener('load',function(){fit();setTimeout(fit,400);setTimeout(fit,1500)});
+  if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
   start();
 })();
 </script>
