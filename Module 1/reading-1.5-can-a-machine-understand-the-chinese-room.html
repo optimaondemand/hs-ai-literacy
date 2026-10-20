@@ -35,19 +35,19 @@
   #roomSvg .thick{stroke-width:2.4}
   #roomSvg .thin{stroke-width:1}
   #roomSvg .paper{fill:#fff}
-  #roomSvg .lbl{font-family:var(--serif);font-style:italic;font-size:13px;fill:var(--ink-soft)}
-  #roomSvg .lbl.small{font-size:12px}
-  #roomSvg .lbl.term{font-family:var(--sans);font-style:normal;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--gold)}
-  #roomSvg .sym{font-family:var(--sym);font-size:15px;fill:var(--teal-deep)}
+  /* Labels get a white halo so they stay readable over lines and hatching. */
+  #roomSvg .lbl{font-family:var(--serif);font-style:italic;font-size:16px;fill:var(--ink);paint-order:stroke;stroke:#fff;stroke-width:5px;stroke-linejoin:round}
+  #roomSvg .lbl.small{font-size:15px}
+  #roomSvg .lbl.term{font-family:var(--sans);font-style:normal;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;fill:#8a5a12}
+  #roomSvg .sym{font-family:var(--sym);font-size:16px;fill:var(--teal-deep)}
   #roomSvg .qmark{font-family:var(--serif);font-weight:700;font-size:72px;fill:var(--gold)}
   #roomSvg .qmark.big{font-size:120px}
   #roomSvg .veil{opacity:.9}
-  #roomSvg .inside,#roomSvg .outside,#roomSvg .question{transition:opacity .4s}
+  #roomSvg .inside,#roomSvg .outside,#roomSvg .question,#roomSvg .inside text,#roomSvg .outside text{transition:opacity .4s}
   #roomSvg[data-view="inside"] .outside,#roomSvg[data-view="inside"] .question{opacity:0}
   #roomSvg[data-view="outside"] .inside,#roomSvg[data-view="outside"] .question{opacity:0}
-  #roomSvg[data-view="question"] .inside,#roomSvg[data-view="question"] .outside{opacity:.18}
-  #roomSvg[data-view="question"] .outside .veil,#roomSvg[data-view="question"] .outside .qmark{opacity:0}
-  #roomSvg[data-view="inside"] .inside .term,#roomSvg[data-view="outside"] .outside .term{opacity:1}
+  #roomSvg[data-view="question"] .inside,#roomSvg[data-view="question"] .outside{opacity:.22}
+  #roomSvg[data-view="question"] .inside text,#roomSvg[data-view="question"] .outside text,#roomSvg[data-view="question"] .outside .veil{opacity:0}
 
   /* Does-it-show checker (same pattern as the Message Room sort) */
   .sort{list-style:none;padding:0;margin:.5rem 0}
@@ -126,7 +126,7 @@
               <circle cx="400" cy="150" r="22" class="ink thick paper"/>
               <path d="M400 172 L400 250 M400 195 L440 215 M400 195 L372 240" class="ink thick" fill="none"/>
               <path d="M400 250 L385 300 M400 250 L418 300" class="ink thick" fill="none"/>
-              <text x="400" y="110" class="lbl" text-anchor="middle">a person who does not know Chinese</text>
+              <text x="400" y="118" class="lbl" text-anchor="middle">a person who does not know Chinese</text>
               <!-- rulebook (open book) -->
               <path d="M500 205 Q540 195 580 205 L580 230 Q540 220 500 230 Z" class="paper ink thick"/>
               <path d="M580 205 Q620 195 660 205 L660 230 Q620 220 580 230 Z" class="paper ink thick"/>
@@ -146,7 +146,7 @@
               <text x="500" y="190" class="qmark" text-anchor="middle">?</text>
               <circle cx="120" cy="150" r="22" class="ink thick paper"/>
               <path d="M120 172 L120 250 M120 195 L160 185 M120 195 L92 240 M120 250 L105 300 M120 250 L138 300" class="ink thick" fill="none"/>
-              <text x="120" y="110" class="lbl" text-anchor="middle">someone outside</text>
+              <text x="120" y="118" class="lbl" text-anchor="middle">someone outside</text>
               <path d="M175 165 L290 165" class="ink thick" fill="none" marker-end="url(#arrow)"/>
               <text x="232" y="152" class="lbl small" text-anchor="middle">Chinese symbols in</text>
               <path d="M290 200 L175 200" class="ink thick" fill="none" marker-end="url(#arrow)"/>
@@ -157,8 +157,9 @@
             <!-- QUESTION: both figures faint, big question between -->
             <g class="question">
               <text x="500" y="90" class="lbl term" text-anchor="middle">semantics: meaning—what symbols are about</text>
-              <text x="500" y="200" class="qmark big" text-anchor="middle">?</text>
-              <text x="500" y="275" class="lbl" text-anchor="middle">is correct symbol manipulation enough for understanding?</text>
+              <text x="500" y="205" class="qmark big" text-anchor="middle">?</text>
+              <rect x="312" y="246" width="376" height="40" rx="8" class="paper ink"/>
+              <text x="500" y="272" class="lbl" text-anchor="middle">is correct symbol manipulation enough for understanding?</text>
             </g>
           </svg>
         </div>
