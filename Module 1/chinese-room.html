@@ -296,7 +296,8 @@
   $('again').addEventListener('click',function(){start();window.scrollTo(0,0)});
   // Tell the parent lesson page how tall this widget needs to be.
   function fit(){
-    try{parent.postMessage({type:'chinese-room-height',h:document.documentElement.scrollHeight},'*')}catch(e){}
+    // Measure the body, not the document: the document is never shorter than the iframe, so it could only grow.
+    try{parent.postMessage({type:'chinese-room-height',h:Math.ceil(document.body.getBoundingClientRect().height)},'*')}catch(e){}
   }
   if(window.ResizeObserver)new ResizeObserver(fit).observe(document.body);
   window.addEventListener('resize',fit);
