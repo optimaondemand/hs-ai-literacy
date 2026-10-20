@@ -23,6 +23,43 @@
   .flash .card .front .title{font-size:1.35rem}
   .flash .card .back{font-size:1rem}
   .flash-tools{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap;margin-top:.8rem;font-family:var(--sans);font-size:.9rem;color:var(--ink-soft)}
+
+  /* Room diagram */
+  .views{display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
+  .view{font-family:var(--sans);font-weight:600;font-size:.9rem;padding:.4rem .9rem;border-radius:999px;border:1.5px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}
+  .view[aria-selected="true"]{background:var(--teal-deep);border-color:var(--teal-deep);color:#fff}
+  .view:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .plate-svg{background:#fff;border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.4rem;overflow:hidden}
+  #roomSvg{display:block;width:100%;height:auto;color:var(--teal-deep)}
+  #roomSvg .ink{stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  #roomSvg .thick{stroke-width:2.4}
+  #roomSvg .thin{stroke-width:1}
+  #roomSvg .paper{fill:#fff}
+  #roomSvg .lbl{font-family:var(--serif);font-style:italic;font-size:13px;fill:var(--ink-soft)}
+  #roomSvg .lbl.small{font-size:12px}
+  #roomSvg .lbl.term{font-family:var(--sans);font-style:normal;font-weight:700;font-size:12px;letter-spacing:.08em;text-transform:uppercase;fill:var(--gold)}
+  #roomSvg .sym{font-family:var(--sym);font-size:15px;fill:var(--teal-deep)}
+  #roomSvg .qmark{font-family:var(--serif);font-weight:700;font-size:72px;fill:var(--gold)}
+  #roomSvg .qmark.big{font-size:120px}
+  #roomSvg .veil{opacity:.9}
+  #roomSvg .inside,#roomSvg .outside,#roomSvg .question{transition:opacity .4s}
+  #roomSvg[data-view="inside"] .outside,#roomSvg[data-view="inside"] .question{opacity:0}
+  #roomSvg[data-view="outside"] .inside,#roomSvg[data-view="outside"] .question{opacity:0}
+  #roomSvg[data-view="question"] .inside,#roomSvg[data-view="question"] .outside{opacity:.18}
+  #roomSvg[data-view="question"] .outside .veil,#roomSvg[data-view="question"] .outside .qmark{opacity:0}
+  #roomSvg[data-view="inside"] .inside .term,#roomSvg[data-view="outside"] .outside .term{opacity:1}
+
+  /* Does-it-show checker (same pattern as the Message Room sort) */
+  .sort{list-style:none;padding:0;margin:.5rem 0}
+  .sort li{border:1px solid var(--rule-strong);border-radius:8px;padding:.55rem .7rem;margin:.4rem 0;display:flex;gap:.6rem;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;background:#fff}
+  .sort .q{flex:1 1 280px;font-family:var(--serif)}
+  .sort .choices{display:flex;gap:.4rem;flex-wrap:wrap}
+  .sort button{font-family:var(--sans);font-size:.85rem;padding:.35rem .6rem;border-radius:6px;border:1px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}
+  .sort button:hover{background:var(--teal-pale)}
+  .sort button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .sort li.right{background:var(--ok-bg);border-color:var(--ok)}
+  .sort li.wrong{background:var(--bad-bg);border-color:var(--bad)}
+  .sort .why{flex-basis:100%;font-size:.9rem;margin:0;font-family:var(--serif)}
 </style>
 </head>
 <body>
@@ -51,6 +88,85 @@
     <p>According to Searle, the person in the room does not understand Chinese. The person manipulates symbols according to rules. Searle used this thought experiment to challenge the claim that a computer program, merely by executing the right formal rules, literally understands language.</p>
     <p>The point is not that programs are useless. The point is that producing appropriate outputs and understanding meanings may be different things.</p>
 
+    <div class="widget" id="roomWidget">
+      <div class="bar"><span>Interactive · The room from two sides</span><span class="tag">Look closer</span></div>
+      <div class="body">
+        <p>Stand in each position. The same exchange looks different from inside and from outside, and one question stays open in both.</p>
+        <div class="views" role="tablist" aria-label="Viewpoint">
+          <button type="button" class="view" role="tab" data-view="inside" aria-selected="true">Inside the room</button>
+          <button type="button" class="view" role="tab" data-view="outside" aria-selected="false">Outside the room</button>
+          <button type="button" class="view" role="tab" data-view="question" aria-selected="false">The open question</button>
+        </div>
+        <div class="plate-svg">
+          <svg id="roomSvg" viewBox="0 0 760 340" role="img" aria-labelledby="roomTitle roomDesc" data-view="inside">
+            <title id="roomTitle">The Chinese Room, seen from inside and from outside</title>
+            <desc id="roomDesc">A room with a slot in its left wall. Inside, a person sits with a rulebook and symbol cards. Outside, an observer sends symbols in and receives replies.</desc>
+            <defs>
+              <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="currentColor" stroke-width="1" opacity=".35"/></pattern>
+              <pattern id="hatch2" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)"><line x1="0" y1="0" x2="0" y2="5" stroke="currentColor" stroke-width="1" opacity=".55"/></pattern>
+              <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="currentColor"/></marker>
+            </defs>
+            <!-- ground line -->
+            <line x1="20" y1="300" x2="740" y2="300" class="ink thin"/>
+            <!-- room walls -->
+            <g class="walls">
+              <rect x="300" y="60" width="400" height="240" class="ink thick" fill="none"/>
+              <rect x="300" y="60" width="400" height="12" fill="url(#hatch)" class="ink" stroke="none"/>
+              <rect x="688" y="60" width="12" height="240" fill="url(#hatch)" class="ink" stroke="none"/>
+              <!-- slot -->
+              <rect x="294" y="168" width="12" height="36" class="paper ink thick"/>
+              <text x="300" y="218" class="lbl small" text-anchor="middle">slot</text>
+            </g>
+            <!-- INSIDE: person, rulebook, cards -->
+            <g class="inside">
+              <!-- table -->
+              <line x1="440" y1="232" x2="660" y2="232" class="ink thick"/>
+              <line x1="455" y1="232" x2="450" y2="300" class="ink"/><line x1="645" y1="232" x2="650" y2="300" class="ink"/>
+              <!-- person: head, body, arms -->
+              <circle cx="400" cy="150" r="22" class="ink thick paper"/>
+              <path d="M400 172 L400 250 M400 195 L440 215 M400 195 L372 240" class="ink thick" fill="none"/>
+              <path d="M400 250 L385 300 M400 250 L418 300" class="ink thick" fill="none"/>
+              <text x="400" y="110" class="lbl" text-anchor="middle">a person who does not know Chinese</text>
+              <!-- rulebook (open book) -->
+              <path d="M500 205 Q540 195 580 205 L580 230 Q540 220 500 230 Z" class="paper ink thick"/>
+              <path d="M580 205 Q620 195 660 205 L660 230 Q620 220 580 230 Z" class="paper ink thick"/>
+              <path d="M510 212 h55 M510 220 h55 M590 212 h55 M590 220 h55" class="ink thin"/>
+              <text x="560" y="252" class="lbl" text-anchor="middle">rulebook: matching inputs to outputs</text>
+              <!-- incoming card at slot -->
+              <rect x="318" y="176" width="46" height="26" rx="3" class="paper ink"/>
+              <text x="341" y="194" class="sym" text-anchor="middle">△ ○</text>
+              <!-- reply card in hand -->
+              <rect x="438" y="196" width="46" height="26" rx="3" class="paper ink"/>
+              <text x="461" y="214" class="sym" text-anchor="middle">□ △</text>
+              <text x="500" y="90" class="lbl term" text-anchor="middle">syntax: rules for transforming symbols</text>
+            </g>
+            <!-- OUTSIDE: observer, arrows, hidden interior -->
+            <g class="outside">
+              <rect x="306" y="72" width="382" height="228" fill="url(#hatch2)" class="ink veil" stroke="none"/>
+              <text x="500" y="190" class="qmark" text-anchor="middle">?</text>
+              <circle cx="120" cy="150" r="22" class="ink thick paper"/>
+              <path d="M120 172 L120 250 M120 195 L160 185 M120 195 L92 240 M120 250 L105 300 M120 250 L138 300" class="ink thick" fill="none"/>
+              <text x="120" y="110" class="lbl" text-anchor="middle">someone outside</text>
+              <path d="M175 165 L290 165" class="ink thick" fill="none" marker-end="url(#arrow)"/>
+              <text x="232" y="152" class="lbl small" text-anchor="middle">Chinese symbols in</text>
+              <path d="M290 200 L175 200" class="ink thick" fill="none" marker-end="url(#arrow)"/>
+              <text x="225" y="244" class="lbl small" text-anchor="middle">answers that look like</text>
+              <text x="225" y="260" class="lbl small" text-anchor="middle">competent Chinese conversation</text>
+              <text x="500" y="90" class="lbl term" text-anchor="middle">behavioral performance: what an observer can see</text>
+            </g>
+            <!-- QUESTION: both figures faint, big question between -->
+            <g class="question">
+              <text x="500" y="90" class="lbl term" text-anchor="middle">semantics: meaning—what symbols are about</text>
+              <text x="500" y="200" class="qmark big" text-anchor="middle">?</text>
+              <text x="500" y="275" class="lbl" text-anchor="middle">is correct symbol manipulation enough for understanding?</text>
+            </g>
+          </svg>
+        </div>
+        <div class="status" id="roomCaption" role="status" aria-live="polite"></div>
+        <p class="hint">Shapes stand in for the Chinese symbols, as in the Message Room.</p>
+      </div>
+    </div>
+
     <h2>Syntax, semantics, and behavior</h2>
     <ul class="terms">
       <li><strong>Syntax:</strong> formal rules for arranging or transforming symbols.</li>
@@ -66,6 +182,16 @@
     <h2>What the argument does and does not show</h2>
     <p>The Chinese Room does not show that AI cannot be useful, cannot generate correct statements, or cannot perform impressive tasks. It does not prove that no machine could ever understand anything. It does show why behavior alone may not settle every question about understanding, consciousness, meaning, or moral status.</p>
     <div class="callout"><p><strong>Practical takeaway:</strong> Judge a system by evidence of what it reliably does. Do not let fluent output become automatic proof of accuracy, understanding, wisdom, or responsibility.</p></div>
+
+    <div class="widget" id="showWidget">
+      <div class="bar"><span>Interactive · Does the argument show this?</span><span class="tag">Check yourself</span></div>
+      <div class="body">
+        <p>For each claim, decide whether the Chinese Room argument shows it. The feedback quotes this reading.</p>
+        <ul class="sort" id="showList"></ul>
+        <div class="status" id="showStatus" role="status" aria-live="polite">Six claims. Decide each one.</div>
+        <p class="align-right" style="margin:.6rem 0 0"><button type="button" class="btn ghost" id="showReset">Shuffle and start over</button></p>
+      </div>
+    </div>
 
     <h2>Key vocabulary</h2>
     <ul class="vocab">
@@ -123,6 +249,64 @@
   $("shuffle").addEventListener("click",function(){render(shuffle(VOCAB))});
   $("flipAll").addEventListener("click",function(){document.querySelectorAll("#flash .card").forEach(function(c){c.classList.remove("flip");c.setAttribute("aria-expanded","false")})});
   render(VOCAB);status();
+
+  /* ---------- Room diagram: three viewpoints ---------- */
+  var CAPTIONS={
+    inside:"<strong>Inside:</strong> The person receives Chinese symbols and follows a detailed rulebook for matching inputs to outputs. According to Searle, the person in the room does not understand Chinese. The person manipulates symbols according to rules.",
+    outside:"<strong>Outside:</strong> The rules are so effective that people outside receive answers that look like competent Chinese conversation. Behavioral performance is what an outside observer can see a system do.",
+    question:"<strong>The open question:</strong> A system can follow syntax and produce impressive behavior. The debate asks whether that is enough for semantics, or whether something more is required."
+  };
+  var svg=$("roomSvg"),cap=$("roomCaption");
+  function setView(v){
+    svg.setAttribute("data-view",v);cap.innerHTML=CAPTIONS[v];
+    document.querySelectorAll("#roomWidget .view").forEach(function(b){b.setAttribute("aria-selected",b.getAttribute("data-view")===v?"true":"false")});
+  }
+  document.querySelectorAll("#roomWidget .view").forEach(function(b){b.addEventListener("click",function(){setView(b.getAttribute("data-view"))})});
+  setView("inside");
+
+  /* ---------- Does the argument show this? ---------- */
+  var CLAIMS=[
+    {t:"AI cannot be useful.",ok:false,why:"The Chinese Room does not show that AI cannot be useful, cannot generate correct statements, or cannot perform impressive tasks."},
+    {t:"AI cannot generate correct statements.",ok:false,why:"The Chinese Room does not show that AI cannot be useful, cannot generate correct statements, or cannot perform impressive tasks."},
+    {t:"No machine could ever understand anything.",ok:false,why:"It does not prove that no machine could ever understand anything."},
+    {t:"Programs are useless.",ok:false,why:"The point is not that programs are useless."},
+    {t:"Behavior alone may not settle every question about understanding, consciousness, meaning, or moral status.",ok:true,why:"It does show why behavior alone may not settle every question about understanding, consciousness, meaning, or moral status."},
+    {t:"Producing appropriate outputs and understanding meanings may be different things.",ok:true,why:"The point is that producing appropriate outputs and understanding meanings may be different things."}
+  ];
+  var decided=0;
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function buildClaims(){
+    var ul=$("showList");ul.innerHTML="";decided=0;
+    var st=$("showStatus");st.className="status";st.textContent="Six claims. Decide each one.";
+    shuffle(CLAIMS).forEach(function(c){
+      var li=el("li");li.appendChild(el("span","q",c.t));
+      var ch=el("span","choices");
+      [["The argument shows this",true],["It does not show this",false]].forEach(function(o){
+        var b=el("button",null,o[0]);b.type="button";
+        b.addEventListener("click",function(){
+          if(li.classList.contains("right")||li.classList.contains("wrong"))return;
+          var good=(o[1]===c.ok);
+          li.classList.add(good?"right":"wrong");
+          var w=el("p","why",(good?"✓ ":"✗ Look again. ")+c.why);
+          li.appendChild(w);
+          Array.prototype.forEach.call(ch.children,function(x){x.disabled=true});
+          if(!good){
+            var retry=el("button",null,"Try the other answer");retry.type="button";
+            retry.addEventListener("click",function(){li.classList.remove("wrong");w.remove();retry.remove();Array.prototype.forEach.call(ch.children,function(x){x.disabled=false})});
+            w.appendChild(document.createTextNode(" "));w.appendChild(retry);
+          }else{
+            decided++;
+            if(decided===CLAIMS.length){st.className="status ok";st.textContent="All six decided. Judge a system by evidence of what it reliably does. Do not let fluent output become automatic proof of accuracy, understanding, wisdom, or responsibility."}
+            else st.textContent=decided+" of "+CLAIMS.length+" decided.";
+          }
+        });
+        ch.appendChild(b);
+      });
+      li.appendChild(ch);ul.appendChild(li);
+    });
+  }
+  $("showReset").addEventListener("click",buildClaims);
+  buildClaims();
 })();
 </script>
 </body>
