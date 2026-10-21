@@ -131,10 +131,24 @@
   </div>
 
 
+  <div class="widget" id="stakeBefore">
+    <div class="bar"><span>Interactive · Stake your claim</span><span class="tag">Before reading</span></div>
+    <div class="body">
+      <p>Before anything else, where do you stand right now? Slide to your position and give one line of reasoning. You will answer again at the end of the reading and see whether you moved.</p>
+      <div class="stake">
+        <div class="ends"><span>Fluent output proves understanding</span><span>Fluent output proves nothing about understanding</span></div>
+        <label for="stakeBeforeRange" class="sr">Your position before reading</label>
+        <input type="range" id="stakeBeforeRange" min="0" max="100" value="50" data-store="ail15-stake-before">
+        <div class="readout">Position: <b id="stakeBeforeVal">50</b> / 100</div>
+        <label for="stakeBeforeWhy" class="sr">Your reason</label>
+        <input type="text" id="stakeBeforeWhy" maxlength="160" placeholder="In one line, why?" data-store="ail15-stake-before-why">
+      </div>
+    </div>
+  </div>
   <div class="widget" id="chatWidget">
     <div class="bar"><span>Interactive · Talk to the Room</span><span class="tag">Scripted demo</span></div>
     <div class="body">
-      <p>Before you read, have a short conversation with the room. Type anything in English and see how it answers. After three exchanges you can open the back wall and see how the replies were made. This is a scripted demonstration that runs on this page; it is not connected to any AI service.</p>
+      <p>Now have a short conversation with the room. Type anything in English and see how it answers. After three exchanges you can open the back wall and see how the replies were made. This is a scripted demonstration that runs on this page; it is not connected to any AI service.</p>
       <div class="chat" id="chat">
         <div class="log" id="chatLog" role="log" aria-live="polite" aria-label="Conversation with the room"></div>
         <div class="suggest" id="chatSuggest" aria-label="Suggested openers">
@@ -166,20 +180,6 @@
     </div>
   </div>
 
-  <div class="widget" id="stakeBefore">
-    <div class="bar"><span>Interactive · Stake your claim</span><span class="tag">Before reading</span></div>
-    <div class="body">
-      <p>Where do you stand right now? Slide to your position and give one line of reasoning. You will answer again at the end of the reading and see whether you moved.</p>
-      <div class="stake">
-        <div class="ends"><span>Fluent output proves understanding</span><span>Fluent output proves nothing about understanding</span></div>
-        <label for="stakeBeforeRange" class="sr">Your position before reading</label>
-        <input type="range" id="stakeBeforeRange" min="0" max="100" value="50" data-store="ail15-stake-before">
-        <div class="readout">Position: <b id="stakeBeforeVal">50</b> / 100</div>
-        <label for="stakeBeforeWhy" class="sr">Your reason</label>
-        <input type="text" id="stakeBeforeWhy" maxlength="160" placeholder="In one line, why?" data-store="ail15-stake-before-why">
-      </div>
-    </div>
-  </div>
   <div class="reading">
     <h2>The Chinese Room thought experiment</h2>
     <p>Philosopher John Searle proposed the Chinese Room thought experiment in 1980. Imagine a person who does not know Chinese sitting in a room. The person receives Chinese symbols and follows a detailed rulebook for matching inputs to outputs. The rules are so effective that people outside receive answers that look like competent Chinese conversation.</p>
