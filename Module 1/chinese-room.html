@@ -12,7 +12,7 @@
   body{background:var(--paper);background-image:none;padding:14px;font-family:var(--sans);font-size:1rem}
   .wrap{max-width:900px;margin:0 auto}
   h2{font-size:1.2rem;margin:0 0 .5rem;border:0;padding:0}
-  h2::after{display:none}
+  h2::before,h2::after{display:none}
   p{margin:.3rem 0}
   .intro{border-left:6px solid var(--teal);padding:.3rem 0 .3rem .9rem;margin-bottom:.9rem;font-family:var(--serif)}
   .progress{display:flex;align-items:center;gap:.6rem;margin:.4rem 0 .9rem;flex-wrap:wrap;font-size:.9rem;color:var(--ink-soft)}
@@ -389,7 +389,7 @@
     }else{
       sh.wrong++;sh.streak=0;
       var r=$('reply');r.classList.remove('shake');void r.offsetWidth;r.classList.add('shake');
-      say('bad','Not that row. Streak reset. Check the rulebook and try again.');reply=[];renderReply();
+      say('bad','Not that row. The streak resets, but the next card is a fresh start.');reply=[];renderReply();
     }
     updateHud();
   }
@@ -406,7 +406,7 @@
     $('sr-rank').textContent=rank(sh.score);$('sr-best').textContent=Math.max(prev,sh.score)||'—';
     var kick=$('sr-kicker');kick.innerHTML='';
     var p1=el('p');p1.innerHTML='<strong>From the outside:</strong> '+sh.correct+' correct '+(sh.correct===1?'reply':'replies')+' in sixty seconds'+(sh.memory?', with the rulebook mostly hidden and '+sh.peeks+' '+(sh.peeks===1?'peek':'peeks'):'')+'. That is behavioral performance: what an outside observer can see a system do.';
-    var p2=el('p');p2.innerHTML='<strong>From the inside:</strong> your score went up. Your understanding of the symbols did not.'+(sh.memory?' You could even hold the rules in memory without ever knowing what a single symbol means.':'');
+    var p2=el('p');p2.innerHTML='<strong>From the inside:</strong> nice work. You got faster and more accurate, and you did it without the symbols ever needing to mean anything to you. That is exactly what the room is built to show, and it is worth carrying into the reading.'+(sh.memory?' You even held the rules in memory without knowing what a single symbol stands for.':'');
     kick.appendChild(p1);kick.appendChild(p2);
     $('sr-memory').disabled=false;$('sh-start-memory').disabled=false;
     $('shiftResults').classList.add('show');
