@@ -70,6 +70,33 @@
   .sort .why{flex-basis:100%;font-size:.9rem;margin:0;font-family:var(--serif)}
   .final{display:none;margin-top:.8rem}
   .final.show{display:block}
+  /* Shift Mode */
+  .hud{display:none;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.5rem;margin:.4rem 0 .9rem;padding:.6rem .8rem;background:var(--navy);color:#dff4f9;border-radius:var(--radius);border:1px solid var(--teal-deep);font-family:var(--mono)}
+  .hud.show{display:grid}
+  .hud .k{display:block;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);opacity:.9}
+  .hud .v{font-size:1.25rem;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.2}
+  .hud .v.time.low{color:#ffb4a2}
+  .hud .v.rank{font-size:.9rem;font-family:var(--sans);font-weight:600}
+  .hud .v small{font-size:.7rem;opacity:.8;font-weight:400}
+  .panel.rb{position:relative}
+  #rulebook.dim{filter:blur(7px);opacity:.25;pointer-events:none;transition:filter .4s,opacity .4s}
+  .peek{display:none;position:absolute;inset:auto 0 0 0;margin:auto;width:max-content;padding:.45rem .9rem;top:45%}
+  .peek.show{display:block}
+  .keys{font-family:var(--mono);font-size:.72rem;color:var(--ink-faint);margin-top:.4rem;text-align:center}
+  .keys kbd{display:inline-block;border:1px solid var(--rule-strong);border-bottom-width:2px;border-radius:4px;padding:0 .35rem;background:#fff;color:var(--teal-deep);font-family:inherit}
+  .shiftcall{margin-top:1.2rem;padding:1rem 1.1rem;border:1px dashed var(--teal);border-radius:var(--radius);background:var(--teal-pale)}
+  .shiftcall h2{margin-bottom:.3rem}
+  .shiftcall p{font-family:var(--sans);margin:.3rem 0 .7rem}
+  #shiftResults{display:none;margin-top:1.2rem}
+  #shiftResults.show{display:block;animation:curtain .6s ease-out}
+  .scorecard{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem;padding:.9rem;background:#fff}
+  .scorecard div{border:1px solid var(--rule);border-radius:8px;padding:.5rem .7rem;background:var(--paper-2)}
+  .scorecard .k{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+  .scorecard .v{font-family:var(--mono);font-size:1.3rem;font-weight:600;color:var(--teal-deep);font-variant-numeric:tabular-nums}
+  .scorecard .v.rank{font-family:var(--sans);font-size:1rem}
+  .badge{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:var(--navy);border-radius:4px;padding:.15rem .5rem;margin-left:.4rem}
+  .kicker{padding:.9rem 1rem;background:var(--navy);color:#e8f3f7;font-family:var(--sans);border-top:1px solid var(--teal-deep)}
+  .kicker strong{color:var(--cyan)}
   .notesbox{margin-top:1rem}
   .notesbox .lead{font-family:var(--serif);margin:0 0 .4rem}
 </style>
@@ -85,19 +112,29 @@
     <div class="dots" id="dots" aria-hidden="true"></div>
   </div>
 
+  <div class="hud" id="hud" aria-live="off">
+    <div><span class="k">Time</span><span class="v time" id="sh-time">60.0</span></div>
+    <div><span class="k">Score</span><span class="v" id="sh-score">0</span></div>
+    <div><span class="k">Streak</span><span class="v" id="sh-streak">0 <small id="sh-mult">×1</small></span></div>
+    <div><span class="k">Rank</span><span class="v rank" id="sh-rank">Trainee</span></div>
+    <div><span class="k">Best</span><span class="v" id="sh-best">—</span></div>
+  </div>
+
   <div class="stage">
     <div class="panel room">
       <div class="label"><span class="n">1</span> Message in</div>
       <div class="tray incoming" id="incoming" role="img" aria-label="Incoming message"></div>
       <p class="hint">A card slides through the slot. You do not need to know what it means.</p>
     </div>
-    <div class="panel">
+    <div class="panel rb">
       <div class="label"><span class="n">2</span> The rulebook</div>
+      <button type="button" class="btn peek" id="sh-peek">Peek (−3 s)</button>
       <table id="rulebook">
         <thead><tr><th scope="col">If you receive</th><th scope="col">Return</th></tr></thead>
         <tbody></tbody>
       </table>
       <p class="hint">Tip: click a row to mark your place.</p>
+      <p class="keys">Keys: <kbd>1</kbd> △ &nbsp;<kbd>2</kbd> ○ &nbsp;<kbd>3</kbd> □ &nbsp;<kbd>Enter</kbd> send &nbsp;<kbd>Backspace</kbd> clear</p>
     </div>
     <div class="panel">
       <div class="label"><span class="n">3</span> Your reply</div>
@@ -141,6 +178,37 @@
     <ul class="sort" id="sort"></ul>
     <div class="status final" id="final"></div>
     <div class="actions" style="margin-top:.8rem"><button class="btn ghost" id="again">Run the room again (new order)</button></div>
+
+    <div class="shiftcall" id="shiftcall">
+      <h2>Ready for a shift?</h2>
+      <p>Work the room against the clock. Cards keep coming for 60 seconds; correct replies score, streaks multiply, a wrong reply resets the streak. Your best score is saved on this device.</p>
+      <div class="actions" style="justify-content:flex-start">
+        <button type="button" class="btn" id="sh-start">Start a 60-second shift</button>
+        <button type="button" class="btn ghost" id="sh-start-memory" disabled title="Finish one timed shift first">Memory shift</button>
+      </div>
+      <p class="hint" style="margin:.5rem 0 0">Memory shift: the rulebook fades after three seconds. Peeking brings it back for a moment and costs three seconds.</p>
+    </div>
+  </section>
+
+  <section id="shiftResults" aria-label="Shift results">
+    <h2>Shift over. Step outside the room.</h2>
+    <div class="window">
+      <div class="bar"><span>Observer&rsquo;s window</span><span id="sh-meta"></span></div>
+      <div class="scorecard">
+        <div><span class="k">Correct replies</span><span class="v" id="sr-correct">0</span></div>
+        <div><span class="k">Wrong tries</span><span class="v" id="sr-wrong">0</span></div>
+        <div><span class="k">Best streak</span><span class="v" id="sr-streak">0</span></div>
+        <div><span class="k">Score</span><span class="v" id="sr-score">0</span></div>
+        <div><span class="k">Rank</span><span class="v rank" id="sr-rank">Trainee</span></div>
+        <div><span class="k">Personal best</span><span class="v" id="sr-best">—</span></div>
+      </div>
+      <div class="kicker" id="sr-kicker"></div>
+    </div>
+    <div class="actions" style="margin-top:.8rem;justify-content:flex-start">
+      <button type="button" class="btn" id="sr-again">Another timed shift</button>
+      <button type="button" class="btn ghost" id="sr-memory">Memory shift</button>
+      <button type="button" class="btn ghost" id="sr-back">Back to the training room</button>
+    </div>
   </section>
 </div>
 
@@ -209,6 +277,8 @@
     reply=[];renderReply();renderDots();
   }
   function send(){
+    if(mode==='shift')return shiftSend();
+    if(mode!=='train')return;
     var rule=RULES[order[idx]];
     if(same(reply,rule[1])){
       log.push({inp:rule[0],out:rule[1]});
@@ -276,7 +346,97 @@
     var f=$('final');f.classList.add('show');f.classList.add('ok');
     f.textContent='Behavior on the outside looks the same whether or not the person inside understands. Carry that into Reading 1.5: what does fluent output establish, and what does it leave open?';
   }
+  /* ---------- Shift Mode ---------- */
+  var mode='train';
+  var sh={score:0,streak:0,bestStreak:0,correct:0,wrong:0,cur:-1,end:0,timer:null,memory:false,peeks:0};
+  var RANKS=[[600,'Master Clerk'],[450,'Senior Operator'],[300,'Operator'],[150,'Clerk'],[0,'Trainee']];
+  function rank(score){for(var i=0;i<RANKS.length;i++){if(score>=RANKS[i][0])return RANKS[i][1]}return 'Trainee'}
+  function bestKey(){return sh.memory?'ail15-room-best-memory':'ail15-room-best'}
+  function getBest(k){try{return parseInt(localStorage.getItem(k)||'0',10)||0}catch(e){return 0}}
+  function setBest(k,v){try{localStorage.setItem(k,String(v))}catch(e){}}
+  function mult(){return Math.min(4,1+Math.floor(sh.streak/3))}
+  function updateHud(){
+    var left=Math.max(0,sh.end-Date.now())/1000;
+    var t=$('sh-time');t.textContent=left.toFixed(1);t.classList.toggle('low',left<=10);
+    $('sh-score').textContent=sh.score;$('sh-streak').innerHTML=sh.streak+' <small id="sh-mult">×'+mult()+'</small>';
+    $('sh-rank').textContent=rank(sh.score);var b=getBest(bestKey());$('sh-best').textContent=b?b:'—';
+  }
+  function shiftCard(){
+    var i;do{i=Math.floor(Math.random()*RULES.length)}while(i===sh.cur);sh.cur=i;
+    var inc=$('incoming');inc.innerHTML='';RULES[i][0].forEach(function(ch){inc.appendChild(sym(ch))});
+    inc.setAttribute('aria-label','Incoming message: '+names(RULES[i][0]));
+    inc.classList.remove('arrive');void inc.offsetWidth;inc.classList.add('arrive');
+    reply=[];renderReply();
+  }
+  function startShift(memory){
+    mode='shift';sh={score:0,streak:0,bestStreak:0,correct:0,wrong:0,cur:-1,end:Date.now()+60000,timer:null,memory:!!memory,peeks:0};
+    $('observe').classList.remove('show');$('shiftResults').classList.remove('show');
+    $('send').disabled=true;$('clear').disabled=false;$('palette').style.display='';
+    buildStatic();$('rulebook').classList.remove('dim');$('sh-peek').classList.remove('show');
+    $('count').textContent=memory?'Memory shift':'Timed shift';$('dots').innerHTML='';
+    $('hud').classList.add('show');updateHud();shiftCard();
+    say('info',memory?'Memory shift. The rulebook fades in three seconds. Peek if you must; it costs three seconds.':'Timed shift. Sixty seconds. Keep the correct replies coming.');
+    if(memory)setTimeout(function(){if(mode==='shift'&&sh.memory){$('rulebook').classList.add('dim');$('sh-peek').classList.add('show')}},3000);
+    sh.timer=setInterval(function(){updateHud();if(Date.now()>=sh.end)endShift()},100);
+    window.scrollTo({top:0,behavior:'smooth'});fit();
+  }
+  function shiftSend(){
+    var rule=RULES[sh.cur];
+    if(same(reply,rule[1])){
+      sh.correct++;sh.streak++;if(sh.streak>sh.bestStreak)sh.bestStreak=sh.streak;
+      var pts=10*mult();sh.score+=pts;
+      say('ok','+'+pts+(mult()>1?' points (streak ×'+mult()+')':' points'));shiftCard();
+    }else{
+      sh.wrong++;sh.streak=0;
+      var r=$('reply');r.classList.remove('shake');void r.offsetWidth;r.classList.add('shake');
+      say('bad','Not that row. Streak reset. Check the rulebook and try again.');reply=[];renderReply();
+    }
+    updateHud();
+  }
+  function endShift(){
+    clearInterval(sh.timer);mode='done';
+    $('incoming').innerHTML='';$('incoming').appendChild(el('span','empty','Shift over'));
+    $('send').disabled=true;$('clear').disabled=true;$('palette').style.display='none';
+    $('rulebook').classList.remove('dim');$('sh-peek').classList.remove('show');
+    var k=bestKey(),prev=getBest(k),isBest=sh.score>prev;if(isBest)setBest(k,sh.score);
+    try{localStorage.setItem('ail15-room-shifts','1')}catch(e){}
+    $('sh-meta').textContent=(sh.memory?'memory shift':'timed shift')+' · 60 seconds';
+    $('sr-correct').textContent=sh.correct;$('sr-wrong').textContent=sh.wrong;$('sr-streak').textContent=sh.bestStreak;
+    $('sr-score').innerHTML=sh.score+(isBest&&sh.score>0?'<span class="badge">New best</span>':'');
+    $('sr-rank').textContent=rank(sh.score);$('sr-best').textContent=Math.max(prev,sh.score)||'—';
+    var kick=$('sr-kicker');kick.innerHTML='';
+    var p1=el('p');p1.innerHTML='<strong>From the outside:</strong> '+sh.correct+' correct '+(sh.correct===1?'reply':'replies')+' in sixty seconds'+(sh.memory?', with the rulebook mostly hidden and '+sh.peeks+' '+(sh.peeks===1?'peek':'peeks'):'')+'. That is behavioral performance: what an outside observer can see a system do.';
+    var p2=el('p');p2.innerHTML='<strong>From the inside:</strong> your score went up. Your understanding of the symbols did not.'+(sh.memory?' You could even hold the rules in memory without ever knowing what a single symbol means.':'');
+    kick.appendChild(p1);kick.appendChild(p2);
+    $('sr-memory').disabled=false;$('sh-start-memory').disabled=false;
+    $('shiftResults').classList.add('show');
+    say('ok','Shift over. '+sh.correct+' correct, score '+sh.score+', rank '+rank(sh.score)+'.');
+    setTimeout(function(){$('shiftResults').scrollIntoView({behavior:'smooth',block:'start'})},60);fit();
+  }
+  $('sh-peek').addEventListener('click',function(){
+    if(mode!=='shift'||!sh.memory)return;sh.peeks++;sh.end-=3000;
+    $('rulebook').classList.remove('dim');$('sh-peek').classList.remove('show');
+    setTimeout(function(){if(mode==='shift'){$('rulebook').classList.add('dim');$('sh-peek').classList.add('show')}},1200);
+    updateHud();
+  });
+  $('sh-start').addEventListener('click',function(){startShift(false)});
+  $('sh-start-memory').addEventListener('click',function(){startShift(true)});
+  $('sr-again').addEventListener('click',function(){startShift(false)});
+  $('sr-memory').addEventListener('click',function(){startShift(true)});
+  $('sr-back').addEventListener('click',function(){start();window.scrollTo({top:0,behavior:'smooth'})});
+  // Keyboard: 1/2/3 add symbols, Enter sends, Backspace clears (not while typing in a text field).
+  document.addEventListener('keydown',function(e){
+    var tag=(e.target&&e.target.tagName||'').toLowerCase();if(tag==='textarea'||tag==='input')return;
+    if(mode!=='train'&&mode!=='shift')return;
+    if(e.key==='1'){addSym(T);e.preventDefault()}else if(e.key==='2'){addSym(C);e.preventDefault()}else if(e.key==='3'){addSym(S);e.preventDefault()}
+    else if(e.key==='Enter'){if(!$('send').disabled){$('send').click();e.preventDefault()}}
+    else if(e.key==='Backspace'){reply=[];renderReply();e.preventDefault()}
+  });
+  try{if(localStorage.getItem('ail15-room-shifts'))$('sh-start-memory').disabled=false}catch(e){}
+
   function start(){
+    mode='train';if(sh.timer)clearInterval(sh.timer);$('hud').classList.remove('show');$('shiftResults').classList.remove('show');
+    $('rulebook').classList.remove('dim');$('sh-peek').classList.remove('show');
     order=shuffle([0,1,2,3,4]);idx=0;tries=0;log=[];reply=[];startTime=Date.now();
     $('observe').classList.remove('show');$('send').disabled=true;$('clear').disabled=false;$('palette').style.display='';
     buildStatic();showCard();
