@@ -58,6 +58,56 @@
   .sort li.right{background:var(--ok-bg);border-color:var(--ok)}
   .sort li.wrong{background:var(--bad-bg);border-color:var(--bad)}
   .sort .why{flex-basis:100%;font-size:.9rem;margin:0;font-family:var(--serif)}
+  /* Talk to the Room */
+  .chat{display:grid;grid-template-columns:minmax(0,1fr);gap:.8rem}
+  .chat .log{min-height:220px;max-height:360px;overflow:auto;padding:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-2);display:flex;flex-direction:column;gap:.5rem}
+  .msg{max-width:85%;padding:.55rem .8rem;border-radius:12px;line-height:1.45;font-size:.98rem;position:relative}
+  .msg.you{align-self:flex-end;background:var(--teal-pale);border:1px solid #bfe3ec;border-bottom-right-radius:4px}
+  .msg.room{align-self:flex-start;background:var(--navy);color:#e8f3f7;border-bottom-left-radius:4px}
+  .msg .who{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:.15rem}
+  .msg .rule{display:none;font-family:var(--mono);font-size:.68rem;margin-top:.35rem;padding-top:.3rem;border-top:1px dashed rgba(255,255,255,.3);color:var(--cyan)}
+  .chat.revealed .msg .rule{display:block}
+  .chat.revealed .msg.room{box-shadow:inset 3px 0 0 var(--cyan)}
+  .msg.typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cyan);margin-right:3px;animation:blink 1s infinite}
+  .msg.typing span:nth-child(2){animation-delay:.2s}.msg.typing span:nth-child(3){animation-delay:.4s}
+  @keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+  .chat form{display:flex;gap:.5rem}
+  .chat input[type=text]{flex:1;min-width:0;font:inherit;font-size:1rem;padding:.55rem .8rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .chat input[type=text]:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .chat .tools{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
+  .chat .counter{font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+  .backwall{display:none;margin-top:.9rem;border:1px solid var(--teal-deep);border-radius:var(--radius);overflow:hidden}
+  .backwall.show{display:block;animation:curtain .6s ease-out}
+  @keyframes curtain{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+  .backwall .wallbar{background:var(--navy);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .9rem}
+  .backwall table{margin:0;font-size:.92rem}
+  .backwall td:first-child{font-family:var(--mono);font-size:.78rem;color:var(--teal-deep);white-space:nowrap}
+  .backwall tr.fired td{background:var(--teal-pale)}
+  .backwall .note{margin:0;border-radius:0;border-left-width:0;border-top:1px solid var(--rule-strong)}
+  .suggest{display:flex;gap:.4rem;flex-wrap:wrap}
+  .suggest button{font-family:var(--sans);font-size:.82rem;padding:.3rem .6rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;color:var(--ink-soft);cursor:pointer}
+  .suggest button:hover{border-color:var(--teal);color:var(--teal)}
+
+  /* Stake your claim */
+  .stake{display:grid;gap:.6rem}
+  .stake .ends{display:flex;justify-content:space-between;gap:1rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;color:var(--teal-deep)}
+  .stake .ends span{max-width:48%}
+  .stake .ends span:last-child{text-align:right}
+  .stake input[type=range]{width:100%;accent-color:var(--teal);height:28px}
+  .stake .readout{font-family:var(--mono);font-size:.82rem;color:var(--ink-soft)}
+  .stake .readout b{color:var(--teal-deep);font-variant-numeric:tabular-nums}
+  .stake input[type=text]{font:inherit;font-size:.98rem;padding:.5rem .75rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;width:100%}
+  .stake input[type=text]:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .compare{margin-top:.8rem;padding:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-2)}
+  .compare .track{position:relative;height:14px;border-radius:7px;background:linear-gradient(90deg,var(--teal-pale),var(--paper-3));border:1px solid var(--rule-strong);margin:.9rem 0 1.6rem}
+  .compare .pin{position:absolute;top:50%;transform:translate(-50%,-50%);width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 0 2px var(--teal-deep)}
+  .compare .pin.before{background:var(--ink-faint)}
+  .compare .pin.after{background:var(--teal)}
+  .compare .pin::after{content:attr(data-label);position:absolute;top:18px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);white-space:nowrap}
+  .compare .reasons{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.6rem;font-size:.92rem}
+  .compare .reasons div{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:.5rem .7rem}
+  .compare .reasons b{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:.2rem}
+
 </style>
 </head>
 <body>
@@ -80,6 +130,56 @@
     <p><strong>Return to your experience.</strong> You followed a rulebook to return correct symbols. What did you do successfully? What did you not know?</p>
   </div>
 
+
+  <div class="widget" id="chatWidget">
+    <div class="bar"><span>Interactive · Talk to the Room</span><span class="tag">Scripted demo</span></div>
+    <div class="body">
+      <p>Before you read, have a short conversation with the room. Type anything in English and see how it answers. After three exchanges you can open the back wall and see how the replies were made. This is a scripted demonstration that runs on this page; it is not connected to any AI service.</p>
+      <div class="chat" id="chat">
+        <div class="log" id="chatLog" role="log" aria-live="polite" aria-label="Conversation with the room"></div>
+        <div class="suggest" id="chatSuggest" aria-label="Suggested openers">
+          <button type="button">Hi, how are you?</button>
+          <button type="button">I think machines can understand language.</button>
+          <button type="button">Why do people trust chatbots?</button>
+        </div>
+        <form id="chatForm" autocomplete="off">
+          <label for="chatInput" class="sr">Your message</label>
+          <input type="text" id="chatInput" maxlength="200" placeholder="Type a message to the room…">
+          <button type="submit" class="btn" id="chatSend">Send</button>
+        </form>
+        <div class="tools">
+          <span class="counter" id="chatCount">0 of 3 exchanges before the reveal</span>
+          <span>
+            <button type="button" class="btn ghost" id="chatReset">Start over</button>
+            <button type="button" class="btn" id="chatReveal" disabled>Open the back wall</button>
+          </span>
+        </div>
+      </div>
+      <div class="backwall" id="backwall" aria-live="polite">
+        <div class="wallbar">The rulebook behind every reply</div>
+        <table id="ruleTable">
+          <thead><tr><th scope="col">Rule</th><th scope="col">If your message…</th><th scope="col">The room replies…</th></tr></thead>
+          <tbody></tbody>
+        </table>
+        <div class="note"><p><strong>Every reply came from this table.</strong> The room matched words in your message to a row and filled in a template. It never needed to know what your words meant. Highlighted rows are the ones your conversation used, and each reply above now shows which rule produced it. Keep this in mind as you read: producing appropriate outputs and understanding meanings may be different things.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget" id="stakeBefore">
+    <div class="bar"><span>Interactive · Stake your claim</span><span class="tag">Before reading</span></div>
+    <div class="body">
+      <p>Where do you stand right now? Slide to your position and give one line of reasoning. You will answer again at the end of the reading and see whether you moved.</p>
+      <div class="stake">
+        <div class="ends"><span>Fluent output proves understanding</span><span>Fluent output proves nothing about understanding</span></div>
+        <label for="stakeBeforeRange" class="sr">Your position before reading</label>
+        <input type="range" id="stakeBeforeRange" min="0" max="100" value="50" data-store="ail15-stake-before">
+        <div class="readout">Position: <b id="stakeBeforeVal">50</b> / 100</div>
+        <label for="stakeBeforeWhy" class="sr">Your reason</label>
+        <input type="text" id="stakeBeforeWhy" maxlength="160" placeholder="In one line, why?" data-store="ail15-stake-before-why">
+      </div>
+    </div>
+  </div>
   <div class="reading">
     <h2>The Chinese Room thought experiment</h2>
     <p>Philosopher John Searle proposed the Chinese Room thought experiment in 1980. Imagine a person who does not know Chinese sitting in a room. The person receives Chinese symbols and follows a detailed rulebook for matching inputs to outputs. The rules are so effective that people outside receive answers that look like competent Chinese conversation.</p>
@@ -214,6 +314,27 @@
       </div>
     </div>
 
+
+    <div class="widget" id="stakeAfter">
+      <div class="bar"><span>Interactive · Stake your claim</span><span class="tag">After reading</span></div>
+      <div class="body">
+        <p>Same question, now that you have read the argument and the objection. Slide to your position and give one line of reasoning. Then compare.</p>
+        <div class="stake">
+          <div class="ends"><span>Fluent output proves understanding</span><span>Fluent output proves nothing about understanding</span></div>
+          <label for="stakeAfterRange" class="sr">Your position after reading</label>
+          <input type="range" id="stakeAfterRange" min="0" max="100" value="50" data-store="ail15-stake-after">
+          <div class="readout">Position: <b id="stakeAfterVal">50</b> / 100</div>
+          <label for="stakeAfterWhy" class="sr">Your reason</label>
+          <input type="text" id="stakeAfterWhy" maxlength="160" placeholder="In one line, why now?" data-store="ail15-stake-after-why">
+        </div>
+        <div class="compare" id="compare">
+          <div class="readout" id="compareText">Set your position above to compare.</div>
+          <div class="track" aria-hidden="true"><span class="pin before" id="pinBefore" data-label="before" style="left:50%"></span><span class="pin after" id="pinAfter" data-label="after" style="left:50%"></span></div>
+          <div class="reasons"><div><b>Before</b><span id="whyBefore">—</span></div><div><b>After</b><span id="whyAfter">—</span></div></div>
+        </div>
+      </div>
+    </div>
+
     <h2>As you move to the lesson</h2>
     <p>Be ready to state what fluent output establishes and what it does not establish. Use at least two vocabulary terms accurately.</p>
   </div>
@@ -306,6 +427,86 @@
   }
   $("showReset").addEventListener("click",buildClaims);
   buildClaims();
+
+  /* ---------- Talk to the Room: a scripted rulebook, nothing more ---------- */
+  var RULES=[
+    {id:"R1",when:"contains hello, hi, or hey",test:/\b(hello|hi|hey|good (morning|afternoon|evening))\b/i,reply:function(){return "Hello! It is good to hear from you. What is on your mind today?"}},
+    {id:"R2",when:"contains how are you",test:/how are you/i,reply:function(){return "I am doing well, thanks for asking. How has your day been so far?"}},
+    {id:"R3",when:"matches I am ___",test:/\bi am (.+)/i,reply:function(m){return "How long have you been "+trimEnd(m[1])+"?"}},
+    {id:"R4",when:"matches I think ___",test:/\bi think (.+)/i,reply:function(m){return "What makes you think "+trimEnd(m[1])+"?"}},
+    {id:"R5",when:"matches I want / I need ___",test:/\bi (want|need) (.+)/i,reply:function(m){return "What would it mean for you to "+m[1]+" "+trimEnd(m[2])+"?"}},
+    {id:"R6",when:"contains understand",test:/understand/i,reply:function(){return "Understanding is a big word. What would count as proof that someone really understands?"}},
+    {id:"R7",when:"contains AI, robot, computer, machine, or chatbot",test:/\b(ai|robot|computer|machine|chatbot|bot)s?\b/i,reply:function(){return "People ask me about that a lot. What do you think a machine would need in order to understand something?"}},
+    {id:"R8",when:"contains school, class, teacher, or homework",test:/\b(school|class|teacher|homework|test|exam)\b/i,reply:function(){return "School can be a lot. Which part of it has been on your mind most?"}},
+    {id:"R9",when:"contains a feeling word",test:/\b(feel|sad|happy|tired|bored|angry|nervous|excited|stressed)\b/i,reply:function(){return "It sounds like that matters to you. Tell me more about what is behind that feeling."}},
+    {id:"R10",when:"contains love, like, or favorite",test:/\b(love|like|favorite|favourite)\b/i,reply:function(){return "That sounds like something you care about. What first drew you to it?"}},
+    {id:"R11",when:"starts with why",test:/^\s*why\b/i,reply:function(){return "That is a fair thing to wonder about. What do you suspect the reason might be?"}},
+    {id:"R12",when:"contains because",test:/\bbecause\b/i,reply:function(){return "That makes sense as a reason. Does it feel like the whole story to you?"}},
+    {id:"R13",when:"contains a question mark",test:/\?/,reply:function(){return "That is a thoughtful question. I would say it depends on how you look at it. What makes you ask?"}},
+    {id:"R14",when:"contains you",test:/\byou\b/i,reply:function(){return "Let us keep the focus on you for now. What were you hoping I would say?"}},
+    {id:"R15",when:"nothing above matched",test:/.*/,reply:function(){var f=["I see what you mean. Can you say a little more about that?","Interesting. What led you to think about this today?","Go on, I am listening.","That reminds me of something, though I cannot quite place it. What do you make of it?"];return f[fallbackIdx++%f.length]}}
+  ];
+  var fallbackIdx=0;
+  function trimEnd(t){return t.replace(/[.!?]+\s*$/,"").trim()}
+  var chat=$("chat"),log=$("chatLog"),form=$("chatForm"),input=$("chatInput"),countEl=$("chatCount"),revealBtn=$("chatReveal"),wall=$("backwall");
+  var exchanges=0,used={};
+  function bubble(kind,text,ruleId){
+    var d=el("div","msg "+kind);
+    var who=el("span","who",kind==="you"?"You":"The room");d.appendChild(who);
+    d.appendChild(document.createTextNode(text));
+    if(ruleId){var r=el("span","rule","matched "+ruleId+": "+RULES.find(function(x){return x.id===ruleId}).when);d.appendChild(r)}
+    log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
+  }
+  function roomReply(text){
+    for(var i=0;i<RULES.length;i++){var m=text.match(RULES[i].test);if(m)return {id:RULES[i].id,text:RULES[i].reply(m)}}
+  }
+  function buildRules(){
+    var tb=$("ruleTable").tBodies[0];tb.innerHTML="";
+    RULES.forEach(function(r){var tr=el("tr");tr.id="rule-"+r.id;tr.appendChild(el("td",null,r.id));tr.appendChild(el("td",null,r.when));
+      var ex=r.id==="R15"?"one of four stock lines, in turn":r.id==="R3"?"How long have you been ___?":r.id==="R4"?"What makes you think ___?":r.id==="R5"?"What would it mean for you to ___?":r.reply([]);
+      tr.appendChild(el("td",null,ex));tb.appendChild(tr)});
+  }
+  function send(text){
+    text=text.trim();if(!text)return;
+    input.value="";bubble("you",text);
+    var typing=el("div","msg room typing");typing.innerHTML="<span></span><span></span><span></span>";log.appendChild(typing);log.scrollTop=log.scrollHeight;
+    $("chatSend").disabled=true;
+    setTimeout(function(){
+      typing.remove();var r=roomReply(text);bubble("room",r.text,r.id);used[r.id]=true;
+      exchanges++;countEl.textContent=exchanges<3?exchanges+" of 3 exchanges before the reveal":exchanges+" exchanges. You can open the back wall.";
+      if(exchanges>=3)revealBtn.disabled=false;$("chatSend").disabled=false;input.focus();
+    },650+Math.random()*500);
+  }
+  form.addEventListener("submit",function(e){e.preventDefault();send(input.value)});
+  document.querySelectorAll("#chatSuggest button").forEach(function(b){b.addEventListener("click",function(){send(b.textContent)})});
+  revealBtn.addEventListener("click",function(){
+    chat.classList.add("revealed");wall.classList.add("show");
+    Object.keys(used).forEach(function(id){var tr=$("rule-"+id);if(tr)tr.classList.add("fired")});
+    revealBtn.disabled=true;wall.scrollIntoView({behavior:"smooth",block:"nearest"});
+  });
+  $("chatReset").addEventListener("click",function(){
+    log.innerHTML="";exchanges=0;used={};fallbackIdx=0;chat.classList.remove("revealed");wall.classList.remove("show");
+    document.querySelectorAll("#ruleTable tr.fired").forEach(function(tr){tr.classList.remove("fired")});
+    revealBtn.disabled=true;countEl.textContent="0 of 3 exchanges before the reveal";bubble("room","Hello. I am ready when you are.");
+  });
+  buildRules();bubble("room","Hello. I am ready when you are.");
+
+  /* ---------- Stake your claim: before and after ---------- */
+  var store={get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:v}catch(e){return d}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
+  document.querySelectorAll("input[data-store]").forEach(function(i){var k=i.getAttribute("data-store");var v=store.get(k,null);if(v!=null)i.value=v;i.addEventListener("input",function(){store.set(k,i.value);renderStake()})});
+  function side(v){return v<40?"toward “fluent output proves understanding”":v>60?"toward “fluent output proves nothing about understanding”":"near the middle"}
+  function renderStake(){
+    var b=+$("stakeBeforeRange").value,a=+$("stakeAfterRange").value;
+    $("stakeBeforeVal").textContent=b;$("stakeAfterVal").textContent=a;
+    $("pinBefore").style.left=b+"%";$("pinAfter").style.left=a+"%";
+    var wb=$("stakeBeforeWhy").value.trim(),wa=$("stakeAfterWhy").value.trim();
+    $("whyBefore").textContent=wb||"—";$("whyAfter").textContent=wa||"—";
+    var d=a-b,t;
+    if(d===0)t="Your position did not move. You started and ended at "+a+", "+side(a)+".";
+    else t="You moved "+Math.abs(d)+" points "+(d>0?"toward “proves nothing about understanding”":"toward “proves understanding”")+": from "+b+" to "+a+". You are now "+side(a)+".";
+    $("compareText").textContent=t;
+  }
+  renderStake();
 })();
 </script>
 </body>
