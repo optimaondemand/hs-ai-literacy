@@ -378,7 +378,7 @@
     say('info',memory?'Memory shift. The rulebook fades in three seconds. Peek if you must; it costs three seconds.':'Timed shift. Sixty seconds. Keep the correct replies coming.');
     if(memory)setTimeout(function(){if(mode==='shift'&&sh.memory){$('rulebook').classList.add('dim');$('sh-peek').classList.add('show')}},3000);
     sh.timer=setInterval(function(){updateHud();if(Date.now()>=sh.end)endShift()},100);
-    window.scrollTo({top:0,behavior:'smooth'});fit();
+    document.querySelector('.wrap').scrollIntoView({behavior:'smooth',block:'start'});fit();
   }
   function shiftSend(){
     var rule=RULES[sh.cur];
@@ -423,7 +423,7 @@
   $('sh-start-memory').addEventListener('click',function(){startShift(true)});
   $('sr-again').addEventListener('click',function(){startShift(false)});
   $('sr-memory').addEventListener('click',function(){startShift(true)});
-  $('sr-back').addEventListener('click',function(){start();window.scrollTo({top:0,behavior:'smooth'})});
+  $('sr-back').addEventListener('click',function(){start();document.querySelector('.wrap').scrollIntoView({behavior:'smooth',block:'start'})});
   // Keyboard: 1/2/3 add symbols, Enter sends, Backspace clears (not while typing in a text field).
   document.addEventListener('keydown',function(e){
     var tag=(e.target&&e.target.tagName||'').toLowerCase();if(tag==='textarea'||tag==='input')return;
@@ -453,7 +453,7 @@
   $('clear').addEventListener('click',function(){reply=[];renderReply()});
   $('s0').addEventListener('click',function(){removeAt(0)});
   $('s1').addEventListener('click',function(){removeAt(1)});
-  $('again').addEventListener('click',function(){start();window.scrollTo(0,0)});
+  $('again').addEventListener('click',function(){start();document.querySelector('.wrap').scrollIntoView({behavior:'smooth',block:'start'})});
   // Tell the parent lesson page how tall this widget needs to be.
   function fit(){
     // Measure the body, not the document: the document is never shorter than the iframe, so it could only grow.
