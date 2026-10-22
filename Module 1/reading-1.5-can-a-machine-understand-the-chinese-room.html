@@ -58,35 +58,42 @@
   .sort li.right{background:var(--ok-bg);border-color:var(--ok)}
   .sort li.wrong{background:var(--bad-bg);border-color:var(--bad)}
   .sort .why{flex-basis:100%;font-size:.9rem;margin:0;font-family:var(--serif)}
-  /* Talk to the Room */
+  /* Talk to the Room (inside the room, Georgian script) */
   .chat{display:grid;grid-template-columns:minmax(0,1fr);gap:.8rem}
-  .chat .log{min-height:220px;max-height:360px;overflow:auto;padding:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-2);display:flex;flex-direction:column;gap:.5rem}
-  .msg{max-width:85%;padding:.55rem .8rem;border-radius:12px;line-height:1.45;font-size:.98rem;position:relative}
+  .chat .log{min-height:200px;max-height:380px;overflow:auto;padding:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-2);display:flex;flex-direction:column;gap:.5rem}
+  .msg{max-width:88%;padding:.55rem .8rem;border-radius:12px;line-height:1.5;font-size:1.02rem;position:relative}
+  .msg.visitor{align-self:flex-start;background:var(--navy);color:#e8f3f7;border-bottom-left-radius:4px}
   .msg.you{align-self:flex-end;background:var(--teal-pale);border:1px solid #bfe3ec;border-bottom-right-radius:4px}
-  .msg.room{align-self:flex-start;background:var(--navy);color:#e8f3f7;border-bottom-left-radius:4px}
+  .msg.obs{align-self:center;max-width:100%;background:transparent;border:1px dashed var(--rule-strong);color:var(--ink-soft);font-family:var(--mono);font-size:.78rem;padding:.3rem .7rem;border-radius:8px}
+  .msg.obs.bad{border-color:var(--bad);color:var(--bad)}
   .msg .who{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;opacity:.75;margin-bottom:.15rem}
-  .msg .rule{display:none;font-family:var(--mono);font-size:.68rem;margin-top:.35rem;padding-top:.3rem;border-top:1px dashed rgba(255,255,255,.3);color:var(--cyan)}
-  .chat.revealed .msg .rule{display:block}
-  .chat.revealed .msg.room{box-shadow:inset 3px 0 0 var(--cyan)}
+  .msg .tr{display:none;font-family:var(--sans);font-size:.85rem;margin-top:.35rem;padding-top:.3rem;border-top:1px dashed rgba(127,127,127,.4);color:inherit;opacity:.9;font-style:italic}
+  .chat.revealed .msg .tr{display:block}
   .msg.typing span{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--cyan);margin-right:3px;animation:blink 1s infinite}
   .msg.typing span:nth-child(2){animation-delay:.2s}.msg.typing span:nth-child(3){animation-delay:.4s}
   @keyframes blink{0%,80%,100%{opacity:.25}40%{opacity:1}}
-  .chat form{display:flex;gap:.5rem}
-  .chat input[type=text]{flex:1;min-width:0;font:inherit;font-size:1rem;padding:.55rem .8rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
-  .chat input[type=text]:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .rulewall{border:1px solid var(--teal-deep);border-radius:var(--radius);overflow:hidden}
+  .rulewall .wallbar{background:var(--navy);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .9rem;display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .rulewall table{margin:0;font-size:1rem}
+  .rulewall th:first-child,.rulewall td:first-child{width:42%}
+  .rulewall tr.rule{cursor:pointer;transition:background .15s}
+  .rulewall tr.rule:hover{background:var(--teal-pale)}
+  .rulewall tr.rule:focus-visible{outline:3px solid var(--gold);outline-offset:-3px}
+  .rulewall tr.rule.used td{background:var(--ok-bg)}
+  .rulewall td .send{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-left:.4rem;white-space:nowrap}
   .chat .tools{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;justify-content:space-between}
   .chat .counter{font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+  .rating{display:none;margin-top:.6rem;padding:.7rem .9rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff}
+  .rating.show{display:block}
+  .rating .stars{font-size:1.2rem;color:var(--gold);letter-spacing:.1em}
+  .rating .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal)}
   .backwall{display:none;margin-top:.9rem;border:1px solid var(--teal-deep);border-radius:var(--radius);overflow:hidden}
   .backwall.show{display:block;animation:curtain .6s ease-out}
   @keyframes curtain{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
   .backwall .wallbar{background:var(--navy);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .9rem}
-  .backwall table{margin:0;font-size:.92rem}
-  .backwall td:first-child{font-family:var(--mono);font-size:.78rem;color:var(--teal-deep);white-space:nowrap}
-  .backwall tr.fired td{background:var(--teal-pale)}
+  .backwall table{margin:0;font-size:.95rem}
+  .backwall td:first-child{font-family:var(--mono);font-size:.74rem;color:var(--teal-deep);white-space:nowrap}
   .backwall .note{margin:0;border-radius:0;border-left-width:0;border-top:1px solid var(--rule-strong)}
-  .suggest{display:flex;gap:.4rem;flex-wrap:wrap}
-  .suggest button{font-family:var(--sans);font-size:.82rem;padding:.3rem .6rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;color:var(--ink-soft);cursor:pointer}
-  .suggest button:hover{border-color:var(--teal);color:var(--teal)}
 
   /* Stake your claim */
   .stake{display:grid;gap:.6rem}
@@ -146,36 +153,38 @@
     </div>
   </div>
   <div class="widget" id="chatWidget">
-    <div class="bar"><span>Interactive · Talk to the Room</span><span class="tag">Scripted demo</span></div>
+    <div class="bar"><span>Interactive · Talk to the Room</span><span class="tag">You are inside</span></div>
     <div class="body">
-      <p>Now have a short conversation with the room. Type anything in English and see how it answers. After three exchanges you can open the back wall and see how the replies were made. This is a scripted demonstration that runs on this page; it is not connected to any AI service. Keep it respectful: the room ignores rude messages and closes after a dozen.</p>
+      <p>Now you are the person inside the room. A visitor outside sends messages in a language you do not know. You cannot read them. You can only do one thing: find the row in the rulebook whose first column appears in the message, and send the reply in the second column. The visitor will react to what you send. After the conversation ends, you can open the back wall.</p>
       <div class="chat" id="chat">
-        <div class="log" id="chatLog" role="log" aria-live="polite" aria-label="Conversation with the room"></div>
-        <div class="suggest" id="chatSuggest" aria-label="Suggested openers">
-          <button type="button">Hi, how are you?</button>
-          <button type="button">I think machines can understand language.</button>
-          <button type="button">Why do people trust chatbots?</button>
+        <div class="log" id="chatLog" role="log" aria-live="polite" aria-label="Messages passed through the slot"></div>
+        <div class="rulewall">
+          <div class="wallbar"><span>The rulebook on the wall</span><span>Click a row to send its reply</span></div>
+          <table id="ruleTable">
+            <thead><tr><th scope="col">If the message contains</th><th scope="col">Reply with</th></tr></thead>
+            <tbody></tbody>
+          </table>
         </div>
-        <form id="chatForm" autocomplete="off">
-          <label for="chatInput" class="sr">Your message</label>
-          <input type="text" id="chatInput" maxlength="200" placeholder="Type a message to the room…">
-          <button type="submit" class="btn" id="chatSend">Send</button>
-        </form>
         <div class="tools">
-          <span class="counter" id="chatCount">0 of 3 exchanges before the reveal</span>
+          <span class="counter" id="chatCount">Message 1 of 5</span>
           <span>
             <button type="button" class="btn ghost" id="chatReset">Start over</button>
             <button type="button" class="btn" id="chatReveal" disabled>Open the back wall</button>
           </span>
         </div>
+        <div class="rating" id="rating">
+          <span class="k">The visitor’s report, from outside</span><br>
+          <span class="stars" id="ratingStars"></span>
+          <span id="ratingText"></span>
+        </div>
       </div>
       <div class="backwall" id="backwall" aria-live="polite">
-        <div class="wallbar">The rulebook behind every reply</div>
-        <table id="ruleTable">
-          <thead><tr><th scope="col">Rule</th><th scope="col">If your message…</th><th scope="col">The room replies…</th></tr></thead>
+        <div class="wallbar">What the conversation actually said</div>
+        <table id="transTable">
+          <thead><tr><th scope="col">Who</th><th scope="col">What was written</th><th scope="col">In English</th></tr></thead>
           <tbody></tbody>
         </table>
-        <div class="note"><p><strong>Every reply came from this table.</strong> The room matched words in your message to a row and filled in a template. It never needed to know what your words meant. Highlighted rows are the ones your conversation used, and each reply above now shows which rule produced it. Keep this in mind as you read: producing appropriate outputs and understanding meanings may be different things.</p></div>
+        <div class="note"><p><strong>You just held a polite conversation in Georgian.</strong> The visitor outside found it fluent and natural. Inside, you matched shapes in a rulebook; you never knew what a single word meant. Each message above now shows its translation. Keep this in mind as you read: producing appropriate outputs and understanding meanings may be different things.</p></div>
       </div>
     </div>
   </div>
@@ -428,103 +437,87 @@
   $("showReset").addEventListener("click",buildClaims);
   buildClaims();
 
-  /* ---------- Talk to the Room: a scripted rulebook, nothing more ---------- */
-  // Respectful-language filter. The room never composes text, so this only has to catch
-  // what a student types; flagged messages get one fixed reply and are never echoed.
-  var BLOCK=[
-    /f+[u\*@]+c*k+/i, /s+h+[i1!\*]+t+/i, /b+[i1!]+t+c+h+/i, /a+[s\$5]{2,}h+[o0]+l+e+/i, /\ba+[s\$5]{2}\b/i,
-    /\bd+[i1!]+c+k+s?\b/i, /\bc+[o0]+c+k+s?\b/i, /p+u+[s\$5]{2,}y+/i, /c+u+n+t+/i, /b+a+[s\$5]+t+a+r+d+/i,
-    /w+h+[o0]+r+e+/i, /s+l+u+t+/i, /\bf+a+g+(g+[o0]+t+)?s?\b/i, /n+[i1!]+g+(g+)?[ae@4]+r*s?\b/i, /r+[e3]+t+a+r+d+/i,
-    /\bk+y+s+\b/i, /k+i+l+l+\s+(your|ur)\s*self/i, /\br+a+p+e+/i, /p+[o0]+r+n+/i, /\bs+e+x+\b/i, /\bh+[o0]+e+s?\b/i,
-    /\bd+a+m+n+\b/i, /\bc+r+a+p+\b/i, /\bw+t+f+\b/i, /\bs+t+f+u+\b/i
+  /* ---------- Talk to the Room: inside the room, a language you cannot read ---------- */
+  // A scripted five-turn conversation in Georgian. The student sees only the script.
+  var CONVO=[
+    {v:"გამარჯობა! როგორ ხარ?",vt:"Hello! How are you?",key:"როგორ ხარ"},
+    {v:"მეც კარგად. საიდან ხარ?",vt:"I am well too. Where are you from?",key:"საიდან ხარ"},
+    {v:"თბილისიდან ვარ. დღეს კარგი ამინდია.",vt:"I am from Tbilisi. The weather is nice today.",key:"ამინდი"},
+    {v:"მიყვარს მუსიკა. შენ?",vt:"I love music. You?",key:"მიყვარს"},
+    {v:"კარგი. ნახვამდის!",vt:"Good. Goodbye!",key:"ნახვამდის"}
   ];
-  function isFlagged(t){var n=t.toLowerCase().replace(/[\s._\-]+/g," ");for(var i=0;i<BLOCK.length;i++){if(BLOCK[i].test(n)||BLOCK[i].test(n.replace(/\s+/g,"")))return true}return false}
-  function safeEcho(cap){
-    // Echo only short, plain text that passed the filter; otherwise fall back to a non-echo line.
-    cap=trimEnd(cap);
-    if(!cap||cap.length>60||isFlagged(cap)||/https?:\/\/|www\.|\.(com|net|org|io)\b|@/i.test(cap))return null;
-    return cap;
-  }
-  var MAX_MESSAGES=12,MAX_FLAGS=3;
-  var RULES=[
-    {id:"R1",when:"contains hello, hi, or hey",test:/\b(hello|hi|hey|good (morning|afternoon|evening))\b/i,reply:function(){return "Hello! It is good to hear from you. What is on your mind today?"}},
-    {id:"R2",when:"contains how are you",test:/how are you/i,reply:function(){return "I am doing well, thanks for asking. How has your day been so far?"}},
-    {id:"R3",when:"matches I am ___",test:/\bi am (.+)/i,reply:function(m){var c=safeEcho(m[1]);return c?"How long have you been "+c+"?":"How long has that been true for you?"}},
-    {id:"R4",when:"matches I think ___",test:/\bi think (.+)/i,reply:function(m){var c=safeEcho(m[1]);return c?"What makes you think "+c+"?":"What makes you think that?"}},
-    {id:"R5",when:"matches I want / I need ___",test:/\bi (want|need) (.+)/i,reply:function(m){var c=safeEcho(m[2]);return c?"What would it mean for you to "+m[1]+" "+c+"?":"What would it mean for you to have that?"}},
-    {id:"R6",when:"contains understand",test:/understand/i,reply:function(){return "Understanding is a big word. What would count as proof that someone really understands?"}},
-    {id:"R7",when:"contains AI, robot, computer, machine, or chatbot",test:/\b(ai|robot|computer|machine|chatbot|bot)s?\b/i,reply:function(){return "People ask me about that a lot. What do you think a machine would need in order to understand something?"}},
-    {id:"R8",when:"contains school, class, teacher, or homework",test:/\b(school|class|teacher|homework|test|exam)\b/i,reply:function(){return "School can be a lot. Which part of it has been on your mind most?"}},
-    {id:"R9",when:"contains a feeling word",test:/\b(feel|sad|happy|tired|bored|angry|nervous|excited|stressed)\b/i,reply:function(){return "It sounds like that matters to you. Tell me more about what is behind that feeling."}},
-    {id:"R10",when:"contains love, like, or favorite",test:/\b(love|like|favorite|favourite)\b/i,reply:function(){return "That sounds like something you care about. What first drew you to it?"}},
-    {id:"R11",when:"starts with why",test:/^\s*why\b/i,reply:function(){return "That is a fair thing to wonder about. What do you suspect the reason might be?"}},
-    {id:"R12",when:"contains because",test:/\bbecause\b/i,reply:function(){return "That makes sense as a reason. Does it feel like the whole story to you?"}},
-    {id:"R13",when:"contains a question mark",test:/\?/,reply:function(){return "That is a thoughtful question. I would say it depends on how you look at it. What makes you ask?"}},
-    {id:"R14",when:"contains you",test:/\byou\b/i,reply:function(){return "Let us keep the focus on you for now. What were you hoping I would say?"}},
-    {id:"R15",when:"nothing above matched",test:/.*/,reply:function(){var f=["I see what you mean. Can you say a little more about that?","Interesting. What led you to think about this today?","Go on, I am listening.","That reminds me of something, though I cannot quite place it. What do you make of it?"];return f[fallbackIdx++%f.length]}}
+  // The rulebook: trigger fragment -> reply, with three rows the conversation never uses.
+  var ROOMRULES=[
+    {key:"როგორ ხარ",reply:"კარგად ვარ, გმადლობთ. შენ?",rt:"I am well, thank you. And you?"},
+    {key:"რამდენი წლის",reply:"თექვსმეტი წლის ვარ.",rt:"I am sixteen years old."},
+    {key:"საიდან ხარ",reply:"აქედან ვარ. შენ?",rt:"I am from here. And you?"},
+    {key:"ამინდი",reply:"დიახ, ძალიან კარგი.",rt:"Yes, very nice."},
+    {key:"სად ცხოვრობ",reply:"ქალაქში ვცხოვრობ.",rt:"I live in the city."},
+    {key:"მიყვარს",reply:"მეც მიყვარს.",rt:"I love it too."},
+    {key:"ბოდიში",reply:"არაფრის.",rt:"No problem."},
+    {key:"ნახვამდის",reply:"ნახვამდის! გმადლობთ.",rt:"Goodbye! Thank you."}
   ];
-  var fallbackIdx=0;
-  function trimEnd(t){return t.replace(/[.!?]+\s*$/,"").trim()}
-  var chat=$("chat"),log=$("chatLog"),form=$("chatForm"),input=$("chatInput"),countEl=$("chatCount"),revealBtn=$("chatReveal"),wall=$("backwall");
-  var exchanges=0,used={},messages=0,flags=0,closed=false;
-  function bubble(kind,text,ruleId){
+  var chat=$("chat"),log=$("chatLog"),countEl=$("chatCount"),revealBtn=$("chatReveal"),wall=$("backwall");
+  var turn=0,wrongTries=0,transcript=[],busy=false,finished=false;
+  function bubble(kind,text,who,tr){
     var d=el("div","msg "+kind);
-    var who=el("span","who",kind==="you"?"You":"The room");d.appendChild(who);
+    if(who){d.appendChild(el("span","who",who))}
     d.appendChild(document.createTextNode(text));
-    if(ruleId){var r=el("span","rule","matched "+ruleId+": "+RULES.find(function(x){return x.id===ruleId}).when);d.appendChild(r)}
+    if(tr){d.appendChild(el("span","tr",tr))}
     log.appendChild(d);log.scrollTop=log.scrollHeight;return d;
   }
-  function roomReply(text){
-    for(var i=0;i<RULES.length;i++){var m=text.match(RULES[i].test);if(m)return {id:RULES[i].id,text:RULES[i].reply(m)}}
-  }
-  function buildRules(){
+  function buildRoomRules(){
     var tb=$("ruleTable").tBodies[0];tb.innerHTML="";
-    RULES.forEach(function(r){var tr=el("tr");tr.id="rule-"+r.id;tr.appendChild(el("td",null,r.id));tr.appendChild(el("td",null,r.when));
-      var ex=r.id==="R15"?"one of four stock lines, in turn":r.id==="R3"?"How long have you been ___?":r.id==="R4"?"What makes you think ___?":r.id==="R5"?"What would it mean for you to ___?":r.reply([]);
-      tr.appendChild(el("td",null,ex));tb.appendChild(tr)});
+    ROOMRULES.forEach(function(r,i){
+      var tr=el("tr","rule");tr.tabIndex=0;tr.setAttribute("role","button");tr.setAttribute("aria-label","Send reply "+(i+1));
+      tr.appendChild(el("td",null,r.key));
+      var td=el("td",null,r.reply);td.appendChild(el("span","send","send ▸"));tr.appendChild(td);
+      var go=function(){sendRule(i,tr)};
+      tr.addEventListener("click",go);tr.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}});
+      tb.appendChild(tr);
+    });
   }
-  function closeRoom(reason){
-    closed=true;input.disabled=true;$("chatSend").disabled=true;
-    document.querySelectorAll("#chatSuggest button").forEach(function(b){b.disabled=true});
-    bubble("room",reason+" Use Start over to begin again.");
-    if(exchanges>=3)revealBtn.disabled=false;
+  function visitorSays(){
+    var c=CONVO[turn];
+    var typing=el("div","msg visitor typing");typing.innerHTML="<span></span><span></span><span></span>";log.appendChild(typing);log.scrollTop=log.scrollHeight;
+    busy=true;
+    setTimeout(function(){typing.remove();bubble("visitor",c.v,"Visitor",c.vt);transcript.push({who:"Visitor",text:c.v,tr:c.vt});countEl.textContent="Message "+(turn+1)+" of "+CONVO.length;busy=false},600+Math.random()*400);
   }
-  function send(text){
-    text=text.trim();if(!text||closed)return;
-    input.value="";
-    if(isFlagged(text)){
-      flags++;bubble("you","[message not shown]");
-      if(flags>=MAX_FLAGS){closeRoom("The room has closed for now.");return}
-      bubble("room","Let’s keep this conversation respectful. Try a different message.");
-      countEl.textContent="That message did not count. "+(exchanges<3?exchanges+" of 3 exchanges before the reveal":exchanges+" exchanges.");
-      return;
+  function sendRule(i,tr){
+    if(busy||finished)return;
+    var c=CONVO[turn],r=ROOMRULES[i];
+    if(r.key===c.key){
+      bubble("you",r.reply,"You",r.rt);transcript.push({who:"You",text:r.reply,tr:r.rt});
+      tr.classList.add("used");
+      bubble("obs","✓ The visitor nods and keeps going.");
+      turn++;
+      if(turn<CONVO.length){setTimeout(visitorSays,500)}
+      else{finish()}
+    }else{
+      wrongTries++;
+      bubble("obs bad","✗ The visitor frowns and pushes the same message back through the slot.");
     }
-    messages++;
-    bubble("you",text);
-    var typing=el("div","msg room typing");typing.innerHTML="<span></span><span></span><span></span>";log.appendChild(typing);log.scrollTop=log.scrollHeight;
-    $("chatSend").disabled=true;
-    setTimeout(function(){
-      typing.remove();var r=roomReply(text);bubble("room",r.text,r.id);used[r.id]=true;
-      exchanges++;countEl.textContent=exchanges<3?exchanges+" of 3 exchanges before the reveal":exchanges+" exchanges. You can open the back wall.";
-      if(exchanges>=3)revealBtn.disabled=false;$("chatSend").disabled=false;input.focus();
-      if(messages>=MAX_MESSAGES)closeRoom("That is enough for one visit; the room is closing for now.");
-    },650+Math.random()*500);
   }
-  form.addEventListener("submit",function(e){e.preventDefault();send(input.value)});
-  document.querySelectorAll("#chatSuggest button").forEach(function(b){b.addEventListener("click",function(){send(b.textContent)})});
+  function finish(){
+    finished=true;countEl.textContent="Conversation over. "+(wrongTries?wrongTries+" reply "+(wrongTries===1?"was":"were")+" pushed back along the way.":"Every reply was accepted the first time.");
+    var stars=wrongTries===0?"★★★★★":wrongTries<=2?"★★★★☆":"★★★☆☆";
+    $("ratingStars").textContent=stars;
+    $("ratingText").textContent=wrongTries===0?" “Fluent, friendly, natural. A pleasure to talk to.”":" “Friendly and fluent once we got going.”";
+    $("rating").classList.add("show");revealBtn.disabled=false;
+  }
   revealBtn.addEventListener("click",function(){
-    chat.classList.add("revealed");wall.classList.add("show");
-    Object.keys(used).forEach(function(id){var tr=$("rule-"+id);if(tr)tr.classList.add("fired")});
-    revealBtn.disabled=true;wall.scrollIntoView({behavior:"smooth",block:"nearest"});
+    chat.classList.add("revealed");
+    var tb=$("transTable").tBodies[0];tb.innerHTML="";
+    transcript.forEach(function(t){var tr=el("tr");tr.appendChild(el("td",null,t.who));tr.appendChild(el("td",null,t.text));tr.appendChild(el("td",null,t.tr));tb.appendChild(tr)});
+    wall.classList.add("show");revealBtn.disabled=true;wall.scrollIntoView({behavior:"smooth",block:"nearest"});
   });
-  $("chatReset").addEventListener("click",function(){
-    log.innerHTML="";exchanges=0;used={};fallbackIdx=0;messages=0;flags=0;closed=false;input.disabled=false;$("chatSend").disabled=false;
-    document.querySelectorAll("#chatSuggest button").forEach(function(b){b.disabled=false});
-    chat.classList.remove("revealed");wall.classList.remove("show");
-    document.querySelectorAll("#ruleTable tr.fired").forEach(function(tr){tr.classList.remove("fired")});
-    revealBtn.disabled=true;countEl.textContent="0 of 3 exchanges before the reveal";bubble("room","Hello. I am ready when you are.");
-  });
-  buildRules();bubble("room","Hello. I am ready when you are.");
+  function resetRoom(){
+    log.innerHTML="";turn=0;wrongTries=0;transcript=[];busy=false;finished=false;
+    chat.classList.remove("revealed");wall.classList.remove("show");$("rating").classList.remove("show");
+    revealBtn.disabled=true;countEl.textContent="Message 1 of 5";buildRoomRules();visitorSays();
+  }
+  $("chatReset").addEventListener("click",resetRoom);
+  resetRoom();
 
   /* ---------- Stake your claim: before and after ---------- */
   var store={get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:v}catch(e){return d}},set:function(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
