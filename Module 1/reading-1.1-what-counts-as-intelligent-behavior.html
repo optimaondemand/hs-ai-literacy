@@ -1,105 +1,617 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reading 1.1 | What Counts as Intelligent Behavior?</title>
-  <style>
-    :root { --navy:#17365d; --blue:#2f75b5; --gold:#c58a18; --pale:#eef4fb; --ink:#1f2937; --muted:#52606d; --line:#cdd8e5; --white:#fff; }
-    * { box-sizing:border-box; }
-    body { margin:0; background:#f5f7fa; color:var(--ink); font-family:Arial, Helvetica, sans-serif; line-height:1.65; }
-    .page { width:min(960px, 94vw); margin:32px auto 48px; background:var(--white); border:1px solid var(--line); box-shadow:0 2px 12px rgba(23,54,93,.10); }
-    header { padding:34px 48px 28px; background:var(--navy); color:#fff; border-bottom:6px solid var(--gold); }
-    .eyebrow { margin:0 0 8px; color:#d9e8f7; font-size:.86rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
-    h1 { margin:0; font-family:Georgia, 'Times New Roman', serif; font-size:2.35rem; line-height:1.15; }
-    .subtitle { margin:10px 0 0; font-size:1.08rem; color:#eaf2fa; }
-    .content { padding:34px 48px 48px; }
-    .meta { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin:0 0 28px; }
-    .meta div { background:var(--pale); border-left:4px solid var(--blue); padding:11px 13px; font-size:.94rem; }
-    .meta strong { display:block; color:var(--navy); font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; }
-    h2 { margin:34px 0 12px; padding-bottom:7px; border-bottom:2px solid #dce7f2; color:var(--navy); font-family:Georgia, 'Times New Roman', serif; font-size:1.55rem; }
-    h3 { margin:24px 0 8px; color:#234f7d; font-size:1.1rem; }
-    p, li { font-size:1rem; }
-    .callout { margin:22px 0; padding:18px 20px; border:1px solid #b9cfe6; border-left:6px solid var(--blue); background:#f5f9fd; }
-    .callout h3 { margin-top:0; }
-    .question { margin:22px 0; padding:18px 20px; background:#fff8e8; border:1px solid #ead29b; border-left:6px solid var(--gold); }
-    .question strong { color:#6d4a00; }
-    table { width:100%; border-collapse:collapse; margin:18px 0 24px; }
-    th, td { padding:12px; vertical-align:top; border:1px solid var(--line); text-align:left; }
-    th { background:var(--navy); color:#fff; }
-    tr:nth-child(even) td { background:#f8fbfe; }
-    .vocab { display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:12px; margin-top:16px; }
-    .term { padding:14px; border:1px solid var(--line); background:#fafcff; }
-    .term strong { display:block; color:var(--navy); margin-bottom:4px; }
-    .footer { margin-top:38px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
-    @media (max-width:650px) { header, .content { padding:26px 22px; } .meta { grid-template-columns:1fr; } h1 { font-size:1.85rem; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reading 1.1 — What Counts as Intelligent Behavior?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .page{max-width:860px}
+  .reading p{font-size:1.06rem}
+  .vocab{list-style:none;padding:0;margin:.8rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem}
+  .vocab li{margin:0;padding:.8rem .95rem;background:var(--paper-2);border:1px solid var(--rule);border-top:3px solid var(--teal);border-radius:var(--radius)}
+  .vocab li strong{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+  .callout h3{margin-top:0}
+  .callout ol{margin-bottom:0}
+
+  /* ---------- Smart or Not? (gut-reaction cards) ---------- */
+  .gut{display:grid;gap:.7rem}
+  .gut .deck{position:relative;min-height:190px}
+  .gut .qcard{
+    border:1px solid var(--rule-strong);border-radius:var(--radius);padding:1.1rem 1.2rem;
+    background:linear-gradient(160deg,#fff,var(--paper-2));box-shadow:var(--shadow);
+    animation:slidein .35s ease-out;
+  }
+  @keyframes slidein{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+  .gut .qcard .kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:500}
+  .gut .qcard .name{font-size:1.45rem;font-weight:700;color:var(--teal-deep);margin:.15rem 0 .2rem;line-height:1.2}
+  .gut .qcard .desc{margin:0;font-size:1.05rem;color:var(--ink-soft)}
+  .gut .fuse{height:6px;border-radius:3px;background:var(--paper-3);border:1px solid var(--rule);overflow:hidden;margin-top:.9rem}
+  .gut .fuse > div{height:100%;width:100%;background:var(--gold);transform-origin:left;animation:fuse 6s linear forwards}
+  @keyframes fuse{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+  .gut .fuse.stop > div{animation-play-state:paused}
+  .gut .choices{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.9rem}
+  .gut .choices .btn{flex:1 1 140px;font-size:1rem;padding:.65rem 1rem}
+  .gut .choices .btn.no{background:#fff;color:var(--ink);border-color:var(--rule-strong)}
+  .gut .choices .btn.no:hover{background:var(--paper-2);border-color:var(--ink-soft);box-shadow:none}
+  .gut .choices .btn.maybe{background:var(--gold-pale);color:#6d4a00;border-color:var(--gold)}
+  .gut .choices .btn.maybe:hover{background:#ffeec2;box-shadow:0 0 0 3px rgba(209,154,30,.3)}
+  .gut .meta{display:flex;justify-content:space-between;gap:.6rem;flex-wrap:wrap;font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+  .gut .meta b{color:var(--teal-deep);font-variant-numeric:tabular-nums}
+  .tally{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.4rem}
+  .tally .pip{
+    font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;padding:.25rem .55rem;border-radius:999px;
+    border:1px solid var(--rule-strong);background:#fff;color:var(--ink-soft)
+  }
+  .tally .pip.yes{background:var(--teal-pale);border-color:var(--teal);color:var(--teal-deep)}
+  .tally .pip.no{background:var(--paper-3)}
+  .tally .pip.maybe{background:var(--gold-pale);border-color:var(--gold);color:#6d4a00}
+  .askq{margin-top:.8rem;padding:.8rem .9rem;border:1px dashed var(--gold);border-radius:var(--radius);background:var(--gold-pale);animation:slidein .3s ease-out}
+  .askq p{margin:0 0 .5rem;font-size:.98rem}
+  .askq .qs{display:flex;flex-wrap:wrap;gap:.45rem}
+  .askq .qs button{font-family:var(--sans);font-size:.9rem;padding:.4rem .7rem;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .askq .qs button:hover{background:var(--teal-pale)}
+  .askq .qs button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .shift{margin-top:.9rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden}
+  .shift table{margin:0;font-size:.95rem}
+  .shift td:first-child{font-weight:600;color:var(--teal-deep);white-space:nowrap}
+  .shift td .pip{display:inline-block}
+  .shift tr.moved td{background:var(--gold-pale)}
+  .shift td .q{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:.15rem;font-style:italic}
+
+  /* ---------- X-ray the Box (blueprint panel) ---------- */
+  .xray{
+    background:var(--navy);
+    background-image:linear-gradient(rgba(79,209,232,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(79,209,232,.07) 1px,transparent 1px);
+    background-size:24px 24px;border:1px solid var(--teal-deep);border-radius:var(--radius);padding:1rem;
+    box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);color:#e8f3f7;
+  }
+  .xray .boxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem}
+  .xbox{
+    font:inherit;font-family:var(--sans);color:#dff4f9;text-align:center;cursor:pointer;
+    background:rgba(255,255,255,.03);border:1.5px solid rgba(79,209,232,.45);border-radius:10px;padding:.8rem .5rem .6rem;
+    display:flex;flex-direction:column;align-items:center;gap:.35rem;transition:background .2s,border-color .2s,box-shadow .2s,transform .12s;
+  }
+  .xbox:hover{background:rgba(79,209,232,.1);transform:translateY(-1px)}
+  .xbox:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .xbox[aria-selected="true"]{background:rgba(79,209,232,.16);border-color:var(--cyan);box-shadow:0 0 0 3px var(--glow),0 0 18px var(--glow)}
+  .xbox.scanned{border-style:solid;border-color:#7fe3c7}
+  .xbox .crate{width:46px;height:46px;border:1.5px solid currentColor;border-radius:6px;position:relative;color:var(--cyan);opacity:.9}
+  .xbox .crate::before,.xbox .crate::after{content:"";position:absolute;background:currentColor;opacity:.7}
+  .xbox .crate::before{left:50%;top:0;bottom:0;width:1px}
+  .xbox .crate::after{top:50%;left:0;right:0;height:1px}
+  .xbox.scanned .crate{color:#7fe3c7;background:rgba(127,227,199,.12)}
+  .xbox .lbl{font-size:.9rem;font-weight:600;line-height:1.2}
+  .xbox .st{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#9fb3bf}
+  .xbox.scanned .st{color:#7fe3c7}
+  .stage{margin-top:1rem;border:1px solid rgba(79,209,232,.35);border-radius:10px;background:rgba(0,0,0,.18);overflow:hidden}
+  .stage .top{display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap;padding:.6rem .9rem;border-bottom:1px solid rgba(79,209,232,.25)}
+  .stage .top .name{font-weight:700;font-size:1.1rem;color:#fff}
+  .stage .top .name small{display:block;font-weight:400;font-size:.88rem;color:#b9cfd8}
+  .stage .scanbtn{font:inherit;font-family:var(--mono);font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--cyan);color:var(--navy);border:0;border-radius:8px;padding:.5rem .9rem;cursor:pointer}
+  .stage .scanbtn:hover{box-shadow:0 0 0 3px var(--glow),0 0 16px var(--glow)}
+  .stage .scanbtn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+  .stage .scanbtn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .layers{display:grid}
+  .layer{
+    display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:.5rem .9rem;align-items:start;
+    padding:.75rem .9rem;border-bottom:1px solid rgba(79,209,232,.18);position:relative;overflow:hidden;
+    opacity:.28;transition:opacity .35s;
+  }
+  .layer:last-child{border-bottom:0}
+  .layer .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);padding-top:.15rem}
+  .layer .v{font-size:.98rem;line-height:1.5;color:#e8f3f7;visibility:hidden}
+  .layer .tag{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.2rem .5rem;border-radius:4px;white-space:nowrap;visibility:hidden;align-self:start}
+  .layer.on{opacity:1}
+  .layer.on .v,.layer.on .tag{visibility:visible}
+  .layer.on::before{content:"";position:absolute;top:0;bottom:0;left:-30%;width:30%;background:linear-gradient(90deg,transparent,rgba(79,209,232,.35),transparent);animation:sweep .7s ease-out}
+  @keyframes sweep{from{left:-30%}to{left:110%}}
+  .tag.observed{background:var(--cyan);color:var(--navy)}
+  .tag.inferred{background:var(--gold);color:#2b1d00}
+  .tag.unknown{background:transparent;color:#c9d9e0;border:1px dashed #c9d9e0}
+  .layer.on .v em{color:var(--cyan);font-style:normal}
+  .xray .legend{display:flex;gap:.5rem .9rem;flex-wrap:wrap;margin:.6rem 0 0;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:#b9cfd8;align-items:center}
+  .xray .legend .tag{visibility:visible}
+  .xray .idle{padding:1.4rem .9rem;color:#b9cfd8;font-size:.98rem;text-align:center}
+  @media (max-width:560px){.layer{grid-template-columns:1fr;gap:.25rem}.layer .tag{justify-self:start}}
+
+  /* ---------- Claim rewriter ---------- */
+  .claims{display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
+  .claims button{font-family:var(--sans);font-size:.92rem;padding:.45rem .85rem;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer;text-align:left}
+  .claims button[aria-selected="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px var(--glow)}
+  .claims button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .vague{margin:.4rem 0 .6rem;padding:.7rem .9rem;border:1px solid var(--rule-strong);border-left:4px solid var(--bad);border-radius:0 var(--radius) var(--radius) 0;background:var(--paper-2);font-size:1.05rem}
+  .vague .k{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--bad);margin-bottom:.15rem}
+  .rewrite{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(220px,1fr);gap:.9rem;align-items:start}
+  @media (max-width:640px){.rewrite{grid-template-columns:1fr}}
+  .rewrite .draft{min-height:150px;font-size:1.02rem}
+  .flags{margin-top:.5rem;min-height:1.6em;display:flex;gap:.35rem;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft)}
+  .flags .word{background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.12rem .5rem;font-family:var(--sans);font-size:.86rem;animation:slidein .25s ease-out}
+  .flags .clean{color:var(--ok);font-weight:600}
+  .reqs li .lbl{flex:1}
+  .reqs li .eg{display:block;font-size:.82rem;color:var(--ink-faint);font-family:var(--mono)}
+  .careful{display:none;margin-top:.8rem;padding:.8rem 1rem;background:var(--navy);color:#e6f3f7;border:1px solid var(--teal-deep);border-left:4px solid var(--cyan);border-radius:0 var(--radius) var(--radius) 0;animation:curtain .5s ease-out}
+  .careful.show{display:block}
+  .careful .k{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:.3rem}
+  .careful p{margin:0;font-size:1.02rem;line-height:1.6}
+  @keyframes curtain{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+  .rw-tools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.6rem}
+  .starter{margin:0 0 .8rem}
+  .starter-toggle{font-family:var(--mono);font-size:.78rem;font-weight:500;letter-spacing:.04em;border:1px dashed var(--gold);background:var(--gold-pale);color:#6d4a00;border-radius:8px;padding:.4rem .8rem;cursor:pointer}
+  .starter-toggle:hover{background:#ffeec2}
+  .starter-toggle[aria-expanded="true"]{border-style:solid}
+  .starter-toggle::before{content:"▸ ";}
+  .starter-toggle[aria-expanded="true"]::before{content:"▾ ";}
+  .starter-toggle:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .starter-body{margin-top:.6rem;padding:.8rem .9rem;border:1px solid #f0dfb2;border-radius:var(--radius);background:var(--gold-pale);animation:slidein .25s ease-out}
+  .starter .k{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.25rem}
+  .starter .frame{padding:.6rem .8rem;background:#fff;border:1px solid var(--rule-strong);border-radius:8px;font-size:1.02rem;line-height:1.6}
+  .starter .frame .blank{display:inline-block;min-width:5.5em;border-bottom:1.5px dashed var(--teal);color:var(--teal);font-family:var(--mono);font-size:.82rem;text-align:center;padding:0 .3rem}
+  .starter .hints{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.7rem;margin-top:.7rem}
+  .starter .hints ul{margin:0;padding-left:1.1rem;font-size:.92rem}
+  .starter .hints li{margin:.15rem 0}
+  .starter p.hint{margin:.6rem 0}
+</style>
 </head>
 <body>
-  <main class="page">
-    <header>
-      <p class="eyebrow">AI Literacy • Module 1 • Lesson 1.1 Reading</p>
-      <h1>What Counts as Intelligent Behavior?</h1>
-      <p class="subtitle">Reading before the lesson activity</p>
-    </header>
-    <section class="content">
-      <div class="meta">
-        <div><strong>Estimated time</strong>15–20 minutes</div>
-        <div><strong>Focus question</strong>What can a system do, how does it do it, and what—if anything—does it understand?</div>
-        <div><strong>Required for</strong>Lesson 1.1: A Careful Description</div>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 1 • Lesson 1.1 Reading" data-title="What Counts as Intelligent Behavior?" data-key="ail-intro-1.1-reading"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 1 • Lesson 1.1 Reading</p>
+    <h1>What Counts as Intelligent Behavior?</h1>
+    <p class="lede">Reading before the lesson activity</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <section class="ledger" aria-label="Reading details">
+    <div><span class="k">Estimated time</span><span class="v">15–20 minutes</span></div>
+    <div><span class="k">Focus question</span><span class="v">What can a system do, how does it do it, and what—if anything—does it understand?</span></div>
+    <div><span class="k">Required for</span><span class="v">Lesson 1.1: A Careful Description</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Begin with a prediction.</strong> Think of one device or app that seems “smart.” What does it do that makes you use that word? Keep your answer in mind as you read.</p>
+  </div>
+
+  <div class="widget" id="gutBefore">
+    <div class="bar"><span>Interactive · Smart or not?</span><span class="tag">Before reading</span></div>
+    <div class="body">
+      <p>Six everyday systems, one at a time. Go with your gut: is it smart or not? Do not overthink it; the fuse is only a nudge. You will see these six again at the end of the reading, with a better set of words.</p>
+      <div class="gut" id="gutB">
+        <div class="meta"><span>Card <b id="gutBNum">1</b> of 6</span><span>Gut reaction only</span></div>
+        <div class="deck" id="gutBDeck"></div>
+        <div class="tally" id="gutBTally" aria-label="Your answers so far"></div>
       </div>
+      <div class="status" id="gutBStatus" role="status" aria-live="polite">Press Start when you are ready.</div>
+    </div>
+  </div>
 
-      <div class="question"><strong>Begin with a prediction.</strong> Think of one device or app that seems “smart.” What does it do that makes you use that word? Keep your answer in mind as you read.</div>
+  <div class="reading">
+    <h2>Intelligence is not one simple thing</h2>
+    <p>In ordinary speech, we often call a person intelligent when that person can do more than repeat a memorized response. Intelligence may involve noticing what matters, remembering information, representing a situation, comparing possibilities, learning from feedback, explaining reasons, communicating, planning, and changing course when circumstances change.</p>
+    <p>No single list settles the meaning of intelligence. A gifted musician, a careful mechanic, a skilled nurse, and a thoughtful historian may all display intelligence in different ways. Their abilities overlap, but they are not identical. The same caution applies when we describe machines. A system that recognizes objects in a photograph, predicts the next word in a sentence, recommends a song, or finds a route through traffic may display an important capability. It does not automatically display every capability associated with human intelligence.</p>
 
-      <h2>Intelligence is not one simple thing</h2>
-      <p>In ordinary speech, we often call a person intelligent when that person can do more than repeat a memorized response. Intelligence may involve noticing what matters, remembering information, representing a situation, comparing possibilities, learning from feedback, explaining reasons, communicating, planning, and changing course when circumstances change.</p>
-      <p>No single list settles the meaning of intelligence. A gifted musician, a careful mechanic, a skilled nurse, and a thoughtful historian may all display intelligence in different ways. Their abilities overlap, but they are not identical. The same caution applies when we describe machines. A system that recognizes objects in a photograph, predicts the next word in a sentence, recommends a song, or finds a route through traffic may display an important capability. It does not automatically display every capability associated with human intelligence.</p>
+    <div class="callout"><h3>A habit for this course</h3><p>When someone calls a system “intelligent,” separate three questions:</p><ol><li><strong>What can the system do?</strong></li><li><strong>How does it produce that result?</strong></li><li><strong>What, if anything, does the result show about understanding?</strong></li></ol></div>
 
-      <div class="callout"><h3>A habit for this course</h3><p>When someone calls a system “intelligent,” separate three questions:</p><ol><li><strong>What can the system do?</strong></li><li><strong>How does it produce that result?</strong></li><li><strong>What, if anything, does the result show about understanding?</strong></li></ol></div>
+    <h2>From inputs to outputs</h2>
+    <p>One practical way to study a system is to ask what information it receives and what it produces. An <strong>input</strong> is information a system receives: a word, a photograph, a location, a sensor reading, a click, or a number. An <strong>output</strong> is what the system produces: a label, a prediction, a recommendation, a sentence, a route, a score, or an action.</p>
+    <p>Inputs and outputs alone are not enough. We also need to ask what process connects them. A system may follow a fixed rule, search among possible options, compare a new case to patterns in previous data, or combine several methods. It is also useful to ask whether the system changes over time. Some systems never change unless a person changes their instructions. Others are updated, retrained, or designed to respond to new information.</p>
 
-      <h2>From inputs to outputs</h2>
-      <p>One practical way to study a system is to ask what information it receives and what it produces. An <strong>input</strong> is information a system receives: a word, a photograph, a location, a sensor reading, a click, or a number. An <strong>output</strong> is what the system produces: a label, a prediction, a recommendation, a sentence, a route, a score, or an action.</p>
-      <p>Inputs and outputs alone are not enough. We also need to ask what process connects them. A system may follow a fixed rule, search among possible options, compare a new case to patterns in previous data, or combine several methods. It is also useful to ask whether the system changes over time. Some systems never change unless a person changes their instructions. Others are updated, retrained, or designed to respond to new information.</p>
-
-      <table>
-        <thead><tr><th>System</th><th>Input</th><th>Output</th><th>What we can cautiously say</th></tr></thead>
-        <tbody>
-          <tr><td>Timer-controlled light</td><td>Time of day</td><td>Light on or off</td><td>It follows a fixed schedule. The example gives no evidence that it learns.</td></tr>
-          <tr><td>Navigation app</td><td>Destination, location, map and traffic information</td><td>Suggested route and arrival estimate</td><td>It may predict travel time and search possible routes under constraints.</td></tr>
-          <tr><td>Photo organizer</td><td>Image pixels and associated information</td><td>Possible labels or groupings</td><td>It may classify patterns in images. A correct label does not by itself tell us what the system understands.</td></tr>
-          <tr><td>Teacher evaluating a late-work request</td><td>Student explanation, course policy, prior context</td><td>A judgment and response</td><td>The teacher can consider reasons, context, values, and responsibility in ways that require human judgment.</td></tr>
-        </tbody>
-      </table>
-
-      <h2>Automation, adaptation, and judgment</h2>
-      <p><strong>Automation</strong> means that a system carries out a process with little ongoing human intervention. Automation can be simple: a sprinkler turns on every Tuesday at 6:00 a.m. It can also be complicated: a warehouse system may coordinate thousands of items. But an automated system is not necessarily a learning system.</p>
-      <p><strong>Adaptation</strong> means that a system’s behavior changes in response to feedback, data, or changed conditions. A route planner that reacts to traffic may adapt to current conditions. A machine-learning system may be retrained on new examples. Adaptation can make a system more useful, but it does not guarantee that the system is correct, fair, or wise.</p>
-      <p><strong>Human judgment</strong> includes more than choosing an output. People can ask whether a goal is worth pursuing, consider duties and consequences, account for context that was not supplied in advance, and accept responsibility for a decision. Human beings can also make mistakes. The point is not that every human decision is perfect; it is that responsibility and moral judgment are not automatically transferred to a tool because the tool makes a recommendation.</p>
-
-      <h2>Why careful language matters</h2>
-      <p>Calling a system “intelligent” can be helpful when it directs attention to real abilities such as recognizing patterns, planning, using language, or adapting to feedback. The same label can mislead when it makes us assume a system has human-like understanding, motives, wisdom, or moral responsibility.</p>
-      <p>Compare these claims:</p>
-      <ul>
-        <li><strong>Vague:</strong> “The app understands me.”</li>
-        <li><strong>More careful:</strong> “The app uses my past clicks and the behavior of similar users to predict what I may select next.”</li>
-      </ul>
-      <p>The second statement is more useful because it describes a possible process, makes a claim that can be investigated, and leaves room to ask whether the prediction is accurate, fair, or appropriate.</p>
-
-      <div class="callout"><h3>Use this four-question system check</h3><ol><li>What does the system receive?</li><li>What does it produce?</li><li>What process seems to connect input and output?</li><li>What changes over time—and what does not?</li></ol></div>
-
-      <h2>Key vocabulary</h2>
-      <div class="vocab">
-        <div class="term"><strong>automation</strong>A system carrying out a process with little ongoing human intervention.</div>
-        <div class="term"><strong>algorithm</strong>A defined set of steps used to solve a problem or complete a task.</div>
-        <div class="term"><strong>input</strong>Information a system receives.</div>
-        <div class="term"><strong>output</strong>Information or an action a system produces.</div>
-        <div class="term"><strong>adaptation</strong>A change in behavior based on feedback, data, or changed conditions.</div>
-        <div class="term"><strong>intelligent behavior</strong>Behavior that appears to involve abilities such as perceiving, learning, reasoning, planning, communicating, or adapting; the phrase does not settle whether a system understands.</div>
+    <div class="widget" id="xrayWidget">
+      <div class="bar"><span>Interactive · X-ray the box</span><span class="tag">Look inside</span></div>
+      <div class="body">
+        <p>From the outside, every system is a sealed box: something goes in, something comes out. Pick a box and scan it layer by layer. Each layer is tagged with how you know it: you can <strong>observe</strong> it directly, you have to <strong>infer</strong> it from behavior, or it stays <strong>unknown</strong> from where you stand.</p>
+        <div class="xray">
+          <div class="boxes" id="boxes" role="tablist" aria-label="Systems to scan"></div>
+          <div class="stage" id="stage">
+            <div class="idle" id="stageIdle">Select a box above to begin scanning.</div>
+            <div id="stageBody" hidden>
+              <div class="top">
+                <div class="name" id="stageName"></div>
+                <button type="button" class="scanbtn" id="scanBtn">Scan next layer</button>
+              </div>
+              <div class="layers" id="layers"></div>
+            </div>
+          </div>
+          <div class="legend"><span>How you know:</span><span class="tag observed">observed</span><span class="tag inferred">inferred</span><span class="tag unknown">unknown</span></div>
+        </div>
+        <div class="status" id="xrayStatus" role="status" aria-live="polite">0 of 5 boxes scanned.</div>
       </div>
+    </div>
 
-      <div class="question"><strong>As you move to the lesson:</strong> Choose one familiar system. Be prepared to describe it without saying merely that it is “smart.”</div>
-      <p class="footer">AI Literacy • Module 1 • Lesson 1.1 Reading | All essential content is available in this page as text.</p>
-    </section>
-  </main>
+    <table>
+      <thead><tr><th>System</th><th>Input</th><th>Output</th><th>What we can cautiously say</th></tr></thead>
+      <tbody>
+        <tr><td>Timer-controlled light</td><td>Time of day</td><td>Light on or off</td><td>It follows a fixed schedule. The example gives no evidence that it learns.</td></tr>
+        <tr><td>Navigation app</td><td>Destination, location, map and traffic information</td><td>Suggested route and arrival estimate</td><td>It may predict travel time and search possible routes under constraints.</td></tr>
+        <tr><td>Photo organizer</td><td>Image pixels and associated information</td><td>Possible labels or groupings</td><td>It may classify patterns in images. A correct label does not by itself tell us what the system understands.</td></tr>
+        <tr><td>Teacher evaluating a late-work request</td><td>Student explanation, course policy, prior context</td><td>A judgment and response</td><td>The teacher can consider reasons, context, values, and responsibility in ways that require human judgment.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Automation, adaptation, and judgment</h2>
+    <p><strong>Automation</strong> means that a system carries out a process with little ongoing human intervention. Automation can be simple: a sprinkler turns on every Tuesday at 6:00 a.m. It can also be complicated: a warehouse system may coordinate thousands of items. But an automated system is not necessarily a learning system.</p>
+    <p><strong>Adaptation</strong> means that a system’s behavior changes in response to feedback, data, or changed conditions. A route planner that reacts to traffic may adapt to current conditions. A machine-learning system may be retrained on new examples. Adaptation can make a system more useful, but it does not guarantee that the system is correct, fair, or wise.</p>
+    <p><strong>Human judgment</strong> includes more than choosing an output. People can ask whether a goal is worth pursuing, consider duties and consequences, account for context that was not supplied in advance, and accept responsibility for a decision. Human beings can also make mistakes. The point is not that every human decision is perfect; it is that responsibility and moral judgment are not automatically transferred to a tool because the tool makes a recommendation.</p>
+
+    <h2>Why careful language matters</h2>
+    <p>Calling a system “intelligent” can be helpful when it directs attention to real abilities such as recognizing patterns, planning, using language, or adapting to feedback. The same label can mislead when it makes us assume a system has human-like understanding, motives, wisdom, or moral responsibility.</p>
+    <p>Compare these claims:</p>
+    <ul>
+      <li><strong>Vague:</strong> “The app understands me.”</li>
+      <li><strong>More careful:</strong> “The app uses my past clicks and the behavior of similar users to predict what I may select next.”</li>
+    </ul>
+    <p>The second statement is more useful because it describes a possible process, makes a claim that can be investigated, and leaves room to ask whether the prediction is accurate, fair, or appropriate.</p>
+
+    <div class="widget" id="rewriteWidget">
+      <div class="bar"><span>Interactive · Claim rewriter</span><span class="tag">Your turn</span></div>
+      <div class="body">
+        <p>Pick a vague claim and rewrite it as a careful one. As you type, the checker watches for four things: an input, an output, a hedge for anything you are inferring, and no mind-words. Mind-words are verbs that quietly claim the system has a mind. When at least three checks are lit, you can compare your version with one careful version.</p>
+        <div class="claims" id="claims" role="tablist" aria-label="Vague claims to rewrite"></div>
+        <div class="vague"><span class="k">Vague claim</span><span id="vagueText"></span></div>
+        <div class="starter" id="starter">
+          <button type="button" class="starter-toggle" id="starterToggle" aria-expanded="false">Need a start?</button>
+          <div class="starter-body" id="starterBody" hidden>
+            <div class="frame"><span class="k">Sentence frame</span><span id="frameText"></span></div>
+            <div class="hints">
+              <div><span class="k">It might receive</span><ul id="hintIn"></ul></div>
+              <div><span class="k">It might produce</span><ul id="hintOut"></ul></div>
+              <div><span class="k">Hedges to borrow</span><ul><li>appears to</li><li>seems to</li><li>may</li><li>likely</li><li>I cannot verify whether</li></ul></div>
+            </div>
+            <p class="hint">Fill the blanks with pieces from the lists, or with your own. The Compare button later shows one finished version, so do not peek yet.</p>
+            <button type="button" class="btn ghost" id="useFrame">Put the frame in the box</button>
+          </div>
+        </div>
+        <div class="rewrite">
+          <div>
+            <label for="rewriteBox" class="sr">Your careful rewrite</label>
+            <textarea id="rewriteBox" class="draft" placeholder="The app appears to use … to …"></textarea>
+            <div class="flags" id="flags"></div>
+          </div>
+          <div>
+            <ul class="reqs" id="reqs">
+              <li data-req="input"><span class="dot"></span><span class="lbl">Names something it receives<span class="eg">clicks, history, location, words typed…</span></span></li>
+              <li data-req="output"><span class="dot"></span><span class="lbl">Names something it produces<span class="eg">a prediction, a ranking, a suggestion…</span></span></li>
+              <li data-req="hedge"><span class="dot"></span><span class="lbl">Hedges what you are inferring<span class="eg">appears to, may, likely, seems to…</span></span></li>
+              <li data-req="nomind"><span class="dot"></span><span class="lbl">No mind-words<span class="eg">understands, knows, wants, decides…</span></span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="rw-tools">
+          <span class="counts"><span><b id="rwMet">0</b> of 4 checks lit</span></span>
+          <span>
+            <button type="button" class="btn ghost" id="rwClear">Clear</button>
+            <button type="button" class="btn" id="rwCompare" disabled>Compare with a careful version</button>
+          </span>
+        </div>
+        <div class="careful" id="careful"><span class="k">One careful version</span><p id="carefulText"></p></div>
+        <div class="status" id="rwStatus" role="status" aria-live="polite">Rewrite at least one claim.</div>
+      </div>
+    </div>
+
+    <div class="callout"><h3>Use this four-question system check</h3><ol><li>What does the system receive?</li><li>What does it produce?</li><li>What process seems to connect input and output?</li><li>What changes over time—and what does not?</li></ol></div>
+
+    <h2>Key vocabulary</h2>
+    <ul class="vocab">
+      <li><strong>automation</strong>A system carrying out a process with little ongoing human intervention.</li>
+      <li><strong>algorithm</strong>A defined set of steps used to solve a problem or complete a task.</li>
+      <li><strong>input</strong>Information a system receives.</li>
+      <li><strong>output</strong>Information or an action a system produces.</li>
+      <li><strong>adaptation</strong>A change in behavior based on feedback, data, or changed conditions.</li>
+      <li><strong>intelligent behavior</strong>Behavior that appears to involve abilities such as perceiving, learning, reasoning, planning, communicating, or adapting; the phrase does not settle whether a system understands.</li>
+    </ul>
+
+    <div class="widget" id="gutAfter">
+      <div class="bar"><span>Interactive · Smart or not?</span><span class="tag">After reading</span></div>
+      <div class="body">
+        <p>The same six systems. This time you have a third button: <strong>the word hides the question</strong>. Choose it when “smart” is not the real issue and you would rather ask one of the four questions instead. Then compare with your gut reactions from the top of the page.</p>
+        <div class="gut" id="gutA">
+          <div class="meta"><span>Card <b id="gutANum">1</b> of 6</span><span>Now with better words</span></div>
+          <div class="deck" id="gutADeck"></div>
+          <div class="tally" id="gutATally" aria-label="Your answers so far"></div>
+        </div>
+        <div class="shift" id="shift" hidden>
+          <table>
+            <thead><tr><th scope="col">System</th><th scope="col">Before</th><th scope="col">After</th></tr></thead>
+            <tbody id="shiftBody"></tbody>
+          </table>
+        </div>
+        <div class="status" id="gutAStatus" role="status" aria-live="polite">Press Start when you are ready.</div>
+      </div>
+    </div>
+
+    <div class="plate">
+      <p><strong>As you move to the lesson:</strong> Choose one familiar system. Be prepared to describe it without saying merely that it is “smart.”</p>
+    </div>
+  </div>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 1 • Lesson 1.1 Reading | All essential content is available in this page as text.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  var store={
+    get:function(k){try{var v=localStorage.getItem(k);return v?JSON.parse(v):null}catch(e){return null}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  };
+
+  /* ---------- Smart or Not? ---------- */
+  var SYSTEMS=[
+    {id:"timer",name:"Timer light",desc:"A timer turns the classroom lights off at 10:00 p.m."},
+    {id:"map",name:"Map app",desc:"A map app changes your route after it detects traffic delays."},
+    {id:"teacher",name:"Teacher",desc:"A teacher decides whether an excuse for late work is fair."},
+    {id:"photo",name:"Photo app",desc:"A photo app groups images that may show the same person."},
+    {id:"calc",name:"Calculator",desc:"A calculator adds two numbers."},
+    {id:"chatbot",name:"Chatbot",desc:"A chatbot writes an answer to a history question."}
+  ];
+  var QUESTIONS=["What does it receive?","What does it produce?","What process connects them?","What changes over time?"];
+  var LABEL={yes:"Smart",no:"Not smart",maybe:"Hides the question"};
+
+  function gutRun(opts){
+    var votes=store.get(opts.key)||{};
+    var deck=$(opts.deck),tally=$(opts.tally),num=$(opts.num),status=$(opts.status);
+    function order(){return SYSTEMS}
+    function idx(){var n=0;SYSTEMS.forEach(function(s){if(votes[s.id])n++});return n}
+    function renderTally(){
+      tally.innerHTML="";
+      SYSTEMS.forEach(function(s){
+        var v=votes[s.id];var p=el("span","pip"+(v?" "+v.v:""),s.name+(v?": "+LABEL[v.v]:""));tally.appendChild(p);
+      });
+    }
+    var started=false;
+    function gate(){
+      deck.innerHTML="";num.textContent="1";
+      var c=el("div","qcard");
+      c.appendChild(el("span","kicker","Ready?"));
+      c.appendChild(el("div","name",opts.gateTitle));
+      c.appendChild(el("p","desc",opts.gateText));
+      var ch=el("div","choices");var b=el("button","btn","Start");b.type="button";
+      b.addEventListener("click",function(){started=true;card()});
+      ch.appendChild(b);c.appendChild(ch);deck.appendChild(c);
+    }
+    function card(){
+      deck.innerHTML="";
+      var i=idx();num.textContent=Math.min(i+1,6);
+      if(i>=SYSTEMS.length){opts.done(votes);return}
+      if(!started&&i===0){gate();return}
+      var s=SYSTEMS[i];
+      var c=el("div","qcard");
+      c.appendChild(el("span","kicker","System "+(i+1)));
+      c.appendChild(el("div","name",s.name));
+      c.appendChild(el("p","desc",s.desc));
+      var fuse=el("div","fuse");fuse.appendChild(el("div"));c.appendChild(fuse);
+      var ch=el("div","choices");
+      var opts2=[["yes","Smart","btn"],["no","Not smart","btn no"]];
+      if(opts.third)opts2.push(["maybe","The word hides the question","btn maybe"]);
+      opts2.forEach(function(o){
+        var b=el("button",o[2],o[1]);b.type="button";
+        b.addEventListener("click",function(){
+          fuse.classList.add("stop");
+          if(o[0]==="maybe"){ask(s,c)}else{commit(s.id,{v:o[0]})}
+        });
+        ch.appendChild(b);
+      });
+      c.appendChild(ch);deck.appendChild(c);
+    }
+    function ask(s,c){
+      Array.prototype.forEach.call(c.querySelectorAll(".choices button"),function(b){b.disabled=true});
+      var a=el("div","askq");
+      a.appendChild(el("p",null,"Which question would you ask about the "+s.name.toLowerCase()+" first?"));
+      var qs=el("div","qs");
+      QUESTIONS.forEach(function(q){
+        var b=el("button",null,q);b.type="button";
+        b.addEventListener("click",function(){commit(s.id,{v:"maybe",q:q})});
+        qs.appendChild(b);
+      });
+      a.appendChild(qs);c.appendChild(a);
+    }
+    function commit(id,v){votes[id]=v;store.set(opts.key,votes);renderTally();status.className="status";status.textContent=idx()+" of 6 answered.";card()}
+    renderTally();card();
+    return {reset:function(){votes={};started=false;store.set(opts.key,votes);renderTally();status.className="status";status.textContent=opts.resetText;card()},votes:function(){return votes}};
+  }
+
+  var before=gutRun({key:"ail11-gut-before",deck:"gutBDeck",tally:"gutBTally",num:"gutBNum",status:"gutBStatus",third:false,resetText:"Press Start when you are ready.",gateTitle:"Six cards, gut reaction only.",gateText:"Each card gives you a few seconds. Press Start when you are ready.",
+    done:function(v){
+      var n=0;SYSTEMS.forEach(function(s){if(v[s.id].v==="yes")n++});
+      var d=$("gutBDeck");d.innerHTML="";
+      var c=el("div","qcard");c.appendChild(el("span","kicker","Done"));
+      c.appendChild(el("div","name","You called "+n+" of 6 smart."));
+      c.appendChild(el("p","desc",(n===0?"Not one? Interesting. ":n===6?"All six? Interesting. ":"")+"Hold that thought. Notice that one word just did six different jobs. By the end of this reading you will answer again, with better words."));
+      var ch=el("div","choices");var r=el("button","btn ghost","Start over");r.type="button";r.addEventListener("click",function(){before.reset();if(after)after.reset()});ch.appendChild(r);c.appendChild(ch);
+      d.appendChild(c);
+      var st=$("gutBStatus");st.className="status ok";st.textContent="Six gut reactions saved on this device. Keep reading.";
+    }});
+
+  var after=gutRun({key:"ail11-gut-after",deck:"gutADeck",tally:"gutATally",num:"gutANum",status:"gutAStatus",third:true,resetText:"Press Start when you are ready.",gateTitle:"The same six, with better words.",gateText:"No rush this time. Press Start when you are ready.",
+    done:function(v){
+      var b=before.votes();var d=$("gutADeck");d.innerHTML="";
+      var tb=$("shiftBody");tb.innerHTML="";var moved=0,asked=0;
+      SYSTEMS.forEach(function(s){
+        var bv=b[s.id],av=v[s.id];
+        var tr=el("tr");tr.appendChild(el("td",null,s.name));
+        var t1=el("td");t1.appendChild(el("span","pip"+(bv?" "+bv.v:""),bv?LABEL[bv.v]:"not answered"));tr.appendChild(t1);
+        var t2=el("td");t2.appendChild(el("span","pip "+av.v,LABEL[av.v]));
+        if(av.q){t2.appendChild(el("span","q","You would ask: "+av.q));asked++}
+        tr.appendChild(t2);
+        if(bv&&bv.v!==av.v){tr.classList.add("moved");moved++}
+        tb.appendChild(tr);
+      });
+      $("shift").hidden=false;
+      var c=el("div","qcard");c.appendChild(el("span","kicker","Compare"));
+      c.appendChild(el("div","name",moved===0?"Nothing moved.":"You moved on "+moved+" of 6."));
+      var msg=b&&Object.keys(b).length===6?
+        (asked>0?"Every time you chose a question instead of a label, you did what this reading asks: you replaced “smart” with something you can actually check. ":"You kept the labels. That is allowed; the question is whether you could now defend each one with an input, an output, and a process. ")+"Carry this into the lesson.":
+        "You skipped the gut-reaction round at the top of the page, so there is nothing to compare. Scroll up and try it, then come back.";
+      c.appendChild(el("p","desc",msg));
+      var ch=el("div","choices");var r=el("button","btn ghost","Answer again");r.type="button";r.addEventListener("click",function(){after.reset();$("shift").hidden=true});ch.appendChild(r);c.appendChild(ch);
+      d.appendChild(c);
+      var st=$("gutAStatus");st.className="status ok";st.textContent=asked>0?asked+" of 6 turned into questions. That is the habit for this course.":"All six answered.";
+    }});
+
+  /* ---------- X-ray the Box ---------- */
+  var BOXES=[
+    {id:"timer",name:"Timer-controlled light",sub:"the lights go off at 10:00 p.m.",layers:[
+      ["Receives","The time of day from a clock. Nothing else goes in.","observed"],
+      ["Produces","Light on, or light off.","observed"],
+      ["Process","The same thing every night at the same time. That pattern is strong evidence of a <em>fixed rule</em>: compare the clock to a schedule.","inferred"],
+      ["Changes over time","Nothing, unless a person reprograms it. The example gives no evidence that it learns.","inferred"]
+    ]},
+    {id:"nav",name:"Navigation app",sub:"it changes your route after detecting traffic",layers:[
+      ["Receives","Your destination and your location, which you supplied. Map and traffic information, which you can see it use but did not supply yourself.","observed"],
+      ["Produces","A suggested route and an arrival estimate.","observed"],
+      ["Process","It may <em>search possible routes</em> under constraints and predict travel time. You see the result, not the search.","inferred"],
+      ["Changes over time","The route changes as traffic updates, so it adapts to current conditions. Whether it learns anything about <em>you</em> is not visible from here.","unknown"]
+    ]},
+    {id:"photo",name:"Photo organizer",sub:"it groups images that may show the same person",layers:[
+      ["Receives","Image pixels and associated information such as dates or places.","inferred"],
+      ["Produces","Possible labels or groupings of photos.","observed"],
+      ["Process","It may <em>classify patterns</em> in images by comparing new photos to previous ones. A correct label does not by itself tell us what the system understands.","inferred"],
+      ["Changes over time","It may be updated or retrained by its makers. Nothing on your screen shows whether or when.","unknown"]
+    ]},
+    {id:"chatbot",name:"Chatbot",sub:"it writes an answer to a history question",layers:[
+      ["Receives","The words you typed.","observed"],
+      ["Produces","Fluent sentences that read like an answer.","observed"],
+      ["Process","It likely draws on <em>patterns in language</em> from a very large amount of text. Fluent output is evidence of a capability, not by itself evidence of understanding or accuracy.","inferred"],
+      ["Changes over time","Its makers may update it. Whether it remembers you, or changes from your conversation, cannot be seen from the outside.","unknown"]
+    ]},
+    {id:"teacher",name:"Teacher",sub:"evaluating a late-work request",layers:[
+      ["Receives","The student’s explanation, the course policy, and prior context you may not know about.","observed"],
+      ["Produces","A judgment and a response.","observed"],
+      ["Process","Reasons, context, values, and responsibility. Here the box has a door: you can <em>ask why</em>, and get reasons back.","inferred"],
+      ["Changes over time","A teacher can change their mind, ask a new question, and answer for the decision afterward.","observed"]
+    ]}
+  ];
+  var scanned=store.get("ail11-xray")||{};
+  var current=null,revealed=0;
+  function buildBoxes(){
+    var wrap=$("boxes");wrap.innerHTML="";
+    BOXES.forEach(function(b){
+      var btn=el("button","xbox"+(scanned[b.id]?" scanned":""));btn.type="button";btn.setAttribute("role","tab");btn.setAttribute("aria-selected","false");btn.setAttribute("data-id",b.id);
+      btn.appendChild(el("span","crate"));btn.appendChild(el("span","lbl",b.name));btn.appendChild(el("span","st",scanned[b.id]?"scanned":"sealed"));
+      btn.addEventListener("click",function(){select(b)});
+      wrap.appendChild(btn);
+    });
+  }
+  function xrayStatus(){
+    var n=Object.keys(scanned).length,st=$("xrayStatus");
+    st.className="status"+(n===BOXES.length?" ok":"");
+    st.textContent=n===BOXES.length?"All five scanned. Notice the pattern: inputs and outputs are usually observed; the process is almost always inferred; change over time is often unknown. Those are the gaps a careful description has to name.":n+" of 5 boxes scanned.";
+  }
+  function select(b){
+    current=b;revealed=0;
+    document.querySelectorAll(".xbox").forEach(function(x){x.setAttribute("aria-selected",x.getAttribute("data-id")===b.id?"true":"false")});
+    $("stageIdle").hidden=true;$("stageBody").hidden=false;
+    var nm=$("stageName");nm.innerHTML="";nm.appendChild(document.createTextNode(b.name));nm.appendChild(el("small",null,b.sub));
+    var L=$("layers");L.innerHTML="";
+    b.layers.forEach(function(l){
+      var row=el("div","layer");row.appendChild(el("div","k",l[0]));
+      var v=el("div","v");v.innerHTML=l[1];row.appendChild(v);
+      row.appendChild(el("span","tag "+l[2],l[2]));L.appendChild(row);
+    });
+    var sb=$("scanBtn");sb.disabled=false;sb.textContent="Scan next layer";
+    if(scanned[b.id]){revealAll(true)}
+    $("stage").scrollIntoView({block:"nearest"});
+  }
+  function revealAll(quiet){
+    var rows=$("layers").children;for(var i=0;i<rows.length;i++)rows[i].classList.add("on");revealed=rows.length;
+    var sb=$("scanBtn");sb.disabled=true;sb.textContent="Fully scanned";
+    if(!quiet){scanned[current.id]=true;store.set("ail11-xray",scanned);var x=document.querySelector('.xbox[data-id="'+current.id+'"]');x.classList.add("scanned");x.querySelector(".st").textContent="scanned";xrayStatus()}
+  }
+  $("scanBtn").addEventListener("click",function(){
+    if(!current)return;
+    var rows=$("layers").children;
+    if(revealed<rows.length){rows[revealed].classList.add("on");revealed++}
+    if(revealed>=rows.length){revealAll(false)}
+    else $("scanBtn").textContent="Scan next layer ("+revealed+" of "+rows.length+")";
+  });
+  buildBoxes();xrayStatus();
+
+  /* ---------- Claim rewriter ---------- */
+  var CLAIMS=[
+    {v:"The app understands me.",c:"The app uses my past clicks and the behavior of similar users to predict what I may select next.",
+     frame:"The app appears to use [what it receives] to [what it produces]. It may [what it gets right], but it does not [what it cannot know].",
+     inputs:["my past clicks and taps","what I bought or added to a cart","how long I looked at something","what people with similar history chose"],
+     outputs:["a list of suggestions","the order of items on my home screen","a “you might also like” row"]},
+    {v:"My phone knows what I am about to type.",c:"My keyboard appears to use the letters I have typed so far, and patterns from many people’s typing, to predict the next word. It may be right often, but it does not know what I mean to say.",
+     frame:"My keyboard seems to use [what it receives] to suggest [what it produces]. It is likely [how often it is right], but it cannot [what it cannot know].",
+     inputs:["the letters I have typed so far","the word before the cursor","words I have used before","common word patterns from many people"],
+     outputs:["three suggested words above the keyboard","an autocorrect replacement","a finished sentence it offers"]},
+    {v:"The feed knows what I like.",c:"The feed seems to use what I watch, skip, and tap, along with the behavior of similar users, to rank what it shows me next. It may predict my attention, but it does not know my reasons.",
+     frame:"The feed likely uses [what it receives] to decide [what it produces]. It may predict [what it predicts], but it does not know [what it cannot know].",
+     inputs:["what I watch to the end","what I skip in the first second","what I tap, like, or share","how long I pause on a post"],
+     outputs:["the order of the next videos","which posts show first","how often one creator appears"]}
+  ];
+  var MIND=/\b(understands?|understood|knows?|knew|thinks?|thought|wants?|wanted|decides?|decided|realiz(?:es?|ed)|feels?|felt|believes?|likes?|cares?|intends?|smart|intelligent|wise|chooses|gets me)\b/gi;
+  var INPUT=/\b(click(?:s|ed)?|tap(?:s|ped)?|history|location|words?|letters?|typed?|typing|searches|searched|data|photos?|pictures?|listening|watch(?:ed|es)?|skip(?:s|ped)?|messages?|past|previous|time|sensor|readings?|inputs?|receives?|what I (?:have )?(?:watched|typed|played|searched|bought|clicked|read))\b/i;
+  var OUTPUT=/\b(predicts?|prediction|suggest(?:s|ion|ions)?|recommend(?:s|ation|ations)?|rank(?:s|ing)?|shows?|labels?|routes?|repl(?:y|ies)|answers?|generates?|produces?|outputs?|sorts?|groups?|flags?|autocompletes?|fills? in)\b/i;
+  var HEDGE=/\b(appears?|appear to|seems?|may|might|likely|probably|possibly|perhaps|based on|I cannot verify|I can’t verify|I can't verify|as far as I can tell|it looks like)\b/i;
+  var rwState=store.get("ail11-rewrite")||{};
+  var rwCur=0;
+  function buildClaims(){
+    var w=$("claims");w.innerHTML="";
+    CLAIMS.forEach(function(c,i){
+      var b=el("button",null,"Claim "+(i+1));b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",i===rwCur?"true":"false");
+      b.addEventListener("click",function(){rwCur=i;buildClaims();loadClaim()});w.appendChild(b);
+    });
+  }
+  function loadStarter(){
+    var c=CLAIMS[rwCur];
+    var f=$("frameText");f.innerHTML="";
+    c.frame.split(/(\[[^\]]+\])/).forEach(function(part){
+      if(part.charAt(0)==="["){f.appendChild(el("span","blank",part.slice(1,-1)))}
+      else f.appendChild(document.createTextNode(part));
+    });
+    var li=$("hintIn");li.innerHTML="";c.inputs.forEach(function(t){li.appendChild(el("li",null,t))});
+    var lo=$("hintOut");lo.innerHTML="";c.outputs.forEach(function(t){lo.appendChild(el("li",null,t))});
+  }
+  $("starterToggle").addEventListener("click",function(){
+    var open=$("starterBody").hidden;$("starterBody").hidden=!open;this.setAttribute("aria-expanded",open?"true":"false");
+  });
+  $("useFrame").addEventListener("click",function(){
+    var box=$("rewriteBox"),frame=CLAIMS[rwCur].frame.replace(/\[[^\]]+\]/g,"___");
+    box.value=box.value.trim()?box.value.replace(/\s*$/,"\n")+frame:frame;
+    check();box.focus();var p=box.value.indexOf("___");if(p>=0)box.setSelectionRange(p,p+3);
+  });
+  function loadClaim(){
+    $("vagueText").textContent="“"+CLAIMS[rwCur].v+"”";
+    $("rewriteBox").value=rwState[rwCur]||"";
+    $("careful").classList.remove("show");
+    loadStarter();
+    check();
+  }
+  function check(){
+    var t=$("rewriteBox").value;
+    rwState[rwCur]=t;store.set("ail11-rewrite",rwState);
+    var found=t.match(MIND)||[];
+    var seen={},words=[];found.forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;words.push(w)}});
+    var f=$("flags");f.innerHTML="";
+    if(t.trim().length===0){f.textContent=""}
+    else if(words.length){f.appendChild(el("span",null,"Mind-words: "));words.forEach(function(w){f.appendChild(el("span","word",w))})}
+    else{f.appendChild(el("span","clean","No mind-words. Clean."))}
+    var met={input:INPUT.test(t),output:OUTPUT.test(t),hedge:HEDGE.test(t),nomind:t.trim().length>0&&words.length===0};
+    var n=0;
+    document.querySelectorAll("#reqs li").forEach(function(li){var ok=met[li.getAttribute("data-req")];li.classList.toggle("met",!!ok);if(ok)n++});
+    $("rwMet").textContent=n;
+    $("rwCompare").disabled=n<3;
+    var st=$("rwStatus");
+    if(t.trim().length===0){st.className="status";st.textContent="Rewrite at least one claim."}
+    else if(n<3){st.className="status";st.textContent="Keep going. Say what goes in, what comes out, and hedge the part you cannot see."}
+    else if(n===3&&!met.nomind){st.className="status bad";st.textContent="Almost. One mind-word is still doing the work. Swap it for what the system actually does."}
+    else{st.className="status ok";st.textContent=n===4?"All four lit. That claim can now be investigated.":"Three lit. Compare with a careful version, or finish the fourth."}
+  }
+  $("rewriteBox").addEventListener("input",check);
+  $("rwClear").addEventListener("click",function(){$("rewriteBox").value="";$("careful").classList.remove("show");check();$("rewriteBox").focus()});
+  $("rwCompare").addEventListener("click",function(){$("carefulText").textContent="“"+CLAIMS[rwCur].c+"”";$("careful").classList.add("show")});
+  buildClaims();loadClaim();
+})();
+</script>
 </body>
 </html>
