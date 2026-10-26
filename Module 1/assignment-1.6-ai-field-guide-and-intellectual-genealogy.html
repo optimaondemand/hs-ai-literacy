@@ -1,1 +1,476 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Assignment 1.6 — AI Field Guide and Intellectual Genealogy</title><style>body{font-family:Arial,sans-serif;line-height:1.55;max-width:920px;margin:auto;padding:2rem;color:#17212b}header,footer{border-left:8px solid #1f6f8b;padding-left:1rem}h1,h2{color:#123e52}.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;background:#eef7fa;padding:1rem;border-radius:8px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #7a8793;padding:.65rem;text-align:left}th{background:#e5f2f6}.box{background:#fff6df;border-left:5px solid #b7791f;padding:1rem;margin:1rem 0}</style></head><body><header><p>AI Literacy • Module 1 • Assignment 1.6</p><h1>AI Field Guide and Intellectual Genealogy</h1><p>Complete the Module 1 project: five evidence-based system descriptions, one historical connection, and a written defense.</p></header><section class="meta"><div><strong>Estimated time</strong><br>30–40 minutes</div><div><strong>Points</strong><br>50</div><div><strong>Submission type</strong><br>Canvas text entry or file upload</div><div><strong>Written defense</strong><br>400–600 words</div></section><p><strong>Assignment question:</strong> What can selected AI-related systems do, what shapes their behavior, what are their limits, and how should a responsible user describe them?</p><h2>Your task</h2><p>Submit your completed Module 1 AI Field Guide and Intellectual Genealogy. Your guide should be organized so a reader can inspect each claim, see what evidence supports it, and recognize what remains uncertain.</p><h2>Required components</h2><ol><li><strong>Five Field Guide entries.</strong> Each entry must include: system name/context; task category; inputs; outputs; likely process or data use; human choices; one benefit; one limitation/risk; and citations or labeled inferences.</li><li><strong>One history/genealogy note.</strong> Connect a chosen system to an earlier development such as symbolic rules/expert systems, statistical learning, neural networks, search, or generative models. Do not claim direct descent unless evidence supports it.</li><li><strong>Written defense (400–600 words).</strong> Answer all four questions:<ul><li>Which entry required the most careful inference, and why?</li><li>Revise one claim you initially made after learning more.</li><li>What can one system in your guide do well?</li><li>What should a user not assume merely because the system’s output is impressive?</li></ul></li></ol><div class="box"><strong>Plain-text entry template:</strong><br><strong>System/context:</strong><br><strong>Task category/categories:</strong><br><strong>Inputs:</strong><br><strong>Outputs:</strong><br><strong>Likely process/data use (evidence or inference):</strong><br><strong>Human choices/oversight:</strong><br><strong>Benefit:</strong><br><strong>Limitation/risk/question:</strong><br><strong>Source(s) or labeled inference:</strong></div><h2>Evidence and responsible language</h2><p>Separate observation, documentation, credible reporting, and inference. Use phrases such as <em>appears to, likely, the company states,</em> or <em>the available evidence suggests</em> when appropriate. Avoid anthropomorphic claims unless you can explain exactly what evidence supports them.</p><h2>AI-use policy</h2><p>You may use reputable sources to verify factual details and must cite them. Clearly label inferences. <strong>Do not use generative AI to draft, rewrite, or edit the Field Guide or written defense.</strong> At the bottom, add one disclosure line:</p><ul><li><strong>No AI assistance used.</strong> or</li><li><strong>AI assistance used:</strong> [tool] helped me with [specific limited purpose].</li></ul><h2>Success criteria</h2><ul><li>All five entries include every required field.</li><li>Task categories, inputs, outputs, and human choices are specific.</li><li>Benefits and limitations are meaningful and cautious.</li><li>Sources are cited and inferences are labeled.</li><li>The genealogy connection is accurate and relevant.</li><li>The written defense answers all four questions and includes disclosure.</li></ul><h2>Rubric (50 points)</h2><table><thead><tr><th>Criterion</th><th>Points</th><th>Evidence</th></tr></thead><tbody><tr><td>Accurate system/task descriptions</td><td>10</td><td>Five entries name task categories precisely.</td></tr><tr><td>Inputs, outputs, process/data, and human choices</td><td>10</td><td>Entries show a complete system X-ray.</td></tr><tr><td>Benefits, limitations, and responsible language</td><td>10</td><td>Claims are qualified; limits are meaningful.</td></tr><tr><td>Evidence and citation/inference discipline</td><td>8</td><td>Sources are appropriate; guesses are labeled.</td></tr><tr><td>Historical/genealogy connection</td><td>5</td><td>Accurate, relevant conceptual connection.</td></tr><tr><td>Written defense and reflection</td><td>5</td><td>Thoughtful, individual explanation of judgment.</td></tr><tr><td>Organization, clarity, and completion</td><td>2</td><td>Readable, complete submission with disclosure.</td></tr></tbody></table><h2>How to submit in Canvas</h2><ol><li>Click <strong>Submit Assignment</strong>.</li><li>Use <strong>Text Entry</strong> for a plain-text guide or <strong>File Upload</strong> for a document.</li><li>Check that all five entries, the genealogy note, and the written defense are included.</li><li>Add citations/labeled inferences and your AI-use disclosure.</li><li>Review the success criteria, then click <strong>Submit Assignment</strong>.</li></ol><footer><p>AI Literacy • Module 1 • Assignment 1.6 | Submit independently. This project demonstrates your ability to describe AI systems carefully, not to repeat marketing language.</p></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assignment 1.6 — AI Field Guide and Intellectual Genealogy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .page{max-width:920px}
+  .must{counter-reset:must;list-style:none;padding:0;margin:.6rem 0}
+  .must li{counter-increment:must;margin:0 0 .5rem;padding:.7rem .9rem .7rem 2.8rem;position:relative;background:#fff;border:1px solid var(--rule);border-radius:var(--radius)}
+  .must li::before{content:"0" counter(must);position:absolute;left:.7rem;top:.7rem;width:30px;height:26px;border-radius:6px;background:var(--navy);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:.78rem;border:1px solid var(--teal)}
+  .must ul{margin:.4rem 0 0}
+  .submit{counter-reset:sub;list-style:none;padding:0;margin:.6rem 0}
+  .submit li{counter-increment:sub;padding:.4rem 0 .4rem 2.2rem;position:relative;border-bottom:1px dashed var(--rule)}
+  .submit li:last-child{border-bottom:0}
+  .submit li::before{content:"0" counter(sub);position:absolute;left:.1rem;top:.5rem;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--teal)}
+  .box h3{margin-top:0}
+  .template{font-family:var(--mono);font-size:.86rem;line-height:1.7}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .5rem;border-radius:4px;white-space:nowrap}
+
+  /* ---------- Binder ---------- */
+  .tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin:.5rem 0 .8rem}
+  .tab{font-family:var(--sans);font-size:.9rem;padding:.45rem .85rem;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer;display:inline-flex;align-items:center;gap:.45rem}
+  .tab[aria-selected="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px var(--glow)}
+  .tab .dots{display:inline-flex;gap:2px}
+  .tab .dots i{width:6px;height:6px;border-radius:50%;background:var(--rule-strong);display:inline-block}
+  .tab .dots i.on{background:var(--ok)}
+  .tab[aria-selected="true"] .dots i{background:#3b5565}.tab[aria-selected="true"] .dots i.on{background:#7fe3c7}
+  .tab:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .form{border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff;padding:.9rem 1rem}
+  .form .fhead{display:flex;justify-content:space-between;gap:.6rem;align-items:center;flex-wrap:wrap;margin-bottom:.6rem}
+  .form .fhead h4{margin:0;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep)}
+  .pullbtn{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;border:1px dashed var(--gold);background:var(--gold-pale);color:#6d4a00;border-radius:6px;padding:.25rem .55rem;cursor:pointer}
+  .pullbtn:hover{background:#ffeec2}
+  .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.6rem .8rem}
+  .field{display:grid;gap:.25rem}
+  .field.wide{grid-column:1 / -1}
+  .field label{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);display:flex;justify-content:space-between;gap:.5rem}
+  .field label .n{color:var(--teal)}
+  .field input,.field textarea{width:100%;font-family:var(--sans);font-size:.95rem;line-height:1.45;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .field textarea{min-height:58px;resize:vertical}
+  .field input:focus,.field textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .field .flag{font-size:.8rem;color:var(--bad);min-height:1em}
+  .chips{display:flex;gap:.35rem;flex-wrap:wrap}
+  .chip-t{font-family:var(--sans);font-size:.86rem;padding:.3rem .65rem;border-radius:999px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .chip-t[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan)}
+  .chip-t:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .evtags{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.2rem}
+  .evtag{font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;padding:.25rem .55rem;border-radius:4px;border:1px solid var(--rule-strong);background:#fff;color:var(--ink-soft);cursor:pointer}
+  .evtag[aria-pressed="true"]{background:var(--teal-deep);border-color:var(--teal-deep);color:#fff}
+  .evtag.inf[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#2b1d00}
+  .anth{margin-top:.6rem;min-height:1.3em;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);display:flex;gap:.35rem;flex-wrap:wrap;align-items:center}
+  .anth .word{background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.1rem .5rem;font-family:var(--sans);font-size:.84rem}
+  .anth .clean{color:var(--ok);font-weight:600}
+
+  /* genealogy + defense */
+  .gen{display:grid;gap:.6rem;margin-top:.4rem}
+  .gen .row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:.3rem .8rem;align-items:start}
+  @media (max-width:600px){.gen .row{grid-template-columns:1fr}}
+  .gen .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);padding-top:.4rem}
+  .gen textarea{width:100%;min-height:80px;font-family:var(--sans);font-size:.95rem;line-height:1.5;padding:.5rem .65rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
+  .gen textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .qs{display:grid;gap:.6rem;margin-top:.4rem}
+  .q{border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff;padding:.6rem .8rem}
+  .q label{display:block;font-size:.95rem;font-weight:600;color:var(--teal-deep);margin-bottom:.3rem}
+  .q label .n{font-family:var(--mono);font-size:.72rem;color:var(--teal);margin-right:.4rem}
+  .q textarea{width:100%;min-height:90px;font-family:var(--sans);font-size:.98rem;line-height:1.55;padding:.5rem .65rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
+  .q textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .q .wc{font-family:var(--mono);font-size:.7rem;color:var(--ink-faint);text-align:right;margin-top:.2rem}
+  .disc{margin-top:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.7rem .8rem;background:#fff}
+  .disc h4{margin:0 0 .3rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep)}
+  .disc label.opt{display:flex;gap:.5rem;align-items:flex-start;margin:.3rem 0;cursor:pointer;font-size:.95rem}
+  .disc input[type=radio]{accent-color:var(--teal);margin-top:.25rem}
+  .disc .fields{display:grid;gap:.4rem;margin:.3rem 0 .2rem 1.6rem}
+  .disc .fields input{font:inherit;font-size:.92rem;padding:.4rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;width:100%}
+  .disc .line{margin-top:.5rem;font-family:var(--mono);font-size:.8rem;color:var(--teal-deep);background:var(--teal-pale);border-radius:6px;padding:.4rem .6rem}
+  .btools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.6rem}
+
+  /* rubric sliders */
+  .rubric td:nth-child(2){min-width:190px;font-family:var(--mono);font-weight:600;color:var(--teal-deep)}
+  .rubric input[type=range]{width:120px;accent-color:var(--teal);vertical-align:middle}
+  .rubric .val{display:inline-block;min-width:3.2em;text-align:right}
+  .rubric tfoot td{font-weight:600;background:var(--paper-2)}
+
+  /* gathered */
+  .gather{border:1px solid var(--teal-deep);border-radius:var(--radius);overflow:hidden;background:#fff}
+  .gather .gbar{background:var(--navy);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.55rem .9rem;display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .gather .gbody{padding:.9rem 1rem}
+  .gather .row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:.4rem .8rem;padding:.45rem 0;border-bottom:1px dashed var(--rule)}
+  .gather .row:last-child{border-bottom:0}
+  .gather .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding-top:.2rem}
+  .gather .v{font-size:.94rem;white-space:pre-wrap}
+  .gather .v.empty{color:var(--ink-faint);font-style:italic}
+  .gather input.name{font:inherit;font-size:.95rem;padding:.35rem .55rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;max-width:320px;width:100%}
+  .gather .entry{margin:.3rem 0 .6rem;padding:.5rem .7rem;border:1px solid var(--rule);border-radius:8px;background:var(--paper-2);font-size:.9rem;white-space:pre-wrap;font-family:var(--mono)}
+  .gather .gtools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end;padding:.7rem 1rem;border-top:1px solid var(--rule);background:var(--paper-2)}
+  @media (max-width:560px){.gather .row{grid-template-columns:1fr}}
+  @media print{
+    body{background:#fff}
+    .page{border:0;box-shadow:none;max-width:none;margin:0;padding:0}
+    .page > *:not(#gatherSection){display:none!important}
+    #gatherSection .gtools,#gatherSection .hint{display:none!important}
+    .gather{border-color:#999}.gather .gbar{background:#eee;color:#000}.gather .k{color:#333}
+  }
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 1 • Assignment 1.6" data-title="AI Field Guide and Intellectual Genealogy" data-key="ail-intro-1.6-assignment" data-words="KNOWS|PERFECT|ALWAYS|APPEARS TO|LIKELY|EVIDENCE"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 1 • Assignment 1.6</p>
+    <h1>AI Field Guide and Intellectual Genealogy</h1>
+    <p class="lede">Complete the Module 1 project: five evidence-based system descriptions, one historical connection, and a written defense.</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <section class="ledger" aria-label="Assignment details">
+    <div><span class="k">Estimated time</span><span class="v">30–40 minutes</span></div>
+    <div><span class="k">Points</span><span class="v">50</span></div>
+    <div><span class="k">Submission type</span><span class="v">Canvas text entry or file upload</span></div>
+    <div><span class="k">Written defense</span><span class="v">400–600 words</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Assignment question:</strong> What can selected AI-related systems do, what shapes their behavior, what are their limits, and how should a responsible user describe them?</p>
+  </div>
+
+  <h2>Your task</h2>
+  <p>Submit your completed Module 1 AI Field Guide and Intellectual Genealogy. Your guide should be organized so a reader can inspect each claim, see what evidence supports it, and recognize what remains uncertain.</p>
+
+  <h2>Required components</h2>
+  <ol class="must">
+    <li><strong>Five Field Guide entries.</strong> Each entry must include: system name/context; task category; inputs; outputs; likely process or data use; human choices; one benefit; one limitation/risk; and citations or labeled inferences.</li>
+    <li><strong>One history/genealogy note.</strong> Connect a chosen system to an earlier development such as symbolic rules/expert systems, statistical learning, neural networks, search, or generative models. Do not claim direct descent unless evidence supports it.</li>
+    <li><strong>Written defense (400–600 words).</strong> Answer all four questions:<ul><li>Which entry required the most careful inference, and why?</li><li>Revise one claim you initially made after learning more.</li><li>What can one system in your guide do well?</li><li>What should a user not assume merely because the system’s output is impressive?</li></ul></li>
+  </ol>
+  <div class="box template"><strong>Plain-text entry template:</strong><br><strong>System/context:</strong><br><strong>Task category/categories:</strong><br><strong>Inputs:</strong><br><strong>Outputs:</strong><br><strong>Likely process/data use (evidence or inference):</strong><br><strong>Human choices/oversight:</strong><br><strong>Benefit:</strong><br><strong>Limitation/risk/question:</strong><br><strong>Source(s) or labeled inference:</strong></div>
+
+  <h2>Evidence and responsible language</h2>
+  <p>Separate observation, documentation, credible reporting, and inference. Use phrases such as <em>appears to, likely, the company states,</em> or <em>the available evidence suggests</em> when appropriate. Avoid anthropomorphic claims unless you can explain exactly what evidence supports them.</p>
+
+  <h2>AI-use policy</h2>
+  <p>You may use reputable sources to verify factual details and must cite them. Clearly label inferences. <strong>Do not use generative AI to draft, rewrite, or edit the Field Guide or written defense.</strong> At the bottom, add one disclosure line:</p>
+  <ul><li><strong>No AI assistance used.</strong> or</li><li><strong>AI assistance used:</strong> [tool] helped me with [specific limited purpose].</li></ul>
+
+  <div class="widget" id="binder">
+    <div class="bar"><span>Interactive · Field Guide binder</span><span class="tag">Five entries</span></div>
+    <div class="body">
+      <p>One tab per entry, nine fields each, the same nine as the template. Systems you named in Lesson 1.1 and labeled in Lesson 1.2 are filled in where they exist on this device, and <em>Pull my earlier work</em> brings in the justification and revision you wrote for that system. Every process claim carries an evidence tag; a tag of <em>labeled inference</em> is honest, a missing tag is not. The dots on each tab count the fields done.</p>
+      <div class="tabs" id="tabs" role="tablist" aria-label="Entries"></div>
+      <div class="form" id="form"></div>
+      <div class="anth" id="anth"></div>
+    </div>
+  </div>
+
+  <div class="widget" id="genWidget">
+    <div class="bar"><span>Interactive · Genealogy note</span><span class="tag">One connection</span></div>
+    <div class="body">
+      <p>Pick one of your systems and the earlier development it connects to, then write the connection. The note is checked for hedged language: a conceptual connection is a claim about ideas, not a family tree.</p>
+      <div class="gen">
+        <div class="row"><span class="k">System</span><div class="chips" id="genSys"></div></div>
+        <div class="row"><span class="k">Earlier development</span><div class="chips" id="genEarlier"></div></div>
+        <div class="row"><span class="k">The connection</span><div><textarea id="genNote" placeholder="The earlier idea was… My system appears to share… I am not claiming direct descent because…"></textarea><div class="flag" id="genFlag" style="font-size:.84rem;color:#6d4a00;min-height:1.1em"></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget" id="defWidget">
+    <div class="bar"><span>Interactive · Written defense</span><span class="tag">400–600 words</span></div>
+    <div class="body">
+      <p>Four questions, one box each. The meter counts the total across all four. Everything here is yours alone; the page only counts and checks.</p>
+      <div class="qs">
+        <div class="q"><label for="q1"><span class="n">Q1</span>Which entry required the most careful inference, and why?</label><textarea id="q1" data-q="1"></textarea><div class="wc" id="wc1">0 words</div></div>
+        <div class="q"><label for="q2"><span class="n">Q2</span>Revise one claim you initially made after learning more.</label><textarea id="q2" data-q="2"></textarea><div class="wc" id="wc2">0 words</div></div>
+        <div class="q"><label for="q3"><span class="n">Q3</span>What can one system in your guide do well?</label><textarea id="q3" data-q="3"></textarea><div class="wc" id="wc3">0 words</div></div>
+        <div class="q"><label for="q4"><span class="n">Q4</span>What should a user not assume merely because the system’s output is impressive?</label><textarea id="q4" data-q="4"></textarea><div class="wc" id="wc4">0 words</div></div>
+      </div>
+      <div class="meter" id="meter"><div></div></div>
+      <div class="counts"><span>Total: <b id="wcTotal">0</b> words</span><span>target <b>400–600</b></span><span id="rangeNote" class="muted"></span></div>
+      <div class="anth" id="defAnth"></div>
+      <div class="disc" id="disc">
+        <h4>Disclosure line</h4>
+        <label class="opt"><input type="radio" name="disc" value="none"> <span><strong>No AI assistance used.</strong></span></label>
+        <label class="opt"><input type="radio" name="disc" value="used"> <span><strong>AI assistance used:</strong> [tool] helped me with [specific limited purpose].</span></label>
+        <div class="fields" id="discFields" hidden><input type="text" id="discTool" placeholder="Tool" maxlength="60" aria-label="Tool"><input type="text" id="discWhat" placeholder="Specific limited purpose" maxlength="140" aria-label="Specific limited purpose"></div>
+        <div class="line" id="discLine">Choose one.</div>
+      </div>
+      <ul class="reqs" id="reqs" style="margin-top:.8rem">
+        <li data-req="entries"><span class="dot"></span><span>Five entries with all nine fields</span></li>
+        <li data-req="tasks"><span class="dot"></span><span>A task category on every entry</span></li>
+        <li data-req="tags"><span class="dot"></span><span>An evidence tag on every entry</span></li>
+        <li data-req="sources"><span class="dot"></span><span>Sources cited, or inferences labeled</span></li>
+        <li data-req="anth"><span class="dot"></span><span>No unsupported anthropomorphic words</span></li>
+        <li data-req="gen"><span class="dot"></span><span>Genealogy note with system and earlier development</span></li>
+        <li data-req="def"><span class="dot"></span><span>Defense answers all four, 400–600 words</span></li>
+        <li data-req="disc"><span class="dot"></span><span>Disclosure line chosen</span></li>
+      </ul>
+      <div class="btools">
+        <span class="counts"><span><b id="bMet">0</b> of 8 checks lit</span></span>
+        <button type="button" class="btn ghost" id="bClear">Clear everything</button>
+      </div>
+      <div class="status" id="bStatus" role="status" aria-live="polite">Start with entry 1.</div>
+    </div>
+  </div>
+
+  <h2>Success criteria</h2>
+  <ul class="checklist" id="criteria">
+    <li><label><input type="checkbox" data-check="0"><span>All five entries include every required field.</span></label></li>
+    <li><label><input type="checkbox" data-check="1"><span>Task categories, inputs, outputs, and human choices are specific.</span></label></li>
+    <li><label><input type="checkbox" data-check="2"><span>Benefits and limitations are meaningful and cautious.</span></label></li>
+    <li><label><input type="checkbox" data-check="3"><span>Sources are cited and inferences are labeled.</span></label></li>
+    <li><label><input type="checkbox" data-check="4"><span>The genealogy connection is accurate and relevant.</span></label></li>
+    <li><label><input type="checkbox" data-check="5"><span>The written defense answers all four questions and includes disclosure.</span></label></li>
+  </ul>
+
+  <h2>Rubric (50 points)</h2>
+  <p class="hint">Score yourself honestly before you submit. Slide each row to the points you think it has earned so far.</p>
+  <table class="rubric" id="rubric">
+    <thead><tr><th scope="col">Criterion</th><th scope="col">Points</th><th scope="col">Evidence</th></tr></thead>
+    <tbody>
+      <tr data-max="10"><td>Accurate system/task descriptions</td><td>10</td><td>Five entries name task categories precisely.</td></tr>
+      <tr data-max="10"><td>Inputs, outputs, process/data, and human choices</td><td>10</td><td>Entries show a complete system X-ray.</td></tr>
+      <tr data-max="10"><td>Benefits, limitations, and responsible language</td><td>10</td><td>Claims are qualified; limits are meaningful.</td></tr>
+      <tr data-max="8"><td>Evidence and citation/inference discipline</td><td>8</td><td>Sources are appropriate; guesses are labeled.</td></tr>
+      <tr data-max="5"><td>Historical/genealogy connection</td><td>5</td><td>Accurate, relevant conceptual connection.</td></tr>
+      <tr data-max="5"><td>Written defense and reflection</td><td>5</td><td>Thoughtful, individual explanation of judgment.</td></tr>
+      <tr data-max="2"><td>Organization, clarity, and completion</td><td>2</td><td>Readable, complete submission with disclosure.</td></tr>
+    </tbody>
+    <tfoot><tr><td>Your self-score</td><td id="selfTotal">— / 50</td><td id="selfNote" class="muted">Slide each row.</td></tr></tfoot>
+  </table>
+
+  <section id="gatherSection">
+    <h2>My Gathered Answers</h2>
+    <p class="hint">The whole submission in plain text: five entries in the template, the genealogy note, the defense, and the disclosure. Copy it for Canvas text entry or save it as a PDF for file upload.</p>
+    <div class="gather" id="gather">
+      <div class="gbar"><span>Assignment 1.6 · AI Field Guide and Intellectual Genealogy</span><span id="gDate"></span></div>
+      <div class="gbody">
+        <div class="row"><span class="k">Name</span><span class="v"><input type="text" class="name" id="studentName" placeholder="Your name" maxlength="80"></span></div>
+        <div class="row"><span class="k">Entries</span><span class="v" id="gEntries"></span></div>
+        <div class="row"><span class="k">Genealogy note</span><span class="v empty" id="gGen">(not written yet)</span></div>
+        <div class="row"><span class="k">Written defense</span><span class="v empty" id="gDef">(not written yet)</span></div>
+        <div class="row"><span class="k">Words in defense</span><span class="v" id="gWords">0</span></div>
+        <div class="row"><span class="k">Disclosure</span><span class="v empty" id="gDisc">(not chosen yet)</span></div>
+        <div class="row"><span class="k">Self-score</span><span class="v" id="gScore">— / 50</span></div>
+      </div>
+      <div class="gtools">
+        <button type="button" class="btn ghost" id="pdf">Download my answers (PDF)</button>
+        <button type="button" class="btn" id="copy" disabled>Copy for Canvas</button>
+      </div>
+    </div>
+    <div class="status" id="gStatus" role="status" aria-live="polite">Copy puts the five entries, the genealogy note, the defense, and the disclosure on the clipboard in that order.</div>
+  </section>
+
+  <h2>How to submit in Canvas</h2>
+  <ol class="submit">
+    <li>Click <strong>Submit Assignment</strong>.</li>
+    <li>Use <strong>Text Entry</strong> for a plain-text guide or <strong>File Upload</strong> for a document.</li>
+    <li>Check that all five entries, the genealogy note, and the written defense are included.</li>
+    <li>Add citations/labeled inferences and your AI-use disclosure.</li>
+    <li>Review the success criteria, then click <strong>Submit Assignment</strong>.</li>
+  </ol>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 1 • Assignment 1.6 | Submit independently. This project demonstrates your ability to describe AI systems carefully, not to repeat marketing language.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+  var K="ail16a-data",ready=false;
+  var D=store.get(K,null)||{entries:[{},{},{},{},{}],gen:{},def:{},score:{},cur:0};
+  function save(){store.set(K,D)}
+  var FIELDS=[
+    ["name","System/context","What is it, and where do you encounter it?"],
+    ["inputs","Inputs","What information does it receive?"],
+    ["outputs","Outputs","What does it produce, recommend, label, predict, or do?"],
+    ["process","Likely process/data use (evidence or inference)","Tag how you know: observation, documentation, credible reporting, or a labeled inference."],
+    ["human","Human choices/oversight","Who set the goals, chose the data, or can override it?"],
+    ["benefit","Benefit","One thing it is genuinely good for, under what conditions."],
+    ["limit","Limitation/risk/question","One failure mode, risk, boundary, or open question."],
+    ["source","Source(s) or labeled inference","Name or link a source, or write “inference:” and your reasoning."]
+  ];
+  var TASKS=["classifies","predicts","recommends","generates","perceives","plans"];
+  var EVT=[["obs","observation"],["doc","documentation"],["rep","credible reporting"],["inf","labeled inference"]];
+  var EARLIER=["symbolic rules / expert systems","statistical learning","neural networks","search","generative models"];
+  var ANTH=/\b(knows?|understands?|wants?|thinks?|feels?|perfect|always|never|cares?|believes?|intelligent|smart|guarantees?|objective|realizes?|decides? for you)\b/gi;
+  function scrub(t){return (t||"").replace(/\b(does not|doesn’t|doesn't|do not|don’t|don't|cannot|can’t|can't|not|never|no evidence that it|does not show that it|should not assume (?:that )?it)\s+(?:\w+\s+){0,2}(knows?|understands?|wants?|thinks?|feels?|cares?|believes?|perfect|guarantees?|realizes?)\b/gi,"")}
+  function anthWords(t){var f=scrub(t).match(ANTH)||[];var seen={},out=[];f.forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;out.push(w)}});return out}
+  function words(t){var m=(t||"").trim().match(/\S+/g);return m?m.length:0}
+  var HEDGE=/\b(appears?|appear to|seems?|may|might|likely|probably|possibly|suggests?|shares? (?:an? )?(?:idea|approach|method)|conceptual|similar|in the same (?:family|tradition)|I am not claiming|not claiming direct)\b/i;
+  var DESCENT=/\b(descend(?:s|ed)? (?:directly )?from|came directly from|directly from|was built from|is based directly on|evolved directly)\b/i;
+
+  /* ---------- Prefill from earlier lessons ---------- */
+  function earlier(i){
+    var fg=store.get("ail12l-fg",{})[i+1]||{};
+    var name=(fg.name||"").trim()||(store.get("ail11l-g"+(i+1)+"n","")||"").trim();
+    var where=(store.get("ail11l-g"+(i+1)+"s","")||"").trim();
+    var labels=fg.labels?Object.keys(fg.labels).filter(function(k){return fg.labels[k]}):[];
+    var why=(fg.why||"").trim();
+    var desk=store.get("ail16l-desk",{items:{}}).items||{};var rev="";
+    Object.keys(desk).forEach(function(id){if(desk[id].name&&name&&desk[id].name.toLowerCase()===name.toLowerCase()&&desk[id].after)rev=desk[id].after.trim()});
+    return {name:name,where:where,labels:labels,why:why,rev:rev};
+  }
+  D.entries.forEach(function(e,i){if(!e.name){var p=earlier(i);if(p.name)e.name=p.name+(p.where?" — "+p.where:"")}});
+
+  /* ---------- Entry tabs and form ---------- */
+  function entryDone(e){var n=0;FIELDS.forEach(function(f){if((e[f[0]]||"").trim())n++});if(e.tasks&&e.tasks.length)n++;return n}
+  function renderTabs(){
+    var w=$("tabs");w.innerHTML="";
+    D.entries.forEach(function(e,i){
+      var b=el("button","tab");b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",D.cur===i?"true":"false");
+      b.appendChild(document.createTextNode((i+1)+". "+((e.name||"").split(" — ")[0].trim()||"Entry "+(i+1)).slice(0,22)));
+      var dots=el("span","dots");var n=entryDone(e);for(var k=0;k<9;k++){var d=el("i");if(k<n)d.className="on";dots.appendChild(d)}b.appendChild(dots);
+      b.addEventListener("click",function(){D.cur=i;save();renderTabs();renderForm()});
+      w.appendChild(b);
+    });
+  }
+  function renderForm(){
+    var i=D.cur,e=D.entries[i],f=$("form");f.innerHTML="";
+    var head=el("div","fhead");head.appendChild(el("h4",null,"Entry "+(i+1)+" of 5"));
+    var pull=el("button","pullbtn","Pull my earlier work");pull.type="button";
+    pull.addEventListener("click",function(){
+      var p=earlier(i),st=$("bStatus"),got=[];
+      if(p.name&&!(e.name||"").trim()){e.name=p.name+(p.where?" — "+p.where:"");got.push("name")}
+      if(p.rev&&!(e.process||"").trim()){e.process=p.rev;got.push("Lesson 1.6 revision → process")}
+      else if(p.why&&!(e.process||"").trim()){e.process=p.why;got.push("Lesson 1.2 justification → process")}
+      if(p.labels.length&&!(e.source||"").trim()&&p.labels.indexOf("unc")>-1){e.source="inference: in Lesson 1.2 I marked this system uncertain; my process claim above is reasoning from what I can observe.";e.evtag="inf";got.push("uncertain → labeled inference")}
+      save();renderTabs();renderForm();
+      st.className="status"+(got.length?" ok":"");st.textContent=got.length?"Pulled: "+got.join("; ")+". Revise freely.":"Nothing earlier was found for this entry on this device, or the fields are already filled.";
+    });
+    head.appendChild(pull);f.appendChild(head);
+    var grid=el("div","fgrid");
+    FIELDS.forEach(function(spec,idx){
+      var key=spec[0],fd=el("div","field"+(key==="name"||key==="process"||key==="source"?" wide":""));
+      var lab=el("label");lab.appendChild(el("span",null,spec[1]));lab.appendChild(el("span","n","0"+(idx+1+(idx>=1?1:0))));fd.appendChild(lab);
+      var inp=document.createElement(key==="name"||key==="inputs"||key==="outputs"||key==="source"?"input":"textarea");if(inp.tagName==="INPUT")inp.type="text";
+      inp.placeholder=spec[2];inp.value=e[key]||"";inp.setAttribute("aria-label",spec[1]);
+      inp.addEventListener("input",function(){e[key]=inp.value;save();update();renderTabs();if(key==="name")refreshGenSys()});
+      fd.appendChild(inp);
+      if(key==="name"){
+        var tf=el("div","field wide");var tl=el("label");tl.appendChild(el("span",null,"Task category/categories"));tl.appendChild(el("span","n","02"));tf.appendChild(tl);
+        var ch=el("div","chips");TASKS.forEach(function(t){var b=el("button","chip-t",t);b.type="button";b.setAttribute("aria-pressed",(e.tasks||[]).indexOf(t)>-1?"true":"false");b.addEventListener("click",function(){e.tasks=e.tasks||[];var k=e.tasks.indexOf(t);if(k>-1)e.tasks.splice(k,1);else e.tasks.push(t);save();renderForm();renderTabs();update()});ch.appendChild(b)});
+        tf.appendChild(ch);grid.appendChild(fd);grid.appendChild(tf);return;
+      }
+      if(key==="process"){
+        var tags=el("div","evtags");tags.appendChild(el("span","muted","How you know:"));
+        EVT.forEach(function(t){var b=el("button","evtag"+(t[0]==="inf"?" inf":""),t[1]);b.type="button";b.setAttribute("aria-pressed",e.evtag===t[0]?"true":"false");b.addEventListener("click",function(){e.evtag=e.evtag===t[0]?"":t[0];save();renderForm();update()});tags.appendChild(b)});
+        fd.appendChild(tags);
+      }
+      var fl=el("div","flag");fl.setAttribute("data-flag",key);fd.appendChild(fl);
+      grid.appendChild(fd);
+    });
+    f.appendChild(grid);
+    update();
+  }
+
+  /* ---------- Genealogy ---------- */
+  function refreshGenSys(){
+    var w=$("genSys");w.innerHTML="";
+    D.entries.forEach(function(e,i){var nm=(e.name||"").split(" — ")[0].trim()||"Entry "+(i+1);var b=el("button","chip-t",nm);b.type="button";b.setAttribute("aria-pressed",D.gen.sys===i?"true":"false");b.addEventListener("click",function(){D.gen.sys=D.gen.sys===i?null:i;save();refreshGenSys();update()});w.appendChild(b)});
+    var w2=$("genEarlier");w2.innerHTML="";
+    EARLIER.forEach(function(t){var b=el("button","chip-t",t);b.type="button";b.setAttribute("aria-pressed",D.gen.earlier===t?"true":"false");b.addEventListener("click",function(){D.gen.earlier=D.gen.earlier===t?"":t;save();refreshGenSys();update()});w2.appendChild(b)});
+  }
+  $("genNote").value=D.gen.note||"";$("genNote").addEventListener("input",function(){D.gen.note=this.value;save();update()});
+
+  /* ---------- Defense ---------- */
+  [1,2,3,4].forEach(function(n){var t=$("q"+n);t.value=D.def["q"+n]||"";t.addEventListener("input",function(){D.def["q"+n]=t.value;save();update()})});
+  function discLine(){if(D.disc==="none")return "No AI assistance used.";if(D.disc==="used")return "AI assistance used: "+((D.tool||"").trim()||"[tool]")+" helped me with "+((D.what||"").trim()||"[specific limited purpose]")+".";return ""}
+  document.querySelectorAll('input[name="disc"]').forEach(function(r){r.checked=D.disc===r.value;r.addEventListener("change",function(){D.disc=r.value;save();$("discFields").hidden=r.value!=="used";update()})});
+  $("discFields").hidden=D.disc!=="used";$("discTool").value=D.tool||"";$("discWhat").value=D.what||"";
+  $("discTool").addEventListener("input",function(){D.tool=this.value;save();update()});$("discWhat").addEventListener("input",function(){D.what=this.value;save();update()});
+
+  /* ---------- Checks ---------- */
+  function update(){
+    if(!ready)return;
+    var e=D.entries[D.cur];
+    // per-field flags on the open entry
+    FIELDS.forEach(function(spec){var fl=document.querySelector('[data-flag="'+spec[0]+'"]');if(!fl)return;var w=anthWords(e[spec[0]]);fl.textContent=w.length?"Needs evidence or a hedge: "+w.join(", "):""});
+    var aw=$("anth");aw.innerHTML="";var allAnth=[];
+    D.entries.forEach(function(en,i){FIELDS.forEach(function(spec){anthWords(en[spec[0]]).forEach(function(w){allAnth.push({i:i,w:w})})})});
+    if(allAnth.length){aw.appendChild(el("span",null,"Across all entries: "));allAnth.slice(0,12).forEach(function(x){aw.appendChild(el("span","word","entry "+(x.i+1)+": "+x.w))})}else if(D.entries.some(function(en){return (en.name||"").trim()}))aw.appendChild(el("span","clean","No unsupported anthropomorphic words in any entry."));
+    var entriesOk=D.entries.every(function(en){return FIELDS.every(function(spec){return (en[spec[0]]||"").trim()})});
+    var tasksOk=D.entries.every(function(en){return en.tasks&&en.tasks.length});
+    var tagsOk=D.entries.every(function(en){return !!en.evtag});
+    var sourcesOk=D.entries.every(function(en){var s=(en.source||"").trim();return s&&(en.evtag!=="inf"||/inference/i.test(s)||/inference/i.test(en.process||""))});
+    var genNote=(D.gen.note||"").trim();var genOk=D.gen.sys!=null&&!!D.gen.earlier&&words(genNote)>=20;
+    var gf=$("genFlag");gf.textContent=genNote&&DESCENT.test(genNote)&&!HEDGE.test(genNote)?"That reads as direct descent. Hedge it, or name the evidence that supports a direct line.":(genNote&&!HEDGE.test(genNote)&&words(genNote)>=20?"Consider a hedge: “appears to share,” “in the same tradition as.”":"");
+    var tot=0,qOk=true;[1,2,3,4].forEach(function(n){var w=words(D.def["q"+n]);tot+=w;$("wc"+n).textContent=w+" words";if(w<15)qOk=false});
+    $("wcTotal").textContent=tot;var m=$("meter");m.className="meter"+(tot>=400&&tot<=600?" inrange":tot>600?" over":"");m.firstElementChild.style.width=Math.min(100,tot/600*100)+"%";
+    $("rangeNote").textContent=tot===0?"":(tot<400?(400-tot)+" more to reach 400":tot>600?(tot-600)+" over 600":"Within range");
+    var da=$("defAnth");da.innerHTML="";var dw=[];[1,2,3,4].forEach(function(n){anthWords(D.def["q"+n]).forEach(function(w){if(dw.indexOf(w)<0)dw.push(w)})});
+    if(dw.length){da.appendChild(el("span",null,"In the defense, needs evidence or a hedge: "));dw.forEach(function(w){da.appendChild(el("span","word",w))})}
+    var defOk=qOk&&tot>=400&&tot<=600;
+    var met={entries:entriesOk,tasks:tasksOk,tags:tagsOk,sources:sourcesOk,anth:allAnth.length===0&&D.entries.some(function(en){return (en.name||"").trim()}),gen:genOk,def:defOk,disc:!!discLine()};
+    var n=0;document.querySelectorAll("#reqs li").forEach(function(li){var ok=met[li.getAttribute("data-req")];li.classList.toggle("met",!!ok);if(ok)n++});
+    $("bMet").textContent=n;$("discLine").textContent=discLine()||"Choose one.";
+    var st=$("bStatus");
+    if(n===8){st.className="status ok";st.textContent="All eight lit. Copy for Canvas or save the PDF, then submit."}
+    else{var tips=[];if(!entriesOk){var inc=D.entries.map(function(en,i){return entryDone(en)<9?i+1:null}).filter(function(x){return x});tips.push("finish entr"+(inc.length>1?"ies ":"y ")+inc.join(", "))}if(!tasksOk)tips.push("pick a task category on every entry");if(!tagsOk)tips.push("tag the evidence on every entry");if(!sourcesOk)tips.push("cite a source or label the inference");if(allAnth.length)tips.push("fix the flagged words");if(!genOk)tips.push("genealogy: system, earlier development, and at least 20 words");if(!defOk)tips.push("defense: four answers, 400–600 words");if(!discLine())tips.push("choose a disclosure line");st.className="status";st.textContent="Still needed: "+tips.join("; ")+"."}
+    gather();
+  }
+
+  /* ---------- Rubric ---------- */
+  function scoreTotal(){
+    var rows=document.querySelectorAll("#rubric tbody tr"),sum=0,done=0;
+    rows.forEach(function(tr,i){if(D.score[i]!=null){sum+=D.score[i];done++}});
+    $("selfTotal").textContent=(done===rows.length?sum:"—")+" / 50";
+    $("selfNote").textContent=done===rows.length?(sum===50?"Full marks by your own reading. Make sure the entries back it up.":"Where did you lose points? Fix that part before you submit."):(rows.length-done)+" row"+(rows.length-done>1?"s":"")+" left to score.";
+    gather();
+  }
+  document.querySelectorAll("#rubric tbody tr").forEach(function(tr,i){
+    var max=parseInt(tr.getAttribute("data-max"),10),cell=tr.children[1];cell.innerHTML="";
+    var r=document.createElement("input");r.type="range";r.min=0;r.max=max;r.step=1;r.value=D.score[i]!=null?D.score[i]:0;r.setAttribute("aria-label","Points of "+max);
+    var v=el("span","val",(D.score[i]!=null?D.score[i]:"—")+" / "+max);
+    r.addEventListener("input",function(){D.score[i]=parseInt(r.value,10);save();v.textContent=D.score[i]+" / "+max;scoreTotal()});
+    cell.appendChild(r);cell.appendChild(v);
+  });
+  var crit=store.get("ail16a-criteria",{});
+  document.querySelectorAll("#criteria input").forEach(function(c){var k=c.getAttribute("data-check");c.checked=!!crit[k];c.addEventListener("change",function(){crit[k]=c.checked;store.set("ail16a-criteria",crit)})});
+
+  /* ---------- Gathered answers ---------- */
+  var EVN={obs:"observation",doc:"documentation",rep:"credible reporting",inf:"labeled inference"};
+  function entryText(en,i){
+    return "Entry "+(i+1)+"\nSystem/context: "+(en.name||"")+"\nTask category/categories: "+((en.tasks||[]).join(", "))+"\nInputs: "+(en.inputs||"")+"\nOutputs: "+(en.outputs||"")+"\nLikely process/data use ("+(en.evtag?EVN[en.evtag]:"evidence or inference")+"): "+(en.process||"")+"\nHuman choices/oversight: "+(en.human||"")+"\nBenefit: "+(en.benefit||"")+"\nLimitation/risk/question: "+(en.limit||"")+"\nSource(s) or labeled inference: "+(en.source||"");
+  }
+  function genText(){var s=D.gen.sys!=null?((D.entries[D.gen.sys]||{}).name||"").split(" — ")[0]:"";return s||D.gen.earlier||(D.gen.note||"").trim()?"System: "+(s||"—")+"\nEarlier development: "+(D.gen.earlier||"—")+"\n"+(D.gen.note||""):""}
+  function defText(){var Q=["Which entry required the most careful inference, and why?","Revise one claim you initially made after learning more.","What can one system in your guide do well?","What should a user not assume merely because the system’s output is impressive?"];var out=[];[1,2,3,4].forEach(function(n){if((D.def["q"+n]||"").trim())out.push(Q[n-1]+"\n"+D.def["q"+n].trim())});return out.join("\n\n")}
+  function setV(id,txt,empty){var e=$(id);e.textContent=txt||empty;e.classList.toggle("empty",!txt)}
+  function gather(){
+    if(!ready)return;
+    var ge=$("gEntries");ge.innerHTML="";D.entries.forEach(function(en,i){if(!(en.name||"").trim()&&entryDone(en)===0)return;ge.appendChild(el("div","entry",entryText(en,i)))});
+    if(!ge.children.length)ge.appendChild(el("span","empty","(no entries yet)"));
+    setV("gGen",genText(),"(not written yet)");setV("gDef",defText(),"(not written yet)");
+    var tot=0;[1,2,3,4].forEach(function(n){tot+=words(D.def["q"+n])});$("gWords").textContent=tot;
+    setV("gDisc",discLine(),"(not chosen yet)");
+    var rows=document.querySelectorAll("#rubric tbody tr"),sum=0,done=0;rows.forEach(function(tr,i){if(D.score[i]!=null){sum+=D.score[i];done++}});$("gScore").textContent=(done===rows.length?sum:"—")+" / 50";
+    $("copy").disabled=!D.entries.some(function(en){return (en.name||"").trim()});
+  }
+  $("studentName").value=D.name||"";$("studentName").addEventListener("input",function(){D.name=this.value;save()});
+  $("gDate").textContent=new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
+  $("copy").addEventListener("click",function(){
+    var parts=["AI Field Guide and Intellectual Genealogy"+(D.name?" — "+D.name:""),""];
+    D.entries.forEach(function(en,i){parts.push(entryText(en,i),"")});
+    if(genText())parts.push("Intellectual genealogy","",genText(),"");
+    if(defText())parts.push("Written defense","",defText(),"");
+    if(discLine())parts.push(discLine());
+    var st=$("gStatus");function done(ok){st.className="status "+(ok?"ok":"bad");st.textContent=ok?"Copied. Paste into the Canvas text entry and check that the disclosure is the last line.":"Copy failed. Select the text and copy by hand."}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(parts.join("\n")).then(function(){done(true)},function(){done(false)})}else done(false);
+  });
+  $("pdf").addEventListener("click",function(){var st=$("gStatus");st.className="status";st.textContent="In the print dialog, choose Save as PDF.";window.print()});
+  $("bClear").addEventListener("click",function(){
+    if(!confirm("Clear all five entries, the genealogy note, the defense, and your scores on this device?"))return;
+    D={entries:[{},{},{},{},{}],gen:{},def:{},score:{},cur:0};save();
+    [1,2,3,4].forEach(function(n){$("q"+n).value=""});$("genNote").value="";document.querySelectorAll('input[name="disc"]').forEach(function(r){r.checked=false});$("discFields").hidden=true;$("discTool").value="";$("discWhat").value="";
+    document.querySelectorAll("#rubric input[type=range]").forEach(function(r){r.value=0;r.nextSibling.textContent="— / "+r.max});
+    renderTabs();refreshGenSys();renderForm();scoreTotal();
+  });
+
+  ready=true;renderTabs();refreshGenSys();renderForm();scoreTotal();
+})();
+</script>
+</body>
+</html>
