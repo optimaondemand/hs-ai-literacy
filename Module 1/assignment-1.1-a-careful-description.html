@@ -13,7 +13,8 @@
   .must{counter-reset:must;list-style:none;padding:0;margin:.6rem 0}
   .must li{counter-increment:must;margin:0 0 .5rem;padding:.7rem .9rem .7rem 2.8rem;position:relative;background:#fff;border:1px solid var(--rule);border-radius:var(--radius)}
   .must li::before{content:"0" counter(must);position:absolute;left:.7rem;top:.7rem;width:30px;height:26px;border-radius:6px;background:var(--navy);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:.78rem;border:1px solid var(--teal)}
-  .rubric td:nth-child(2){text-align:center;font-family:var(--mono);font-weight:600;color:var(--teal-deep);white-space:nowrap}
+  .rubric td:nth-child(2){text-align:center;font-family:var(--mono);font-weight:600;color:var(--teal-deep);min-width:160px}
+  .rubric td:nth-child(2) .muted{display:block;font-size:.7rem;font-weight:400;margin-top:.25rem}
   .submit{counter-reset:sub;list-style:none;padding:0;margin:.6rem 0}
   .submit li{counter-increment:sub;padding:.4rem 0 .4rem 2.2rem;position:relative;border-bottom:1px dashed var(--rule)}
   .submit li:last-child{border-bottom:0}
@@ -65,7 +66,7 @@
   .src label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.25rem}
 
   /* Rubric self-score */
-  .rubric .pts{display:inline-flex;gap:.25rem;flex-wrap:wrap}
+  .rubric .pts{display:flex;gap:.25rem;flex-wrap:wrap;justify-content:center}
   .rubric .pts button{width:30px;height:30px;border-radius:6px;border:1px solid var(--rule-strong);background:#fff;font-family:var(--mono);font-size:.82rem;cursor:pointer;color:var(--ink-soft)}
   .rubric .pts button:hover{border-color:var(--teal)}
   .rubric .pts button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
