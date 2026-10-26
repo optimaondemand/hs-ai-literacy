@@ -2,7 +2,8 @@
    The Sealed Box — cinematic intro for Module 1 pages
    AI Literacy • Module 1
 
-   Usage (first thing inside <body>):
+   Usage (first thing inside <body>; optional data-words="A|B|C" replaces
+   the word cycle inside the box):
      <script src="assets/intro.js"
        data-eyebrow="AI Literacy • Module 1 • Lesson 1.1 Reading"
        data-title="What Counts as Intelligent Behavior?"
@@ -20,6 +21,7 @@
   var TITLE=me.getAttribute("data-title")||document.title;
   var KEY=me.getAttribute("data-key")||("ail-intro-"+location.pathname);
   var WORDS=["?","SMART","CLEVER","AUTOMATED","LEARNED","INTELLIGENT","?"];
+  if(me.getAttribute("data-words")){WORDS=["?"].concat(me.getAttribute("data-words").split("|").map(function(s){return s.trim()}).filter(Boolean)).concat(["?"])}
   var NAVY="#0f2233",CYAN="#4fd1e8",TEAL="#0e8fa8",GOLD="#d19a1e",INK="#e8f3f7";
   var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

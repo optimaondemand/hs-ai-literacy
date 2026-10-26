@@ -1,1 +1,618 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Reading 1.2 — Names, Categories, and Claims About AI</title><style>body{font-family:Arial,Helvetica,sans-serif;line-height:1.55;color:#17212b;max-width:920px;margin:auto;padding:2rem;background:#fff}header,footer{border-left:8px solid #1f6f8b;padding-left:1rem}.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.75rem;background:#eef7fa;padding:1rem;border-radius:8px}h1{color:#123e52}h2{color:#1f6f8b}table{border-collapse:collapse;width:100%;margin:1rem 0}th,td{border:1px solid #7a8793;padding:.65rem;text-align:left}th{background:#e5f2f6}.callout{background:#fff6df;border-left:5px solid #b7791f;padding:1rem;margin:1rem 0}.term{font-weight:700}</style></head><body><header><p>AI Literacy • Module 1 • Lesson 1.2 Reading</p><h1>Names, Categories, and Claims About AI</h1><p>Reading before the lesson activity</p></header><section class="meta"><div><strong>Estimated time</strong><br>15–20 minutes</div><div><strong>Focus question</strong><br>How do AI, machine learning, automation, algorithms, and computer science relate without becoming synonyms?</div><div><strong>Required for</strong><br>Lesson 1.2: Concept Map</div></section><p><strong>Begin with a prediction.</strong> Which term seems broadest: computer science, AI, machine learning, automation, or algorithm? Which two terms do people most often blur together? Keep your prediction in mind.</p><h2>Why names matter</h2><p>“AI” is often used as a compliment, a warning, or a shortcut for anything complicated. A label is useful only when it helps us describe what a system actually does. If every automated tool is called AI, the word tells us very little. If AI means only a human-like machine, we overlook many systems that already influence daily life.</p><p>This course uses a vocabulary map rather than a stack of synonyms. A system can fit more than one category. Your job is to identify the labels supported by evidence—not to award or deny a buzzword.</p><h2>The broad field: computer science</h2><p><span class="term">Computer science</span> is the study of computation: what can be calculated, how information can be represented and processed, how algorithms work, and how software and hardware systems can be designed. Building a website, encrypting a message, sorting a list, or designing a database may involve computer science without involving AI.</p><h2>Algorithms and automation</h2><p>An <span class="term">algorithm</span> is a defined set of steps for solving a problem or completing a task. A recipe can be algorithm-like, although a computer algorithm is specified precisely enough for a machine to execute.</p><p><span class="term">Automation</span> occurs when a system carries out a process with little ongoing human intervention. A schedule that turns lights off at 10:00 p.m. is automation. Automation can be simple or sophisticated; it does not require machine learning.</p><h2>AI and machine learning</h2><p><span class="term">Artificial intelligence (AI)</span> is a broad field concerned with systems that perform tasks associated with perception, language use, learning, reasoning, planning, or decision-making. AI includes several approaches. Some systems use hand-written rules; some search through possibilities; some learn patterns from data.</p><p><span class="term">Machine learning (ML)</span> is an approach within AI in which a system learns patterns from examples or data rather than relying only on rules written in advance. A spam filter may learn from examples of wanted and unwanted messages. A recommendation system may learn statistical patterns from users’ behavior. ML is inside AI, but AI is not limited to ML.</p><h2>A map, not a yes/no test</h2><table><thead><tr><th>Term</th><th>What it helps describe</th><th>Example</th></tr></thead><tbody><tr><td>Computer science</td><td>The broad academic field of computation and computing systems</td><td>Designing a secure database</td></tr><tr><td>Algorithm</td><td>Defined steps for a task</td><td>Sorting names alphabetically</td></tr><tr><td>Automation</td><td>A process performed with little ongoing intervention</td><td>A timer-controlled light</td></tr><tr><td>AI</td><td>Systems aimed at intelligent-seeming tasks</td><td>A route planner or image recognizer</td></tr><tr><td>ML</td><td>Learning patterns from data or examples</td><td>A spam filter trained on labeled messages</td></tr></tbody></table><p>A recommendation system can be software, use algorithms, automate suggestions, use AI, and use ML. A timer-controlled light uses an algorithm and automation, but the example gives no evidence of ML. The strongest question is: <em>Which descriptions accurately explain what this system does?</em></p><div class="callout"><strong>Careful claim move:</strong> Replace “This product is AI-powered” with a description of data, task, output, and evidence. For example: “The app appears to rank videos using patterns in viewing behavior; the company describes this as machine learning.”</div><h2>Key vocabulary</h2><ul><li><strong>computer science:</strong> study of computation, information, algorithms, and computing systems.</li><li><strong>algorithm:</strong> defined steps for completing a task or solving a problem.</li><li><strong>automation:</strong> carrying out a process with little ongoing human intervention.</li><li><strong>artificial intelligence:</strong> a broad field for systems that perform tasks associated with perception, language, learning, reasoning, planning, or decision-making.</li><li><strong>machine learning:</strong> an AI approach in which systems learn patterns from data or examples.</li></ul><h2>As you move to the lesson</h2><p>Choose one familiar system. Be ready to give it more than one accurate label, and be ready to explain which labels are not supported by evidence.</p><footer><p>AI Literacy • Module 1 • Lesson 1.2 Reading | All essential content is available on this page as selectable text.</p></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reading 1.2 — Names, Categories, and Claims About AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .page{max-width:860px}
+  .reading p{font-size:1.06rem}
+  .vocab{list-style:none;padding:0;margin:.8rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem}
+  .vocab li{margin:0;padding:.8rem .95rem;background:var(--paper-2);border:1px solid var(--rule);border-top:3px solid var(--teal);border-radius:var(--radius)}
+  .vocab li strong{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+  .term{font-weight:700;color:var(--teal-deep)}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+  /* ---------- Ladder (ordering) ---------- */
+  .ladder{display:grid;grid-template-columns:minmax(0,1fr);gap:.8rem}
+  .ladder.two{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .rung-col{border:1.5px dashed var(--teal);border-radius:var(--radius);padding:.6rem;background:#fff;min-height:120px;transition:background .2s,box-shadow .2s}
+  .rung-col.over{background:var(--teal-pale);box-shadow:0 0 0 3px var(--glow)}
+  .rung-col h4{margin:0 0 .4rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep)}
+  .rung-col .def{font-size:.86rem;color:var(--ink-soft);margin:0 0 .5rem}
+  .rung-col.across{border-color:var(--gold)}
+  .rung-col.across h4{color:#6d4a00}
+  .rungs{list-style:none;padding:0;margin:0;display:grid;gap:.4rem;min-height:40px}
+  .rung{display:flex;align-items:center;gap:.5rem;padding:.5rem .6rem;background:#fff;border:1px solid var(--teal-deep);border-radius:8px;cursor:grab;user-select:none;transition:transform .12s,box-shadow .12s}
+  .rung:hover{box-shadow:0 3px 10px rgba(11,59,79,.18)}
+  .rung.sel{outline:3px solid var(--gold);outline-offset:1px}
+  .rung .idx{font-family:var(--mono);font-size:.72rem;color:var(--teal);min-width:1.4em}
+  .rung .t{flex:1;font-weight:600;color:var(--teal-deep)}
+  .rung .mv{display:flex;gap:.2rem}
+  .rung .mv button{font:inherit;font-size:.78rem;width:26px;height:26px;border-radius:6px;border:1px solid var(--rule-strong);background:#fff;cursor:pointer;color:var(--ink-soft)}
+  .rung .mv button:hover{border-color:var(--teal);color:var(--teal)}
+  .rung .mv button:disabled{opacity:.3;cursor:default}
+  .rung.locked{cursor:default;background:var(--paper-2)}
+  .ladder .ends{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint);margin:.2rem .2rem 0}
+  .lcompare{margin-top:.9rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden}
+  .lcompare table{margin:0;font-size:.94rem}
+  .lcompare td .pip{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;padding:.18rem .5rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;white-space:nowrap}
+  .lcompare .pip.ok{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+  .lcompare .pip.across{border-color:var(--gold);background:var(--gold-pale);color:#6d4a00}
+  .lcompare .note{margin:0;border-radius:0;border-left-width:0;border-top:1px solid var(--rule-strong)}
+
+  /* ---------- The Map ---------- */
+  .mapwrap{background:var(--navy);background-image:linear-gradient(rgba(79,209,232,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(79,209,232,.07) 1px,transparent 1px);background-size:24px 24px;border:1px solid var(--teal-deep);border-radius:var(--radius);padding:.5rem;box-shadow:inset 0 0 0 1px rgba(79,209,232,.25)}
+  #map{display:block;width:100%;height:auto;color:var(--cyan);font-family:var(--sans)}
+  #map .ring{fill:rgba(79,209,232,.05);stroke:var(--cyan);stroke-width:1.6;transition:fill .3s,stroke-width .3s}
+  #map .ring.lit{fill:rgba(79,209,232,.18);stroke-width:2.6}
+  #map .ring.bad{fill:rgba(178,59,59,.18);stroke:#ff8a8a}
+  #map .zone{fill:transparent;cursor:pointer}
+  #map .zone:hover{fill:rgba(79,209,232,.08)}
+  #map .zone.over{fill:rgba(79,209,232,.14)}
+  #map .zone:focus{outline:none}
+  #map .zone:focus-visible{stroke:var(--gold);stroke-width:3}
+  #map .lbl{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;fill:var(--cyan);pointer-events:none}
+  #map .lbl.dim{fill:#9fb3bf}
+  #map .thread{fill:none;stroke:var(--gold);stroke-width:2;stroke-dasharray:6 5;pointer-events:none;animation:crawl 3s linear infinite}
+  @keyframes crawl{to{stroke-dashoffset:-22}}
+  #map .band{fill:rgba(209,154,30,.14);stroke:rgba(209,154,30,.6);stroke-width:1;pointer-events:none}
+  #map .band.lit{fill:rgba(209,154,30,.3)}
+  #map .pin{cursor:pointer}
+  #map .pin circle{fill:var(--gold);stroke:var(--navy);stroke-width:2}
+  #map .pin text{font-family:var(--sans);font-size:12.5px;fill:#fff;paint-order:stroke;stroke:var(--navy);stroke-width:4px;stroke-linejoin:round;pointer-events:none}
+  #map .pin.sel circle{stroke:#fff;r:9}
+  #map .pin.placed circle{fill:var(--cyan)}
+  #map .pin.right circle{fill:#7fe3c7}
+  #map .pin.wrong circle{fill:#ff8a8a;animation:shake .35s}
+  .pintray{display:flex;gap:.5rem;flex-wrap:wrap;margin:.6rem 0;padding:.6rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-3);min-height:52px}
+  .pintray .chip{cursor:grab}
+  .pintray .chip .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gold);margin-right:.4rem;vertical-align:middle;border:1.5px solid var(--navy)}
+  .pintray .chip.placed{display:none}
+  .maptools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.6rem}
+  .verdict{display:none;margin-top:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden;animation:reveal .3s ease-out}
+  .verdict.show{display:block}
+  .verdict .vbar{background:var(--navy);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .9rem;display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .verdict .vbody{padding:.7rem .9rem;display:grid;gap:.5rem}
+  .verdict .lab{display:grid;grid-template-columns:150px auto minmax(0,1fr);gap:.4rem .7rem;align-items:start;font-size:.94rem}
+  @media (max-width:560px){.verdict .lab{grid-template-columns:1fr}}
+  .verdict .lab .k{font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);padding-top:.2rem}
+  .verdict .tag{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .5rem;border-radius:4px;white-space:nowrap;justify-self:start}
+  .tag.nec{background:var(--ok);color:#fff}
+  .tag.pos{background:var(--gold);color:#2b1d00}
+  .tag.not{background:transparent;color:var(--bad);border:1px dashed var(--bad)}
+  .verdict .lab .w{color:var(--ink-soft)}
+  .verdict .asks{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;padding:.5rem .7rem;background:var(--gold-pale);border-radius:8px;font-size:.94rem}
+  .verdict .asks button{font:inherit;font-size:.86rem;padding:.3rem .65rem;border-radius:6px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .verdict .asks button[aria-pressed="true"]{background:var(--navy);color:var(--cyan);border-color:var(--cyan)}
+  .maplegend{display:flex;gap:.6rem 1rem;flex-wrap:wrap;align-items:center;margin-top:.5rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--ink-soft)}
+  .maplegend .tag{font-size:.62rem}
+
+  /* ---------- Claim scrubber ---------- */
+  .ads{display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
+  .ads button{font-family:var(--sans);font-size:.92rem;padding:.45rem .85rem;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .ads button[aria-selected="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px var(--glow)}
+  .ad{margin:.4rem 0 .6rem;padding:.9rem 1rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:linear-gradient(160deg,#fff,var(--paper-2));position:relative}
+  .ad .k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--bad);margin-bottom:.25rem}
+  .ad .copy{font-size:1.25rem;font-weight:700;color:var(--teal-deep);line-height:1.3}
+  .ad .copy mark{background:transparent;color:inherit}
+  .ad.scrubbed .copy mark{background:var(--bad-bg);color:var(--bad);border-radius:3px;text-decoration:line-through;text-decoration-thickness:2px}
+  .ad .fine{font-size:.82rem;color:var(--ink-faint);margin:.3rem 0 0}
+  .rewrite{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(220px,1fr);gap:.9rem;align-items:start}
+  @media (max-width:640px){.rewrite{grid-template-columns:1fr}}
+  .rewrite .draft{min-height:150px;font-size:1.02rem}
+  .flags{margin-top:.5rem;min-height:1.6em;display:flex;gap:.35rem;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft)}
+  .flags .word{background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.12rem .5rem;font-family:var(--sans);font-size:.86rem;animation:reveal .25s ease-out}
+  .flags .clean{color:var(--ok);font-weight:600}
+  .reqs li .lbl{flex:1}
+  .reqs li .eg{display:block;font-size:.82rem;color:var(--ink-faint);font-family:var(--mono)}
+  .starter{margin:0 0 .8rem}
+  .starter-toggle{font-family:var(--mono);font-size:.78rem;font-weight:500;letter-spacing:.04em;border:1px dashed var(--gold);background:var(--gold-pale);color:#6d4a00;border-radius:8px;padding:.4rem .8rem;cursor:pointer}
+  .starter-toggle::before{content:"▸ "}
+  .starter-toggle[aria-expanded="true"]::before{content:"▾ "}
+  .starter-toggle[aria-expanded="true"]{border-style:solid}
+  .starter-body{margin-top:.6rem;padding:.8rem .9rem;border:1px solid #f0dfb2;border-radius:var(--radius);background:var(--gold-pale);animation:reveal .25s ease-out}
+  .starter .k{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.25rem}
+  .starter .frame{padding:.6rem .8rem;background:#fff;border:1px solid var(--rule-strong);border-radius:8px;font-size:1.02rem;line-height:1.6}
+  .starter .frame .blank{display:inline-block;min-width:5.5em;border-bottom:1.5px dashed var(--teal);color:var(--teal);font-family:var(--mono);font-size:.82rem;text-align:center;padding:0 .3rem}
+  .starter .hints{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:.7rem;margin-top:.7rem}
+  .starter .hints ul{margin:0;padding-left:1.1rem;font-size:.92rem}
+  .careful{display:none;margin-top:.8rem;padding:.8rem 1rem;background:var(--navy);color:#e6f3f7;border:1px solid var(--teal-deep);border-left:4px solid var(--cyan);border-radius:0 var(--radius) var(--radius) 0;animation:curtain .5s ease-out}
+  .careful.show{display:block}
+  .careful .k{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);margin-bottom:.3rem}
+  .careful p{margin:0;font-size:1.02rem;line-height:1.6}
+  @keyframes curtain{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+  .rw-tools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.6rem}
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 1 • Lesson 1.2 Reading" data-title="Names, Categories, and Claims About AI" data-key="ail-intro-1.2-reading" data-words="COMPUTER SCIENCE|ALGORITHM|AUTOMATION|AI|MACHINE LEARNING"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 1 • Lesson 1.2 Reading</p>
+    <h1>Names, Categories, and Claims About AI</h1>
+    <p class="lede">Reading before the lesson activity</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <section class="ledger" aria-label="Reading details">
+    <div><span class="k">Estimated time</span><span class="v">15–20 minutes</span></div>
+    <div><span class="k">Focus question</span><span class="v">How do AI, machine learning, automation, algorithms, and computer science relate without becoming synonyms?</span></div>
+    <div><span class="k">Required for</span><span class="v">Lesson 1.2: Concept Map</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Begin with a prediction.</strong> Which term seems broadest: computer science, AI, machine learning, automation, or algorithm? Which two terms do people most often blur together? Keep your prediction in mind.</p>
+  </div>
+
+  <div class="widget" id="ladderBefore">
+    <div class="bar"><span>Interactive · Broadest to narrowest</span><span class="tag">Before reading</span></div>
+    <div class="body">
+      <p>Put the five terms on one ladder, broadest at the top, narrowest at the bottom. Drag a term, or use the arrows. Lock it in when you are done; you will see this ladder again at the end of the reading.</p>
+      <div class="ladder">
+        <div class="rung-col" data-col="ladder">
+          <h4>One ladder, five terms</h4>
+          <div class="ends"><span>Broadest</span></div>
+          <ol class="rungs" id="rungsB"></ol>
+          <div class="ends"><span></span><span>Narrowest</span></div>
+        </div>
+      </div>
+      <div class="maptools">
+        <span class="counts"><span id="ladderBNote"></span></span>
+        <span><button type="button" class="btn ghost" id="ladderBReset">Shuffle</button> <button type="button" class="btn" id="ladderBLock">Lock my prediction</button></span>
+      </div>
+      <div class="status" id="ladderBStatus" role="status" aria-live="polite">Order the five terms, then lock.</div>
+    </div>
+  </div>
+
+  <div class="reading">
+    <h2>Why names matter</h2>
+    <p>“AI” is often used as a compliment, a warning, or a shortcut for anything complicated. A label is useful only when it helps us describe what a system actually does. If every automated tool is called AI, the word tells us very little. If AI means only a human-like machine, we overlook many systems that already influence daily life.</p>
+    <p>This course uses a vocabulary map rather than a stack of synonyms. A system can fit more than one category. Your job is to identify the labels supported by evidence—not to award or deny a buzzword.</p>
+
+    <h2>The broad field: computer science</h2>
+    <p><span class="term">Computer science</span> is the study of computation: what can be calculated, how information can be represented and processed, how algorithms work, and how software and hardware systems can be designed. Building a website, encrypting a message, sorting a list, or designing a database may involve computer science without involving AI.</p>
+
+    <h2>Algorithms and automation</h2>
+    <p>An <span class="term">algorithm</span> is a defined set of steps for solving a problem or completing a task. A recipe can be algorithm-like, although a computer algorithm is specified precisely enough for a machine to execute.</p>
+    <p><span class="term">Automation</span> occurs when a system carries out a process with little ongoing human intervention. A schedule that turns lights off at 10:00 p.m. is automation. Automation can be simple or sophisticated; it does not require machine learning.</p>
+
+    <h2>AI and machine learning</h2>
+    <p><span class="term">Artificial intelligence (AI)</span> is a broad field concerned with systems that perform tasks associated with perception, language use, learning, reasoning, planning, or decision-making. AI includes several approaches. Some systems use hand-written rules; some search through possibilities; some learn patterns from data.</p>
+    <p><span class="term">Machine learning (ML)</span> is an approach within AI in which a system learns patterns from examples or data rather than relying only on rules written in advance. A spam filter may learn from examples of wanted and unwanted messages. A recommendation system may learn statistical patterns from users’ behavior. ML is inside AI, but AI is not limited to ML.</p>
+
+    <h2>A map, not a yes/no test</h2>
+
+    <div class="widget" id="mapWidget">
+      <div class="bar"><span>Interactive · The map</span><span class="tag">Pin the examples</span></div>
+      <div class="body">
+        <p>This is the vocabulary map. Three terms nest: computer science holds AI, and AI holds machine learning. Two terms do not nest. The algorithm thread runs through everything in computing, and the automation band cuts across the whole map, because a process can be automated with fixed rules, with AI, or with neither. Drag each example pin to where it belongs, or click a pin and then click a region. Then answer the two follow-up questions for that pin.</p>
+        <div class="pintray" id="pintray" aria-label="Example pins to place"></div>
+        <div class="mapwrap">
+          <svg id="map" viewBox="0 0 760 430" role="img" aria-labelledby="mapTitle mapDesc">
+            <title id="mapTitle">The vocabulary map</title>
+            <desc id="mapDesc">Nested regions: computer science contains AI, which contains machine learning. An algorithm thread runs through all regions. An automation band cuts across the map, including the area outside computing.</desc>
+            <!-- automation band (cuts across everything) -->
+            <rect class="band" id="band" x="0" y="300" width="760" height="56" rx="6"/>
+            <text class="lbl" x="12" y="334" style="fill:#f1cf7a">automation · a kind of process</text>
+            <!-- outside zone -->
+            <rect class="zone" data-zone="outside" x="8" y="8" width="150" height="284" rx="12" tabindex="0" role="button" aria-label="Outside computing"/>
+            <text class="lbl dim" x="20" y="34">outside</text>
+            <text class="lbl dim" x="20" y="50">computing</text>
+            <!-- rings -->
+            <rect class="ring" id="ringCS" x="170" y="8" width="582" height="414" rx="18"/>
+            <text class="lbl" x="186" y="34">computer science</text>
+            <rect class="ring" id="ringAI" x="300" y="56" width="430" height="222" rx="16"/>
+            <text class="lbl" x="316" y="82">artificial intelligence</text>
+            <rect class="ring" id="ringML" x="440" y="110" width="268" height="140" rx="14"/>
+            <text class="lbl" x="456" y="136">machine learning</text>
+            <!-- algorithm thread -->
+            <path class="thread" d="M172 380 C 240 370, 260 250, 330 230 S 470 200, 560 180 S 700 150, 748 110"/>
+            <text class="lbl" x="560" y="400" style="fill:#f1cf7a">algorithm · appears throughout</text>
+            <!-- zones (click targets), top-most last -->
+            <rect class="zone" data-zone="cs" x="170" y="8" width="582" height="414" rx="18" tabindex="0" role="button" aria-label="Computer science, but not AI"/>
+            <rect class="zone" data-zone="ai" x="300" y="56" width="430" height="222" rx="16" tabindex="0" role="button" aria-label="AI, but not machine learning"/>
+            <rect class="zone" data-zone="ml" x="440" y="110" width="268" height="140" rx="14" tabindex="0" role="button" aria-label="Machine learning"/>
+            <g id="pins"></g>
+          </svg>
+        </div>
+        <div class="maplegend"><span>Each label is:</span><span class="tag nec">necessary</span><span class="tag pos">possible · say “may”</span><span class="tag not">not supported</span></div>
+        <div class="verdict" id="verdict">
+          <div class="vbar"><span id="vName"></span><span id="vScore"></span></div>
+          <div class="vbody" id="vBody"></div>
+        </div>
+        <div class="maptools">
+          <span class="counts"><span><b id="mapPlaced">0</b> of 5 placed</span><span><b id="mapRight">0</b> in the right region</span></span>
+          <button type="button" class="btn ghost" id="mapReset">Start over</button>
+        </div>
+        <div class="status" id="mapStatus" role="status" aria-live="polite">Five pins. Place each one, then answer its two questions.</div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>Term</th><th>What it helps describe</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Computer science</td><td>The broad academic field of computation and computing systems</td><td>Designing a secure database</td></tr>
+        <tr><td>Algorithm</td><td>Defined steps for a task</td><td>Sorting names alphabetically</td></tr>
+        <tr><td>Automation</td><td>A process performed with little ongoing intervention</td><td>A timer-controlled light</td></tr>
+        <tr><td>AI</td><td>Systems aimed at intelligent-seeming tasks</td><td>A route planner or image recognizer</td></tr>
+        <tr><td>ML</td><td>Learning patterns from data or examples</td><td>A spam filter trained on labeled messages</td></tr>
+      </tbody>
+    </table>
+    <p>A recommendation system can be software, use algorithms, automate suggestions, use AI, and use ML. A timer-controlled light uses an algorithm and automation, but the example gives no evidence of ML. The strongest question is: <em>Which descriptions accurately explain what this system does?</em></p>
+
+    <div class="callout"><p><strong>Careful claim move:</strong> Replace “This product is AI-powered” with a description of data, task, output, and evidence. For example: “The app appears to rank videos using patterns in viewing behavior; the company describes this as machine learning.”</p></div>
+
+    <div class="widget" id="scrubWidget">
+      <div class="bar"><span>Interactive · Claim scrubber</span><span class="tag">Your turn</span></div>
+      <div class="body">
+        <p>Three lines of marketing copy. Scrub each one: strike the buzzwords, then rewrite the line as a description of data, task, output, and evidence. The checker flags buzzwords as you type and lights four checks. When at least three are lit, compare with one careful version.</p>
+        <div class="ads" id="ads" role="tablist" aria-label="Ad copy to scrub"></div>
+        <div class="ad" id="ad"><span class="k">Marketing copy · click a word to strike it</span><div class="copy" id="adCopy"></div><p class="fine" id="adFine"></p></div>
+        <div class="starter" id="starter">
+          <button type="button" class="starter-toggle" id="starterToggle" aria-expanded="false">Need a start?</button>
+          <div class="starter-body" id="starterBody" hidden>
+            <div class="frame"><span class="k">Sentence frame</span><span id="frameText"></span></div>
+            <div class="hints">
+              <div><span class="k">Data it might use</span><ul id="hintData"></ul></div>
+              <div><span class="k">Task and output</span><ul id="hintTask"></ul></div>
+              <div><span class="k">Evidence phrases</span><ul><li>the company describes this as…</li><li>the settings page says…</li><li>I cannot verify whether…</li><li>no evidence is given that…</li></ul></div>
+            </div>
+            <p class="hint">Fill the blanks with pieces from the lists, or your own. The Compare button later shows one finished version.</p>
+            <button type="button" class="btn ghost" id="useFrame">Put the frame in the box</button>
+          </div>
+        </div>
+        <div class="rewrite">
+          <div>
+            <label for="rewriteBox" class="sr">Your careful rewrite</label>
+            <textarea id="rewriteBox" class="draft" placeholder="The app appears to … using … ; the company describes this as …"></textarea>
+            <div class="flags" id="flags"></div>
+          </div>
+          <div>
+            <ul class="reqs" id="reqs">
+              <li data-req="data"><span class="dot"></span><span class="lbl">Names the data<span class="eg">messages, clicks, viewing history, readings…</span></span></li>
+              <li data-req="task"><span class="dot"></span><span class="lbl">Names the task<span class="eg">sort, rank, predict, adjust, group…</span></span></li>
+              <li data-req="output"><span class="dot"></span><span class="lbl">Names the output<span class="eg">a folder, an order, a setting, a suggestion…</span></span></li>
+              <li data-req="evidence"><span class="dot"></span><span class="lbl">Points at evidence, or its absence<span class="eg">the company says, I cannot verify…</span></span></li>
+            </ul>
+            <p class="hint" style="margin-top:.5rem">Buzzwords are struck automatically if they show up in your rewrite.</p>
+          </div>
+        </div>
+        <div class="rw-tools">
+          <span class="counts"><span><b id="rwMet">0</b> of 4 checks lit</span></span>
+          <span><button type="button" class="btn ghost" id="rwClear">Clear</button> <button type="button" class="btn" id="rwCompare" disabled>Compare with a careful version</button></span>
+        </div>
+        <div class="careful" id="careful"><span class="k">One careful version</span><p id="carefulText"></p></div>
+        <div class="status" id="rwStatus" role="status" aria-live="polite">Scrub at least one line.</div>
+      </div>
+    </div>
+
+    <h2>Key vocabulary</h2>
+    <ul class="vocab">
+      <li><strong>computer science:</strong> study of computation, information, algorithms, and computing systems.</li>
+      <li><strong>algorithm:</strong> defined steps for completing a task or solving a problem.</li>
+      <li><strong>automation:</strong> carrying out a process with little ongoing human intervention.</li>
+      <li><strong>artificial intelligence:</strong> a broad field for systems that perform tasks associated with perception, language, learning, reasoning, planning, or decision-making.</li>
+      <li><strong>machine learning:</strong> an AI approach in which systems learn patterns from data or examples.</li>
+    </ul>
+
+    <div class="widget" id="ladderAfter">
+      <div class="bar"><span>Interactive · Broadest to narrowest</span><span class="tag">After reading</span></div>
+      <div class="body">
+        <p>The same five terms. This time there are two places to put them: the ladder, for terms that nest inside each other, and a second column for terms that cut across the map instead. Place all five, then check against the ladder you locked at the top of the page.</p>
+        <div class="ladder two">
+          <div class="rung-col" data-col="ladder">
+            <h4>Nested ladder</h4>
+            <p class="def">each one sits inside the one above it</p>
+            <div class="ends"><span>Broadest</span></div>
+            <ol class="rungs" id="rungsA"></ol>
+            <div class="ends"><span></span><span>Narrowest</span></div>
+          </div>
+          <div class="rung-col across" data-col="across">
+            <h4>Cuts across the map</h4>
+            <p class="def">describes a kind of thing that can appear anywhere</p>
+            <ol class="rungs" id="rungsX"></ol>
+          </div>
+        </div>
+        <div class="maptools">
+          <span class="counts"><span id="ladderANote"></span></span>
+          <span><button type="button" class="btn ghost" id="ladderAReset">Start over</button> <button type="button" class="btn" id="ladderACheck">Check against my prediction</button></span>
+        </div>
+        <div class="lcompare" id="lcompare" hidden>
+          <table>
+            <thead><tr><th scope="col">Term</th><th scope="col">Your prediction</th><th scope="col">Now</th><th scope="col">The map</th></tr></thead>
+            <tbody id="lcompareBody"></tbody>
+          </table>
+          <div class="note" id="lcompareNote"></div>
+        </div>
+        <div class="status" id="ladderAStatus" role="status" aria-live="polite">Place all five, then check.</div>
+      </div>
+    </div>
+
+    <h2>As you move to the lesson</h2>
+    <p>Choose one familiar system. Be ready to give it more than one accurate label, and be ready to explain which labels are not supported by evidence.</p>
+  </div>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 1 • Lesson 1.2 Reading | All essential content is available on this page as selectable text.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+  var TERMS={cs:"Computer science",ai:"Artificial intelligence",ml:"Machine learning",alg:"Algorithm",auto:"Automation"};
+  var LADDER=["cs","ai","ml"],ACROSS=["alg","auto"];
+
+  /* ---------- Ladder widgets ---------- */
+  function makeLadder(opts){
+    var state=store.get(opts.key,null);
+    var cols={};opts.cols.forEach(function(c){cols[c.id]=$(c.list)});
+    var sel=null,locked=!!(state&&state.locked);
+    if(!state){state={cols:{},locked:false};opts.cols.forEach(function(c,i){state.cols[c.id]=i===0?shuffle(Object.keys(TERMS)):[]})}
+    function save(){store.set(opts.key,state)}
+    function render(){
+      opts.cols.forEach(function(c){
+        var ol=cols[c.id];ol.innerHTML="";
+        state.cols[c.id].forEach(function(id,i,arr){
+          var li=el("li","rung"+(locked?" locked":""));li.setAttribute("draggable",locked?"false":"true");li.setAttribute("data-id",id);
+          li.appendChild(el("span","idx",c.numbered?String(i+1):"•"));li.appendChild(el("span","t",TERMS[id]));
+          if(!locked){
+            var mv=el("span","mv");
+            var up=el("button",null,"▲");up.type="button";up.title="Move up";up.disabled=i===0;up.setAttribute("aria-label","Move "+TERMS[id]+" up");
+            var dn=el("button",null,"▼");dn.type="button";dn.title="Move down";dn.disabled=i===arr.length-1;dn.setAttribute("aria-label","Move "+TERMS[id]+" down");
+            up.addEventListener("click",function(e){e.stopPropagation();arr.splice(i,1);arr.splice(i-1,0,id);save();render()});
+            dn.addEventListener("click",function(e){e.stopPropagation();arr.splice(i,1);arr.splice(i+1,0,id);save();render()});
+            mv.appendChild(up);mv.appendChild(dn);li.appendChild(mv);
+            li.addEventListener("click",function(){if(sel===li){li.classList.remove("sel");sel=null;return}if(sel)sel.classList.remove("sel");sel=li;li.classList.add("sel")});
+            li.addEventListener("dragstart",function(e){if(sel)sel.classList.remove("sel");sel=li;li.classList.add("sel");try{e.dataTransfer.setData("text/plain",id)}catch(x){}});
+          }
+          ol.appendChild(li);
+        });
+      });
+      if(opts.onRender)opts.onRender(state,locked);
+    }
+    function moveTo(id,colId,index){
+      opts.cols.forEach(function(c){var a=state.cols[c.id];var k=a.indexOf(id);if(k>-1)a.splice(k,1)});
+      var target=state.cols[colId];if(index==null||index>target.length)index=target.length;target.splice(index,0,id);
+      sel=null;save();render();
+    }
+    opts.cols.forEach(function(c){
+      var col=cols[c.id].closest(".rung-col");
+      function dropAt(e){
+        if(!sel||locked)return;var id=sel.getAttribute("data-id");
+        var rungs=Array.prototype.slice.call(cols[c.id].children),idx=rungs.length;
+        if(e&&e.clientY!=null){for(var i=0;i<rungs.length;i++){var r=rungs[i].getBoundingClientRect();if(e.clientY<r.top+r.height/2){idx=i;break}}}
+        if(rungs.indexOf(sel)>-1&&rungs.indexOf(sel)<idx)idx--;
+        moveTo(id,c.id,idx);
+      }
+      col.addEventListener("click",function(e){if(e.target.closest(".rung")&&e.target.closest(".rung").parentNode===cols[c.id]){return}dropAt(e)});
+      col.addEventListener("dragover",function(e){e.preventDefault();col.classList.add("over")});
+      col.addEventListener("dragleave",function(){col.classList.remove("over")});
+      col.addEventListener("drop",function(e){e.preventDefault();col.classList.remove("over");dropAt(e)});
+    });
+    render();
+    return{
+      state:function(){return state},
+      lock:function(v){locked=v;state.locked=v;save();render()},
+      reset:function(){state={cols:{},locked:false};opts.cols.forEach(function(c,i){state.cols[c.id]=i===0?shuffle(Object.keys(TERMS)):[]});locked=false;save();render()}
+    };
+  }
+  var before=makeLadder({key:"ail12-ladder-before",cols:[{id:"ladder",list:"rungsB",numbered:true}],
+    onRender:function(state,locked){
+      var st=$("ladderBStatus");$("ladderBLock").disabled=locked;$("ladderBLock").textContent=locked?"Locked":"Lock my prediction";
+      $("ladderBNote").textContent=locked?"Prediction saved on this device.":"";
+      if(locked){st.className="status ok";st.textContent="Prediction locked. Keep reading; the ladder comes back at the end."}
+    }});
+  $("ladderBLock").addEventListener("click",function(){before.lock(true)});
+  $("ladderBReset").addEventListener("click",function(){before.reset();var st=$("ladderBStatus");st.className="status";st.textContent="Order the five terms, then lock."});
+
+  var after=makeLadder({key:"ail12-ladder-after",cols:[{id:"ladder",list:"rungsA",numbered:true},{id:"across",list:"rungsX",numbered:false}],
+    onRender:function(state){
+      var n=state.cols.ladder.length+state.cols.across.length;
+      $("ladderANote").textContent=state.cols.across.length+" across · "+state.cols.ladder.length+" on the ladder";
+    }});
+  $("ladderAReset").addEventListener("click",function(){after.reset();$("lcompare").hidden=true;var st=$("ladderAStatus");st.className="status";st.textContent="Place all five, then check."});
+  $("ladderACheck").addEventListener("click",function(){
+    var a=after.state(),b=before.state();
+    var tb=$("lcompareBody");tb.innerHTML="";var ok=0;
+    Object.keys(TERMS).forEach(function(id){
+      var tr=el("tr");tr.appendChild(el("td",null,TERMS[id]));
+      var bi=b.cols.ladder.indexOf(id);var t1=el("td");t1.appendChild(el("span","pip",b.locked?"rung "+(bi+1)+" of 5":"not locked"));tr.appendChild(t1);
+      var onL=a.cols.ladder.indexOf(id),onX=a.cols.across.indexOf(id);var t2=el("td");
+      var mapWants=LADDER.indexOf(id)>-1?"ladder":"across";
+      var now=onL>-1?"rung "+(onL+1)+" of "+a.cols.ladder.length:(onX>-1?"cuts across":"not placed");
+      var good=(mapWants==="ladder"&&onL===LADDER.indexOf(id)&&a.cols.ladder.length===3)||(mapWants==="across"&&onX>-1);
+      if(good)ok++;
+      t2.appendChild(el("span","pip"+(good?" ok":""),now));tr.appendChild(t2);
+      var t3=el("td");t3.appendChild(el("span","pip "+(mapWants==="ladder"?"ok":"across"),mapWants==="ladder"?"rung "+(LADDER.indexOf(id)+1)+" of 3":"cuts across"));tr.appendChild(t3);
+      tb.appendChild(tr);
+    });
+    $("lcompareNote").innerHTML="<p><strong>"+ok+" of 5 match the map.</strong> "+(b.locked?"Your prediction put all five on one ladder, because the page asked you to. The reading’s answer is that only three nest: computer science holds AI, and AI holds machine learning. Algorithm and automation are not broader or narrower than those three; they are different kinds of words. Algorithms appear throughout computing, and automation describes a process that can use fixed rules, AI, or neither. ":"You did not lock a prediction at the top, so there is nothing to compare against. ")+"That is why the reading calls it a map, not a yes/no test.</p>";
+    $("lcompare").hidden=false;
+    var st=$("ladderAStatus");st.className="status ok";st.textContent=ok===5?"All five where the map puts them.":ok+" of 5 match the map. Read the note below the table.";
+  });
+
+  /* ---------- The Map ---------- */
+  var ZONE_NAME={outside:"outside computing",cs:"computer science, not AI",ai:"AI, not ML",ml:"machine learning"};
+  var PINS=[
+    {id:"timer",name:"Timer-controlled light",zone:"cs",alg:"nec",auto:"nec",
+     why:{zone:"It is software or hardware that computes a schedule, so it sits inside computer science. The example gives no evidence of AI or ML.",alg:"A schedule is a defined set of steps: if it is 10:00 p.m., turn off the lights.",auto:"The light goes off with no one touching it. That is automation."}},
+    {id:"spam",name:"Spam filter trained on labeled messages",zone:"ml",alg:"nec",auto:"nec",
+     why:{zone:"“Trained on labeled messages” is evidence of learning patterns from examples, which is machine learning, which is inside AI, which is inside computer science.",alg:"The filter follows defined steps to score and sort each message.",auto:"Messages get sorted with little ongoing human intervention."}},
+    {id:"db",name:"Designing a secure database",zone:"cs",alg:"nec",auto:"pos",
+     why:{zone:"Designing a database may involve computer science without involving AI. Nothing here points to intelligent-seeming tasks or learning.",alg:"Storing and looking up records follows defined steps.",auto:"Some database jobs run on their own, but the description does not say. Say “may.”"}},
+    {id:"recipe",name:"A hand-written recipe",zone:"outside",alg:"pos",auto:"not",
+     why:{zone:"A recipe on paper is not computation at all. It sits outside the map, which is allowed.",alg:"A recipe can be algorithm-like, but a computer algorithm is specified precisely enough for a machine to execute. Say “algorithm-like.”",auto:"A person carries out every step. Nothing is automated."}},
+    {id:"rec",name:"Recommendation system",zone:"ml",alg:"nec",auto:"nec",
+     why:{zone:"The reading says a recommendation system can be software, use algorithms, automate suggestions, use AI, and use ML. It lights every ring.",alg:"Ranking posts is a defined procedure, even if the steps were learned.",auto:"Suggestions appear with little ongoing human intervention."}}
+  ];
+  var SLOTS={outside:[[80,120],[80,170],[80,220],[80,270],[80,110]],cs:[[235,110],[235,160],[235,210],[235,260],[235,120]],ai:[[370,150],[370,200],[370,250],[370,120],[370,180]],ml:[[520,170],[520,210],[640,170],[640,210],[580,230]]};
+  var mapState=store.get("ail12-map",{});
+  var mapSel=null;
+  var svg=$("map"),pinsG=$("pins");
+  function svgEl(tag,attrs){var e=document.createElementNS("http://www.w3.org/2000/svg",tag);for(var k in attrs)e.setAttribute(k,attrs[k]);return e}
+  function mapSave(){store.set("ail12-map",mapState)}
+  function tray(){
+    var t=$("pintray");t.innerHTML="";
+    PINS.forEach(function(p){
+      var c=el("button","chip"+(mapState[p.id]&&mapState[p.id].zone?" placed":""));c.type="button";c.setAttribute("draggable","true");c.setAttribute("data-id",p.id);
+      c.appendChild(el("span","dot"));c.appendChild(document.createTextNode(p.name));
+      c.addEventListener("click",function(){selectPin(p.id,c)});
+      c.addEventListener("dragstart",function(e){selectPin(p.id,c);try{e.dataTransfer.setData("text/plain",p.id)}catch(x){}});
+      t.appendChild(c);
+    });
+  }
+  function selectPin(id,node){
+    document.querySelectorAll(".pintray .chip.sel,#map .pin.sel").forEach(function(x){x.classList.remove("sel")});
+    if(mapSel===id){mapSel=null;return}
+    mapSel=id;if(node)node.classList.add("sel");
+    var st=$("mapStatus");st.className="status";st.textContent="Selected: "+PINS.filter(function(p){return p.id===id})[0].name+". Now click a region of the map.";
+  }
+  function drawPins(){
+    pinsG.innerHTML="";var used={};
+    PINS.forEach(function(p){
+      var s=mapState[p.id];if(!s||!s.zone)return;
+      used[s.zone]=(used[s.zone]||0);var pos=SLOTS[s.zone][used[s.zone]%SLOTS[s.zone].length];used[s.zone]++;
+      var g=svgEl("g",{"class":"pin placed"+(s.zone===p.zone?" right":" wrong"),"data-id":p.id,tabindex:"0",role:"button","aria-label":p.name+", placed in "+ZONE_NAME[s.zone]});
+      g.appendChild(svgEl("circle",{cx:pos[0],cy:pos[1],r:7}));
+      var t=svgEl("text",{x:pos[0]+11,y:pos[1]+4});t.textContent=p.name.length>24?p.name.slice(0,22)+"…":p.name;g.appendChild(t);
+      g.addEventListener("click",function(e){e.stopPropagation();selectPin(p.id,g);showVerdict(p.id)});
+      g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();selectPin(p.id,g);showVerdict(p.id)}});
+      pinsG.appendChild(g);
+    });
+    var placed=0,right=0;PINS.forEach(function(p){var s=mapState[p.id];if(s&&s.zone){placed++;if(s.zone===p.zone)right++}});
+    $("mapPlaced").textContent=placed;$("mapRight").textContent=right;
+    tray();
+  }
+  function lightZone(zone,good){
+    ["CS","AI","ML"].forEach(function(r){var e=$("ring"+r);e.classList.remove("lit","bad")});
+    var chain={outside:[],cs:["CS"],ai:["CS","AI"],ml:["CS","AI","ML"]}[zone]||[];
+    chain.forEach(function(r){$("ring"+r).classList.add(good?"lit":"bad")});
+  }
+  function place(id,zone){
+    var p=PINS.filter(function(x){return x.id===id})[0];
+    mapState[id]=mapState[id]||{};mapState[id].zone=zone;mapSave();
+    mapSel=null;drawPins();lightZone(zone,zone===p.zone);
+    var st=$("mapStatus");
+    if(zone===p.zone){st.className="status ok";st.textContent=p.name+": right region. "+p.why.zone}
+    else{st.className="status bad";st.textContent=p.name+" is not best supported in “"+ZONE_NAME[zone]+".” Think about the evidence in the example, then move it."}
+    showVerdict(id);
+  }
+  function tagEl(kind){return el("span","tag "+kind,kind==="nec"?"necessary":kind==="pos"?"possible · say “may”":"not supported")}
+  function showVerdict(id){
+    var p=PINS.filter(function(x){return x.id===id})[0],s=mapState[id]||{};
+    var v=$("verdict");v.classList.add("show");$("vName").textContent=p.name;
+    var body=$("vBody");body.innerHTML="";
+    var zoneGood=s.zone===p.zone;
+    var row=el("div","lab");row.appendChild(el("span","k","Region"));row.appendChild(el("span","tag "+(zoneGood?"nec":"not"),zoneGood?ZONE_NAME[p.zone]:"move it"));row.appendChild(el("span","w",zoneGood?p.why.zone:"Placed in “"+ZONE_NAME[s.zone]+".” "+(s.zone?"The example’s evidence points somewhere else.":"")));body.appendChild(row);
+    [["alg","Uses an algorithm?"],["auto","Runs as automation?"]].forEach(function(q){
+      var k=q[0],ans=s[k];
+      var asks=el("div","asks");asks.appendChild(el("span",null,q[1]));
+      [["nec","Necessary"],["pos","Possible"],["not","Not supported"]].forEach(function(o){
+        var b=el("button",null,o[1]);b.type="button";b.setAttribute("aria-pressed",ans===o[0]?"true":"false");
+        b.addEventListener("click",function(){mapState[id][k]=o[0];mapSave();showVerdict(id);mapScore()});
+        asks.appendChild(b);
+      });
+      body.appendChild(asks);
+      if(ans){
+        var r=el("div","lab");r.appendChild(el("span","k",k==="alg"?"Algorithm":"Automation"));r.appendChild(tagEl(p[k]));
+        r.appendChild(el("span","w",(ans===p[k]?"✓ ":"✗ You said “"+{nec:"necessary",pos:"possible",not:"not supported"}[ans]+".” ")+p.why[k]));body.appendChild(r);
+      }
+    });
+    mapScore();
+  }
+  function mapScore(){
+    var done=0,good=0;
+    PINS.forEach(function(p){var s=mapState[p.id];if(s&&s.zone&&s.alg&&s.auto){done++;if(s.zone===p.zone&&s.alg===p.alg&&s.auto===p.auto)good++}});
+    $("vScore").textContent=done+" of 5 fully answered";
+    if(done===5){var st=$("mapStatus");st.className="status ok";st.textContent=good===5?"All five pins placed and labeled as the evidence supports. Notice that the recipe sits outside the map and the timer light never reaches the AI ring. Labels are earned by evidence, not awarded.":"All five answered; "+good+" of 5 match the evidence on every label. Click any pin on the map to revisit its reasoning."}
+  }
+  document.querySelectorAll("#map .zone").forEach(function(z){
+    var zone=z.getAttribute("data-zone");
+    z.addEventListener("click",function(){if(mapSel)place(mapSel,zone)});
+    z.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&mapSel){e.preventDefault();place(mapSel,zone)}});
+    z.addEventListener("dragover",function(e){e.preventDefault();z.classList.add("over")});
+    z.addEventListener("dragleave",function(){z.classList.remove("over")});
+    z.addEventListener("drop",function(e){e.preventDefault();z.classList.remove("over");if(mapSel)place(mapSel,zone)});
+  });
+  $("mapReset").addEventListener("click",function(){mapState={};store.del("ail12-map");mapSel=null;drawPins();lightZone(null);$("verdict").classList.remove("show");var st=$("mapStatus");st.className="status";st.textContent="Five pins. Place each one, then answer its two questions."});
+  drawPins();mapScore();
+
+  /* ---------- Claim scrubber ---------- */
+  var ADS=[
+    {copy:"AI-powered smart sorting keeps your inbox clean.",fine:"from a mail app’s download page",buzz:["AI-powered","smart"],
+     frame:"The mail app appears to [task] messages into [output] using [data]; [evidence].",
+     data:["messages I have marked as junk","words and senders in each message","what other users reported"],task:["sort messages into folders","flag likely junk","hide messages from the inbox"],
+     careful:"The mail app appears to sort messages into an inbox and a junk folder using patterns in messages that I and other users have marked; the company describes this as machine learning, but I cannot verify how it is built."},
+    {copy:"Our app learns what you love.",fine:"from a video app’s welcome screen",buzz:["learns","love"],
+     frame:"The app appears to [task] using [data] to produce [output]; [evidence].",
+     data:["what I watch to the end","what I skip","what I tap, like, or share"],task:["rank the next videos","predict which post holds my attention","reorder the feed"],
+     careful:"The app appears to rank videos using patterns in viewing behavior; the company describes this as machine learning. It predicts what holds my attention, which is not the same as knowing what I love."},
+    {copy:"The revolutionary intelligent thermostat thinks for you.",fine:"from a thermostat box",buzz:["revolutionary","intelligent","thinks"],
+     frame:"The thermostat appears to [task] using [data] and sets [output]; [evidence].",
+     data:["the room temperature from a sensor","the time of day","the schedule someone typed in"],task:["compare the temperature to a target","switch the heat on or off","adjust the schedule"],
+     careful:"The thermostat appears to compare the room temperature to a target and switch the heat on or off, following a schedule someone typed in. The box says it learns our habits, but the description gives no evidence of how, so I cannot verify whether it uses machine learning."}
+  ];
+  var BUZZ=/\b(AI-powered|powered by AI|smart|intelligent|intelligence|learns?|thinks?|knows?|understands?|revolutionary|magic(?:al)?|genius|next-gen|cutting-edge|loves?)\b/gi;
+  var DATA=/\b(messages?|senders?|words?|clicks?|taps?|history|viewing|watch(?:ed|es)?|skip(?:s|ped)?|likes?|shares?|temperature|sensors?|readings?|schedule|time of day|examples?|data|behavior|marked|reported|photos?|location)\b/i;
+  var TASK=/\b(sorts?|sorting|ranks?|ranking|predicts?|prediction|adjusts?|groups?|labels?|filters?|flags?|compares?|switch(?:es)?|hides?|reorders?|recommends?|suggests?|scores?|classif(?:y|ies))\b/i;
+  var OUTPUT=/\b(folders?|inbox|junk|order|list|feed|setting|target|on or off|heat|suggestions?|recommendations?|rankings?|labels?|score|next videos?|posts?)\b/i;
+  var EVID=/\b(company (?:says|describes|calls|claims)|describes this as|according to|settings page|documentation|the box says|I cannot verify|can’t verify|can't verify|no evidence|does not say|gives no evidence|the description (?:says|does not)|based on)\b/i;
+  var rwState=store.get("ail12-scrub",{}),rwCur=0;
+  function buildAds(){var w=$("ads");w.innerHTML="";ADS.forEach(function(a,i){var b=el("button",null,"Line "+(i+1));b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",i===rwCur?"true":"false");b.addEventListener("click",function(){rwCur=i;buildAds();loadAd()});w.appendChild(b)})}
+  function loadAd(){
+    var a=ADS[rwCur],s=rwState[rwCur]||(rwState[rwCur]={text:"",struck:{}});
+    var c=$("adCopy");c.innerHTML="";
+    a.copy.split(/(\s+)/).forEach(function(tok){
+      if(!tok.trim()){c.appendChild(document.createTextNode(tok));return}
+      var word=tok.replace(/[.,!]/g,"");var isBuzz=a.buzz.some(function(b){return b.toLowerCase()===word.toLowerCase()});
+      var m=el("mark",null,tok);m.style.cursor="pointer";m.setAttribute("data-w",word);
+      if(s.struck[word])m.style.textDecoration="line-through";
+      m.addEventListener("click",function(){s.struck[word]=!s.struck[word];store.set("ail12-scrub",rwState);loadAd()});
+      c.appendChild(m);
+    });
+    var struckBuzz=a.buzz.filter(function(b){return s.struck[b]}).length,struckOther=Object.keys(s.struck).filter(function(w){return s.struck[w]&&a.buzz.indexOf(w)<0}).length;
+    $("ad").classList.toggle("scrubbed",struckBuzz===a.buzz.length&&struckOther===0);
+    $("adFine").textContent=a.fine+" · "+(struckBuzz===a.buzz.length&&struckOther===0?"all "+a.buzz.length+" buzzwords struck":struckBuzz+" of "+a.buzz.length+" buzzwords struck"+(struckOther?", "+struckOther+" plain word"+(struckOther>1?"s":"")+" struck too":""));
+    var f=$("frameText");f.innerHTML="";a.frame.split(/(\[[^\]]+\])/).forEach(function(part){if(part.charAt(0)==="[")f.appendChild(el("span","blank",part.slice(1,-1)));else f.appendChild(document.createTextNode(part))});
+    var hd=$("hintData");hd.innerHTML="";a.data.forEach(function(t){hd.appendChild(el("li",null,t))});
+    var ht=$("hintTask");ht.innerHTML="";a.task.forEach(function(t){ht.appendChild(el("li",null,t))});
+    $("rewriteBox").value=s.text||"";$("careful").classList.remove("show");check();
+  }
+  function check(){
+    var t=$("rewriteBox").value;rwState[rwCur]=rwState[rwCur]||{text:"",struck:{}};rwState[rwCur].text=t;store.set("ail12-scrub",rwState);
+    var found=t.match(BUZZ)||[];var seen={},words=[];found.forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;words.push(w)}});
+    var f=$("flags");f.innerHTML="";
+    if(!t.trim()){}else if(words.length){f.appendChild(el("span",null,"Buzzwords: "));words.forEach(function(w){f.appendChild(el("span","word",w))})}else f.appendChild(el("span","clean","No buzzwords. Clean."));
+    var met={data:DATA.test(t),task:TASK.test(t),output:OUTPUT.test(t),evidence:EVID.test(t)};var n=0;
+    document.querySelectorAll("#reqs li").forEach(function(li){var ok=met[li.getAttribute("data-req")];li.classList.toggle("met",!!ok);if(ok)n++});
+    $("rwMet").textContent=n;$("rwCompare").disabled=n<3;
+    var st=$("rwStatus");
+    if(!t.trim()){st.className="status";st.textContent="Scrub at least one line."}
+    else if(words.length){st.className="status bad";st.textContent="A buzzword slipped into the rewrite. Replace it with what the system does."}
+    else if(n<3){st.className="status";st.textContent="Keep going. Say what data goes in, what task it does, what comes out, and where the evidence is."}
+    else{st.className="status ok";st.textContent=n===4?"All four lit. That is a claim someone could check.":"Three lit. Compare with a careful version, or finish the fourth."}
+  }
+  $("rewriteBox").addEventListener("input",check);
+  $("rwClear").addEventListener("click",function(){$("rewriteBox").value="";$("careful").classList.remove("show");check();$("rewriteBox").focus()});
+  $("rwCompare").addEventListener("click",function(){$("carefulText").textContent="“"+ADS[rwCur].careful+"”";$("careful").classList.add("show")});
+  $("starterToggle").addEventListener("click",function(){var open=$("starterBody").hidden;$("starterBody").hidden=!open;this.setAttribute("aria-expanded",open?"true":"false")});
+  $("useFrame").addEventListener("click",function(){var box=$("rewriteBox"),frame=ADS[rwCur].frame.replace(/\[[^\]]+\]/g,"___");box.value=box.value.trim()?box.value.replace(/\s*$/,"\n")+frame:frame;check();box.focus();var p=box.value.indexOf("___");if(p>=0)box.setSelectionRange(p,p+3)});
+  buildAds();loadAd();
+})();
+</script>
+</body>
+</html>
