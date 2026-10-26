@@ -1,126 +1,460 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assignment 1.1 | A Careful Description</title>
-  <style>
-    :root { --navy:#17365d; --blue:#2f75b5; --gold:#c58a18; --pale:#eef4fb; --ink:#1f2937; --muted:#52606d; --line:#cdd8e5; --white:#fff; --green:#2e6b4d; --purple:#8054a0; }
-    * { box-sizing:border-box; }
-    body { margin:0; background:#f5f7fa; color:var(--ink); font-family:Arial, Helvetica, sans-serif; line-height:1.62; }
-    .page { width:min(960px, 94vw); margin:32px auto 48px; background:var(--white); border:1px solid var(--line); box-shadow:0 2px 12px rgba(23,54,93,.10); }
-    header { padding:34px 48px 28px; background:var(--navy); color:#fff; border-bottom:6px solid var(--gold); }
-    .eyebrow { margin:0 0 8px; color:#d9e8f7; font-size:.86rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
-    h1 { margin:0; font-family:Georgia, 'Times New Roman', serif; font-size:2.35rem; line-height:1.15; }
-    .subtitle { margin:10px 0 0; font-size:1.08rem; color:#eaf2fa; }
-    .content { padding:34px 48px 48px; }
-    .meta { display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin:0 0 28px; }
-    .meta div { background:var(--pale); border-left:4px solid var(--blue); padding:11px 13px; font-size:.92rem; }
-    .meta strong { display:block; color:var(--navy); font-size:.76rem; letter-spacing:.04em; text-transform:uppercase; }
-    h2 { margin:35px 0 12px; padding-bottom:7px; border-bottom:2px solid #dce7f2; color:var(--navy); font-family:Georgia, 'Times New Roman', serif; font-size:1.55rem; }
-    h3 { color:#234f7d; margin:21px 0 8px; font-size:1.12rem; }
-    .focus, .notice, .success, .warning { margin:20px 0; padding:18px 20px; }
-    .focus { background:#fff8e8; border:1px solid #ead29b; border-left:6px solid var(--gold); }
-    .notice { background:#f5f9fd; border:1px solid #b9cfe6; border-left:6px solid var(--blue); }
-    .success { background:#f2faf5; border:1px solid #b9d9c6; border-left:6px solid var(--green); }
-    .warning { background:#f8f4fb; border:1px solid #d9c8e8; border-left:6px solid var(--purple); }
-    .deliverable { margin:16px 0; padding:18px 20px; border:1px solid var(--line); background:#fafcff; }
-    table { width:100%; border-collapse:collapse; margin:16px 0; }
-    th, td { border:1px solid var(--line); padding:11px; vertical-align:top; text-align:left; }
-    th { background:var(--navy); color:#fff; }
-    tr:nth-child(even) td { background:#f8fbfe; }
-    .footer { margin-top:38px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
-    @media (max-width:700px) { header, .content { padding:26px 22px; } .meta { grid-template-columns:1fr; } h1 { font-size:1.85rem; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assignment 1.1 — A Careful Description</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .page{max-width:860px}
+  .must{counter-reset:must;list-style:none;padding:0;margin:.6rem 0}
+  .must li{counter-increment:must;margin:0 0 .5rem;padding:.7rem .9rem .7rem 2.8rem;position:relative;background:#fff;border:1px solid var(--rule);border-radius:var(--radius)}
+  .must li::before{content:"0" counter(must);position:absolute;left:.7rem;top:.7rem;width:30px;height:26px;border-radius:6px;background:var(--navy);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:.78rem;border:1px solid var(--teal)}
+  .rubric td:nth-child(2){text-align:center;font-family:var(--mono);font-weight:600;color:var(--teal-deep);white-space:nowrap}
+  .submit{counter-reset:sub;list-style:none;padding:0;margin:.6rem 0}
+  .submit li{counter-increment:sub;padding:.4rem 0 .4rem 2.2rem;position:relative;border-bottom:1px dashed var(--rule)}
+  .submit li:last-child{border-bottom:0}
+  .submit li::before{content:"0" counter(sub);position:absolute;left:.1rem;top:.5rem;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--teal)}
+  .box h3{margin-top:0}
+  .box ul{margin-bottom:0}
+
+  /* Pick your system */
+  .picks{display:flex;gap:.45rem;flex-wrap:wrap;margin:.4rem 0 .6rem}
+  .pick{font-family:var(--sans);font-size:.92rem;padding:.4rem .8rem;border-radius:999px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .pick:hover{background:var(--teal-pale)}
+  .pick[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px var(--glow)}
+  .pick:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .own{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:.4rem}
+  .own input{flex:1 1 240px;font:inherit;font-size:.95rem;padding:.45rem .65rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .own input:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+
+  /* Model of careful language, interactive */
+  .model td{vertical-align:top}
+  .model .vg{cursor:default}
+  .model .vg mark{background:transparent;color:inherit;border-bottom:2px dotted var(--bad);padding:0 .05em}
+  .model .vg.on mark{background:var(--bad-bg);color:var(--bad);border-bottom-color:var(--bad);border-radius:3px}
+  .model .careful{display:none}
+  .model .careful.on{display:block;animation:reveal .3s ease-out}
+  .model .reveal{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;border:1px dashed var(--teal);background:#fff;color:var(--teal);border-radius:6px;padding:.3rem .6rem;cursor:pointer}
+  .model .reveal:hover{background:var(--teal-pale)}
+  .model .reveal:disabled{display:none}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+  /* Drafting desk */
+  .scaffold{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(230px,1fr);gap:1rem}
+  @media (max-width:720px){.scaffold{grid-template-columns:1fr}}
+  .scaffold h4{margin:0 0 .4rem;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep)}
+  .tools{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem;align-items:center}
+  .flags{min-height:1.5em;display:flex;gap:.35rem;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);margin-top:.4rem}
+  .flags .word{background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.1rem .5rem;font-family:var(--sans);font-size:.86rem}
+  .flags .clean{color:var(--ok);font-weight:600}
+  .reqs li[role=checkbox]{cursor:pointer}
+  .reqs li[role=checkbox]:hover{background:var(--paper-2)}
+  .disc{margin-top:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.7rem .8rem;background:#fff}
+  .disc label.opt{display:flex;gap:.5rem;align-items:flex-start;margin:.3rem 0;cursor:pointer;font-size:.95rem}
+  .disc input[type=radio]{accent-color:var(--teal);margin-top:.25rem}
+  .disc .fields{display:grid;gap:.4rem;margin:.3rem 0 .2rem 1.6rem}
+  .disc .fields input{font:inherit;font-size:.92rem;padding:.4rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;width:100%}
+  .disc .fields input:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .disc .line{margin-top:.5rem;font-family:var(--mono);font-size:.8rem;color:var(--teal-deep);background:var(--teal-pale);border-radius:6px;padding:.4rem .6rem}
+  .src{margin-top:.6rem}
+  .src input{width:100%;font:inherit;font-size:.92rem;padding:.4rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .src label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.25rem}
+
+  /* Rubric self-score */
+  .rubric .pts{display:inline-flex;gap:.25rem;flex-wrap:wrap}
+  .rubric .pts button{width:30px;height:30px;border-radius:6px;border:1px solid var(--rule-strong);background:#fff;font-family:var(--mono);font-size:.82rem;cursor:pointer;color:var(--ink-soft)}
+  .rubric .pts button:hover{border-color:var(--teal)}
+  .rubric .pts button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+  .rubric .pts button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .rubric tfoot td{font-weight:600;background:var(--paper-2)}
+  .rubric tfoot td:nth-child(2){text-align:center;font-family:var(--mono);color:var(--teal-deep)}
+
+  /* Gathered answers */
+  .gather{border:1px solid var(--teal-deep);border-radius:var(--radius);overflow:hidden;background:#fff}
+  .gather .gbar{background:var(--navy);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.55rem .9rem;display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .gather .gbody{padding:.9rem 1rem}
+  .gather .row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:.4rem .8rem;padding:.45rem 0;border-bottom:1px dashed var(--rule)}
+  .gather .row:last-child{border-bottom:0}
+  .gather .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding-top:.2rem}
+  .gather .v{font-size:.98rem;white-space:pre-wrap}
+  .gather .v.empty{color:var(--ink-faint);font-style:italic}
+  .gather input.name{font:inherit;font-size:.95rem;padding:.35rem .55rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;max-width:320px;width:100%}
+  @media (max-width:560px){.gather .row{grid-template-columns:1fr}}
+  .gather .gtools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end;padding:.7rem 1rem;border-top:1px solid var(--rule);background:var(--paper-2)}
+
+  @media print{
+    body{background:#fff}
+    .page{border:0;box-shadow:none;max-width:none;margin:0;padding:0}
+    .page > *:not(#gatherSection){display:none!important}
+    #gatherSection .gtools,#gatherSection .hint{display:none!important}
+    .gather{border-color:#999}
+    .gather .gbar{background:#eee;color:#000}
+    .gather .k{color:#333}
+  }
+</style>
 </head>
 <body>
-  <main class="page">
-    <header>
-      <p class="eyebrow">AI Literacy • Module 1 • Assignment 1.1</p>
-      <h1>A Careful Description</h1>
-      <p class="subtitle">Describe one everyday system without relying on “smart” as an explanation.</p>
-    </header>
-    <section class="content">
-      <div class="meta">
-        <div><strong>Estimated time</strong>15–20 minutes</div>
-        <div><strong>Points</strong>10</div>
-        <div><strong>Submission type</strong>Canvas text entry</div>
-        <div><strong>Word count</strong>150–200 words</div>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 1 • Assignment 1.1" data-title="A Careful Description" data-key="ail-intro-1.1-assignment"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 1 • Assignment 1.1</p>
+    <h1>A Careful Description</h1>
+    <p class="lede">Describe one everyday system without relying on “smart” as an explanation.</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <section class="ledger" aria-label="Assignment details">
+    <div><span class="k">Estimated time</span><span class="v">15–20 minutes</span></div>
+    <div><span class="k">Points</span><span class="v">10</span></div>
+    <div><span class="k">Submission type</span><span class="v">Canvas text entry</span></div>
+    <div><span class="k">Word count</span><span class="v">150–200 words</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Assignment question:</strong> How can you describe an everyday system accurately without assuming it understands, learns, or makes wise decisions?</p>
+  </div>
+
+  <h2>Your task</h2>
+  <p>Choose one system you encounter in daily life. It may come from school, home, entertainment, transportation, shopping, sports, health/fitness, or creative work. Examples include a navigation app, music recommender, phone camera feature, video feed, spam filter, autocorrect, online store, thermostat, or chatbot.</p>
+  <p>Write a <strong>150–200 word</strong> description using the four-question system check from Lesson 1.1. Your goal is not to prove exactly how the system is built. Your goal is to separate what you can observe from what you reasonably infer.</p>
+
+  <div class="widget" id="pickWidget">
+    <div class="bar"><span>Interactive · Pick your system</span><span class="tag">Step one</span></div>
+    <div class="body">
+      <p>Tap one of the examples, or name your own. Your choice appears in the gathered answers at the bottom of the page.</p>
+      <div class="picks" id="picks" role="group" aria-label="Example systems"></div>
+      <div class="own"><label for="ownSys" class="sr">Your own system</label><input type="text" id="ownSys" placeholder="Or name your own: the … I use for …" maxlength="80"></div>
+      <div class="status" id="pickStatus" role="status" aria-live="polite">No system chosen yet.</div>
+    </div>
+  </div>
+
+  <h3>Your response must include all five parts</h3>
+  <ol class="must">
+    <li><strong>Name and context:</strong> What is the system, and where do you encounter it?</li>
+    <li><strong>Inputs:</strong> What information does it likely receive?</li>
+    <li><strong>Outputs:</strong> What does it produce, recommend, label, predict, or do?</li>
+    <li><strong>Process and change:</strong> What process seems to connect the input and output? Does it appear to adapt or change over time? Clearly label uncertainty or inference.</li>
+    <li><strong>Responsible limit:</strong> End with one claim the system <em>should not</em> make about itself—for example, a claim that it understands, knows, decides fairly, or is always correct.</li>
+  </ol>
+
+  <h2>Model of careful language</h2>
+  <p class="hint">Each vague claim hides one mind-word. Find it, then reveal the careful version to compare.</p>
+  <table class="model" id="model">
+    <thead><tr><th scope="col">Avoid vague claims</th><th scope="col">Prefer observable, qualified claims</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><span class="vg">“My music app <mark>knows</mark> me.”</span></td>
+        <td><button type="button" class="reveal">Reveal careful version</button><span class="careful">“My music app appears to rank songs using my listening history and patterns from other users. It may predict what I will enjoy, but it does not know all of my reasons for listening.”</span></td>
+      </tr>
+      <tr>
+        <td><span class="vg">“The chatbot <mark>understands</mark> history.”</span></td>
+        <td><button type="button" class="reveal">Reveal careful version</button><span class="careful">“The chatbot generates historical-sounding answers from patterns in language. A fluent answer does not guarantee that its statements are accurate or that it understands the events it describes.”</span></td>
+      </tr>
+      <tr>
+        <td><span class="vg">“The map <mark>decides</mark> the best route.”</span></td>
+        <td><button type="button" class="reveal">Reveal careful version</button><span class="careful">“The map app compares possible routes using location, map, and traffic information. Its recommendation may be useful, but ‘best’ depends on goals and circumstances the app may not know.”</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box">
+    <h3>Evidence and uncertainty</h3>
+    <p>You are allowed to make reasonable inferences. Use phrases such as <em>appears to, likely, may use, based on the information available,</em> or <em>I cannot verify whether.</em> If you look up a factual detail about the system, name or link the source at the end of your response.</p>
+  </div>
+
+  <div class="box">
+    <h3>AI-use policy for this assignment</h3>
+    <p><strong>Do not use generative AI to write or rewrite your response.</strong> This assignment measures your own ability to make a careful system description. You may use a reliable non-AI source to confirm a factual detail, but you must write in your own words and identify the source.</p>
+    <p>At the bottom of your submission, add one disclosure line:</p>
+    <ul><li><strong>No AI assistance used.</strong> <em>or</em></li><li><strong>AI assistance used:</strong> [tool] helped me with [specific limited purpose].</li></ul>
+  </div>
+
+  <div class="widget" id="deskWidget">
+    <div class="bar"><span>Interactive · Drafting desk</span><span class="tag">Write here, submit in Canvas</span></div>
+    <div class="body">
+      <p>Draft your 150–200 words here. If you built a draft in Lesson 1.1 on this device, bring it in with one click. The checker counts words, flags mind-words, looks for a hedge, and lets you tick off the five parts as you cover them. Nothing on this page is submitted or graded.</p>
+      <div class="scaffold">
+        <div>
+          <div class="tools" style="margin:0 0 .5rem">
+            <button type="button" class="btn ghost" id="importDraft">Bring in my Lesson 1.1 draft</button>
+          </div>
+          <label for="draft" class="sr">Your draft</label>
+          <textarea id="draft" class="draft" spellcheck="true" placeholder="The … I use for … appears to receive…"></textarea>
+          <div class="meter" id="meter"><div></div></div>
+          <div class="counts">
+            <span>Words: <b id="words">0</b> <span class="muted">(target 150–200)</span></span>
+            <span>Sentences: <b id="sents">0</b></span>
+            <span id="rangeNote" class="muted"></span>
+          </div>
+          <div class="flags" id="flags"></div>
+          <div class="disc" id="disc">
+            <h4>Disclosure line</h4>
+            <label class="opt"><input type="radio" name="disc" value="none"> <span><strong>No AI assistance used.</strong></span></label>
+            <label class="opt"><input type="radio" name="disc" value="used"> <span><strong>AI assistance used:</strong> [tool] helped me with [specific limited purpose].</span></label>
+            <div class="fields" id="discFields" hidden>
+              <input type="text" id="discTool" placeholder="Tool" maxlength="60" aria-label="Tool">
+              <input type="text" id="discWhat" placeholder="Specific limited purpose" maxlength="140" aria-label="Specific limited purpose">
+            </div>
+            <div class="line" id="discLine">Choose one.</div>
+          </div>
+          <div class="src">
+            <label for="source">Source, if you looked up a factual detail (optional)</label>
+            <input type="text" id="source" placeholder="Name or link the source" maxlength="200">
+          </div>
+          <div class="tools">
+            <button type="button" class="btn ghost" id="clear">Clear draft</button>
+          </div>
+        </div>
+        <div>
+          <h4>The five parts</h4>
+          <ul class="reqs" id="reqs">
+            <li data-req="p1"><span class="dot"></span><span>Name and context</span></li>
+            <li data-req="p2"><span class="dot"></span><span>Inputs</span></li>
+            <li data-req="p3"><span class="dot"></span><span>Outputs</span></li>
+            <li data-req="p4"><span class="dot"></span><span>Process and change</span></li>
+            <li data-req="p5"><span class="dot"></span><span>Responsible limit</span></li>
+          </ul>
+          <h4 style="margin-top:.8rem">Automatic checks</h4>
+          <ul class="reqs" id="auto">
+            <li data-req="len"><span class="dot"></span><span>150–200 words</span></li>
+            <li data-req="hedge"><span class="dot"></span><span>Hedges an inference</span></li>
+            <li data-req="nomind"><span class="dot"></span><span>No mind-words</span></li>
+            <li data-req="disc"><span class="dot"></span><span>Disclosure line chosen</span></li>
+          </ul>
+          <p class="hint">Click each of the five parts to tick it yourself as you cover it. The four checks below update as you type.</p>
+        </div>
       </div>
+      <div class="status" id="draftStatus" role="status" aria-live="polite">Start writing. The meter turns green inside 150–200 words.</div>
+    </div>
+  </div>
 
-      <section class="focus"><strong>Assignment question:</strong> How can you describe an everyday system accurately without assuming it understands, learns, or makes wise decisions?</section>
+  <h2>Success criteria</h2>
+  <ul class="checklist" id="criteria">
+    <li><label><input type="checkbox" data-check="0"><span>I named one specific system and its context.</span></label></li>
+    <li><label><input type="checkbox" data-check="1"><span>I identified plausible inputs and outputs.</span></label></li>
+    <li><label><input type="checkbox" data-check="2"><span>I described the process cautiously, separating observation from inference.</span></label></li>
+    <li><label><input type="checkbox" data-check="3"><span>I addressed whether the system changes or adapts.</span></label></li>
+    <li><label><input type="checkbox" data-check="4"><span>I stated one honest limitation or overclaim the system should not make.</span></label></li>
+    <li><label><input type="checkbox" data-check="5"><span>I stayed within 150–200 words and included my AI-use disclosure.</span></label></li>
+  </ul>
 
-      <h2>Your task</h2>
-      <p>Choose one system you encounter in daily life. It may come from school, home, entertainment, transportation, shopping, sports, health/fitness, or creative work. Examples include a navigation app, music recommender, phone camera feature, video feed, spam filter, autocorrect, online store, thermostat, or chatbot.</p>
-      <p>Write a <strong>150–200 word</strong> description using the four-question system check from Lesson 1.1. Your goal is not to prove exactly how the system is built. Your goal is to separate what you can observe from what you reasonably infer.</p>
+  <h2>Rubric (10 points)</h2>
+  <p class="hint">Score yourself honestly before you submit. Tap the points you think each part has earned so far.</p>
+  <table class="rubric" id="rubric">
+    <thead><tr><th scope="col">Criterion</th><th scope="col">Points</th><th scope="col">What earns full credit</th></tr></thead>
+    <tbody>
+      <tr data-max="3"><td>Inputs and outputs</td><td>3</td><td>Identifies plausible inputs and outputs specifically and accurately.</td></tr>
+      <tr data-max="3"><td>Process and adaptation</td><td>3</td><td>Describes the likely process with appropriate caution and addresses whether/how the system changes.</td></tr>
+      <tr data-max="2"><td>Limitation and responsible claim</td><td>2</td><td>Names a meaningful limitation or claim the system should not make.</td></tr>
+      <tr data-max="2"><td>Clarity and completion</td><td>2</td><td>Meets length, is readable, follows all parts of the prompt, and includes disclosure.</td></tr>
+    </tbody>
+    <tfoot><tr><td>Your self-score</td><td id="selfTotal">— / 10</td><td id="selfNote" class="muted">Tap a score in each row.</td></tr></tfoot>
+  </table>
 
-      <section class="deliverable">
-        <h3>Your response must include all five parts</h3>
-        <ol>
-          <li><strong>Name and context:</strong> What is the system, and where do you encounter it?</li>
-          <li><strong>Inputs:</strong> What information does it likely receive?</li>
-          <li><strong>Outputs:</strong> What does it produce, recommend, label, predict, or do?</li>
-          <li><strong>Process and change:</strong> What process seems to connect the input and output? Does it appear to adapt or change over time? Clearly label uncertainty or inference.</li>
-          <li><strong>Responsible limit:</strong> End with one claim the system <em>should not</em> make about itself—for example, a claim that it understands, knows, decides fairly, or is always correct.</li>
-        </ol>
-      </section>
+  <section id="gatherSection">
+    <h2>My Gathered Answers</h2>
+    <p class="hint">Everything you wrote on this page, in one place. Copy it for the Canvas text entry, or save a PDF copy for yourself.</p>
+    <div class="gather" id="gather">
+      <div class="gbar"><span>Assignment 1.1 · A Careful Description</span><span id="gDate"></span></div>
+      <div class="gbody">
+        <div class="row"><span class="k">Name</span><span class="v"><input type="text" class="name" id="studentName" placeholder="Your name" maxlength="80"></span></div>
+        <div class="row"><span class="k">System</span><span class="v empty" id="gSys">(not chosen yet)</span></div>
+        <div class="row"><span class="k">Response</span><span class="v empty" id="gDraft">(not written yet)</span></div>
+        <div class="row"><span class="k">Words</span><span class="v" id="gWords">0</span></div>
+        <div class="row"><span class="k">Disclosure</span><span class="v empty" id="gDisc">(not chosen yet)</span></div>
+        <div class="row"><span class="k">Source</span><span class="v empty" id="gSrc">(none)</span></div>
+        <div class="row"><span class="k">Self-score</span><span class="v" id="gScore">— / 10</span></div>
+      </div>
+      <div class="gtools">
+        <button type="button" class="btn ghost" id="pdf">Download my answers (PDF)</button>
+        <button type="button" class="btn" id="copy" disabled>Copy for Canvas</button>
+      </div>
+    </div>
+    <div class="status" id="gStatus" role="status" aria-live="polite">Copy puts your response, disclosure line, and source on the clipboard, ready to paste into Canvas.</div>
+  </section>
 
-      <h2>Model of careful language</h2>
-      <table>
-        <thead><tr><th>Avoid vague claims</th><th>Prefer observable, qualified claims</th></tr></thead>
-        <tbody>
-          <tr><td>“My music app knows me.”</td><td>“My music app appears to rank songs using my listening history and patterns from other users. It may predict what I will enjoy, but it does not know all of my reasons for listening.”</td></tr>
-          <tr><td>“The chatbot understands history.”</td><td>“The chatbot generates historical-sounding answers from patterns in language. A fluent answer does not guarantee that its statements are accurate or that it understands the events it describes.”</td></tr>
-          <tr><td>“The map decides the best route.”</td><td>“The map app compares possible routes using location, map, and traffic information. Its recommendation may be useful, but ‘best’ depends on goals and circumstances the app may not know.”</td></tr>
-        </tbody>
-      </table>
+  <h2>How to submit in Canvas</h2>
+  <ol class="submit">
+    <li>Click <strong>Submit Assignment</strong>.</li>
+    <li>Select the <strong>Text Entry</strong> tab.</li>
+    <li>Paste or type your 150–200 word response.</li>
+    <li>Add your AI-use disclosure as the last line.</li>
+    <li>Review your work against the success criteria, then click <strong>Submit Assignment</strong>.</li>
+  </ol>
 
-      <section class="notice">
-        <h3>Evidence and uncertainty</h3>
-        <p>You are allowed to make reasonable inferences. Use phrases such as <em>appears to, likely, may use, based on the information available,</em> or <em>I cannot verify whether.</em> If you look up a factual detail about the system, name or link the source at the end of your response.</p>
-      </section>
+  <footer class="colophon">
+    <p>AI Literacy • Module 1 • Assignment 1.1 | Submit independently. Your Field Guide will revisit this system later, after you have learned more precise vocabulary.</p>
+  </footer>
+</main>
 
-      <section class="warning">
-        <h3>AI-use policy for this assignment</h3>
-        <p><strong>Do not use generative AI to write or rewrite your response.</strong> This assignment measures your own ability to make a careful system description. You may use a reliable non-AI source to confirm a factual detail, but you must write in your own words and identify the source.</p>
-        <p>At the bottom of your submission, add one disclosure line:</p>
-        <ul><li><strong>No AI assistance used.</strong> <em>or</em></li><li><strong>AI assistance used:</strong> [tool] helped me with [specific limited purpose].</li></ul>
-      </section>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+  var K={draft:"ail11a-draft",req:"ail11a-reqs",crit:"ail11a-criteria",sys:"ail11a-sys",own:"ail11a-own",disc:"ail11a-disc",tool:"ail11a-tool",what:"ail11a-what",src:"ail11a-src",name:"ail11a-name",score:"ail11a-score",model:"ail11a-model"};
+  var MIN=150,MAX=200,ready=false;
+  var MIND=/\b(understands?|understood|knows?|knew|thinks?|thought|wants?|wanted|decides?|decided|realiz(?:es?|ed)|feels?|felt|believes?|cares?|intends?|smart|intelligent|wise|chooses|gets me)\b/gi;
+  var HEDGE=/\b(appears?|appear to|seems?|may|might|likely|probably|possibly|perhaps|based on|I cannot verify|I can’t verify|I can't verify|as far as I can tell|it looks like|I infer|inference)\b/i;
 
-      <h2>Success criteria</h2>
-      <section class="success">
-        <ul>
-          <li>I named one specific system and its context.</li>
-          <li>I identified plausible inputs and outputs.</li>
-          <li>I described the process cautiously, separating observation from inference.</li>
-          <li>I addressed whether the system changes or adapts.</li>
-          <li>I stated one honest limitation or overclaim the system should not make.</li>
-          <li>I stayed within 150–200 words and included my AI-use disclosure.</li>
-        </ul>
-      </section>
+  /* ---------- Pick your system ---------- */
+  var EXAMPLES=["navigation app","music recommender","phone camera feature","video feed","spam filter","autocorrect","online store","thermostat","chatbot"];
+  function pickRender(){
+    var wrap=$("picks");wrap.innerHTML="";var cur=store.get(K.sys,"");
+    EXAMPLES.forEach(function(s){
+      var b=el("button","pick",s);b.type="button";b.setAttribute("aria-pressed",cur===s?"true":"false");
+      b.addEventListener("click",function(){store.set(K.sys,cur===s?"":s);$("ownSys").value="";store.del(K.own);pickRender()});
+      wrap.appendChild(b);
+    });
+    var own=store.get(K.own,"");$("ownSys").value=own;
+    var chosen=own||cur,st=$("pickStatus");
+    st.className="status"+(chosen?" ok":"");st.textContent=chosen?"Your system: "+chosen+".":"No system chosen yet.";
+    gather();
+  }
+  $("ownSys").addEventListener("input",function(){store.set(K.own,this.value);if(this.value.trim()){store.set(K.sys,"")}pickRender()});
+  pickRender();
 
-      <h2>Rubric (10 points)</h2>
-      <table>
-        <thead><tr><th>Criterion</th><th>Points</th><th>What earns full credit</th></tr></thead>
-        <tbody>
-          <tr><td>Inputs and outputs</td><td>3</td><td>Identifies plausible inputs and outputs specifically and accurately.</td></tr>
-          <tr><td>Process and adaptation</td><td>3</td><td>Describes the likely process with appropriate caution and addresses whether/how the system changes.</td></tr>
-          <tr><td>Limitation and responsible claim</td><td>2</td><td>Names a meaningful limitation or claim the system should not make.</td></tr>
-          <tr><td>Clarity and completion</td><td>2</td><td>Meets length, is readable, follows all parts of the prompt, and includes disclosure.</td></tr>
-        </tbody>
-      </table>
+  /* ---------- Model of careful language ---------- */
+  var modelSeen=store.get(K.model,{});
+  document.querySelectorAll("#model tbody tr").forEach(function(tr,i){
+    var vg=tr.querySelector(".vg"),btn=tr.querySelector(".reveal"),cf=tr.querySelector(".careful");
+    function show(){vg.classList.add("on");cf.classList.add("on");btn.disabled=true;modelSeen[i]=true;store.set(K.model,modelSeen)}
+    btn.addEventListener("click",show);
+    vg.addEventListener("click",function(){vg.classList.add("on")});
+    if(modelSeen[i])show();
+  });
 
-      <h2>How to submit in Canvas</h2>
-      <ol>
-        <li>Click <strong>Submit Assignment</strong>.</li>
-        <li>Select the <strong>Text Entry</strong> tab.</li>
-        <li>Paste or type your 150–200 word response.</li>
-        <li>Add your AI-use disclosure as the last line.</li>
-        <li>Review your work against the success criteria, then click <strong>Submit Assignment</strong>.</li>
-      </ol>
+  /* ---------- Drafting desk ---------- */
+  var draft=$("draft"),meter=$("meter"),bar=meter.firstElementChild;
+  var manual=store.get(K.req,{});
+  function words(t){var m=t.trim().match(/[A-Za-z0-9’'\-]+/g);return m?m.length:0}
+  function sentences(t){var m=t.match(/[^.!?]+[.!?]+/g);return m?m.length:0}
+  function setReq(k,on){var li=document.querySelector('[data-req="'+k+'"]');if(li)li.classList.toggle("met",!!on)}
+  function discLine(){
+    var v=store.get(K.disc,"");
+    if(v==="none")return "No AI assistance used.";
+    if(v==="used"){var t=(store.get(K.tool,"")||"").trim()||"[tool]",w=(store.get(K.what,"")||"").trim()||"[specific limited purpose]";return "AI assistance used: "+t+" helped me with "+w+"."}
+    return "";
+  }
+  function update(){
+    var t=draft.value,w=words(t),s=sentences(t);
+    $("words").textContent=w;$("sents").textContent=s;
+    bar.style.width=Math.min(100,Math.round(w/MAX*100))+"%";
+    meter.className="meter"+(w>=MIN&&w<=MAX?" inrange":(w>MAX?" over":""));
+    $("rangeNote").textContent=w===0?"":(w<MIN?(MIN-w)+" more to reach 150":(w>MAX?(w-MAX)+" over 200":"Within range"));
+    var found=t.match(MIND)||[];var seen={},uniq=[];found.forEach(function(x){var k=x.toLowerCase();if(!seen[k]){seen[k]=1;uniq.push(x)}});
+    var f=$("flags");f.innerHTML="";
+    if(t.trim()&&uniq.length){f.appendChild(el("span",null,"Mind-words: "));uniq.forEach(function(x){f.appendChild(el("span","word",x))})}
+    else if(t.trim()){f.appendChild(el("span","clean","No mind-words. Clean."))}
+    setReq("len",w>=MIN&&w<=MAX);setReq("hedge",HEDGE.test(t));setReq("nomind",t.trim().length>0&&uniq.length===0);
+    var dl=discLine();setReq("disc",!!dl);$("discLine").textContent=dl||"Choose one.";
+    ["p1","p2","p3","p4","p5"].forEach(function(k){setReq(k,manual[k])});
+    var metParts=document.querySelectorAll("#reqs li.met").length,metAuto=document.querySelectorAll("#auto li.met").length,st=$("draftStatus");
+    if(w===0){st.className="status";st.textContent="Start writing. The meter turns green inside 150–200 words."}
+    else if(metParts===5&&metAuto===4){st.className="status ok";st.textContent="Five parts ticked and all four checks lit. Scroll to My Gathered Answers and copy for Canvas."}
+    else{var tips=[];if(metParts<5)tips.push((5-metParts)+" part"+(5-metParts>1?"s":"")+" not yet ticked");if(w<MIN)tips.push("keep going");if(w>MAX)tips.push("trim to 200 words or fewer");if(!HEDGE.test(t))tips.push("hedge the part you are inferring");if(uniq.length)tips.push("replace the mind-words");if(!dl)tips.push("choose a disclosure line");st.className="status"+(uniq.length?" bad":"");st.textContent="Next: "+tips.join("; ")+"."}
+    store.set(K.draft,t);
+    gather();
+  }
+  draft.value=store.get(K.draft,"");
+  draft.addEventListener("input",update);
+  ["p1","p2","p3","p4","p5"].forEach(function(k){
+    var li=document.querySelector('[data-req="'+k+'"]');li.tabIndex=0;li.setAttribute("role","checkbox");
+    function toggle(){manual[k]=!manual[k];store.set(K.req,manual);li.setAttribute("aria-checked",manual[k]?"true":"false");update()}
+    li.setAttribute("aria-checked",manual[k]?"true":"false");
+    li.addEventListener("click",toggle);
+    li.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();toggle()}});
+  });
+  document.querySelectorAll('input[name="disc"]').forEach(function(r){
+    r.checked=store.get(K.disc,"")===r.value;
+    r.addEventListener("change",function(){store.set(K.disc,r.value);$("discFields").hidden=r.value!=="used";update()});
+  });
+  $("discFields").hidden=store.get(K.disc,"")!=="used";
+  $("discTool").value=store.get(K.tool,"");$("discWhat").value=store.get(K.what,"");
+  $("discTool").addEventListener("input",function(){store.set(K.tool,this.value);update()});
+  $("discWhat").addEventListener("input",function(){store.set(K.what,this.value);update()});
+  $("source").value=store.get(K.src,"");
+  $("source").addEventListener("input",function(){store.set(K.src,this.value);gather()});
+  $("importDraft").addEventListener("click",function(){
+    var parts=[];for(var i=0;i<5;i++){var v=store.get("ail11l-p"+i,"");if(v&&v.trim())parts.push(v.trim())}
+    var st=$("draftStatus");
+    if(!parts.length){st.className="status";st.textContent="No Lesson 1.1 draft was found on this device. Write here instead.";return}
+    var txt=parts.join(" ");
+    if(draft.value.trim()&&!confirm("Replace what is in the draft box with your Lesson 1.1 draft?"))return;
+    draft.value=txt;update();draft.focus();
+    st.className="status ok";st.textContent="Lesson 1.1 draft brought in: "+words(txt)+" words. Revise it here.";
+  });
+  $("clear").addEventListener("click",function(){
+    if(!confirm("Clear your draft and the ticked parts on this device?"))return;
+    draft.value="";manual={};store.del(K.draft);store.del(K.req);
+    document.querySelectorAll("#reqs li").forEach(function(li){li.setAttribute("aria-checked","false")});update();
+  });
 
-      <p class="footer">AI Literacy • Module 1 • Assignment 1.1 | Submit independently. Your Field Guide will revisit this system later, after you have learned more precise vocabulary.</p>
-    </section>
-  </main>
+  /* ---------- Success criteria ---------- */
+  var crit=store.get(K.crit,{});
+  document.querySelectorAll("#criteria input").forEach(function(c){
+    var k=c.getAttribute("data-check");c.checked=!!crit[k];
+    c.addEventListener("change",function(){crit[k]=c.checked;store.set(K.crit,crit)});
+  });
+
+  /* ---------- Rubric self-score ---------- */
+  var score=store.get(K.score,{});
+  function scoreTotal(){
+    var rows=document.querySelectorAll("#rubric tbody tr"),sum=0,done=0;
+    rows.forEach(function(tr,i){if(score[i]!=null){sum+=score[i];done++}});
+    $("selfTotal").textContent=(done===rows.length?sum:"—")+" / 10";
+    $("selfNote").textContent=done===rows.length?(sum===10?"Full marks by your own reading. Make sure the draft backs it up.":"Where did you lose points? Fix that part before you submit."):(rows.length-done)+" row"+(rows.length-done>1?"s":"")+" left to score.";
+    gather();
+  }
+  document.querySelectorAll("#rubric tbody tr").forEach(function(tr,i){
+    var max=parseInt(tr.getAttribute("data-max"),10),cell=tr.children[1];cell.innerHTML="";
+    var wrap=el("span","pts");
+    for(var p=0;p<=max;p++){(function(p){
+      var b=el("button",null,String(p));b.type="button";b.setAttribute("aria-label",p+" of "+max+" points");b.setAttribute("aria-pressed",score[i]===p?"true":"false");
+      b.addEventListener("click",function(){score[i]=p;store.set(K.score,score);wrap.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});scoreTotal()});
+      wrap.appendChild(b);
+    })(p)}
+    cell.appendChild(wrap);cell.appendChild(el("span","muted"," of "+max));
+  });
+
+  /* ---------- Gathered answers ---------- */
+  $("studentName").value=store.get(K.name,"");
+  $("studentName").addEventListener("input",function(){store.set(K.name,this.value)});
+  $("gDate").textContent=new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
+  function setV(id,txt,empty){var e=$(id);e.textContent=txt||empty;e.classList.toggle("empty",!txt)}
+  function gather(){
+    if(!ready)return;
+    var sys=store.get(K.own,"")||store.get(K.sys,"");
+    var t=(draft.value||"").trim();
+    setV("gSys",sys,"(not chosen yet)");setV("gDraft",t,"(not written yet)");$("gWords").textContent=words(t);
+    setV("gDisc",discLine(),"(not chosen yet)");setV("gSrc",(store.get(K.src,"")||"").trim(),"(none)");
+    var rows=document.querySelectorAll("#rubric tbody tr"),sum=0,done=0;rows.forEach(function(tr,i){if(score[i]!=null){sum+=score[i];done++}});
+    $("gScore").textContent=(done===rows.length?sum:"—")+" / 10";
+    $("copy").disabled=!t;
+  }
+  $("copy").addEventListener("click",function(){
+    var t=draft.value.trim(),dl=discLine(),src=(store.get(K.src,"")||"").trim();
+    var out=t+(src?"\n\nSource: "+src:"")+(dl?"\n\n"+dl:"");
+    var st=$("gStatus");
+    function done(ok){st.className="status "+(ok?"ok":"bad");st.textContent=ok?"Copied. Paste it into the Canvas text entry and check that the disclosure is the last line.":"Copy failed. Select the response text and copy it by hand."}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(out).then(function(){done(true)},function(){done(false)})}else done(false);
+  });
+  $("pdf").addEventListener("click",function(){
+    var st=$("gStatus");st.className="status";st.textContent="In the print dialog, choose Save as PDF.";
+    window.print();
+  });
+
+  ready=true;update();scoreTotal();
+})();
+</script>
 </body>
 </html>
