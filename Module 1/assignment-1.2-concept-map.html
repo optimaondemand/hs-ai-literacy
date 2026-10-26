@@ -1,1 +1,497 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Assignment 1.2 — Concept Map</title><style>body{font-family:Arial,sans-serif;line-height:1.55;max-width:900px;margin:auto;padding:2rem;color:#17212b}header,footer{border-left:8px solid #1f6f8b;padding-left:1rem}h1,h2{color:#123e52}.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;background:#eef7fa;padding:1rem;border-radius:8px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #7a8793;padding:.65rem;text-align:left}th{background:#e5f2f6}.box{background:#fff6df;border-left:5px solid #b7791f;padding:1rem;margin:1rem 0}</style></head><body><header><p>AI Literacy • Module 1 • Assignment 1.2</p><h1>Concept Map: Names, Categories, and Claims About AI</h1><p>Show how five important terms relate without treating them as synonyms.</p></header><section class="meta"><div><strong>Estimated time</strong><br>15–20 minutes</div><div><strong>Points</strong><br>10</div><div><strong>Submission type</strong><br>Canvas file upload or text entry</div><div><strong>Format</strong><br>Map, diagram, or annotated table</div></section><p><strong>Assignment question:</strong> How do computer science, algorithms, automation, AI, and machine learning overlap—and how are they different?</p><h2>Your task</h2><p>Create a concept map, diagram, or annotated table that explains the relationships among <strong>computer science, algorithm, automation, artificial intelligence (AI),</strong> and <strong>machine learning (ML)</strong>. You may draw it on paper and upload a clear photo, use a Canvas text entry/table, or create a digital document. Your work must be readable without an outside account.</p><h2>Your submission must include</h2><ol><li>A definition in your own words for each of the five terms.</li><li>At least two accurate overlap relationships (for example, ML is an approach within AI; algorithms appear throughout computing).</li><li>One example that fits multiple labels, with an explanation.</li><li>One example that is automation but not ML, with an explanation.</li><li>One revision of a vague claim such as “Everything automated is AI” or “AI and ML mean the same thing.”</li></ol><div class="box"><strong>Accessible text-only option:</strong> Use a five-row table with columns: term, my definition, relationship to another term, example, and evidence/reason. Then add a short paragraph explaining two overlaps and one important difference.</div><h2>Evidence and careful language</h2><p>Use phrases such as <em>the available description supports, appears to, likely,</em> or <em>not enough information is provided</em> when needed. Do not assume a system uses ML merely because it is automated or marketed as AI.</p><h2>AI-use policy</h2><p><strong>Do not use generative AI to create the map, diagram, or explanations.</strong> This assignment measures your own command of the vocabulary. You may use a reliable non-AI source to verify a factual detail; name or link it if you do. Add one disclosure line at the bottom:</p><ul><li><strong>No AI assistance used.</strong> or</li><li><strong>AI assistance used:</strong> [tool] helped me with [specific limited purpose].</li></ul><h2>Success criteria</h2><ul><li>I defined all five terms in my own words.</li><li>I showed accurate overlaps and differences.</li><li>I used examples rather than only labels.</li><li>I explained why my examples fit—or do not fit—each category.</li><li>I included my AI-use disclosure.</li></ul><h2>Rubric (10 points)</h2><table><thead><tr><th>Criterion</th><th>Points</th><th>What earns full credit</th></tr></thead><tbody><tr><td>Accurate definitions</td><td>4</td><td>All five terms are defined accurately in student-ready language.</td></tr><tr><td>Relationships and overlaps</td><td>3</td><td>At least two relationships are accurate and clearly shown.</td></tr><tr><td>Examples and claim revision</td><td>2</td><td>Examples fit the categories and the vague claim is revised carefully.</td></tr><tr><td>Clarity and completion</td><td>1</td><td>Readable, complete, and includes disclosure.</td></tr></tbody></table><h2>How to submit in Canvas</h2><ol><li>Click <strong>Submit Assignment</strong>.</li><li>Use <strong>Text Entry</strong> for a table/paragraph or <strong>File Upload</strong> for a photo or document.</li><li>Check that your map is readable and includes all five terms.</li><li>Add your AI-use disclosure as the final line.</li><li>Review the success criteria and click <strong>Submit Assignment</strong>.</li></ol><footer><p>AI Literacy • Module 1 • Assignment 1.2 | Submit independently. Your preliminary labels may be revised as your Field Guide develops.</p></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assignment 1.2 — Concept Map</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .page{max-width:900px}
+  .must{counter-reset:must;list-style:none;padding:0;margin:.6rem 0}
+  .must li{counter-increment:must;margin:0 0 .5rem;padding:.7rem .9rem .7rem 2.8rem;position:relative;background:#fff;border:1px solid var(--rule);border-radius:var(--radius)}
+  .must li::before{content:"0" counter(must);position:absolute;left:.7rem;top:.7rem;width:30px;height:26px;border-radius:6px;background:var(--navy);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:.78rem;border:1px solid var(--teal)}
+  .rubric td:nth-child(2){text-align:center;font-family:var(--mono);font-weight:600;color:var(--teal-deep);min-width:160px}
+  .rubric td:nth-child(2) .muted{display:block;font-size:.7rem;font-weight:400;margin-top:.25rem}
+  .rubric .pts{display:flex;gap:.25rem;flex-wrap:wrap;justify-content:center}
+  .rubric .pts button{width:30px;height:30px;border-radius:6px;border:1px solid var(--rule-strong);background:#fff;font-family:var(--mono);font-size:.82rem;cursor:pointer;color:var(--ink-soft)}
+  .rubric .pts button:hover{border-color:var(--teal)}
+  .rubric .pts button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+  .rubric tfoot td{font-weight:600;background:var(--paper-2)}
+  .rubric tfoot td:nth-child(2){text-align:center;font-family:var(--mono);color:var(--teal-deep)}
+  .submit{counter-reset:sub;list-style:none;padding:0;margin:.6rem 0}
+  .submit li{counter-increment:sub;padding:.4rem 0 .4rem 2.2rem;position:relative;border-bottom:1px dashed var(--rule)}
+  .submit li:last-child{border-bottom:0}
+  .submit li::before{content:"0" counter(sub);position:absolute;left:.1rem;top:.5rem;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--teal)}
+  .box h3{margin-top:0}
+  .box ul{margin-bottom:0}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+  /* ---------- Concept map builder ---------- */
+  .termrows{display:grid;gap:.6rem;margin-top:.4rem}
+  .trow{border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff;padding:.6rem .8rem;display:grid;grid-template-columns:150px minmax(0,1fr);gap:.4rem .8rem;align-items:start}
+  @media (max-width:640px){.trow{grid-template-columns:1fr}}
+  .trow .term{font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);padding-top:.35rem}
+  .trow .term small{display:block;font-family:var(--sans);font-size:.78rem;letter-spacing:0;text-transform:none;color:var(--ink-faint);margin-top:.2rem}
+  .trow .fields{display:grid;gap:.4rem}
+  .trow textarea,.trow input{width:100%;font-family:var(--sans);font-size:.94rem;line-height:1.45;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .trow textarea{min-height:56px;resize:vertical}
+  .trow textarea:focus,.trow input:focus,.ex textarea:focus,.ex input:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .trow .fields label{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);display:block;margin:.1rem 0 .15rem}
+  .trow .flag{font-size:.8rem;color:#6d4a00;min-height:1.1em}
+  .exgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.7rem;margin-top:.8rem}
+  .ex{border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff;padding:.6rem .8rem}
+  .ex h4{margin:0 0 .4rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);display:flex;justify-content:space-between;gap:.5rem;align-items:baseline}
+  .ex input,.ex textarea{width:100%;font-family:var(--sans);font-size:.94rem;line-height:1.45;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;margin-bottom:.4rem}
+  .ex textarea{min-height:60px;resize:vertical}
+  .ex .pull{font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;border:1px dashed var(--gold);background:var(--gold-pale);color:#6d4a00;border-radius:6px;padding:.2rem .5rem;cursor:pointer}
+  .claims{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.4rem}
+  .claims button{font-family:var(--sans);font-size:.88rem;padding:.35rem .7rem;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .claims button[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan)}
+  .disc{margin-top:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.7rem .8rem;background:#fff}
+  .disc h4{margin:0 0 .3rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep)}
+  .disc label.opt{display:flex;gap:.5rem;align-items:flex-start;margin:.3rem 0;cursor:pointer;font-size:.95rem}
+  .disc input[type=radio]{accent-color:var(--teal);margin-top:.25rem}
+  .disc .fields{display:grid;gap:.4rem;margin:.3rem 0 .2rem 1.6rem}
+  .disc .fields input{font:inherit;font-size:.92rem;padding:.4rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;width:100%}
+  .disc .line{margin-top:.5rem;font-family:var(--mono);font-size:.8rem;color:var(--teal-deep);background:var(--teal-pale);border-radius:6px;padding:.4rem .6rem}
+  .src{margin-top:.6rem}
+  .src label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.25rem}
+  .src input{width:100%;font:inherit;font-size:.92rem;padding:.4rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .bchecks{margin-top:.8rem}
+  .btools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.6rem}
+
+  /* ---------- Your map (drawn) ---------- */
+  .mapwrap{background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);padding:.5rem;box-shadow:inset 0 0 0 1px rgba(79,209,232,.25)}
+  #ymap{display:block;width:100%;height:auto}
+  .maptools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.6rem}
+
+  /* ---------- Gathered answers ---------- */
+  .gather{border:1px solid var(--teal-deep);border-radius:var(--radius);overflow:hidden;background:#fff}
+  .gather .gbar{background:var(--navy);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.55rem .9rem;display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .gather .gbody{padding:.9rem 1rem}
+  .gather .row{display:grid;grid-template-columns:170px minmax(0,1fr);gap:.4rem .8rem;padding:.45rem 0;border-bottom:1px dashed var(--rule)}
+  .gather .row:last-child{border-bottom:0}
+  .gather .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding-top:.2rem}
+  .gather .v{font-size:.96rem;white-space:pre-wrap}
+  .gather .v.empty{color:var(--ink-faint);font-style:italic}
+  .gather input.name{font:inherit;font-size:.95rem;padding:.35rem .55rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;max-width:320px;width:100%}
+  .gather table{margin:.2rem 0;font-size:.9rem}
+  .gather .gtools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end;padding:.7rem 1rem;border-top:1px solid var(--rule);background:var(--paper-2)}
+  @media (max-width:560px){.gather .row{grid-template-columns:1fr}}
+  @media print{
+    body{background:#fff}
+    .page{border:0;box-shadow:none;max-width:none;margin:0;padding:0}
+    .page > *:not(#gatherSection){display:none!important}
+    #gatherSection .gtools,#gatherSection .hint{display:none!important}
+    .gather{border-color:#999}.gather .gbar{background:#eee;color:#000}.gather .k{color:#333}
+    #printMap{display:block!important}
+  }
+  #printMap{display:none;padding:.6rem 1rem}
+  #printMap img{max-width:100%;border:1px solid #ccc}
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 1 • Assignment 1.2" data-title="Concept Map" data-key="ail-intro-1.2-assignment" data-words="COMPUTER SCIENCE|ALGORITHM|AUTOMATION|AI|MACHINE LEARNING"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 1 • Assignment 1.2</p>
+    <h1>Concept Map: Names, Categories, and Claims About AI</h1>
+    <p class="lede">Show how five important terms relate without treating them as synonyms.</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <section class="ledger" aria-label="Assignment details">
+    <div><span class="k">Estimated time</span><span class="v">15–20 minutes</span></div>
+    <div><span class="k">Points</span><span class="v">10</span></div>
+    <div><span class="k">Submission type</span><span class="v">Canvas file upload or text entry</span></div>
+    <div><span class="k">Format</span><span class="v">Map, diagram, or annotated table</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Assignment question:</strong> How do computer science, algorithms, automation, AI, and machine learning overlap—and how are they different?</p>
+  </div>
+
+  <h2>Your task</h2>
+  <p>Create a concept map, diagram, or annotated table that explains the relationships among <strong>computer science, algorithm, automation, artificial intelligence (AI),</strong> and <strong>machine learning (ML)</strong>. You may draw it on paper and upload a clear photo, use a Canvas text entry/table, or create a digital document. Your work must be readable without an outside account.</p>
+
+  <h2>Your submission must include</h2>
+  <ol class="must">
+    <li>A definition in your own words for each of the five terms.</li>
+    <li>At least two accurate overlap relationships (for example, ML is an approach within AI; algorithms appear throughout computing).</li>
+    <li>One example that fits multiple labels, with an explanation.</li>
+    <li>One example that is automation but not ML, with an explanation.</li>
+    <li>One revision of a vague claim such as “Everything automated is AI” or “AI and ML mean the same thing.”</li>
+  </ol>
+  <div class="box"><p><strong>Accessible text-only option:</strong> Use a five-row table with columns: term, my definition, relationship to another term, example, and evidence/reason. Then add a short paragraph explaining two overlaps and one important difference.</p></div>
+
+  <h2>Evidence and careful language</h2>
+  <p>Use phrases such as <em>the available description supports, appears to, likely,</em> or <em>not enough information is provided</em> when needed. Do not assume a system uses ML merely because it is automated or marketed as AI.</p>
+
+  <h2>AI-use policy</h2>
+  <p><strong>Do not use generative AI to create the map, diagram, or explanations.</strong> This assignment measures your own command of the vocabulary. You may use a reliable non-AI source to verify a factual detail; name or link it if you do. Add one disclosure line at the bottom:</p>
+  <ul><li><strong>No AI assistance used.</strong> or</li><li><strong>AI assistance used:</strong> [tool] helped me with [specific limited purpose].</li></ul>
+
+  <div class="widget" id="builderWidget">
+    <div class="bar"><span>Interactive · Concept map builder</span><span class="tag">Your table becomes your map</span></div>
+    <div class="body">
+      <p>Fill the five-row table from the text-only option, then the overlaps, examples, and claim revision. As you type, the page draws your concept map underneath from your own words. When the checks are lit, download the map as a PNG for file upload, or copy the text version for text entry. Nothing is written for you. Everything is saved only on this device.</p>
+
+      <h3>The five terms</h3>
+      <div class="termrows" id="termrows"></div>
+
+      <h3>Relationships, examples, and the claim</h3>
+      <div class="exgrid">
+        <div class="ex"><h4>Overlap 1</h4><input type="text" data-k="ov1" placeholder="e.g., ML is an approach within AI, because…" aria-label="Overlap 1"></div>
+        <div class="ex"><h4>Overlap 2</h4><input type="text" data-k="ov2" placeholder="e.g., algorithms appear throughout computing, because…" aria-label="Overlap 2"></div>
+        <div class="ex"><h4><span>Fits multiple labels</span><button type="button" class="pull" data-pull="ex1">Pull from Lesson 1.2</button></h4><input type="text" data-k="multi" placeholder="The example" aria-label="Multi-label example"><textarea data-k="multiWhy" placeholder="Which labels fit, and why" aria-label="Multi-label explanation"></textarea></div>
+        <div class="ex"><h4><span>Automation but not ML</span><button type="button" class="pull" data-pull="ex2">Pull from Lesson 1.2</button></h4><input type="text" data-k="auto" placeholder="The example" aria-label="Automation-not-ML example"><textarea data-k="autoWhy" placeholder="Why it is automation, and why ML is not supported" aria-label="Automation-not-ML explanation"></textarea></div>
+      </div>
+      <div class="ex" style="margin-top:.7rem">
+        <h4>Revise a vague claim</h4>
+        <div class="claims" id="claims"></div>
+        <input type="text" data-k="claimOwn" placeholder="Or type a vague claim you have heard" aria-label="Your own vague claim">
+        <textarea data-k="claimFix" placeholder="The careful version: what is true, what is not, and why" aria-label="Claim revision"></textarea>
+      </div>
+
+      <div class="disc" id="disc">
+        <h4>Disclosure line</h4>
+        <label class="opt"><input type="radio" name="disc" value="none"> <span><strong>No AI assistance used.</strong></span></label>
+        <label class="opt"><input type="radio" name="disc" value="used"> <span><strong>AI assistance used:</strong> [tool] helped me with [specific limited purpose].</span></label>
+        <div class="fields" id="discFields" hidden>
+          <input type="text" id="discTool" placeholder="Tool" maxlength="60" aria-label="Tool">
+          <input type="text" id="discWhat" placeholder="Specific limited purpose" maxlength="140" aria-label="Specific limited purpose">
+        </div>
+        <div class="line" id="discLine">Choose one.</div>
+      </div>
+      <div class="src"><label for="source">Source, if you verified a factual detail (optional)</label><input type="text" id="source" placeholder="Name or link the source" maxlength="200"></div>
+
+      <ul class="reqs bchecks" id="reqs">
+        <li data-req="defs"><span class="dot"></span><span>Five definitions in your own words</span></li>
+        <li data-req="ov"><span class="dot"></span><span>Two overlap relationships</span></li>
+        <li data-req="multi"><span class="dot"></span><span>Multi-label example with explanation</span></li>
+        <li data-req="auto"><span class="dot"></span><span>Automation-but-not-ML example with explanation</span></li>
+        <li data-req="claim"><span class="dot"></span><span>A vague claim, revised</span></li>
+        <li data-req="disc"><span class="dot"></span><span>Disclosure line chosen</span></li>
+      </ul>
+      <div class="btools">
+        <span class="counts"><span><b id="bMet">0</b> of 6 checks lit</span></span>
+        <button type="button" class="btn ghost" id="bClear">Clear everything</button>
+      </div>
+      <div class="status" id="bStatus" role="status" aria-live="polite">Start with the five definitions. The map below fills in as you go.</div>
+    </div>
+  </div>
+
+  <div class="widget" id="mapWidget">
+    <div class="bar"><span>Interactive · Your map</span><span class="tag">Drawn from your words</span></div>
+    <div class="body">
+      <p>This is your concept map, built only from what you typed above. The rings nest the way the reading describes; the words inside them are yours. Your two examples are pinned where your labels put them.</p>
+      <div class="mapwrap"><svg id="ymap" viewBox="0 0 900 620" role="img" aria-label="Your concept map"></svg></div>
+      <div class="maptools">
+        <span class="muted" style="font-size:.86rem">PNG size 1800 × 1240, suitable for Canvas file upload.</span>
+        <button type="button" class="btn" id="png">Download my map (PNG)</button>
+      </div>
+      <div class="status" id="mapStatus" role="status" aria-live="polite">Fill the definitions to see them appear on the map.</div>
+    </div>
+  </div>
+
+  <h2>Success criteria</h2>
+  <ul class="checklist" id="criteria">
+    <li><label><input type="checkbox" data-check="0"><span>I defined all five terms in my own words.</span></label></li>
+    <li><label><input type="checkbox" data-check="1"><span>I showed accurate overlaps and differences.</span></label></li>
+    <li><label><input type="checkbox" data-check="2"><span>I used examples rather than only labels.</span></label></li>
+    <li><label><input type="checkbox" data-check="3"><span>I explained why my examples fit—or do not fit—each category.</span></label></li>
+    <li><label><input type="checkbox" data-check="4"><span>I included my AI-use disclosure.</span></label></li>
+  </ul>
+
+  <h2>Rubric (10 points)</h2>
+  <p class="hint">Score yourself honestly before you submit. Tap the points you think each part has earned so far.</p>
+  <table class="rubric" id="rubric">
+    <thead><tr><th scope="col">Criterion</th><th scope="col">Points</th><th scope="col">What earns full credit</th></tr></thead>
+    <tbody>
+      <tr data-max="4"><td>Accurate definitions</td><td>4</td><td>All five terms are defined accurately in student-ready language.</td></tr>
+      <tr data-max="3"><td>Relationships and overlaps</td><td>3</td><td>At least two relationships are accurate and clearly shown.</td></tr>
+      <tr data-max="2"><td>Examples and claim revision</td><td>2</td><td>Examples fit the categories and the vague claim is revised carefully.</td></tr>
+      <tr data-max="1"><td>Clarity and completion</td><td>1</td><td>Readable, complete, and includes disclosure.</td></tr>
+    </tbody>
+    <tfoot><tr><td>Your self-score</td><td id="selfTotal">— / 10</td><td id="selfNote" class="muted">Tap a score in each row.</td></tr></tfoot>
+  </table>
+
+  <section id="gatherSection">
+    <h2>My Gathered Answers</h2>
+    <p class="hint">Everything you wrote, as the text-only submission. Copy it for Canvas text entry, download the PNG above for file upload, or save a PDF copy.</p>
+    <div class="gather" id="gather">
+      <div class="gbar"><span>Assignment 1.2 · Concept Map</span><span id="gDate"></span></div>
+      <div class="gbody">
+        <div class="row"><span class="k">Name</span><span class="v"><input type="text" class="name" id="studentName" placeholder="Your name" maxlength="80"></span></div>
+        <div class="row"><span class="k">Table</span><span class="v" id="gTable"></span></div>
+        <div class="row"><span class="k">Overlaps and difference</span><span class="v empty" id="gPara">(not written yet)</span></div>
+        <div class="row"><span class="k">Examples</span><span class="v empty" id="gEx">(not written yet)</span></div>
+        <div class="row"><span class="k">Claim revision</span><span class="v empty" id="gClaim">(not written yet)</span></div>
+        <div class="row"><span class="k">Disclosure</span><span class="v empty" id="gDisc">(not chosen yet)</span></div>
+        <div class="row"><span class="k">Source</span><span class="v empty" id="gSrc">(none)</span></div>
+        <div class="row"><span class="k">Self-score</span><span class="v" id="gScore">— / 10</span></div>
+      </div>
+      <div id="printMap"></div>
+      <div class="gtools">
+        <button type="button" class="btn ghost" id="pdf">Download my answers (PDF)</button>
+        <button type="button" class="btn" id="copy" disabled>Copy for Canvas</button>
+      </div>
+    </div>
+    <div class="status" id="gStatus" role="status" aria-live="polite">Copy puts the table, paragraph, examples, claim revision, source, and disclosure on the clipboard in that order.</div>
+  </section>
+
+  <h2>How to submit in Canvas</h2>
+  <ol class="submit">
+    <li>Click <strong>Submit Assignment</strong>.</li>
+    <li>Use <strong>Text Entry</strong> for a table/paragraph or <strong>File Upload</strong> for a photo or document.</li>
+    <li>Check that your map is readable and includes all five terms.</li>
+    <li>Add your AI-use disclosure as the final line.</li>
+    <li>Review the success criteria and click <strong>Submit Assignment</strong>.</li>
+  </ol>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 1 • Assignment 1.2 | Submit independently. Your preliminary labels may be revised as your Field Guide develops.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+  var K="ail12a-data",ready=false;
+  var D=store.get(K,{});
+  function save(){store.set(K,D)}
+  var TERMS=[
+    {id:"cs",name:"Computer science",hint:"the broad field"},
+    {id:"alg",name:"Algorithm",hint:"appears throughout"},
+    {id:"auto",name:"Automation",hint:"a kind of process"},
+    {id:"ai",name:"Artificial intelligence",hint:"a field within computer science"},
+    {id:"ml",name:"Machine learning",hint:"an approach within AI"}
+  ];
+  // A "definition" that is just one of the five terms (or a synonym of one) is not a definition.
+  var SYN=/^\s*(an?\s+|the\s+|just\s+|basically\s+)?(computer science|cs|computing|algorithms?|automation|automated|artificial intelligence|ai|machine learning|ml)\s*[.!]?\s*$/i;
+  function words(t){var m=(t||"").trim().match(/\S+/g);return m?m.length:0}
+
+  /* ---------- Term rows ---------- */
+  var wrap=$("termrows");
+  TERMS.forEach(function(t){
+    var row=el("div","trow");
+    var lab=el("div","term",t.name);lab.appendChild(el("small",null,t.hint));row.appendChild(lab);
+    var f=el("div","fields");
+    [["def","My definition","textarea"],["rel","Relationship to another term","input"],["ex","Example","input"],["ev","Evidence / reason","input"]].forEach(function(spec){
+      var l=el("label",null,spec[1]);f.appendChild(l);
+      var inp=document.createElement(spec[2]);if(spec[2]==="input")inp.type="text";inp.setAttribute("data-k",t.id+"."+spec[0]);inp.setAttribute("aria-label",t.name+": "+spec[1]);f.appendChild(inp);
+    });
+    var flag=el("div","flag");flag.setAttribute("data-flag",t.id);f.appendChild(flag);
+    row.appendChild(f);wrap.appendChild(row);
+  });
+
+  /* ---------- Claims ---------- */
+  var CLAIMS=["Everything automated is AI.","AI and ML mean the same thing.","If it has an algorithm, it is AI."];
+  function buildClaims(){
+    var w=$("claims");w.innerHTML="";
+    CLAIMS.forEach(function(c){var b=el("button",null,c);b.type="button";b.setAttribute("aria-pressed",D.claimPick===c?"true":"false");b.addEventListener("click",function(){D.claimPick=D.claimPick===c?"":c;save();buildClaims();update()});w.appendChild(b)});
+  }
+  buildClaims();
+
+  /* ---------- Bind all data-k fields ---------- */
+  function get(k){return (D[k]||"")}
+  document.querySelectorAll("[data-k]").forEach(function(inp){
+    var k=inp.getAttribute("data-k");inp.value=get(k);
+    inp.addEventListener("input",function(){D[k]=inp.value;save();update()});
+  });
+  document.querySelectorAll(".pull").forEach(function(b){
+    b.addEventListener("click",function(){
+      var src=store.get("ail12l-"+b.getAttribute("data-pull"),"");var k=b.getAttribute("data-pull")==="ex1"?"multi":"auto";
+      var st=$("bStatus");
+      if(!src||!src.trim()){st.className="status";st.textContent="Nothing saved in Lesson 1.2 for that example on this device.";return}
+      D[k]=src;save();document.querySelector('[data-k="'+k+'"]').value=src;update();
+      st.className="status ok";st.textContent="Pulled from Lesson 1.2: “"+src+"”. Now explain it.";
+    });
+  });
+
+  /* ---------- Disclosure, source, name ---------- */
+  function discLine(){
+    if(D.disc==="none")return "No AI assistance used.";
+    if(D.disc==="used"){return "AI assistance used: "+((D.tool||"").trim()||"[tool]")+" helped me with "+((D.what||"").trim()||"[specific limited purpose]")+"."}
+    return "";
+  }
+  document.querySelectorAll('input[name="disc"]').forEach(function(r){r.checked=D.disc===r.value;r.addEventListener("change",function(){D.disc=r.value;save();$("discFields").hidden=r.value!=="used";update()})});
+  $("discFields").hidden=D.disc!=="used";
+  $("discTool").value=D.tool||"";$("discWhat").value=D.what||"";
+  $("discTool").addEventListener("input",function(){D.tool=this.value;save();update()});
+  $("discWhat").addEventListener("input",function(){D.what=this.value;save();update()});
+  $("source").value=D.src||"";$("source").addEventListener("input",function(){D.src=this.value;save();update()});
+  $("studentName").value=D.name||"";$("studentName").addEventListener("input",function(){D.name=this.value;save();drawMap()});
+  $("gDate").textContent=new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
+
+  /* ---------- Checks ---------- */
+  function update(){
+    if(!ready)return;
+    var defs=0;
+    TERMS.forEach(function(t){
+      var d=get(t.id+".def"),flag=document.querySelector('[data-flag="'+t.id+'"]');
+      if(!d.trim()){flag.textContent="";return}
+      if(SYN.test(d)){flag.textContent="That is one of the terms, not a definition. Say what it means in your own words."}
+      else if(words(d)<5){flag.textContent="Give it at least a full sentence."}
+      else{flag.textContent="";defs++}
+    });
+    var met={
+      defs:defs===5,
+      ov:!!(get("ov1").trim()&&get("ov2").trim()),
+      multi:!!(get("multi").trim()&&words(get("multiWhy"))>=5),
+      auto:!!(get("auto").trim()&&words(get("autoWhy"))>=5),
+      claim:!!((D.claimPick||get("claimOwn").trim())&&words(get("claimFix"))>=5),
+      disc:!!discLine()
+    };
+    var n=0;document.querySelectorAll("#reqs li").forEach(function(li){var ok=met[li.getAttribute("data-req")];li.classList.toggle("met",!!ok);if(ok)n++});
+    $("bMet").textContent=n;
+    var st=$("bStatus");
+    if(n===6){st.className="status ok";st.textContent="All six lit. Download the map or copy the text, then submit in Canvas."}
+    else{var tips=[];if(!met.defs)tips.push((5-defs)+" definition"+(5-defs>1?"s":"")+" to go");if(!met.ov)tips.push("two overlaps");if(!met.multi)tips.push("multi-label example and explanation");if(!met.auto)tips.push("automation-not-ML example and explanation");if(!met.claim)tips.push("a claim and its revision");if(!met.disc)tips.push("a disclosure line");st.className="status";st.textContent="Still needed: "+tips.join("; ")+"."}
+    $("discLine").textContent=discLine()||"Choose one.";
+    drawMap();gather();
+  }
+
+  /* ---------- Draw the map ---------- */
+  var NS="http://www.w3.org/2000/svg";
+  function sv(tag,attrs,parent){var e=document.createElementNS(NS,tag);for(var k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e}
+  function wrapText(text,maxChars){
+    var out=[],line="";(text||"").split(/\s+/).forEach(function(w){if(!w)return;if((line+" "+w).trim().length>maxChars){if(line)out.push(line);line=w}else line=(line+" "+w).trim()});
+    if(line)out.push(line);return out;
+  }
+  function textBlock(parent,x,y,lines,opts){
+    var t=sv("text",{x:x,y:y,"font-size":opts.size||14,fill:opts.fill||"#e8f3f7","font-weight":opts.weight||"normal","font-family":"IBM Plex Sans, Segoe UI, Helvetica, Arial, sans-serif","text-anchor":opts.anchor||"start"},parent);
+    lines.forEach(function(l,i){var ts=sv("tspan",{x:x,dy:i===0?0:(opts.lh||(opts.size||14)*1.3)},t);ts.textContent=l});
+    return t;
+  }
+  function cap(s,n){s=(s||"").trim();return s.length>n?s.slice(0,n-1)+"…":s}
+  function drawMap(){
+    var svg=$("ymap");while(svg.firstChild)svg.removeChild(svg.firstChild);
+    var W=900,H=620,NAVY="#0f2233",CYAN="#4fd1e8",GOLD="#d19a1e",INK="#e8f3f7",DIM="#9fb3bf";
+    sv("rect",{x:0,y:0,width:W,height:H,fill:NAVY},svg);
+    var grid=sv("g",{stroke:"rgba(79,209,232,.07)","stroke-width":1},svg);
+    for(var gx=0;gx<=W;gx+=30)sv("line",{x1:gx,y1:0,x2:gx,y2:H},grid);for(var gy=0;gy<=H;gy+=30)sv("line",{x1:0,y1:gy,x2:W,y2:gy},grid);
+    var title=(D.name?D.name+"’s ":"My ")+"concept map · AI Literacy 1.2";
+    textBlock(svg,20,30,[title],{size:15,fill:CYAN,weight:"600"});
+    // band
+    sv("rect",{x:0,y:470,width:W,height:70,rx:6,fill:"rgba(209,154,30,.16)",stroke:"rgba(209,154,30,.7)"},svg);
+    // rings
+    sv("rect",{x:190,y:50,width:690,height:500,rx:20,fill:"rgba(79,209,232,.05)",stroke:CYAN,"stroke-width":2},svg);
+    sv("rect",{x:350,y:120,width:510,height:260,rx:16,fill:"rgba(79,209,232,.06)",stroke:CYAN,"stroke-width":2},svg);
+    sv("rect",{x:540,y:190,width:300,height:160,rx:14,fill:"rgba(79,209,232,.08)",stroke:CYAN,"stroke-width":2},svg);
+    // thread
+    sv("path",{d:"M192 440 C 260 420, 300 300, 380 290 S 560 250, 640 230 S 820 200, 878 150",fill:"none",stroke:GOLD,"stroke-width":2.5,"stroke-dasharray":"7 6"},svg);
+    function termLabel(x,y,name,def,maxChars,maxLines,anchor){
+      textBlock(svg,x,y,[name.toUpperCase()],{size:12,fill:CYAN,weight:"600",anchor:anchor});
+      var lines=wrapText(def,maxChars).slice(0,maxLines);if(lines.length===maxLines&&wrapText(def,maxChars).length>maxLines)lines[maxLines-1]=cap(lines[maxLines-1],maxChars-1);
+      if(!lines.length)lines=["(definition not written yet)"];
+      textBlock(svg,x,y+18,lines,{size:13,fill:def?INK:DIM,anchor:anchor,lh:16});
+    }
+    termLabel(206,76,"Computer science",get("cs.def"),30,4);
+    termLabel(366,146,"Artificial intelligence",get("ai.def"),28,3);
+    termLabel(556,216,"Machine learning",get("ml.def"),34,5);
+    termLabel(14,494,"Automation",get("auto.def"),44,2);
+    termLabel(878,590,"Algorithm",get("alg.def"),60,1,"end");
+    // examples as pins
+    function pin(x,y,label,why,maxChars){
+      sv("circle",{cx:x,cy:y,r:7,fill:GOLD,stroke:NAVY,"stroke-width":2},svg);
+      textBlock(svg,x+12,y+4,[cap(label,36)],{size:13,fill:"#fff",weight:"600"});
+      var w=wrapText(why,maxChars).slice(0,2);if(w.length)textBlock(svg,x+12,y+22,w,{size:11.5,fill:DIM,lh:14});
+    }
+    if(get("multi").trim())pin(560,300,get("multi"),get("multiWhy"),44);
+    if(get("auto").trim())pin(206,440,get("auto"),get("autoWhy"),40);
+    var ov=[get("ov1"),get("ov2")].filter(function(s){return s.trim()});
+    if(ov.length){textBlock(svg,206,330,["OVERLAPS"],{size:11,fill:CYAN,weight:"600"});textBlock(svg,206,346,ov.map(function(o){return "• "+cap(o,38)}),{size:12,fill:INK,lh:15})}
+    if(get("claimFix").trim()){var vc=D.claimPick||get("claimOwn");textBlock(svg,20,560,["VAGUE: "+cap(vc,40)],{size:11,fill:"#ff9a9a",weight:"600"});textBlock(svg,20,576,wrapText("CAREFUL: "+get("claimFix"),60).slice(0,2),{size:11.5,fill:INK,lh:14})}
+    var ms=$("mapStatus"),n=TERMS.filter(function(t){return get(t.id+".def").trim()}).length;
+    ms.className="status"+(n===5?" ok":"");ms.textContent=n===5?"All five terms are on the map in your words."+(get("multi")&&get("auto")?" Both examples are pinned.":" Add your examples to pin them."):n+" of 5 definitions on the map.";
+  }
+  function exportPNG(cb){
+    var svg=$("ymap"),xml=new XMLSerializer().serializeToString(svg);
+    xml=xml.replace("<svg",'<svg width="1800" height="1240"');
+    if(xml.indexOf('xmlns="http://www.w3.org/2000/svg"')<0)xml=xml.replace("<svg",'<svg xmlns="http://www.w3.org/2000/svg"');
+    var blob=new Blob([xml],{type:"image/svg+xml;charset=utf-8"}),url=URL.createObjectURL(blob),img=new Image();
+    img.onload=function(){
+      var c=document.createElement("canvas");c.width=1800;c.height=1240;var ctx=c.getContext("2d");ctx.drawImage(img,0,0,1800,1240);URL.revokeObjectURL(url);
+      try{c.toBlob(function(b){cb(null,b)},"image/png")}catch(e){cb(e)}
+    };
+    img.onerror=function(){cb(new Error("render failed"))};
+    img.src=url;
+  }
+  window.AIL12Map={exportPNG:exportPNG};
+  $("png").addEventListener("click",function(){
+    var st=$("mapStatus");st.className="status";st.textContent="Rendering…";
+    exportPNG(function(err,b){
+      if(err||!b){st.className="status bad";st.textContent="The PNG could not be rendered in this browser. Take a screenshot of the map instead.";return}
+      var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="concept-map-1.2"+(D.name?"-"+D.name.replace(/[^a-z0-9]+/gi,"-").toLowerCase():"")+".png";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1000);
+      st.className="status ok";st.textContent="PNG downloaded. Upload it in Canvas with File Upload, and add your disclosure line in the comment box or as text.";
+    });
+  });
+
+  /* ---------- Success criteria, rubric ---------- */
+  var crit=store.get("ail12a-criteria",{});
+  document.querySelectorAll("#criteria input").forEach(function(c){var k=c.getAttribute("data-check");c.checked=!!crit[k];c.addEventListener("change",function(){crit[k]=c.checked;store.set("ail12a-criteria",crit)})});
+  var score=store.get("ail12a-score",{});
+  function scoreTotal(){
+    var rows=document.querySelectorAll("#rubric tbody tr"),sum=0,done=0;
+    rows.forEach(function(tr,i){if(score[i]!=null){sum+=score[i];done++}});
+    $("selfTotal").textContent=(done===rows.length?sum:"—")+" / 10";
+    $("selfNote").textContent=done===rows.length?(sum===10?"Full marks by your own reading. Make sure the map backs it up.":"Where did you lose points? Fix that part before you submit."):(rows.length-done)+" row"+(rows.length-done>1?"s":"")+" left to score.";
+    gather();
+  }
+  document.querySelectorAll("#rubric tbody tr").forEach(function(tr,i){
+    var max=parseInt(tr.getAttribute("data-max"),10),cell=tr.children[1];cell.innerHTML="";var w=el("span","pts");
+    for(var p=0;p<=max;p++){(function(p){var b=el("button",null,String(p));b.type="button";b.setAttribute("aria-label",p+" of "+max+" points");b.setAttribute("aria-pressed",score[i]===p?"true":"false");b.addEventListener("click",function(){score[i]=p;store.set("ail12a-score",score);w.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});scoreTotal()});w.appendChild(b)})(p)}
+    cell.appendChild(w);cell.appendChild(el("span","muted"," of "+max));
+  });
+
+  /* ---------- Gathered answers ---------- */
+  function setV(id,txt,empty){var e=$(id);e.textContent=txt||empty;e.classList.toggle("empty",!txt)}
+  function tableText(){return TERMS.map(function(t){return t.name+" | "+get(t.id+".def").trim()+" | "+get(t.id+".rel").trim()+" | "+get(t.id+".ex").trim()+" | "+get(t.id+".ev").trim()}).join("\n")}
+  function gather(){
+    if(!ready)return;
+    var gt=$("gTable");gt.innerHTML="";var tb=el("table");var thead=el("thead");thead.innerHTML="<tr><th>Term</th><th>My definition</th><th>Relationship</th><th>Example</th><th>Evidence / reason</th></tr>";tb.appendChild(thead);var body=el("tbody");
+    TERMS.forEach(function(t){var tr=el("tr");[t.name,get(t.id+".def"),get(t.id+".rel"),get(t.id+".ex"),get(t.id+".ev")].forEach(function(v){tr.appendChild(el("td",null,v||"—"))});body.appendChild(tr)});tb.appendChild(body);gt.appendChild(tb);
+    var para=[get("ov1"),get("ov2")].filter(function(s){return s.trim()}).join(" ");setV("gPara",para,"(not written yet)");
+    var ex=[];if(get("multi").trim())ex.push("Fits multiple labels: "+get("multi")+". "+get("multiWhy"));if(get("auto").trim())ex.push("Automation but not ML: "+get("auto")+". "+get("autoWhy"));setV("gEx",ex.join("\n"),"(not written yet)");
+    var vc=D.claimPick||get("claimOwn");setV("gClaim",get("claimFix").trim()?"Vague: “"+vc+"” → "+get("claimFix"):"","(not written yet)");
+    setV("gDisc",discLine(),"(not chosen yet)");setV("gSrc",(D.src||"").trim(),"(none)");
+    var rows=document.querySelectorAll("#rubric tbody tr"),sum=0,done=0;rows.forEach(function(tr,i){if(score[i]!=null){sum+=score[i];done++}});$("gScore").textContent=(done===rows.length?sum:"—")+" / 10";
+    $("copy").disabled=!TERMS.some(function(t){return get(t.id+".def").trim()});
+  }
+  $("copy").addEventListener("click",function(){
+    var parts=["Concept map (text version)","",tableText(),""];
+    var para=[get("ov1"),get("ov2")].filter(function(s){return s.trim()}).join(" ");if(para)parts.push("Overlaps and difference: "+para,"");
+    if(get("multi").trim())parts.push("Fits multiple labels: "+get("multi")+". "+get("multiWhy"));if(get("auto").trim())parts.push("Automation but not ML: "+get("auto")+". "+get("autoWhy"));
+    if(get("claimFix").trim())parts.push("","Vague claim: “"+(D.claimPick||get("claimOwn"))+"” Careful version: "+get("claimFix"));
+    if((D.src||"").trim())parts.push("","Source: "+D.src.trim());if(discLine())parts.push("",discLine());
+    var st=$("gStatus");function done(ok){st.className="status "+(ok?"ok":"bad");st.textContent=ok?"Copied. Paste into the Canvas text entry and check that the disclosure is the last line.":"Copy failed. Select the text and copy by hand."}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(parts.join("\n")).then(function(){done(true)},function(){done(false)})}else done(false);
+  });
+  $("pdf").addEventListener("click",function(){
+    var st=$("gStatus");st.className="status";st.textContent="In the print dialog, choose Save as PDF.";
+    exportPNG(function(err,b){
+      var pm=$("printMap");pm.innerHTML="";
+      if(!err&&b){var img=document.createElement("img");img.alt="Your concept map";img.src=URL.createObjectURL(b);img.onload=function(){window.print()};pm.appendChild(img)}else window.print();
+    });
+  });
+  $("bClear").addEventListener("click",function(){
+    if(!confirm("Clear everything you wrote on this page, on this device?"))return;
+    D={};save();document.querySelectorAll("[data-k]").forEach(function(i){i.value=""});document.querySelectorAll('input[name="disc"]').forEach(function(r){r.checked=false});$("discFields").hidden=true;$("discTool").value="";$("discWhat").value="";$("source").value="";buildClaims();update();
+  });
+
+  ready=true;update();scoreTotal();
+})();
+</script>
+</body>
+</html>
