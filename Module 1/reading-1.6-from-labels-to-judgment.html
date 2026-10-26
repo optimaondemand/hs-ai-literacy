@@ -1,1 +1,375 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reading 1.6 — From Labels to Judgment</title><style>body{font-family:Arial,sans-serif;line-height:1.55;max-width:920px;margin:auto;padding:2rem;color:#17212b}header,footer{border-left:8px solid #1f6f8b;padding-left:1rem}h1,h2{color:#123e52}.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem;background:#eef7fa;padding:1rem;border-radius:8px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #7a8793;padding:.6rem;text-align:left}th{background:#e5f2f6}.callout{background:#fff6df;border-left:5px solid #b7791f;padding:1rem}</style></head><body><header><p>AI Literacy • Module 1 • Lesson 1.6 Reading</p><h1>From Labels to Judgment</h1><p>Reading before the module project submission</p></header><section class="meta"><div><strong>Estimated time</strong><br>15–20 minutes</div><div><strong>Focus question</strong><br>What makes an AI claim specific enough to investigate and modest enough to be honest?</div><div><strong>Required for</strong><br>Lesson 1.6: AI Field Guide and Intellectual Genealogy</div></section><p><strong>Begin with a prediction.</strong> Read: “This AI knows what students need and gives perfect advice.” List the words that need evidence, then rewrite the claim in one cautious sentence.</p><h2>Description before evaluation</h2><p>The first five lessons developed tools for thinking clearly: distinguish automation from learning, name tasks precisely, examine inputs and outputs, recognize history and hype, and separate behavior from claims about understanding. The final step is judgment.</p><p>Good judgment does not mean refusing to make claims. It means making claims proportional to evidence. A useful AI Field Guide helps a reader see what a system can do and where confidence should stop.</p><table><thead><tr><th>Weak description</th><th>Stronger, evidence-based description</th></tr></thead><tbody><tr><td>“The app understands students and knows the best way for them to learn.”</td><td>“The app asks students to answer practice questions, records answer patterns, and recommends additional exercises. The available evidence suggests it ranks activities using those patterns; this does not show that it knows a student’s full needs or circumstances.”</td></tr></tbody></table><h2>Four habits of responsible AI description</h2><ol><li><strong>Name the task.</strong> Say whether the system classifies, predicts, recommends, generates, perceives, or plans.</li><li><strong>Name the evidence.</strong> Identify whether the claim comes from direct observation, documentation, credible reporting, or an inference.</li><li><strong>Name uncertainty.</strong> Use phrases such as <em>appears to, likely, the company states,</em> or <em>the available evidence suggests</em> when you cannot verify a claim directly.</li><li><strong>Name limitations and human roles.</strong> Explain a failure mode, risk, or boundary and identify a human decision involved in the system.</li></ol><h2>Judgment is not cynicism</h2><p>Responsible skepticism is not dismissing every technology. A system may be genuinely useful for a bounded task. Clear limits make good use more likely. A navigation app can save time even though it does not understand your life. A language model can help generate questions even though it may invent sources. A classifier can help sort images even though it may fail on unfamiliar cases.</p><p>The practical question is: <strong>What is this system good for, under what conditions, with what oversight, and with what limits?</strong></p><h2>Evidence, inference, and unsupported assertion</h2><ul><li><strong>Evidence-based claim:</strong> supported by observation, documentation, data, or credible sources.</li><li><strong>Inference:</strong> a conclusion drawn from available evidence rather than directly observed fact.</li><li><strong>Unsupported assertion:</strong> a statement presented as fact without enough evidence.</li></ul><div class="callout"><strong>Final Field Guide test:</strong> Could a reader tell what the system does, how you know, what remains uncertain, who is responsible, and when the system may be a poor fit?</div><h2>Key vocabulary</h2><ul><li><strong>anthropomorphism:</strong> describing a nonhuman system as if it had human feelings, intentions, or understanding.</li><li><strong>evidence-based claim:</strong> a statement supported by observation, documentation, data, or credible sources.</li><li><strong>inference:</strong> a conclusion drawn from available evidence rather than directly observed fact.</li><li><strong>limitation:</strong> a condition under which a system may fail, be unreliable, or be inappropriate.</li><li><strong>human oversight:</strong> a person’s responsibility to monitor, evaluate, approve, or correct a system’s output or action.</li></ul><h2>As you move to the lesson</h2><p>Bring your Field Guide draft. Be ready to revise a sentence that is vague, anthropomorphic, unsupported, or missing a limitation.</p><footer><p>AI Literacy • Module 1 • Lesson 1.6 Reading | All essential content is available on this page as selectable text.</p></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reading 1.6 — From Labels to Judgment</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .page{max-width:860px}
+  .reading p{font-size:1.06rem}
+  .vocab{list-style:none;padding:0;margin:.8rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem}
+  .vocab li{margin:0;padding:.8rem .95rem;background:var(--paper-2);border:1px solid var(--rule);border-top:3px solid var(--teal);border-radius:var(--radius)}
+  .vocab li strong{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+  .habits{counter-reset:h;list-style:none;padding:0;margin:.6rem 0;display:grid;gap:.5rem}
+  .habits li{counter-increment:h;margin:0;padding:.7rem .9rem .7rem 2.9rem;position:relative;background:#fff;border:1px solid var(--rule);border-radius:var(--radius)}
+  .habits li::before{content:"0" counter(h);position:absolute;left:.8rem;top:.8rem;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--teal)}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+  /* ---------- Words that need evidence ---------- */
+  .claim{font-size:clamp(1.3rem,3.4vw,1.9rem);font-weight:700;line-height:1.5;color:var(--teal-deep);margin:.4rem 0 .8rem;padding:1rem 1.2rem;background:linear-gradient(160deg,#fff,var(--paper-2));border:1px solid var(--rule-strong);border-radius:var(--radius)}
+  .claim .w{font:inherit;background:none;border:0;padding:0 .12em;border-radius:4px;cursor:pointer;color:inherit;border-bottom:2px solid transparent;transition:background .15s,border-color .15s}
+  .claim .w:hover{background:var(--teal-pale)}
+  .claim .w:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .claim .w.hit{background:var(--bad-bg);color:var(--bad);border-bottom-color:var(--bad)}
+  .claim .w.fine{background:var(--paper-3);color:var(--ink-faint);text-decoration:line-through;text-decoration-color:var(--rule-strong)}
+  .whys{display:grid;gap:.4rem;margin:.4rem 0}
+  .whys div{padding:.45rem .7rem;background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;font-size:.94rem;animation:reveal .3s ease-out}
+  .whys b{font-family:var(--mono);font-size:.8rem;color:var(--bad);margin-right:.4rem}
+  .rewrite{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(220px,1fr);gap:.9rem;align-items:start;margin-top:.8rem}
+  @media (max-width:640px){.rewrite{grid-template-columns:1fr}}
+  .rewrite .draft{min-height:110px;font-size:1.02rem}
+  .flags{margin-top:.5rem;min-height:1.6em;display:flex;gap:.35rem;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft)}
+  .flags .word{background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.12rem .5rem;font-family:var(--sans);font-size:.86rem}
+  .flags .clean{color:var(--ok);font-weight:600}
+  .reqs li .lbl{flex:1}
+  .reqs li .eg{display:block;font-size:.82rem;color:var(--ink-faint);font-family:var(--mono)}
+
+  /* ---------- Inspect the description ---------- */
+  .inspect{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:.8rem;margin-top:.6rem}
+  .desc{border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff;overflow:hidden;display:flex;flex-direction:column}
+  .desc .dbar{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.5rem .8rem;background:var(--paper-3);border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep)}
+  .desc .dbar button{font:inherit;font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--teal);background:#fff;color:var(--teal);border-radius:6px;padding:.25rem .6rem;cursor:pointer}
+  .desc .dbar button[aria-pressed="true"]{background:var(--navy);color:var(--cyan);border-color:var(--cyan)}
+  .desc .text{padding:.9rem 1rem;font-size:1.05rem;line-height:1.75;flex:1}
+  .desc .ph{border-bottom:2.5px solid transparent;padding:0 .05em;transition:border-color .25s,background .25s;border-radius:3px}
+  .desc.on .ph[data-h="task"]{border-bottom-color:var(--teal);background:rgba(14,143,168,.08)}
+  .desc.on .ph[data-h="evidence"]{border-bottom-color:#2e6b4d;background:rgba(46,107,77,.1)}
+  .desc.on .ph[data-h="uncertainty"]{border-bottom-color:var(--gold);background:rgba(209,154,30,.14)}
+  .desc.on .ph[data-h="limit"]{border-bottom-color:var(--bad);background:rgba(178,59,59,.1)}
+  .desc.on .ph[data-h="anthro"]{border-bottom-color:var(--bad);background:var(--bad-bg);text-decoration:line-through;text-decoration-color:var(--bad)}
+  .desc .read{padding:.6rem .9rem;border-top:1px dashed var(--rule);font-size:.9rem;color:var(--ink-soft);min-height:3em}
+  .desc .read .hab{display:inline-flex;align-items:center;gap:.3rem;margin:.15rem .5rem .15rem 0;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase}
+  .desc .read .hab i{display:inline-block;width:12px;height:6px;border-radius:2px}
+  .hab.task i{background:var(--teal)}.hab.evidence i{background:#2e6b4d}.hab.uncertainty i{background:var(--gold)}.hab.limit i{background:var(--bad)}.hab.human i{background:#8054a0}
+  .hab.missing{color:var(--ink-faint)}.hab.missing i{background:transparent;border:1px dashed var(--ink-faint)}
+  .legend{display:flex;gap:.6rem 1rem;flex-wrap:wrap;margin-top:.6rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft)}
+  .legend .hab i{display:inline-block;width:12px;height:6px;border-radius:2px;margin-right:.3rem}
+
+  /* ---------- Bounded use cards ---------- */
+  .usecards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.8rem;margin-top:.6rem}
+  .usecards .card{min-height:260px}
+  .usecards .card .inner{min-height:260px}
+  .usecards .card .back{font-size:.9rem}
+  .usecards .back dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:.2rem .5rem}
+  .usecards .back dt{font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);padding-top:.15rem}
+  .usecards .back dd{margin:0}
+  .own{border:1.5px dashed var(--gold);border-radius:var(--radius);padding:.8rem .9rem;background:var(--gold-pale)}
+  .own h4{margin:0 0 .4rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#6d4a00}
+  .own input{width:100%;font:inherit;font-size:.92rem;padding:.4rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;margin-bottom:.35rem}
+  .own input:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .own label{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);margin:.1rem 0 .15rem}
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 1 • Lesson 1.6 Reading" data-title="From Labels to Judgment" data-key="ail-intro-1.6-reading" data-words="KNOWS|PERFECT|ALWAYS|APPEARS TO|LIKELY|EVIDENCE"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 1 • Lesson 1.6 Reading</p>
+    <h1>From Labels to Judgment</h1>
+    <p class="lede">Reading before the module project submission</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <section class="ledger" aria-label="Reading details">
+    <div><span class="k">Estimated time</span><span class="v">15–20 minutes</span></div>
+    <div><span class="k">Focus question</span><span class="v">What makes an AI claim specific enough to investigate and modest enough to be honest?</span></div>
+    <div><span class="k">Required for</span><span class="v">Lesson 1.6: AI Field Guide and Intellectual Genealogy</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Begin with a prediction.</strong> Read: “This AI knows what students need and gives perfect advice.” List the words that need evidence, then rewrite the claim in one cautious sentence.</p>
+  </div>
+
+  <div class="widget" id="wordsWidget">
+    <div class="bar"><span>Interactive · Words that need evidence</span><span class="tag">Before reading</span></div>
+    <div class="body">
+      <p>Tap every word in the claim that would need evidence before you could believe it. Then rewrite the claim in one cautious sentence; the checker looks for the four habits you are about to read.</p>
+      <div class="claim" id="claim" aria-label="The claim, word by word"></div>
+      <div class="whys" id="whys"></div>
+      <div class="status" id="wordsStatus" role="status" aria-live="polite">Five words in this claim need evidence. Find them.</div>
+      <div class="rewrite">
+        <div>
+          <label for="rw" class="sr">Your cautious rewrite</label>
+          <textarea id="rw" class="draft" data-store="ail16-rewrite" placeholder="The app appears to … based on …; it may not …"></textarea>
+          <div class="flags" id="rwFlags"></div>
+        </div>
+        <div>
+          <ul class="reqs" id="rwReqs">
+            <li data-req="task"><span class="dot"></span><span class="lbl">Names the task<span class="eg">recommends, predicts, classifies, generates…</span></span></li>
+            <li data-req="evidence"><span class="dot"></span><span class="lbl">Names the evidence<span class="eg">I observed, the company states, documentation…</span></span></li>
+            <li data-req="uncertainty"><span class="dot"></span><span class="lbl">Names uncertainty<span class="eg">appears to, likely, the evidence suggests…</span></span></li>
+            <li data-req="limit"><span class="dot"></span><span class="lbl">Names a limit or human role<span class="eg">does not, may fail, a teacher decides…</span></span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="status" id="rwStatus" role="status" aria-live="polite">Rewrite the claim in one sentence.</div>
+    </div>
+  </div>
+
+  <div class="reading">
+    <h2>Description before evaluation</h2>
+    <p>The first five lessons developed tools for thinking clearly: distinguish automation from learning, name tasks precisely, examine inputs and outputs, recognize history and hype, and separate behavior from claims about understanding. The final step is judgment.</p>
+    <p>Good judgment does not mean refusing to make claims. It means making claims proportional to evidence. A useful AI Field Guide helps a reader see what a system can do and where confidence should stop.</p>
+
+    <div class="widget" id="inspectWidget">
+      <div class="bar"><span>Interactive · Inspect the description</span><span class="tag">What can a reader check?</span></div>
+      <div class="body">
+        <p>Two descriptions of the same app. Press <strong>Inspect</strong> on each one to see its anatomy: which phrases name a task, point at evidence, admit uncertainty, or draw a limit. A description is only as useful as what a reader can inspect.</p>
+        <div class="inspect">
+          <div class="desc" id="descWeak">
+            <div class="dbar"><span>Weak description</span><button type="button" class="insp" aria-pressed="false">Inspect</button></div>
+            <div class="text">“The app <span class="ph" data-h="anthro">understands students</span> and <span class="ph" data-h="anthro">knows the best way for them to learn</span>.”</div>
+            <div class="read" id="readWeak">Press Inspect.</div>
+          </div>
+          <div class="desc" id="descStrong">
+            <div class="dbar"><span>Stronger, evidence-based description</span><button type="button" class="insp" aria-pressed="false">Inspect</button></div>
+            <div class="text">“The app <span class="ph" data-h="task">asks students to answer practice questions</span>, <span class="ph" data-h="task">records answer patterns</span>, and <span class="ph" data-h="task">recommends additional exercises</span>. <span class="ph" data-h="evidence">The available evidence</span> <span class="ph" data-h="uncertainty">suggests</span> it ranks activities using those patterns; <span class="ph" data-h="limit">this does not show that it knows a student’s full needs or circumstances</span>.”</div>
+            <div class="read" id="readStrong">Press Inspect.</div>
+          </div>
+        </div>
+        <div class="legend"><span class="hab task"><i></i>task</span><span class="hab evidence"><i></i>evidence</span><span class="hab uncertainty"><i></i>uncertainty</span><span class="hab limit"><i></i>limitation</span><span class="hab human"><i></i>human role</span><span class="hab" style="color:var(--bad)"><i style="background:var(--bad)"></i>anthropomorphic</span></div>
+      </div>
+    </div>
+
+    <table>
+      <thead><tr><th>Weak description</th><th>Stronger, evidence-based description</th></tr></thead>
+      <tbody><tr><td>“The app understands students and knows the best way for them to learn.”</td><td>“The app asks students to answer practice questions, records answer patterns, and recommends additional exercises. The available evidence suggests it ranks activities using those patterns; this does not show that it knows a student’s full needs or circumstances.”</td></tr></tbody>
+    </table>
+
+    <h2>Four habits of responsible AI description</h2>
+    <ol class="habits">
+      <li><strong>Name the task.</strong> Say whether the system classifies, predicts, recommends, generates, perceives, or plans.</li>
+      <li><strong>Name the evidence.</strong> Identify whether the claim comes from direct observation, documentation, credible reporting, or an inference.</li>
+      <li><strong>Name uncertainty.</strong> Use phrases such as <em>appears to, likely, the company states,</em> or <em>the available evidence suggests</em> when you cannot verify a claim directly.</li>
+      <li><strong>Name limitations and human roles.</strong> Explain a failure mode, risk, or boundary and identify a human decision involved in the system.</li>
+    </ol>
+
+    <h2>Judgment is not cynicism</h2>
+    <p>Responsible skepticism is not dismissing every technology. A system may be genuinely useful for a bounded task. Clear limits make good use more likely. A navigation app can save time even though it does not understand your life. A language model can help generate questions even though it may invent sources. A classifier can help sort images even though it may fail on unfamiliar cases.</p>
+    <p>The practical question is: <strong>What is this system good for, under what conditions, with what oversight, and with what limits?</strong></p>
+
+    <div class="widget" id="useWidget">
+      <div class="bar"><span>Interactive · Bounded use</span><span class="tag">Turn the cards</span></div>
+      <div class="body">
+        <p>The three systems from the paragraph above, each answered in the four parts of the practical question. Turn all three, then fill in the fourth card for one system from your own Field Guide.</p>
+        <div class="usecards" id="usecards">
+          <button type="button" class="card" aria-expanded="false"><div class="inner">
+            <div class="face front"><span class="kicker">From the reading</span><span class="title">Navigation app</span><span class="turn">Click to turn</span></div>
+            <div class="face back"><span class="kicker">Bounded use</span><dl><dt>Good for</dt><dd>saving time on a route and estimating arrival</dd><dt>Conditions</dt><dd>when the map and traffic data are current</dd><dt>Oversight</dt><dd>the driver watches the road and can ignore a suggestion</dd><dt>Limits</dt><dd>it does not understand your life: the quieter road, the stop you meant to make</dd></dl></div>
+          </div></button>
+          <button type="button" class="card" aria-expanded="false"><div class="inner">
+            <div class="face front"><span class="kicker">From the reading</span><span class="title">Language model</span><span class="turn">Click to turn</span></div>
+            <div class="face back"><span class="kicker">Bounded use</span><dl><dt>Good for</dt><dd>helping generate questions or a draft to react to</dd><dt>Conditions</dt><dd>when a person checks every fact it produces</dd><dt>Oversight</dt><dd>verify any source it names before you use it</dd><dt>Limits</dt><dd>it may invent sources that do not exist</dd></dl></div>
+          </div></button>
+          <button type="button" class="card" aria-expanded="false"><div class="inner">
+            <div class="face front"><span class="kicker">From the reading</span><span class="title">Image classifier</span><span class="turn">Click to turn</span></div>
+            <div class="face back"><span class="kicker">Bounded use</span><dl><dt>Good for</dt><dd>helping sort large sets of images</dd><dt>Conditions</dt><dd>images like the ones it was trained on</dd><dt>Oversight</dt><dd>a person reviews unfamiliar or high-stakes cases</dd><dt>Limits</dt><dd>it may fail on unfamiliar cases</dd></dl></div>
+          </div></button>
+          <div class="own">
+            <h4>Your card · one system from your Field Guide</h4>
+            <label for="ownSys">System</label><input type="text" id="ownSys" data-store="ail16-own-sys" placeholder="Name it">
+            <label for="ownGood">Good for</label><input type="text" id="ownGood" data-store="ail16-own-good" placeholder="…">
+            <label for="ownCond">Under what conditions</label><input type="text" id="ownCond" data-store="ail16-own-cond" placeholder="…">
+            <label for="ownOver">With what oversight</label><input type="text" id="ownOver" data-store="ail16-own-over" placeholder="…">
+            <label for="ownLim">With what limits</label><input type="text" id="ownLim" data-store="ail16-own-lim" placeholder="…">
+          </div>
+        </div>
+        <div class="status" id="useStatus" role="status" aria-live="polite">0 of 3 cards turned.</div>
+      </div>
+    </div>
+
+    <h2>Evidence, inference, and unsupported assertion</h2>
+    <ul>
+      <li><strong>Evidence-based claim:</strong> supported by observation, documentation, data, or credible sources.</li>
+      <li><strong>Inference:</strong> a conclusion drawn from available evidence rather than directly observed fact.</li>
+      <li><strong>Unsupported assertion:</strong> a statement presented as fact without enough evidence.</li>
+    </ul>
+
+    <div class="widget" id="sorterWidget">
+      <div class="bar"><span>Interactive · Evidence, inference, or unsupported?</span><span class="tag">Sort eight claims</span></div>
+      <div class="body">
+        <p>Eight claims a student wrote about a fictional study app called NoteNest. Drag each card into the bin it belongs in, or click a card and then a bin. The bins use the definitions above.</p>
+        <div class="pool" id="pool" aria-label="Claims to sort"></div>
+        <div class="bins">
+          <div class="bin" data-bin="evidence"><h4>Evidence-based <span class="cnt" id="cnt-evidence"></span></h4><p class="def">supported by observation, documentation, data, or credible sources</p><div class="drop"></div></div>
+          <div class="bin" data-bin="inference"><h4>Inference <span class="cnt" id="cnt-inference"></span></h4><p class="def">a conclusion drawn from available evidence</p><div class="drop"></div></div>
+          <div class="bin" data-bin="unsupported"><h4>Unsupported assertion <span class="cnt" id="cnt-unsupported"></span></h4><p class="def">presented as fact without enough evidence</p><div class="drop"></div></div>
+        </div>
+        <div class="status" id="sorterStatus" role="status" aria-live="polite">Eight claims. Sort them all.</div>
+        <p class="align-right" style="margin:.6rem 0 0"><button type="button" class="btn ghost" id="sorterReset">Shuffle and start over</button></p>
+      </div>
+    </div>
+
+    <div class="callout"><p><strong>Final Field Guide test:</strong> Could a reader tell what the system does, how you know, what remains uncertain, who is responsible, and when the system may be a poor fit?</p></div>
+
+    <h2>Key vocabulary</h2>
+    <ul class="vocab">
+      <li><strong>anthropomorphism:</strong> describing a nonhuman system as if it had human feelings, intentions, or understanding.</li>
+      <li><strong>evidence-based claim:</strong> a statement supported by observation, documentation, data, or credible sources.</li>
+      <li><strong>inference:</strong> a conclusion drawn from available evidence rather than directly observed fact.</li>
+      <li><strong>limitation:</strong> a condition under which a system may fail, be unreliable, or be inappropriate.</li>
+      <li><strong>human oversight:</strong> a person’s responsibility to monitor, evaluate, approve, or correct a system’s output or action.</li>
+    </ul>
+
+    <h2>As you move to the lesson</h2>
+    <p>Bring your Field Guide draft. Be ready to revise a sentence that is vague, anthropomorphic, unsupported, or missing a limitation.</p>
+  </div>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 1 • Lesson 1.6 Reading | All essential content is available on this page as selectable text.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+  document.querySelectorAll("[data-store]").forEach(function(t){var k=t.getAttribute("data-store");t.value=store.get(k,"");t.addEventListener("input",function(){store.set(k,t.value)})});
+
+  /* ---------- Words that need evidence ---------- */
+  var CLAIM="This AI knows what students need and gives perfect advice.";
+  var TARGETS={
+    "AI":"Which AI? A name, a task, and who built it are all missing. “AI” on its own is a label, not a description.",
+    "knows":"Knowing is a human mental state. What would the app have to do for you to say it “knows” anything? Name the behavior instead.",
+    "need":"Need according to whom? Measured how? A test score, a teacher’s judgment, and a student’s own goals can all disagree.",
+    "perfect":"Perfect is a claim about every case, forever. One counterexample breaks it. What is the actual error rate, and who measured it?",
+    "advice":"Advice implies judgment and responsibility. What does the app actually produce: a ranked list, a next exercise, a score?"
+  };
+  var FINE={"This":"a pointer, fine","what":"fine","students":"fine as a noun; who counts as a student is clear enough","and":"fine","gives":"a plain verb, fine"};
+  var found=store.get("ail16-words",{});
+  function renderClaim(){
+    var c=$("claim");c.innerHTML="";var whys=$("whys");whys.innerHTML="";
+    CLAIM.split(" ").forEach(function(tok){
+      var word=tok.replace(/[.,]/g,"");var b=el("button","w",tok);b.type="button";
+      if(found[word]==="hit")b.classList.add("hit");if(found[word]==="fine")b.classList.add("fine");
+      b.addEventListener("click",function(){
+        if(TARGETS[word]){found[word]=found[word]==="hit"?null:"hit"}else{found[word]=found[word]==="fine"?null:"fine"}
+        store.set("ail16-words",found);renderClaim();
+      });
+      c.appendChild(b);c.appendChild(document.createTextNode(" "));
+    });
+    var n=0;Object.keys(TARGETS).forEach(function(w){if(found[w]==="hit"){n++;var d=el("div");d.appendChild(el("b",null,w));d.appendChild(document.createTextNode(TARGETS[w]));whys.appendChild(d)}});
+    var fine=Object.keys(FINE).filter(function(w){return found[w]==="fine"});
+    var st=$("wordsStatus");
+    if(n===5){st.className="status ok";st.textContent="All five. Every one of them is a claim a reader cannot check. Now rewrite the sentence so that they can."+(fine.length?" (The crossed-out words were fine as they were.)":"")}
+    else{st.className="status";st.textContent=n+" of 5 found."+(fine.length?" “"+fine[fine.length-1]+"” is "+FINE[fine[fine.length-1]]+".":"")}
+  }
+  renderClaim();
+  var TASK=/\b(recommends?|recommend|predicts?|classif(?:y|ies)|generates?|perceives?|plans?|ranks?|sorts?|suggests? (?:a|an|the|which|what)|lists?|scores?|flags?|groups?|labels?)\b/i;
+  var EVID=/\b(I (?:saw|observed|noticed|used|tested)|observ(?:ed|ation)|document(?:ation|ed)|the company (?:states|says|describes)|help page|settings page|according to|credible|report(?:ed|ing)|based on|inference|I infer|the available evidence)\b/i;
+  var UNC=/\b(appears?|appear to|seems?|may|might|likely|probably|possibly|suggests?|I cannot verify|can’t verify|can't verify|not enough)\b/i;
+  var LIM=/\b(does not|doesn’t|doesn't|cannot|can’t|can't|may (?:fail|miss|not)|might not|limit(?:ed|s|ation)?|only|unless|without|risk|fails? (?:on|when)|a (?:teacher|person|student|human) (?:decides|chooses|reviews|checks|sets)|oversight)\b/i;
+  var ANTH=/\b(knows?|understands?|wants?|thinks?|feels?|perfect|always|never|cares?|believes?|intelligent|smart)\b/gi;
+  function checkRw(){
+    var t=$("rw").value;
+    // A negated mind-word ("does not know", "cannot understand") is a limit, not an overclaim.
+    var scrub=t.replace(/\b(does not|doesn’t|doesn't|do not|don’t|don't|cannot|can’t|can't|not|never|no evidence that it|does not show that it)\s+(?:\w+\s+){0,2}(knows?|understands?|wants?|thinks?|feels?|cares?|believes?|perfect)\b/gi,"");
+    var found=scrub.match(ANTH)||[];var seen={},words=[];found.forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;words.push(w)}});
+    var f=$("rwFlags");f.innerHTML="";
+    if(t.trim()&&words.length){f.appendChild(el("span",null,"Needs evidence: "));words.forEach(function(w){f.appendChild(el("span","word",w))})}else if(t.trim())f.appendChild(el("span","clean","No unsupported words. Clean."));
+    var met={task:TASK.test(t),evidence:EVID.test(t),uncertainty:UNC.test(t),limit:LIM.test(t)};var n=0;
+    document.querySelectorAll("#rwReqs li").forEach(function(li){var ok=met[li.getAttribute("data-req")];li.classList.toggle("met",!!ok);if(ok)n++});
+    var st=$("rwStatus");
+    if(!t.trim()){st.className="status";st.textContent="Rewrite the claim in one sentence."}
+    else if(words.length){st.className="status bad";st.textContent="“"+words[0]+"” is doing the same job it did in the original. Replace it with what the app does."}
+    else if(n<4){st.className="status";st.textContent=n+" of 4 habits. Keep going: a task, the evidence, a hedge, and a limit or a human role."}
+    else{st.className="status ok";st.textContent="All four habits in one sentence. That is a claim a reader can investigate."}
+  }
+  $("rw").addEventListener("input",checkRw);checkRw();
+
+  /* ---------- Inspect ---------- */
+  var HABIT_NAMES={task:"task",evidence:"evidence",uncertainty:"uncertainty",limit:"limitation",human:"human role"};
+  function inspect(id,readId){
+    var d=$(id),b=d.querySelector(".insp"),r=$(readId);
+    b.addEventListener("click",function(){
+      var on=!d.classList.contains("on");d.classList.toggle("on",on);b.setAttribute("aria-pressed",on?"true":"false");
+      r.innerHTML="";
+      if(!on){r.textContent="Press Inspect.";return}
+      var present={};d.querySelectorAll(".ph").forEach(function(p){present[p.getAttribute("data-h")]=(present[p.getAttribute("data-h")]||0)+1});
+      if(id==="descWeak"){
+        r.appendChild(document.createTextNode("Nothing here can be checked. "));
+        var s=el("span","hab",null);s.style.color="var(--bad)";s.innerHTML='<i style="background:var(--bad)"></i>'+present.anthro+" anthropomorphic claims";r.appendChild(s);
+        r.appendChild(document.createTextNode(" and no task, evidence, hedge, limit, or human role. A reader has to take the whole sentence on faith."));
+      }else{
+        r.appendChild(document.createTextNode("Five phrases a reader can inspect: "));
+        ["task","evidence","uncertainty","limit","human"].forEach(function(h){var s=el("span","hab "+h+(present[h]?"":" missing"));s.innerHTML="<i></i>"+(present[h]||0)+" "+HABIT_NAMES[h];r.appendChild(s)});
+        r.appendChild(document.createTextNode(" Even this stronger version names no human role. Who chose the goals, the data, or the rules? A Field Guide entry would add that."));
+      }
+    });
+  }
+  inspect("descWeak","readWeak");inspect("descStrong","readStrong");
+
+  /* ---------- Bounded use cards ---------- */
+  var turned=store.get("ail16-use",{});
+  document.querySelectorAll("#usecards .card").forEach(function(c,i){
+    if(turned[i]){c.classList.add("flip");c.setAttribute("aria-expanded","true")}
+    c.addEventListener("click",function(){var on=c.classList.toggle("flip");c.setAttribute("aria-expanded",on?"true":"false");if(on)turned[i]=true;store.set("ail16-use",turned);useStatus()});
+  });
+  function useStatus(){var n=Object.keys(turned).length;var st=$("useStatus");st.className="status"+(n===3?" ok":"");st.textContent=n+" of 3 cards turned."+(n===3?" Now answer the four parts for one of your own systems in the gold card.":"")}
+  useStatus();
+
+  /* ---------- Sorter ---------- */
+  var CLAIMS=[
+    {t:"The settings page lists the data it collects: answers, time per question, and skipped items.",bin:"evidence",why:"Documentation. You can open the settings page and read it."},
+    {t:"I used it for a week, and it recommended harder sets after I got three right in a row.",bin:"evidence",why:"Direct observation, with the condition named."},
+    {t:"A news report tested it with 40 students and found it repeated the same set for 6 of them.",bin:"evidence",why:"Credible reporting with a method and a number."},
+    {t:"The company’s help page says recommendations use answer patterns.",bin:"evidence",why:"Documentation. The claim is what the company states, and it is labeled as such."},
+    {t:"Because harder sets followed my streak, it probably uses my recent answers to pick the next set.",bin:"inference",why:"A conclusion drawn from the observation, hedged with “probably.” That is an inference, labeled."},
+    {t:"It likely does not know why I skipped a question, since skips are just logged as blanks.",bin:"inference",why:"Reasoning from documentation to a limit, hedged with “likely.” An inference about what it cannot do."},
+    {t:"It understands when I am frustrated.",bin:"unsupported",why:"No observation, documentation, or report backs this. “Understands” is anthropomorphic."},
+    {t:"It always picks the best next lesson.",bin:"unsupported",why:"“Always” and “best” claim every case, and nothing cited supports either word."}
+  ];
+  var pool=$("pool"),bins=document.querySelectorAll("#sorterWidget .bin"),status=$("sorterStatus");
+  var selected=null,placed=0,wrong=0,items=[];
+  function setStatus(kind,text){status.className="status"+(kind?" "+kind:"");status.textContent=text}
+  function clearSel(){if(selected){selected.classList.remove("sel");selected=null}}
+  function counts(){bins.forEach(function(b){var n=b.querySelectorAll(".chip").length;b.querySelector(".cnt").textContent=n?n+" placed":""})}
+  function chip(it){
+    var c=el("button","chip",it.t);c.type="button";c.setAttribute("draggable","true");c.setAttribute("aria-label",it.t+" Press to select, then choose a bin.");
+    c.addEventListener("click",function(){if(c.classList.contains("right"))return;if(selected===c){clearSel();return}clearSel();selected=c;c.classList.add("sel");setStatus("","Selected. Now click a bin.")});
+    c.addEventListener("dragstart",function(e){clearSel();selected=c;c.classList.add("sel");try{e.dataTransfer.setData("text/plain","chip")}catch(x){}});
+    c._item=it;return c;
+  }
+  function drop(bin){
+    if(!selected)return;var c=selected,key=bin.getAttribute("data-bin");
+    if(c._item.bin===key){c.classList.remove("sel","wrong");c.classList.add("right");c.setAttribute("draggable","false");bin.querySelector(".drop").appendChild(c);selected=null;placed++;
+      setStatus("ok","✓ "+c._item.why+(placed===items.length?"":" "+placed+" of 8."));
+      if(placed===items.length)setStatus("ok","All eight sorted"+(wrong?" with "+wrong+" retr"+(wrong>1?"ies":"y"):"")+". Four were evidence, two were labeled inferences, two were unsupported. Notice that the inferences are fine: they are hedged and tied to evidence. The problem is never inference; it is inference dressed up as fact.");
+    }else{wrong++;c.classList.remove("wrong");void c.offsetWidth;c.classList.add("wrong");setStatus("bad","Not that bin. Ask: what, if anything, supports this sentence, and does it say so?")}
+    counts();
+  }
+  bins.forEach(function(bin){
+    bin.addEventListener("click",function(){if(selected)drop(bin)});
+    bin.addEventListener("dragover",function(e){e.preventDefault();bin.classList.add("over")});
+    bin.addEventListener("dragleave",function(){bin.classList.remove("over")});
+    bin.addEventListener("drop",function(e){e.preventDefault();bin.classList.remove("over");drop(bin)});
+    bin.tabIndex=0;bin.setAttribute("role","button");
+    bin.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&selected){e.preventDefault();drop(bin)}});
+  });
+  function reset(){pool.innerHTML="";bins.forEach(function(b){b.querySelector(".drop").innerHTML=""});selected=null;placed=0;wrong=0;items=shuffle(CLAIMS);items.forEach(function(it){pool.appendChild(chip(it))});setStatus("","Eight claims. Sort them all.");counts()}
+  $("sorterReset").addEventListener("click",reset);reset();
+})();
+</script>
+</body>
+</html>
