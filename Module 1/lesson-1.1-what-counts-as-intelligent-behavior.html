@@ -1,158 +1,594 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Lesson 1.1 | What Counts as Intelligent Behavior?</title>
-  <style>
-    :root { --navy:#17365d; --blue:#2f75b5; --gold:#c58a18; --pale:#eef4fb; --ink:#1f2937; --muted:#52606d; --line:#cdd8e5; --white:#fff; --green:#2e6b4d; }
-    * { box-sizing:border-box; }
-    body { margin:0; background:#f5f7fa; color:var(--ink); font-family:Arial, Helvetica, sans-serif; line-height:1.62; }
-    .page { width:min(1000px, 94vw); margin:32px auto 48px; background:var(--white); border:1px solid var(--line); box-shadow:0 2px 12px rgba(23,54,93,.10); }
-    header { padding:34px 48px 28px; background:var(--navy); color:#fff; border-bottom:6px solid var(--gold); }
-    .eyebrow { margin:0 0 8px; color:#d9e8f7; font-size:.86rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; }
-    h1 { margin:0; font-family:Georgia, 'Times New Roman', serif; font-size:2.35rem; line-height:1.15; }
-    .subtitle { margin:10px 0 0; font-size:1.08rem; color:#eaf2fa; }
-    .content { padding:34px 48px 48px; }
-    .meta { display:grid; grid-template-columns:repeat(4, 1fr); gap:12px; margin:0 0 28px; }
-    .meta div { background:var(--pale); border-left:4px solid var(--blue); padding:11px 13px; font-size:.92rem; }
-    .meta strong { display:block; color:var(--navy); font-size:.76rem; letter-spacing:.04em; text-transform:uppercase; }
-    h2 { margin:35px 0 12px; padding-bottom:7px; border-bottom:2px solid #dce7f2; color:var(--navy); font-family:Georgia, 'Times New Roman', serif; font-size:1.55rem; }
-    h3 { color:#234f7d; margin:23px 0 8px; font-size:1.12rem; }
-    .focus, .notice, .success, .submission { margin:20px 0; padding:18px 20px; }
-    .focus { background:#fff8e8; border:1px solid #ead29b; border-left:6px solid var(--gold); }
-    .notice { background:#f5f9fd; border:1px solid #b9cfe6; border-left:6px solid var(--blue); }
-    .success { background:#f2faf5; border:1px solid #b9d9c6; border-left:6px solid var(--green); }
-    .submission { background:#f8f4fb; border:1px solid #d9c8e8; border-left:6px solid #8054a0; }
-    .step { margin:18px 0; padding:18px 20px; border:1px solid var(--line); border-radius:3px; }
-    .step-head { display:flex; gap:12px; align-items:baseline; margin-bottom:8px; }
-    .num { display:inline-block; min-width:31px; height:31px; padding:4px 0; border-radius:50%; background:var(--navy); color:#fff; font-weight:700; text-align:center; }
-    .time { margin-left:auto; color:var(--muted); font-size:.9rem; font-weight:700; }
-    ol, ul { padding-left:24px; }
-    .sort-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin:14px 0; }
-    .card { padding:14px; background:#fafcff; border:1px solid var(--line); }
-    .fallback { margin:14px 0; padding:15px; background:#fbfbfb; border:1px dashed #94a8bb; }
-    table { width:100%; border-collapse:collapse; margin:16px 0; }
-    th, td { border:1px solid var(--line); padding:10px; vertical-align:top; text-align:left; }
-    th { background:var(--navy); color:#fff; }
-    tr:nth-child(even) td { background:#f8fbfe; }
-    .checklist li { margin:7px 0; }
-    .footer { margin-top:38px; padding-top:16px; border-top:1px solid var(--line); color:var(--muted); font-size:.9rem; }
-    @media (max-width:700px) { header, .content { padding:26px 22px; } .meta, .sort-grid { grid-template-columns:1fr; } h1 { font-size:1.85rem; } .step-head { flex-wrap:wrap; } .time { margin-left:0; } }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lesson 1.1 — What Counts as Intelligent Behavior?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .objectives{counter-reset:obj;list-style:none;padding:0;margin:.6rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.6rem}
+  .objectives li{counter-increment:obj;margin:0;padding:.7rem .9rem .7rem 2.9rem;position:relative;background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--radius)}
+  .objectives li::before{content:counter(obj,decimal-leading-zero);position:absolute;left:.8rem;top:.8rem;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--teal)}
+  .quizlist li{padding-left:.2rem}
+  .cases{list-style:none;padding:0;margin:.6rem 0}
+  .cases li{margin:.25rem 0;padding-left:2rem;position:relative}
+  .cases li b{position:absolute;left:0;font-family:var(--mono);color:var(--teal)}
+
+  /* ---------- Evidence Desk ---------- */
+  .desk .pool{min-height:70px}
+  .desk .chip{position:relative;padding-right:.65rem;max-width:100%}
+  .desk .chip .case{font-family:var(--mono);font-size:.7rem;color:var(--teal);margin-right:.35rem}
+  .desk .chip .clues{display:block;margin-top:.35rem;font-size:.86rem;color:var(--ink-soft)}
+  .desk .chip .clue{display:block;padding:.3rem .5rem;margin-top:.25rem;background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;animation:reveal .3s ease-out}
+  .desk .chip .clue .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#6d4a00;display:block}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .desk .chip .ask{display:inline-block;margin-top:.4rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:#6d4a00;background:var(--gold-pale);border:1px dashed var(--gold);border-radius:6px;padding:.2rem .5rem;cursor:pointer}
+  .desk .chip .ask:hover{background:#ffeec2}
+  .desk .chip .ask:disabled{opacity:.5;cursor:default;border-style:solid}
+  .desk .chip.sel{outline:3px solid var(--gold);outline-offset:1px}
+  .desk .chip.placed{border-color:var(--teal);background:var(--teal-pale)}
+  .desk .chip.moved{border-color:var(--gold);box-shadow:0 0 0 2px var(--gold-pale)}
+  .desk .bin{min-height:150px}
+  .desk .bin .chip{cursor:grab}
+  .desk .tools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.7rem}
+  .desk .counts span b{color:var(--teal-deep)}
+  .debrief{display:none;margin-top:.9rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden}
+  .debrief.show{display:block;animation:reveal .35s ease-out}
+  .debrief table{margin:0;font-size:.94rem}
+  .debrief td:first-child{font-weight:600;color:var(--teal-deep);white-space:nowrap}
+  .debrief .pip{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;white-space:nowrap}
+  .debrief .pip.match{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+  .debrief .pip.near{border-color:var(--gold);background:var(--gold-pale);color:#6d4a00}
+  .debrief tr.evid td{background:var(--gold-pale)}
+  .debrief .why{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:.2rem}
+  .debrief .note{margin:0;border-radius:0;border-left-width:0;border-top:1px solid var(--rule-strong)}
+
+  /* ---------- Four-question notes ---------- */
+  .syschoice{display:flex;gap:.5rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
+  .syschoice label{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .8rem;border:1px solid var(--teal);border-radius:8px;background:#fff;cursor:pointer;font-size:.95rem}
+  .syschoice input{accent-color:var(--teal)}
+  .syschoice label:has(input:checked){background:var(--navy);color:var(--cyan);border-color:var(--cyan)}
+  .qtable td:first-child{width:38%}
+  .qtable td textarea{width:100%;min-height:64px;font-family:var(--sans);font-size:.95rem;line-height:1.45;padding:.5rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
+  .qtable td textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .qtable .lbl{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:.15rem}
+
+  /* ---------- System Check Builder ---------- */
+  .builder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;align-items:start}
+  @media (max-width:720px){.builder{grid-template-columns:1fr}}
+  .parts{display:grid;gap:.7rem}
+  .part{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.7rem .8rem;background:#fff}
+  .part label{display:flex;justify-content:space-between;gap:.5rem;align-items:baseline;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.3rem}
+  .part label .n{color:var(--teal)}
+  .part .q{font-size:.92rem;color:var(--ink-soft);margin:0 0 .4rem;font-family:var(--sans)}
+  .part textarea{width:100%;min-height:70px;font-family:var(--sans);font-size:.98rem;line-height:1.5;padding:.55rem .65rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
+  .part textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .part .flag{margin-top:.3rem;min-height:1.2em;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft)}
+  .part .flag .word{display:inline-block;background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.08rem .45rem;font-family:var(--sans);font-size:.82rem;margin:0 .15rem .15rem 0}
+  .part .flag .clean{color:var(--ok)}
+  .draftpane{position:sticky;top:3.6rem}
+  .draftpane .out{min-height:260px;padding:.9rem 1rem;border:1px solid var(--teal-deep);border-radius:var(--radius);background:var(--navy);color:#e8f3f7;font-size:1rem;line-height:1.65;white-space:pre-wrap}
+  .draftpane .out .ph{color:#7f97a4;font-style:italic}
+  .draftpane .reqs{margin-top:.6rem}
+  .draftpane .tools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.6rem}
+
+  /* ---------- Field Guide shortlist ---------- */
+  .shortlist{list-style:none;padding:0;margin:.6rem 0;display:grid;gap:.5rem}
+  .shortlist li{display:grid;grid-template-columns:28px minmax(0,1.3fr) minmax(0,1fr) auto;gap:.5rem;align-items:center;margin:0}
+  @media (max-width:640px){.shortlist li{grid-template-columns:28px 1fr;}.shortlist li .unsure{grid-column:2}}
+  .shortlist .n{font-family:var(--mono);font-size:.8rem;color:var(--teal);text-align:center}
+  .shortlist input[type=text]{width:100%;font:inherit;font-size:.95rem;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .shortlist input[type=text]:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .shortlist .unsure{display:inline-flex;align-items:center;gap:.35rem;font-size:.84rem;color:var(--ink-soft);white-space:nowrap}
+  .shortlist .unsure input{accent-color:var(--gold)}
+  .notes-note{margin-top:.6rem}
+</style>
 </head>
 <body>
-  <main class="page">
-    <header>
-      <p class="eyebrow">AI Literacy • Module 1 • Lesson 1.1</p>
-      <h1>What Counts as Intelligent Behavior?</h1>
-      <p class="subtitle">Lesson activity and guided application</p>
-    </header>
-    <section class="content">
-      <div class="meta">
-        <div><strong>Estimated time</strong>45–55 minutes</div>
-        <div><strong>Lesson type</strong>Concept + classification practice</div>
-        <div><strong>Submit today</strong>A Careful Description</div>
-        <div><strong>Module project</strong>AI Field Guide: system shortlist</div>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 1 • Lesson 1.1" data-title="What Counts as Intelligent Behavior?" data-key="ail-intro-1.1-lesson"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 1 • Lesson 1.1</p>
+    <h1>What Counts as Intelligent Behavior?</h1>
+    <p class="lede">Lesson activity and guided application</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <div class="rail" id="rail" aria-label="Lesson progress">
+    <span class="label">Lesson progress</span>
+    <div class="segs" id="segs" aria-hidden="true"></div>
+    <span class="pct" id="pct" aria-live="polite">0 of 6 steps</span>
+    <button type="button" id="resetAll" title="Clear saved progress on this device">Reset</button>
+  </div>
+
+  <section class="ledger" aria-label="Lesson details">
+    <div><span class="k">Estimated time</span><span class="v">45–55 minutes</span></div>
+    <div><span class="k">Lesson type</span><span class="v">Concept + classification practice</span></div>
+    <div><span class="k">Submit today</span><span class="v">A Careful Description</span></div>
+    <div><span class="k">Module project</span><span class="v">AI Field Guide: system shortlist</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Today’s Focus Question:</strong> When does a system’s behavior justify calling it intelligent—and what should we avoid assuming from that label?</p>
+  </div>
+
+  <h2>What you will be able to do</h2>
+  <ul class="objectives">
+    <li>Describe at least four behaviors commonly associated with intelligence.</li>
+    <li>Distinguish fixed automation from systems that sense, represent, decide, or adapt.</li>
+    <li>Explain why “intelligent” is both a useful and contested label.</li>
+  </ul>
+  <p><strong>What you need:</strong> the Lesson 1.1 reading, a way to write 150–200 words in Canvas, and the willingness to describe a familiar system carefully. You do not need to create an account for any outside website.</p>
+
+  <h2>Lesson sequence</h2>
+  <ol class="sequence" id="sequence">
+
+    <!-- ============ STEP 1 ============ -->
+    <li class="step" data-step="1">
+      <span class="num" aria-hidden="true">1</span>
+      <div class="head"><h3>Retrieve and predict</h3><span class="time">5 minutes</span></div>
+      <p>Return to the prediction you made before reading: name one device or app that seems “smart.” In 2–3 sentences, explain what it does that led you to use that word.</p>
+      <p>Then answer this question before moving on: <strong>What evidence would convince you that a system adapts rather than merely follows a fixed rule?</strong></p>
+      <div class="widget">
+        <div class="bar"><span>Private notes</span><span class="tag">This device only</span></div>
+        <div class="body">
+          <div class="notes">
+            <div><label for="n1a">The system that seems “smart,” and why</label><textarea id="n1a" data-store="ail11l-n1a" placeholder="It seems smart because it…"></textarea></div>
+            <div><label for="n1b">Evidence that would show adaptation</label><textarea id="n1b" data-store="ail11l-n1b" placeholder="I would be convinced if…"></textarea></div>
+          </div>
+        </div>
       </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="1" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
 
-      <section class="focus"><strong>Today’s Focus Question:</strong> When does a system’s behavior justify calling it intelligent—and what should we avoid assuming from that label?</section>
-
-      <h2>What you will be able to do</h2>
-      <ul>
-        <li>Describe at least four behaviors commonly associated with intelligence.</li>
-        <li>Distinguish fixed automation from systems that sense, represent, decide, or adapt.</li>
-        <li>Explain why “intelligent” is both a useful and contested label.</li>
+    <!-- ============ STEP 2 ============ -->
+    <li class="step" data-step="2">
+      <span class="num" aria-hidden="true">2</span>
+      <div class="head"><h3>Experience: What is the system doing?</h3><span class="time">10 minutes</span></div>
+      <p>Sort each case into the category that is best supported by the information provided: <strong>fixed automation, pattern-based AI, human judgment,</strong> or <strong>uncertain / need more information.</strong> The goal is not to force every example into a simple box. The goal is to notice what evidence is missing.</p>
+      <ul class="cases">
+        <li><b>A.</b> A timer turns classroom lights off at 10:00 p.m.</li>
+        <li><b>B.</b> A map app changes a route after detecting traffic delays.</li>
+        <li><b>C.</b> A teacher decides whether an excuse for late work is fair.</li>
+        <li><b>D.</b> A photo app groups images that may show the same person.</li>
+        <li><b>E.</b> A calculator adds two numbers.</li>
+        <li><b>F.</b> A chatbot writes an answer to a history question.</li>
       </ul>
 
-      <section class="notice"><strong>What you need:</strong> the Lesson 1.1 reading, a way to write 150–200 words in Canvas, and the willingness to describe a familiar system carefully. You do not need to create an account for any outside website.</section>
-
-      <h2>Lesson sequence</h2>
-
-      <section class="step">
-        <div class="step-head"><span class="num">1</span><h3>Retrieve and predict</h3><span class="time">5 minutes</span></div>
-        <p>Return to the prediction you made before reading: name one device or app that seems “smart.” In 2–3 sentences, explain what it does that led you to use that word.</p>
-        <p>Then answer this question before moving on: <strong>What evidence would convince you that a system adapts rather than merely follows a fixed rule?</strong></p>
-      </section>
-
-      <section class="step">
-        <div class="step-head"><span class="num">2</span><h3>Experience: What is the system doing?</h3><span class="time">10 minutes</span></div>
-        <p>Sort each case into the category that is best supported by the information provided: <strong>fixed automation, pattern-based AI, human judgment,</strong> or <strong>uncertain / need more information.</strong> The goal is not to force every example into a simple box. The goal is to notice what evidence is missing.</p>
-        <div class="sort-grid">
-          <div class="card"><strong>A.</strong> A timer turns classroom lights off at 10:00 p.m.</div>
-          <div class="card"><strong>B.</strong> A map app changes a route after detecting traffic delays.</div>
-          <div class="card"><strong>C.</strong> A teacher decides whether an excuse for late work is fair.</div>
-          <div class="card"><strong>D.</strong> A photo app groups images that may show the same person.</div>
-          <div class="card"><strong>E.</strong> A calculator adds two numbers.</div>
-          <div class="card"><strong>F.</strong> A chatbot writes an answer to a history question.</div>
+      <div class="widget desk" id="deskWidget">
+        <div class="bar"><span>Interactive · The Evidence Desk</span><span class="tag">Sort, then investigate</span></div>
+        <div class="body">
+          <p>Sort all six cards first, using only what each card says. Then open the case files: every card has two more pieces of evidence you can request. If new evidence changes your mind, move the card. Click a card and then a bin, or drag it. Cards can be moved as often as you like.</p>
+          <div class="pool" id="deskPool" aria-label="Cases to sort"></div>
+          <div class="bins" id="deskBins">
+            <div class="bin" data-bin="fixed"><h4>Fixed automation <span class="cnt"></span></h4><p class="def">follows a set rule; no evidence it senses conditions or changes</p><div class="drop"></div></div>
+            <div class="bin" data-bin="pattern"><h4>Pattern-based AI <span class="cnt"></span></h4><p class="def">uses patterns in data; may adapt to new information</p><div class="drop"></div></div>
+            <div class="bin" data-bin="human"><h4>Human judgment <span class="cnt"></span></h4><p class="def">weighs reasons, context, values, and responsibility</p><div class="drop"></div></div>
+            <div class="bin" data-bin="uncertain"><h4>Uncertain / need more information <span class="cnt"></span></h4><p class="def">the card does not give enough evidence yet</p><div class="drop"></div></div>
+          </div>
+          <div class="tools">
+            <span class="counts"><span><b id="deskPlaced">0</b> of 6 sorted</span><span><b id="deskClues">0</b> of 12 case files opened</span><span><b id="deskMoved">0</b> moved after evidence</span></span>
+            <span>
+              <button type="button" class="btn ghost" id="deskReset">Start over</button>
+              <button type="button" class="btn" id="deskDebrief" disabled>Debrief</button>
+            </span>
+          </div>
+          <div class="status" id="deskStatus" role="status" aria-live="polite">Six cards. Sort them all, then open the case files.</div>
+          <div class="debrief" id="debrief" aria-live="polite">
+            <table>
+              <thead><tr><th scope="col">Case</th><th scope="col">Your bin</th><th scope="col">Best supported by what you opened</th></tr></thead>
+              <tbody id="debriefBody"></tbody>
+            </table>
+            <div class="note" id="debriefNote"></div>
+          </div>
         </div>
-        <div class="fallback"><strong>Canvas text fallback:</strong> Make a four-column table in your notes. Place A–F under the category you think fits best. Next to each letter, write one reason. For at least one example, write: “I need more information about …”</div>
-        <p><strong>Check your reasoning.</strong> A and E are examples of fixed automation as described. B and D likely involve pattern-based processes, although the exact process requires more evidence. C is human judgment. F may involve pattern-based AI, but its fluent output does not by itself establish understanding, accuracy, or wisdom.</p>
-      </section>
+      </div>
 
-      <section class="step">
-        <div class="step-head"><span class="num">3</span><h3>Use the four-question system check</h3><span class="time">8 minutes</span></div>
-        <p>Choose either the map app, photo organizer, or chatbot from Step 2. Complete the table in your notes. Use cautious language when you are inferring rather than observing.</p>
-        <table>
-          <thead><tr><th>Question</th><th>Your notes</th></tr></thead>
-          <tbody>
-            <tr><td>What does the system receive?</td><td>List likely inputs.</td></tr>
-            <tr><td>What does it produce?</td><td>List likely outputs.</td></tr>
-            <tr><td>What process seems to connect the two?</td><td>State what you know and what you infer.</td></tr>
-            <tr><td>What changes over time?</td><td>Describe adaptation, updating, or uncertainty.</td></tr>
-          </tbody>
-        </table>
-      </section>
+      <div class="note"><p><strong>Canvas text fallback:</strong> Make a four-column table in your notes. Place A–F under the category you think fits best. Next to each letter, write one reason. For at least one example, write: “I need more information about …”</p></div>
+      <div class="note"><p><strong>Check your reasoning.</strong> A and E are examples of fixed automation as described. B and D likely involve pattern-based processes, although the exact process requires more evidence. C is human judgment. F may involve pattern-based AI, but its fluent output does not by itself establish understanding, accuracy, or wisdom.</p></div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="2" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
 
-      <section class="step">
-        <div class="step-head"><span class="num">4</span><h3>Guided Practice 1.1</h3><span class="time">8–10 minutes</span></div>
-        <p>Complete the <strong>Guided Practice 1.1</strong> Canvas quiz. You may retake it. Read the feedback after each response; the explanations are part of the lesson.</p>
-        <ul>
-          <li>Identify fixed automation from an example.</li>
-          <li>Choose the best question for distinguishing a fixed-rule system from a learning system.</li>
-          <li>Explain why impressive output does not automatically prove understanding.</li>
-          <li>Match inputs, outputs, and adaptation to examples.</li>
-          <li>Rewrite a vague claim about an app into a cautious, observable claim.</li>
-        </ul>
-      </section>
+    <!-- ============ STEP 3 ============ -->
+    <li class="step" data-step="3">
+      <span class="num" aria-hidden="true">3</span>
+      <div class="head"><h3>Use the four-question system check</h3><span class="time">8 minutes</span></div>
+      <p>Choose either the map app, photo organizer, or chatbot from Step 2. Complete the table in your notes. Use cautious language when you are inferring rather than observing.</p>
+      <div class="widget" id="fourqWidget">
+        <div class="bar"><span>Interactive · Four-question notes</span><span class="tag">Carries into Step 5</span></div>
+        <div class="body">
+          <p>Pick one system, then fill the table here instead of on paper. Your notes stay on this device and can be pulled into the description builder in Step 5.</p>
+          <div class="syschoice" role="radiogroup" aria-label="System to check">
+            <label><input type="radio" name="sys" value="the map app"> Map app</label>
+            <label><input type="radio" name="sys" value="the photo organizer"> Photo organizer</label>
+            <label><input type="radio" name="sys" value="the chatbot"> Chatbot</label>
+          </div>
+          <table class="qtable">
+            <thead><tr><th scope="col">Question</th><th scope="col">Your notes</th></tr></thead>
+            <tbody>
+              <tr><td>What does the system receive?<span class="lbl">List likely inputs.</span></td><td><textarea data-store="ail11l-q1" aria-label="What does the system receive?"></textarea></td></tr>
+              <tr><td>What does it produce?<span class="lbl">List likely outputs.</span></td><td><textarea data-store="ail11l-q2" aria-label="What does it produce?"></textarea></td></tr>
+              <tr><td>What process seems to connect the two?<span class="lbl">State what you know and what you infer.</span></td><td><textarea data-store="ail11l-q3" aria-label="What process seems to connect the two?"></textarea></td></tr>
+              <tr><td>What changes over time?<span class="lbl">Describe adaptation, updating, or uncertainty.</span></td><td><textarea data-store="ail11l-q4" aria-label="What changes over time?"></textarea></td></tr>
+            </tbody>
+          </table>
+          <div class="status" id="fourqStatus" role="status" aria-live="polite">Choose a system and fill all four rows.</div>
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="3" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
 
-      <section class="step">
-        <div class="step-head"><span class="num">5</span><h3>Independent application: A Careful Description</h3><span class="time">15–20 minutes</span></div>
-        <p>Open <strong>Assignment 1.1 — A Careful Description</strong> and submit your response in Canvas. You will choose one everyday system and describe it using the four-question system check.</p>
-        <p><strong>Do not use AI to generate your submission.</strong> You may use a reliable source to verify a factual detail, but cite or link it and write the description in your own words.</p>
-      </section>
+    <!-- ============ STEP 4 ============ -->
+    <li class="step" data-step="4">
+      <span class="num" aria-hidden="true">4</span>
+      <div class="head"><h3>Guided Practice 1.1</h3><span class="time">8–10 minutes</span></div>
+      <p>Complete the <strong>Guided Practice 1.1</strong> Canvas quiz. You may retake it. Read the feedback after each response; the explanations are part of the lesson.</p>
+      <ul class="quizlist">
+        <li>Identify fixed automation from an example.</li>
+        <li>Choose the best question for distinguishing a fixed-rule system from a learning system.</li>
+        <li>Explain why impressive output does not automatically prove understanding.</li>
+        <li>Match inputs, outputs, and adaptation to examples.</li>
+        <li>Rewrite a vague claim about an app into a cautious, observable claim.</li>
+      </ul>
+      <div class="foot"><button type="button" class="markbtn" data-mark="4" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
 
-      <section class="step">
-        <div class="step-head"><span class="num">6</span><h3>Build your AI Field Guide</h3><span class="time">5 minutes</span></div>
-        <p>In your AI Lab Notebook, list <strong>five candidate systems</strong> for your Module 1 AI Field Guide. Include where you encounter each system. Choose systems from at least three settings, such as school, home, entertainment, transportation, shopping, sports, health/fitness, or creative work.</p>
-        <p>At least one system should be a case you are not yet sure deserves the label “AI.” That uncertainty is useful; you will investigate it later.</p>
-      </section>
+    <!-- ============ STEP 5 ============ -->
+    <li class="step" data-step="5">
+      <span class="num" aria-hidden="true">5</span>
+      <div class="head"><h3>Independent application: A Careful Description</h3><span class="time">15–20 minutes</span></div>
+      <p>Open <strong>Assignment 1.1 — A Careful Description</strong> and submit your response in Canvas. You will choose one everyday system and describe it using the four-question system check.</p>
+      <div class="note"><p><strong>Do not use AI to generate your submission.</strong> You may use a reliable source to verify a factual detail, but cite or link it and write the description in your own words.</p></div>
 
-      <section class="success">
-        <h3>Success checklist</h3>
-        <ul class="checklist">
-          <li>I can distinguish a fixed rule from evidence of adaptation.</li>
-          <li>I described a system using inputs, outputs, process, and change over time.</li>
-          <li>I avoided assuming that impressive output proves understanding or wisdom.</li>
-          <li>I completed Guided Practice 1.1 and read the feedback.</li>
-          <li>I submitted A Careful Description and added five candidate systems to my notebook.</li>
-        </ul>
-      </section>
+      <div class="widget" id="builderWidget">
+        <div class="bar"><span>Interactive · System Check Builder</span><span class="tag">Draft before you submit</span></div>
+        <div class="body">
+          <p>Write the five parts the assignment asks for, one at a time. The right-hand panel assembles them into your draft, counts the words, and flags mind-words. Nothing is written for you: every sentence in the draft is yours. When all checks are lit, copy the draft into Canvas.</p>
+          <div class="builder">
+            <div class="parts" id="parts">
+              <div class="part"><label><span><span class="n">1</span> Name and context</span></label><p class="q">What is the system, and where do you encounter it?</p><textarea data-part="0" data-store="ail11l-p0" placeholder="The … on my phone, which I use when…"></textarea><div class="flag"></div></div>
+              <div class="part"><label><span><span class="n">2</span> Inputs</span><button type="button" class="pull" data-pull="0">Pull from Step 3</button></label><p class="q">What information does it likely receive?</p><textarea data-part="1" data-store="ail11l-p1" placeholder="It appears to receive…"></textarea><div class="flag"></div></div>
+              <div class="part"><label><span><span class="n">3</span> Outputs</span><button type="button" class="pull" data-pull="1">Pull from Step 3</button></label><p class="q">What does it produce, recommend, label, predict, or do?</p><textarea data-part="2" data-store="ail11l-p2" placeholder="It produces…"></textarea><div class="flag"></div></div>
+              <div class="part"><label><span><span class="n">4</span> Process and change</span><button type="button" class="pull" data-pull="2">Pull from Step 3</button></label><p class="q">What process seems to connect the input and output? Does it appear to adapt or change over time? Clearly label uncertainty or inference.</p><textarea data-part="3" data-store="ail11l-p3" placeholder="The process likely… I cannot verify whether…"></textarea><div class="flag"></div></div>
+              <div class="part"><label><span><span class="n">5</span> Responsible limit</span></label><p class="q">End with one claim the system should not make about itself.</p><textarea data-part="4" data-store="ail11l-p4" placeholder="It should not claim that it…"></textarea><div class="flag"></div></div>
+            </div>
+            <div class="draftpane">
+              <div class="out" id="draftOut" aria-live="polite"><span class="ph">Your draft assembles here as you write.</span></div>
+              <div class="meter" id="meter"><div></div></div>
+              <div class="counts"><span><b id="wc">0</b> words</span><span>target <b>150–200</b></span><span><b id="mindCount">0</b> mind-words</span></div>
+              <ul class="reqs" id="breqs">
+                <li data-req="parts"><span class="dot"></span><span>All five parts written</span></li>
+                <li data-req="len"><span class="dot"></span><span>150–200 words</span></li>
+                <li data-req="hedge"><span class="dot"></span><span>Hedges an inference (appears to, likely, may, I cannot verify)</span></li>
+                <li data-req="nomind"><span class="dot"></span><span>No mind-words (understands, knows, decides, wants…)</span></li>
+              </ul>
+              <div class="tools">
+                <span class="muted" style="font-size:.86rem">Add your AI-use disclosure line in Canvas.</span>
+                <span><button type="button" class="btn ghost" id="bClear">Clear</button> <button type="button" class="btn" id="bCopy" disabled>Copy draft</button></span>
+              </div>
+              <div class="status" id="bStatus" role="status" aria-live="polite">Start with part 1.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="5" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
 
-      <section class="submission">
-        <h3>AI Lab Notebook entry</h3>
-        <p>Submit 4–6 sentences or add them to your recurring notebook assignment:</p>
-        <ol>
-          <li>Which example in the sort was hardest to classify?</li>
-          <li>What information would help you classify it more confidently?</li>
-          <li>Did you use AI assistance today? If yes, name the tool and state exactly what it helped with. If no, write: <em>No AI assistance used.</em></li>
-        </ol>
-      </section>
+    <!-- ============ STEP 6 ============ -->
+    <li class="step" data-step="6">
+      <span class="num" aria-hidden="true">6</span>
+      <div class="head"><h3>Build your AI Field Guide</h3><span class="time">5 minutes</span></div>
+      <p>In your AI Lab Notebook, list <strong>five candidate systems</strong> for your Module 1 AI Field Guide. Include where you encounter each system. Choose systems from at least three settings, such as school, home, entertainment, transportation, shopping, sports, health/fitness, or creative work.</p>
+      <p>At least one system should be a case you are not yet sure deserves the label “AI.” That uncertainty is useful; you will investigate it later.</p>
+      <div class="widget" id="guideWidget">
+        <div class="bar"><span>Interactive · Field Guide shortlist</span><span class="tag">Copy into your notebook</span></div>
+        <div class="body">
+          <p>Draft the list here, then copy it into your notebook. Mark the ones you are not sure about.</p>
+          <ul class="shortlist" id="shortlist"></ul>
+          <div class="tools" style="display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:.5rem">
+            <span class="counts"><span><b id="glN">0</b> of 5 named</span><span><b id="glS">0</b> settings</span><span><b id="glU">0</b> marked unsure</span></span>
+            <button type="button" class="btn ghost" id="glCopy" disabled>Copy list</button>
+          </div>
+          <div class="status" id="glStatus" role="status" aria-live="polite">Five systems, three settings, at least one you are unsure about.</div>
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="6" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+  </ol>
 
-      <h2>What comes next</h2>
-      <p>In Lesson 1.2, you will separate terms that people often blur together: computer science, algorithm, automation, artificial intelligence, and machine learning. Clear vocabulary will make your Field Guide more accurate.</p>
-      <p class="footer">AI Literacy • Module 1 • Lesson 1.1 | This lesson is self-contained. If an external interactive is unavailable, complete the Canvas text fallback above.</p>
-    </section>
-  </main>
+  <h2>Success checklist</h2>
+  <ul class="checklist" id="checklist">
+    <li><label><input type="checkbox" data-check="0"><span>I can distinguish a fixed rule from evidence of adaptation.</span></label></li>
+    <li><label><input type="checkbox" data-check="1"><span>I described a system using inputs, outputs, process, and change over time.</span></label></li>
+    <li><label><input type="checkbox" data-check="2"><span>I avoided assuming that impressive output proves understanding or wisdom.</span></label></li>
+    <li><label><input type="checkbox" data-check="3"><span>I completed Guided Practice 1.1 and read the feedback.</span></label></li>
+    <li><label><input type="checkbox" data-check="4"><span>I submitted A Careful Description and added five candidate systems to my notebook.</span></label></li>
+  </ul>
+  <p class="aside">Checkmarks, step progress, and notes are saved only in this browser. They are not submitted or graded.</p>
+
+  <h2>AI Lab Notebook entry</h2>
+  <p>Submit 4–6 sentences or add them to your recurring notebook assignment:</p>
+  <ul>
+    <li>Which example in the sort was hardest to classify?</li>
+    <li>What information would help you classify it more confidently?</li>
+    <li>Did you use AI assistance today? If yes, name the tool and state exactly what it helped with. If no, write: <em>No AI assistance used.</em></li>
+  </ul>
+
+  <h2>What comes next</h2>
+  <p>In Lesson 1.2, you will separate terms that people often blur together: computer science, algorithm, automation, artificial intelligence, and machine learning. Clear vocabulary will make your Field Guide more accurate.</p>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 1 • Lesson 1.1 | This lesson is self-contained. If an external interactive is unavailable, complete the Canvas text fallback above.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+
+  /* ---------- Step progress + rail ---------- */
+  var KEY_STEPS="ail11l-steps",KEY_CHECK="ail11l-checklist",TOTAL=6;
+  var steps=store.get(KEY_STEPS,{});
+  function renderRail(){
+    var segs=$("segs");segs.innerHTML="";var n=0;
+    for(var i=1;i<=TOTAL;i++){var s=el("span","seg"+(steps[i]?" done":""));segs.appendChild(s);if(steps[i])n++}
+    $("pct").textContent=n+" of "+TOTAL+" steps";
+    document.querySelectorAll(".step").forEach(function(li){
+      var k=li.getAttribute("data-step");li.classList.toggle("done",!!steps[k]);
+      var b=li.querySelector(".markbtn");if(b){b.setAttribute("aria-pressed",steps[k]?"true":"false");
+        b.innerHTML='<span class="tick" aria-hidden="true">'+(steps[k]?"✓":"○")+'</span> '+(steps[k]?"Step complete":"Mark step complete")}
+    });
+  }
+  document.querySelectorAll(".markbtn").forEach(function(b){
+    b.addEventListener("click",function(){var k=b.getAttribute("data-mark");steps[k]=!steps[k];store.set(KEY_STEPS,steps);renderRail()});
+  });
+  var checks=store.get(KEY_CHECK,{});
+  document.querySelectorAll("#checklist input").forEach(function(c){
+    var k=c.getAttribute("data-check");c.checked=!!checks[k];
+    c.addEventListener("change",function(){checks[k]=c.checked;store.set(KEY_CHECK,checks)});
+  });
+  document.querySelectorAll("textarea[data-store],input[type=text][data-store]").forEach(function(t){
+    var k=t.getAttribute("data-store");t.value=store.get(k,"");
+    t.addEventListener("input",function(){store.set(k,t.value)});
+  });
+  $("resetAll").addEventListener("click",function(){
+    if(!confirm("Clear saved progress, checkmarks, and notes for this lesson on this device?"))return;
+    steps={};checks={};store.del(KEY_STEPS);store.del(KEY_CHECK);
+    document.querySelectorAll("#checklist input").forEach(function(c){c.checked=false});
+    document.querySelectorAll("textarea[data-store],input[type=text][data-store]").forEach(function(t){t.value="";store.del(t.getAttribute("data-store"))});
+    store.del("ail11l-desk");store.del("ail11l-sys");store.del("ail11l-guide-unsure");
+    renderRail();deskReset();fourqLoad();buildDraft();guideRender();
+  });
+  renderRail();
+
+  /* ---------- The Evidence Desk ---------- */
+  var BIN_NAME={fixed:"Fixed automation",pattern:"Pattern-based AI",human:"Human judgment",uncertain:"Uncertain / need more information"};
+  var CASES=[
+    {id:"A",t:"A timer turns classroom lights off at 10:00 p.m.",
+     clues:["It has turned off at 10:00 p.m. every night for a year, including holidays and the night of the power flicker.","The building manager set the time on a dial. Nothing else goes into it."],
+     best:["fixed","fixed","fixed"],why:"A is an example of fixed automation as described. Every piece of evidence points to a schedule and nothing that senses or learns."},
+    {id:"B",t:"A map app changes a route after detecting traffic delays.",
+     clues:["It receives live traffic reports gathered from thousands of phones on the road right now.","It compares several possible routes and picks the one with the fastest predicted arrival."],
+     best:["uncertain","pattern","pattern"],why:"B likely involves a pattern-based process: it adapts to live data and predicts travel time. The exact process still requires more evidence than the card gives."},
+    {id:"C",t:"A teacher decides whether an excuse for late work is fair.",
+     clues:["The teacher asks the student two follow-up questions before deciding.","If the student appeals, the teacher has to give reasons for the decision."],
+     best:["human","human","human"],why:"C is human judgment. The teacher weighs reasons and context, and can be held responsible for the decision."},
+    {id:"D",t:"A photo app groups images that may show the same person.",
+     clues:["It sometimes groups two different people who have similar faces.","It got better at grouping after the company retrained it on many more photos."],
+     best:["uncertain","uncertain","pattern"],why:"D likely involves pattern-based processes. Retraining on more photos is evidence of adaptation; the mistakes show it matches patterns rather than knowing who anyone is."},
+    {id:"E",t:"A calculator adds two numbers.",
+     clues:["It gives the same answer every time for the same two numbers.","It never changes unless someone replaces it with a different calculator."],
+     best:["fixed","fixed","fixed"],why:"E is fixed automation as described. Same input, same output, no change over time."},
+    {id:"F",t:"A chatbot writes an answer to a history question.",
+     clues:["The answer reads fluently, but one date in it is wrong.","It was built from patterns in a very large amount of written text."],
+     best:["uncertain","uncertain","pattern"],why:"F may involve pattern-based AI, but its fluent output does not by itself establish understanding, accuracy, or wisdom. The wrong date is the evidence that matters."}
+  ];
+  var desk=store.get("ail11l-desk",{});   // {A:{bin:"fixed",clues:1,moved:true}}
+  var deskSel=null;
+  function deskSave(){store.set("ail11l-desk",desk)}
+  function deskCounts(){
+    var placed=0,clues=0,moved=0;
+    CASES.forEach(function(c){var d=desk[c.id]||{};if(d.bin)placed++;clues+=(d.clues||0);if(d.moved)moved++});
+    $("deskPlaced").textContent=placed;$("deskClues").textContent=clues;$("deskMoved").textContent=moved;
+    $("deskDebrief").disabled=placed<6;
+    document.querySelectorAll("#deskBins .bin").forEach(function(b){var n=b.querySelectorAll(".chip").length;b.querySelector(".cnt").textContent=n?n+" card"+(n>1?"s":""):""});
+    return {placed:placed,clues:clues,moved:moved};
+  }
+  function deskStatus(kind,text){var s=$("deskStatus");s.className="status"+(kind?" "+kind:"");s.textContent=text}
+  function chipFor(c){
+    var d=desk[c.id]||(desk[c.id]={bin:null,clues:0,moved:false});
+    var ch=el("button","chip"+(d.bin?" placed":"")+(d.moved?" moved":""));ch.type="button";ch.setAttribute("draggable","true");ch.setAttribute("data-id",c.id);
+    var head=el("span");head.appendChild(el("span","case",c.id));head.appendChild(document.createTextNode(c.t));ch.appendChild(head);
+    var clues=el("span","clues");
+    for(var i=0;i<d.clues;i++){var cl=el("span","clue");cl.appendChild(el("span","k","Case file "+(i+1)));cl.appendChild(document.createTextNode(c.clues[i]));clues.appendChild(cl)}
+    ch.appendChild(clues);
+    var ask=el("button","ask",d.clues>=2?"Case file closed":"Request more information");ask.type="button";ask.disabled=d.clues>=2;
+    ask.addEventListener("click",function(e){
+      e.stopPropagation();
+      if(d.clues>=2)return;
+      var cl=el("span","clue");cl.appendChild(el("span","k","Case file "+(d.clues+1)));cl.appendChild(document.createTextNode(c.clues[d.clues]));clues.appendChild(cl);
+      d.clues++;d.lastClueAt=Date.now();deskSave();
+      if(d.clues>=2){ask.textContent="Case file closed";ask.disabled=true}
+      var n=deskCounts();
+      deskStatus("", "Case "+c.id+": new evidence. Does it change the best-supported category? Move the card if so.");
+    });
+    ch.appendChild(ask);
+    ch.setAttribute("aria-label","Case "+c.id+". "+c.t+" Press to select, then choose a bin.");
+    ch.addEventListener("click",function(){
+      if(deskSel===ch){ch.classList.remove("sel");deskSel=null;return}
+      if(deskSel)deskSel.classList.remove("sel");deskSel=ch;ch.classList.add("sel");
+      deskStatus("", "Selected case "+c.id+". Now click a bin.");
+    });
+    ch.addEventListener("dragstart",function(e){if(deskSel)deskSel.classList.remove("sel");deskSel=ch;ch.classList.add("sel");try{e.dataTransfer.setData("text/plain",c.id)}catch(x){}e.dataTransfer.effectAllowed="move"});
+    ch._case=c;return ch;
+  }
+  function placeChip(ch,bin){
+    var c=ch._case,d=desk[c.id],key=bin.getAttribute("data-bin");
+    if(d.bin&&d.bin!==key&&d.clues>0){d.moved=true;ch.classList.add("moved")}
+    d.bin=key;deskSave();
+    bin.querySelector(".drop").appendChild(ch);ch.classList.remove("sel");ch.classList.add("placed");deskSel=null;
+    var n=deskCounts();
+    if(n.placed===6&&n.clues===0)deskStatus("ok","All six sorted on first impressions. Now request more information on the cards you were least sure about, and move any that change.");
+    else if(n.placed===6)deskStatus("ok","All six sorted. Open any remaining case files, then press Debrief.");
+    else deskStatus("", "Case "+c.id+" placed under "+BIN_NAME[key]+". "+(6-n.placed)+" to go.");
+    $("debrief").classList.remove("show");
+  }
+  document.querySelectorAll("#deskBins .bin").forEach(function(bin){
+    bin.tabIndex=0;bin.setAttribute("role","button");
+    bin.addEventListener("click",function(e){if(e.target.closest(".chip"))return;if(deskSel)placeChip(deskSel,bin)});
+    bin.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&deskSel){e.preventDefault();placeChip(deskSel,bin)}});
+    bin.addEventListener("dragover",function(e){e.preventDefault();bin.classList.add("over")});
+    bin.addEventListener("dragleave",function(){bin.classList.remove("over")});
+    bin.addEventListener("drop",function(e){e.preventDefault();bin.classList.remove("over");if(deskSel)placeChip(deskSel,bin)});
+  });
+  var pool=$("deskPool");
+  pool.addEventListener("dragover",function(e){e.preventDefault()});
+  pool.addEventListener("drop",function(e){e.preventDefault();if(deskSel){var d=desk[deskSel._case.id];d.bin=null;deskSave();pool.appendChild(deskSel);deskSel.classList.remove("sel","placed");deskSel=null;deskCounts()}});
+  function deskRender(){
+    pool.innerHTML="";document.querySelectorAll("#deskBins .drop").forEach(function(x){x.innerHTML=""});
+    var order=store.get("ail11l-desk-order",null);
+    if(!order){order=shuffle(CASES.map(function(c){return c.id}));store.set("ail11l-desk-order",order)}
+    order.forEach(function(id){
+      var c=CASES.filter(function(x){return x.id===id})[0];var ch=chipFor(c);var d=desk[c.id];
+      if(d.bin){var bin=document.querySelector('#deskBins .bin[data-bin="'+d.bin+'"]');bin.querySelector(".drop").appendChild(ch)}else pool.appendChild(ch);
+    });
+    deskCounts();
+  }
+  function deskReset(){desk={};store.del("ail11l-desk");store.del("ail11l-desk-order");deskSel=null;$("debrief").classList.remove("show");deskRender();deskStatus("","Six cards. Sort them all, then open the case files.")}
+  $("deskReset").addEventListener("click",deskReset);
+  $("deskDebrief").addEventListener("click",function(){
+    var tb=$("debriefBody");tb.innerHTML="";var match=0,evid=0,unopened=0;
+    CASES.forEach(function(c){
+      var d=desk[c.id],best=c.best[d.clues],tr=el("tr");
+      tr.appendChild(el("td",null,"Case "+c.id));
+      var t1=el("td");t1.appendChild(el("span","pip"+(d.bin===best?" match":""),BIN_NAME[d.bin]));if(d.moved){t1.appendChild(el("span","why","Moved after evidence"))}tr.appendChild(t1);
+      var t2=el("td");t2.appendChild(el("span","pip "+(d.bin===best?"match":(best==="uncertain"||d.bin==="uncertain")?"near":""),BIN_NAME[best]));
+      var why=el("span","why",c.why);
+      if(d.clues<2){why.textContent+=" You opened "+d.clues+" of 2 case files for this one.";unopened++}
+      t2.appendChild(why);tr.appendChild(t2);
+      if(c.best[0]!==best){tr.classList.add("evid");evid++}
+      if(d.bin===best)match++;tb.appendChild(tr);
+    });
+    var note=$("debriefNote");
+    note.innerHTML="<p><strong>"+match+" of 6 match the best-supported category for the evidence you opened.</strong> "+
+      (evid?evid+" case"+(evid>1?"s":"")+" (gold rows) changed category only because you requested more information. That is the point of this step: you cannot classify a system without knowing what evidence is missing. ":"No card changed category with the evidence you opened. Try requesting more information on B, D, and F and see whether the best-supported answer moves. ")+
+      (unopened?"Some case files are still unopened; open them and debrief again. ":"")+
+      "A and E are examples of fixed automation as described. B and D likely involve pattern-based processes, although the exact process requires more evidence. C is human judgment. F may involve pattern-based AI, but its fluent output does not by itself establish understanding, accuracy, or wisdom.</p>";
+    $("debrief").classList.add("show");
+    $("debrief").scrollIntoView({block:"nearest",behavior:"smooth"});
+  });
+  deskRender();
+
+  /* ---------- Four-question notes ---------- */
+  var Q=["ail11l-q1","ail11l-q2","ail11l-q3","ail11l-q4"];
+  function fourqLoad(){
+    var sys=store.get("ail11l-sys","");
+    document.querySelectorAll('input[name="sys"]').forEach(function(r){r.checked=(r.value===sys)});
+    fourqStatus();
+  }
+  function fourqStatus(){
+    var sys=store.get("ail11l-sys","");var n=0;Q.forEach(function(k){if((store.get(k,"")||"").trim())n++});
+    var s=$("fourqStatus");
+    if(!sys){s.className="status";s.textContent="Choose a system and fill all four rows."}
+    else if(n<4){s.className="status";s.textContent="Checking "+sys+". "+n+" of 4 rows filled."}
+    else{s.className="status ok";s.textContent="All four rows filled for "+sys+". In Step 5 you can pull these notes into your draft."}
+  }
+  document.querySelectorAll('input[name="sys"]').forEach(function(r){r.addEventListener("change",function(){store.set("ail11l-sys",r.value);fourqStatus()})});
+  Q.forEach(function(k){document.querySelector('textarea[data-store="'+k+'"]').addEventListener("input",fourqStatus)});
+  fourqLoad();
+
+  /* ---------- System Check Builder ---------- */
+  var MIND=/\b(understands?|understood|knows?|knew|thinks?|thought|wants?|wanted|decides?|decided|realiz(?:es?|ed)|feels?|felt|believes?|cares?|intends?|smart|intelligent|wise|chooses|gets me)\b/gi;
+  var HEDGE=/\b(appears?|appear to|seems?|may|might|likely|probably|possibly|perhaps|based on|I cannot verify|I can’t verify|I can't verify|as far as I can tell|it looks like|I infer|inference)\b/i;
+  var partsEl=document.querySelectorAll("#parts textarea");
+  function words(t){var m=t.trim().match(/\S+/g);return m?m.length:0}
+  function buildDraft(){
+    var texts=[],filled=0,allMind=0;
+    partsEl.forEach(function(t){
+      var v=t.value.trim();texts.push(v);if(v)filled++;
+      var found=v.match(MIND)||[];var seen={},uniq=[];found.forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;uniq.push(w)}});
+      var f=t.parentNode.querySelector(".flag");f.innerHTML="";
+      if(v&&uniq.length){f.appendChild(el("span",null,"Mind-words: "));uniq.forEach(function(w){f.appendChild(el("span","word",w))});allMind+=uniq.length}
+      else if(v){f.appendChild(el("span","clean","Clean."))}
+    });
+    var draft=texts.filter(Boolean).join(" ");
+    var out=$("draftOut");out.innerHTML="";
+    if(draft)out.textContent=draft;else out.appendChild(el("span","ph","Your draft assembles here as you write."));
+    var wc=words(draft);$("wc").textContent=wc;$("mindCount").textContent=allMind;
+    var m=$("meter");m.className="meter"+(wc>=150&&wc<=200?" inrange":wc>200?" over":"");m.firstElementChild.style.width=Math.min(100,wc/200*100)+"%";
+    var met={parts:filled===5,len:wc>=150&&wc<=200,hedge:HEDGE.test(draft),nomind:draft.length>0&&allMind===0};
+    var n=0;document.querySelectorAll("#breqs li").forEach(function(li){var ok=met[li.getAttribute("data-req")];li.classList.toggle("met",!!ok);if(ok)n++});
+    $("bCopy").disabled=!draft;
+    var s=$("bStatus");
+    if(!draft){s.className="status";s.textContent="Start with part 1."}
+    else if(n===4){s.className="status ok";s.textContent="All four checks lit. Copy the draft, paste it into the Canvas assignment, and add your AI-use disclosure line."}
+    else{
+      var tips=[];if(!met.parts)tips.push("write all five parts");if(wc<150&&met.parts)tips.push("add "+(150-wc)+" more words");if(wc>200)tips.push("cut "+(wc-200)+" words");if(!met.hedge)tips.push("hedge the part you are inferring");if(!met.nomind&&draft)tips.push("replace the mind-words");
+      s.className="status"+(allMind?" bad":"");s.textContent="Next: "+tips.join("; ")+".";
+    }
+  }
+  partsEl.forEach(function(t){t.addEventListener("input",buildDraft)});
+  document.querySelectorAll(".pull").forEach(function(b){
+    b.addEventListener("click",function(){
+      var i=parseInt(b.getAttribute("data-pull"),10);var t=partsEl[i+1];
+      var src=i===2?[store.get(Q[2],""),store.get(Q[3],"")].filter(function(x){return x&&x.trim()}).join(" "):store.get(Q[i],"");
+      if(!src||!src.trim()){$("bStatus").className="status";$("bStatus").textContent="Nothing saved in Step 3 for that row yet.";return}
+      t.value=t.value.trim()?t.value.replace(/\s*$/,"\n")+src:src;store.set(t.getAttribute("data-store"),t.value);buildDraft();t.focus();
+    });
+  });
+  $("bClear").addEventListener("click",function(){if(!confirm("Clear all five parts of your draft?"))return;partsEl.forEach(function(t){t.value="";store.del(t.getAttribute("data-store"))});buildDraft()});
+  $("bCopy").addEventListener("click",function(){
+    var txt=$("draftOut").textContent;
+    function done(ok){var s=$("bStatus");s.className="status "+(ok?"ok":"bad");s.textContent=ok?"Draft copied. Paste it into the Canvas text entry box.":"Copy failed. Select the draft text and copy it by hand."}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){done(true)},function(){done(false)})}
+    else{done(false)}
+  });
+  buildDraft();
+
+  /* ---------- Field Guide shortlist ---------- */
+  var unsure=store.get("ail11l-guide-unsure",{});
+  function guideRender(){
+    var ul=$("shortlist");ul.innerHTML="";
+    for(var i=1;i<=5;i++){
+      var li=el("li");li.appendChild(el("span","n",String(i)));
+      var a=document.createElement("input");a.type="text";a.placeholder="System "+i;a.setAttribute("data-store","ail11l-g"+i+"n");a.setAttribute("aria-label","System "+i+" name");a.value=store.get("ail11l-g"+i+"n","");
+      var b=document.createElement("input");b.type="text";b.placeholder="Where I encounter it (setting)";b.setAttribute("data-store","ail11l-g"+i+"s");b.setAttribute("aria-label","System "+i+" setting");b.value=store.get("ail11l-g"+i+"s","");
+      [a,b].forEach(function(inp){inp.addEventListener("input",function(){store.set(inp.getAttribute("data-store"),inp.value);guideStatus()})});
+      var lab=el("label","unsure");var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!unsure[i];
+      (function(i,cb){cb.addEventListener("change",function(){unsure[i]=cb.checked;store.set("ail11l-guide-unsure",unsure);guideStatus()})})(i,cb);
+      lab.appendChild(cb);lab.appendChild(document.createTextNode("Not sure it’s AI"));
+      li.appendChild(a);li.appendChild(b);li.appendChild(lab);ul.appendChild(li);
+    }
+    guideStatus();
+  }
+  function guideStatus(){
+    var named=0,settings={},u=0;
+    for(var i=1;i<=5;i++){if((store.get("ail11l-g"+i+"n","")||"").trim())named++;var s=(store.get("ail11l-g"+i+"s","")||"").trim().toLowerCase();if(s)settings[s]=1;if(unsure[i])u++}
+    var ns=Object.keys(settings).length;
+    $("glN").textContent=named;$("glS").textContent=ns;$("glU").textContent=u;$("glCopy").disabled=named===0;
+    var st=$("glStatus");
+    if(named===5&&ns>=3&&u>=1){st.className="status ok";st.textContent="Shortlist complete: five systems, "+ns+" settings, "+u+" you are unsure about. Copy it into your notebook."}
+    else{st.className="status";var t=[];if(named<5)t.push((5-named)+" more system"+(5-named>1?"s":""));if(ns<3)t.push((3-ns)+" more setting"+(3-ns>1?"s":""));if(u<1)t.push("mark at least one you are unsure about");st.textContent="Still needed: "+t.join("; ")+"."}
+  }
+  $("glCopy").addEventListener("click",function(){
+    var lines=[];for(var i=1;i<=5;i++){var n=(store.get("ail11l-g"+i+"n","")||"").trim();if(!n)continue;lines.push(i+". "+n+(store.get("ail11l-g"+i+"s","")?" — "+store.get("ail11l-g"+i+"s",""):"")+(unsure[i]?" (not sure it’s AI)":""))}
+    var txt="Module 1 Field Guide candidates\n"+lines.join("\n");
+    var st=$("glStatus");
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){st.className="status ok";st.textContent="List copied. Paste it into your AI Lab Notebook."},function(){st.className="status bad";st.textContent="Copy failed. Select the list and copy it by hand."})}
+  });
+  guideRender();
+})();
+</script>
 </body>
 </html>
