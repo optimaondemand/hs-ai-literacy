@@ -1,1 +1,408 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Assignment 2.1 — Data Inventory</title><style>body{font-family:Arial,sans-serif;line-height:1.55;max-width:900px;margin:auto;padding:2rem;color:#17212b}header,footer{border-left:8px solid #1f6f8b;padding-left:1rem}h1,h2{color:#123e52}.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;background:#eef7fa;padding:1rem;border-radius:8px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #7a8793;padding:.65rem;text-align:left}th{background:#e5f2f6}.box{background:#fff6df;border-left:5px solid #b7791f;padding:1rem}</style></head><body><header><p>AI Literacy • Module 2 • Assignment 2.1</p><h1>Data Inventory</h1><p>Investigate how a familiar app or process turns representations into information and decisions.</p></header><section class="meta"><div><strong>Estimated time</strong><br>15–20 minutes</div><div><strong>Points</strong><br>10</div><div><strong>Submission</strong><br>Canvas text entry or table upload</div><div><strong>Format</strong><br>One completed inventory</div></section><p><strong>Task:</strong> Choose a familiar non-sensitive app or school process. Examples: a navigation app, music recommender, attendance process, library checkout, weather app, or online store. Do not use personal records or private data.</p><h2>Required inventory fields</h2><ol><li>System/process and purpose.</li><li>Two likely observations or records.</li><li>One label or category it may use.</li><li>One claim it might produce or support.</li><li>One decision a person or system might make.</li><li>Two possible features or inputs.</li><li>One important piece of missing context.</li><li>One sentence explaining why data are not the same as complete reality.</li></ol><div class="box"><strong>Text template:</strong><br>System/process:<br>Purpose:<br>Observation 1 / Observation 2:<br>Label or category:<br>Claim:<br>Decision:<br>Feature/input 1 / Feature/input 2:<br>Missing context:<br>Why the representation is incomplete:</div><h2>AI-use disclosure</h2><p>Do not use generative AI to draft this work. You may use product documentation for factual details and cite it. Add: <strong>No AI assistance used</strong> or identify the tool and limited purpose.</p><h2>Success criteria</h2><ul><li>I used a non-sensitive, appropriate example.</li><li>I correctly separate observations, labels, claims, and decisions.</li><li>I identify a plausible missing context.</li><li>I include a clear disclosure.</li></ul><h2>Rubric (10 points)</h2><table><tr><th>Criterion</th><th>Points</th><th>Full-credit evidence</th></tr><tr><td>Accurate classification</td><td>4</td><td>Observations, labels/categories, claims, and decisions are distinct and plausible.</td></tr><tr><td>Features and missing context</td><td>3</td><td>Names useful inputs/features and a meaningful limitation.</td></tr><tr><td>Explanation and evidence</td><td>2</td><td>Explains incomplete representation; sources/inferences are clear.</td></tr><tr><td>Completion/disclosure</td><td>1</td><td>Readable, complete, and includes disclosure.</td></tr></table><h2>Submit in Canvas</h2><ol><li>Click <strong>Submit Assignment</strong>.</li><li>Use Text Entry or File Upload.</li><li>Include every required field and disclosure.</li><li>Review the checklist and submit.</li></ol><footer><p>AI Literacy • Module 2 • Assignment 2.1 | Submit independently.</p></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assignment 2.1 — Data Inventory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .page{max-width:860px}
+  .must{counter-reset:must;list-style:none;padding:0;margin:.6rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.5rem}
+  .must li{counter-increment:must;margin:0;padding:.7rem .9rem .7rem 2.8rem;position:relative;background:#fff;border:1px solid var(--rule);border-radius:var(--radius)}
+  .must li::before{content:"0" counter(must);position:absolute;left:.7rem;top:.7rem;width:30px;height:26px;border-radius:6px;background:var(--navy);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:.78rem;border:1px solid var(--teal)}
+  .template{font-family:var(--mono);font-size:.9rem;line-height:1.7}
+  .template strong{font-family:var(--sans)}
+  .rubric td:nth-child(2){text-align:center;font-family:var(--mono);font-weight:600;color:var(--teal-deep);min-width:160px}
+  .rubric td:nth-child(2) .muted{display:block;font-size:.7rem;font-weight:400;margin-top:.25rem}
+  .submit{counter-reset:sub;list-style:none;padding:0;margin:.6rem 0}
+  .submit li{counter-increment:sub;padding:.4rem 0 .4rem 2.2rem;position:relative;border-bottom:1px dashed var(--rule)}
+  .submit li:last-child{border-bottom:0}
+  .submit li::before{content:"0" counter(sub);position:absolute;left:.1rem;top:.5rem;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--teal)}
+  .box h3{margin-top:0}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+  /* Pick your system */
+  .picks{display:flex;gap:.45rem;flex-wrap:wrap;margin:.4rem 0 .6rem}
+  .pick{font-family:var(--sans);font-size:.92rem;padding:.4rem .8rem;border-radius:999px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .pick:hover{background:var(--teal-pale)}
+  .pick[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px var(--glow)}
+  .pick:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .own{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:.4rem}
+  .own input{flex:1 1 240px;font:inherit;font-size:.95rem;padding:.45rem .65rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .own input:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+
+  /* Drafting desk */
+  .scaffold{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(230px,1fr);gap:1rem}
+  @media (max-width:720px){.scaffold{grid-template-columns:1fr}}
+  .scaffold h4{margin:0 0 .4rem;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep)}
+  .tools{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem;align-items:center}
+  .fields{display:grid;gap:.5rem}
+  .field{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.55rem .75rem;background:#fff}
+  .field.pair{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+  .field.pair > label{grid-column:1 / -1}
+  .field label{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.25rem}
+  .field label .n{color:var(--teal);margin-right:.3rem}
+  .field textarea,.field input[type=text]{width:100%;font-family:var(--sans);font-size:.96rem;line-height:1.5;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
+  .field textarea{min-height:54px}
+  .field textarea:focus,.field input[type=text]:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .field .flag{margin-top:.25rem;min-height:1.1em;font-family:var(--mono);font-size:.7rem;color:var(--ink-soft)}
+  .field.pair .flag{grid-column:1 / -1}
+  .flag .word{display:inline-block;background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.08rem .45rem;font-family:var(--sans);font-size:.82rem;margin:0 .15rem .15rem 0}
+  .flag .warn{display:inline-block;background:var(--gold-pale);border:1px solid var(--gold);color:#6d4a00;border-radius:999px;padding:.08rem .45rem;font-family:var(--sans);font-size:.82rem;margin:0 .15rem .15rem 0}
+  .flag .clean{color:var(--ok)}
+  .disc{margin-top:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.7rem .8rem;background:#fff}
+  .disc label.opt{display:flex;gap:.5rem;align-items:flex-start;margin:.3rem 0;cursor:pointer;font-size:.95rem}
+  .disc input[type=radio]{accent-color:var(--teal);margin-top:.25rem}
+  .disc .dfields{display:grid;gap:.4rem;margin:.3rem 0 .2rem 1.6rem}
+  .disc .dfields input{font:inherit;font-size:.92rem;padding:.4rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;width:100%}
+  .disc .dfields input:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .disc .line{margin-top:.5rem;font-family:var(--mono);font-size:.8rem;color:var(--teal-deep);background:var(--teal-pale);border-radius:6px;padding:.4rem .6rem}
+  .src{margin-top:.6rem}
+  .src input{width:100%;font:inherit;font-size:.92rem;padding:.4rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .src label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.25rem}
+  .side{position:sticky;top:1rem}
+
+  /* Rubric self-score */
+  .rubric .pts{display:flex;gap:.25rem;flex-wrap:wrap;justify-content:center}
+  .rubric .pts button{width:30px;height:30px;border-radius:6px;border:1px solid var(--rule-strong);background:#fff;font-family:var(--mono);font-size:.82rem;cursor:pointer;color:var(--ink-soft)}
+  .rubric .pts button:hover{border-color:var(--teal)}
+  .rubric .pts button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+  .rubric .pts button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .rubric tfoot td{font-weight:600;background:var(--paper-2)}
+  .rubric tfoot td:nth-child(2){text-align:center;font-family:var(--mono);color:var(--teal-deep)}
+
+  /* Gathered answers */
+  .gather{border:1px solid var(--teal-deep);border-radius:var(--radius);overflow:hidden;background:#fff}
+  .gather .gbar{background:var(--navy);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.55rem .9rem;display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .gather .gbody{padding:.9rem 1rem}
+  .gather .row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:.4rem .8rem;padding:.45rem 0;border-bottom:1px dashed var(--rule)}
+  .gather .row:last-child{border-bottom:0}
+  .gather .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding-top:.2rem}
+  .gather .v{font-size:.98rem;white-space:pre-wrap}
+  .gather .v.empty{color:var(--ink-faint);font-style:italic}
+  .gather .v.inv{font-family:var(--mono);font-size:.88rem}
+  .gather input.name{font:inherit;font-size:.95rem;padding:.35rem .55rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;max-width:320px;width:100%}
+  @media (max-width:560px){.gather .row{grid-template-columns:1fr}}
+  .gather .gtools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end;padding:.7rem 1rem;border-top:1px solid var(--rule);background:var(--paper-2)}
+
+  @media print{
+    body{background:#fff}
+    .page{border:0;box-shadow:none;max-width:none;margin:0;padding:0}
+    .page > *:not(#gatherSection){display:none!important}
+    #gatherSection .gtools,#gatherSection .hint{display:none!important}
+    .gather{border-color:#999}
+    .gather .gbar{background:#eee;color:#000}
+    .gather .k{color:#333}
+  }
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 2 • Assignment 2.1" data-title="Data Inventory" data-key="ail-intro-2.1-assignment" data-words="SYSTEM|OBSERVATION|LABEL|CLAIM|DECISION|MISSING CONTEXT"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 2 • Assignment 2.1</p>
+    <h1>Data Inventory</h1>
+    <p class="lede">Investigate how a familiar app or process turns representations into information and decisions.</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <section class="ledger" aria-label="Assignment details">
+    <div><span class="k">Estimated time</span><span class="v">15–20 minutes</span></div>
+    <div><span class="k">Points</span><span class="v">10</span></div>
+    <div><span class="k">Submission</span><span class="v">Canvas text entry or table upload</span></div>
+    <div><span class="k">Format</span><span class="v">One completed inventory</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Task:</strong> Choose a familiar non-sensitive app or school process. Examples: a navigation app, music recommender, attendance process, library checkout, weather app, or online store. Do not use personal records or private data.</p>
+  </div>
+
+  <div class="widget" id="pickWidget">
+    <div class="bar"><span>Interactive · Pick your system</span><span class="tag">Step one</span></div>
+    <div class="body">
+      <p>Tap one of the examples, or name your own. Your own entry is checked for personal or private data before it goes anywhere. Your choice fills the first line of the inventory below.</p>
+      <div class="picks" id="picks" role="group" aria-label="Example systems"></div>
+      <div class="own"><label for="ownSys" class="sr">Your own system or process</label><input type="text" id="ownSys" placeholder="Or name your own: the … process at school" maxlength="80"></div>
+      <div class="status" id="pickStatus" role="status" aria-live="polite">No system chosen yet.</div>
+    </div>
+  </div>
+
+  <h2>Required inventory fields</h2>
+  <ol class="must">
+    <li>System/process and purpose.</li>
+    <li>Two likely observations or records.</li>
+    <li>One label or category it may use.</li>
+    <li>One claim it might produce or support.</li>
+    <li>One decision a person or system might make.</li>
+    <li>Two possible features or inputs.</li>
+    <li>One important piece of missing context.</li>
+    <li>One sentence explaining why data are not the same as complete reality.</li>
+  </ol>
+  <div class="box template"><strong>Text template:</strong><br>System/process:<br>Purpose:<br>Observation 1 / Observation 2:<br>Label or category:<br>Claim:<br>Decision:<br>Feature/input 1 / Feature/input 2:<br>Missing context:<br>Why the representation is incomplete:</div>
+
+  <h2>AI-use disclosure</h2>
+  <p>Do not use generative AI to draft this work. You may use product documentation for factual details and cite it. Add: <strong>No AI assistance used</strong> or identify the tool and limited purpose.</p>
+
+  <div class="widget" id="deskWidget">
+    <div class="bar"><span>Interactive · Drafting desk</span><span class="tag">Write here, submit in Canvas</span></div>
+    <div class="body">
+      <p>The text template, one field at a time. If you built an inventory in Lesson 2.1 on this device, bring it in with one click. The checker watches four things as you type: every field written, no personal or private data named, features and labels that describe properties rather than people, and a claim that reads as an interpretation rather than a fact. Nothing on this page is submitted or graded.</p>
+      <div class="scaffold">
+        <div>
+          <div class="tools" style="margin:0 0 .5rem">
+            <button type="button" class="btn ghost" id="importDraft">Bring in my Lesson 2.1 inventory</button>
+          </div>
+          <div class="fields" id="fields">
+            <div class="field"><label for="f-sys"><span class="n">1</span>System/process</label><input type="text" id="f-sys" data-part="sys" maxlength="120"><div class="flag"></div></div>
+            <div class="field"><label for="f-pur"><span class="n">2</span>Purpose</label><input type="text" id="f-pur" data-part="pur" maxlength="200"><div class="flag"></div></div>
+            <div class="field pair"><label><span class="n">3</span>Observation 1 / Observation 2</label><div><textarea data-part="o1" aria-label="Observation 1" placeholder="Observation 1"></textarea></div><div><textarea data-part="o2" aria-label="Observation 2" placeholder="Observation 2"></textarea></div><div class="flag"></div></div>
+            <div class="field"><label for="f-lab"><span class="n">4</span>Label or category</label><textarea id="f-lab" data-part="lab"></textarea><div class="flag"></div></div>
+            <div class="field"><label for="f-clm"><span class="n">5</span>Claim</label><textarea id="f-clm" data-part="clm" placeholder="A statement it might produce or support; hedge it"></textarea><div class="flag"></div></div>
+            <div class="field"><label for="f-dec"><span class="n">6</span>Decision</label><textarea id="f-dec" data-part="dec" placeholder="An action a person or system might take"></textarea><div class="flag"></div></div>
+            <div class="field pair"><label><span class="n">7</span>Feature/input 1 / Feature/input 2</label><div><textarea data-part="f1" aria-label="Feature or input 1" placeholder="Feature/input 1"></textarea></div><div><textarea data-part="f2" aria-label="Feature or input 2" placeholder="Feature/input 2"></textarea></div><div class="flag"></div></div>
+            <div class="field"><label for="f-mis"><span class="n">8</span>Missing context</label><textarea id="f-mis" data-part="mis"></textarea><div class="flag"></div></div>
+            <div class="field"><label for="f-why"><span class="n">9</span>Why the representation is incomplete</label><textarea id="f-why" data-part="why"></textarea><div class="flag"></div></div>
+          </div>
+          <div class="disc" id="disc">
+            <h4>Disclosure line</h4>
+            <label class="opt"><input type="radio" name="disc" value="none"> <span><strong>No AI assistance used</strong></span></label>
+            <label class="opt"><input type="radio" name="disc" value="used"> <span><strong>AI assistance used:</strong> [tool] for [limited purpose].</span></label>
+            <div class="dfields" id="discFields" hidden>
+              <input type="text" id="discTool" placeholder="Tool" maxlength="60" aria-label="Tool">
+              <input type="text" id="discWhat" placeholder="Limited purpose" maxlength="140" aria-label="Limited purpose">
+            </div>
+            <div class="line" id="discLine">Choose one.</div>
+          </div>
+          <div class="src">
+            <label for="source">Product documentation you consulted, if any (cite it)</label>
+            <input type="text" id="source" placeholder="Name or link the documentation" maxlength="200">
+          </div>
+          <div class="tools">
+            <button type="button" class="btn ghost" id="clear">Clear inventory</button>
+          </div>
+        </div>
+        <div class="side">
+          <h4>Automatic checks</h4>
+          <ul class="reqs" id="auto">
+            <li data-req="parts"><span class="dot"></span><span>All eleven fields written (<b id="fillCount">0</b>/11)</span></li>
+            <li data-req="safe"><span class="dot"></span><span>No personal or private data named</span></li>
+            <li data-req="feat"><span class="dot"></span><span>Features and labels describe properties, not people</span></li>
+            <li data-req="hedge"><span class="dot"></span><span>The claim is hedged (may, might, likely…)</span></li>
+            <li data-req="disc"><span class="dot"></span><span>Disclosure line chosen</span></li>
+          </ul>
+          <p class="hint">The checks update as you type. The rubric below is yours to score before you submit.</p>
+        </div>
+      </div>
+      <div class="status" id="draftStatus" role="status" aria-live="polite">Start with the system or process.</div>
+    </div>
+  </div>
+
+  <h2>Success criteria</h2>
+  <ul class="checklist" id="criteria">
+    <li><label><input type="checkbox" data-check="0"><span>I used a non-sensitive, appropriate example.</span></label></li>
+    <li><label><input type="checkbox" data-check="1"><span>I correctly separate observations, labels, claims, and decisions.</span></label></li>
+    <li><label><input type="checkbox" data-check="2"><span>I identify a plausible missing context.</span></label></li>
+    <li><label><input type="checkbox" data-check="3"><span>I include a clear disclosure.</span></label></li>
+  </ul>
+
+  <h2>Rubric (10 points)</h2>
+  <p class="hint">Score yourself honestly before you submit. Tap the points you think each part has earned so far.</p>
+  <table class="rubric" id="rubric">
+    <thead><tr><th scope="col">Criterion</th><th scope="col">Points</th><th scope="col">Full-credit evidence</th></tr></thead>
+    <tbody>
+      <tr data-max="4"><td>Accurate classification</td><td>4</td><td>Observations, labels/categories, claims, and decisions are distinct and plausible.</td></tr>
+      <tr data-max="3"><td>Features and missing context</td><td>3</td><td>Names useful inputs/features and a meaningful limitation.</td></tr>
+      <tr data-max="2"><td>Explanation and evidence</td><td>2</td><td>Explains incomplete representation; sources/inferences are clear.</td></tr>
+      <tr data-max="1"><td>Completion/disclosure</td><td>1</td><td>Readable, complete, and includes disclosure.</td></tr>
+    </tbody>
+    <tfoot><tr><td>Your self-score</td><td id="selfTotal">— / 10</td><td id="selfNote" class="muted">Tap a score in each row.</td></tr></tfoot>
+  </table>
+
+  <section id="gatherSection">
+    <h2>My Gathered Answers</h2>
+    <p class="hint">Everything you wrote on this page, in one place and in the template’s order. Copy it for the Canvas text entry, or save a PDF copy for a file upload.</p>
+    <div class="gather" id="gather">
+      <div class="gbar"><span>Assignment 2.1 · Data Inventory</span><span id="gDate"></span></div>
+      <div class="gbody">
+        <div class="row"><span class="k">Name</span><span class="v"><input type="text" class="name" id="studentName" placeholder="Your name" maxlength="80"></span></div>
+        <div class="row"><span class="k">Inventory</span><span class="v inv empty" id="gInv">(not written yet)</span></div>
+        <div class="row"><span class="k">Disclosure</span><span class="v empty" id="gDisc">(not chosen yet)</span></div>
+        <div class="row"><span class="k">Documentation</span><span class="v empty" id="gSrc">(none)</span></div>
+        <div class="row"><span class="k">Self-score</span><span class="v" id="gScore">— / 10</span></div>
+      </div>
+      <div class="gtools">
+        <button type="button" class="btn ghost" id="pdf">Download my answers (PDF)</button>
+        <button type="button" class="btn" id="copy" disabled>Copy for Canvas</button>
+      </div>
+    </div>
+    <div class="status" id="gStatus" role="status" aria-live="polite">Copy puts the full inventory, your citation, and the disclosure line on the clipboard, ready to paste into Canvas.</div>
+  </section>
+
+  <h2>Submit in Canvas</h2>
+  <ol class="submit">
+    <li>Click <strong>Submit Assignment</strong>.</li>
+    <li>Use Text Entry or File Upload.</li>
+    <li>Include every required field and disclosure.</li>
+    <li>Review the checklist and submit.</li>
+  </ol>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 2 • Assignment 2.1 | Submit independently.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+  var K={data:"ail21a-data",crit:"ail21a-criteria",sys:"ail21a-sys",own:"ail21a-own",disc:"ail21a-disc",tool:"ail21a-tool",what:"ail21a-what",src:"ail21a-src",name:"ail21a-name",score:"ail21a-score"};
+  var ready=false;
+  var SENSITIVE=/\b(names?|home address|address(es)?|phone( number)?s?|e-?mails?|passwords?|health|medical|diagnos\w*|disabilit\w*|IEP|income|religion|race|ethnic\w*|immigration|faces?|facial|fingerprints?|birthdays?|date of birth|social security|discipline records?|grades?|GPA|test scores?)\b/gi;
+  var PERSON=/\b(lazy|disengaged|unmotivated|motivated|smart|dumb|stupid|bright|gifted|slow|rude|difficult|irresponsible|responsible|troublemaker|at[- ]risk|good student|bad student|bad kid|good kid|hard[- ]working)\b/gi;
+  var HEDGE=/\b(may|might|likely|could|possibly|probably|perhaps|suggests?|appears?|seems?|indicates?|is consistent with|I cannot verify|I can’t verify|I can't verify)\b/i;
+  var FIELDS=[["sys","System/process"],["pur","Purpose"],["o1","Observation 1"],["o2","Observation 2"],["lab","Label or category"],["clm","Claim"],["dec","Decision"],["f1","Feature/input 1"],["f2","Feature/input 2"],["mis","Missing context"],["why","Why the representation is incomplete"]];
+  function uniq(found){var seen={},u=[];(found||[]).forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;u.push(w)}});return u}
+
+  var data=store.get(K.data,{});
+  var fieldEl={};document.querySelectorAll("#fields [data-part]").forEach(function(t){var k=t.getAttribute("data-part");fieldEl[k]=t;t.value=data[k]||"";t.addEventListener("input",function(){data[k]=t.value;store.set(K.data,data);update()})});
+
+  /* ---------- Pick your system ---------- */
+  var EXAMPLES=["navigation app","music recommender","attendance process","library checkout","weather app","online store"];
+  function pickRender(){
+    var wrap=$("picks");wrap.innerHTML="";var cur=store.get(K.sys,"");
+    EXAMPLES.forEach(function(s){
+      var b=el("button","pick",s);b.type="button";b.setAttribute("aria-pressed",cur===s?"true":"false");
+      b.addEventListener("click",function(){var nv=cur===s?"":s;store.set(K.sys,nv);$("ownSys").value="";store.del(K.own);if(nv){fieldEl.sys.value=nv;data.sys=nv;store.set(K.data,data)}pickRender();update()});
+      wrap.appendChild(b);
+    });
+    var own=store.get(K.own,"");$("ownSys").value=own;
+    var chosen=own||cur,st=$("pickStatus"),s=uniq(own.match(SENSITIVE));
+    if(s.length){st.className="status bad";st.textContent="That looks like it names personal or private data ("+s.join(", ")+"). Choose a non-sensitive app or process."}
+    else{st.className="status"+(chosen?" ok":"");st.textContent=chosen?"Your system: "+chosen+".":"No system chosen yet."}
+  }
+  $("ownSys").addEventListener("input",function(){store.set(K.own,this.value);if(this.value.trim()){store.set(K.sys,"");fieldEl.sys.value=this.value;data.sys=this.value;store.set(K.data,data)}pickRender();update()});
+  pickRender();
+
+  /* ---------- Drafting desk ---------- */
+  function discLine(){
+    var v=store.get(K.disc,"");
+    if(v==="none")return "No AI assistance used";
+    if(v==="used"){var t=(store.get(K.tool,"")||"").trim()||"[tool]",w=(store.get(K.what,"")||"").trim()||"[limited purpose]";return "AI assistance used: "+t+" for "+w+"."}
+    return "";
+  }
+  function setReq(k,on){var li=document.querySelector('#auto [data-req="'+k+'"]');if(li)li.classList.toggle("met",!!on)}
+  function inventoryText(){return FIELDS.map(function(f){return f[1]+": "+((data[f[0]]||"").trim())}).join("\n")}
+  function update(){
+    var filled=0,sens=0,person=0,all=[];
+    document.querySelectorAll("#fields .field").forEach(function(fd){
+      var f=fd.querySelector(".flag");f.innerHTML="";
+      var inputs=fd.querySelectorAll("[data-part]"),text=[];inputs.forEach(function(t){text.push(t.value.trim())});
+      var v=text.join(" ").trim();if(!v)return;
+      var k=inputs[0].getAttribute("data-part"),s=uniq(v.match(SENSITIVE)),p=[];
+      if(k==="o1"||k==="lab"||k==="f1")p=uniq(v.match(PERSON));
+      if(s.length){f.appendChild(el("span",null,"Personal or private? "));s.forEach(function(w){f.appendChild(el("span","warn",w))});sens+=s.length}
+      if(p.length){f.appendChild(el("span",null,(s.length?" ":"")+"Judges a person: "));p.forEach(function(w){f.appendChild(el("span","word",w))});person+=p.length}
+      if(!s.length&&!p.length){if(k==="clm")f.appendChild(el("span",HEDGE.test(v)?"clean":null,HEDGE.test(v)?"Hedged.":"Reads as a fact. Add may, might, likely, or suggests."));else f.appendChild(el("span","clean","Clean."))}
+    });
+    FIELDS.forEach(function(f){var v=(data[f[0]]||"").trim();if(v)filled++;all.push(v)});
+    var text=all.join(" ");$("fillCount").textContent=filled;
+    var dl=discLine();$("discLine").textContent=dl||"Choose one.";
+    var met={parts:filled===11,safe:text.length>0&&sens===0,feat:text.length>0&&person===0,hedge:HEDGE.test(data.clm||""),disc:!!dl};
+    var n=0;Object.keys(met).forEach(function(k){setReq(k,met[k]);if(met[k])n++});
+    var st=$("draftStatus");
+    if(!filled){st.className="status";st.textContent="Start with the system or process."}
+    else if(n===5){st.className="status ok";st.textContent="All five checks lit. Scroll to My Gathered Answers and copy for Canvas."}
+    else{var tips=[];if(!met.parts)tips.push((11-filled)+" field"+(11-filled>1?"s":"")+" still empty");if(!met.safe)tips.push("choose a non-sensitive example or remove the private data");if(!met.feat)tips.push("replace the words that judge a person with measurable properties");if(!met.hedge&&(data.clm||"").trim())tips.push("hedge the claim");if(!met.disc)tips.push("choose a disclosure line");st.className="status"+(sens||person?" bad":"");st.textContent="Next: "+tips.join("; ")+"."}
+    gather();
+  }
+  document.querySelectorAll('input[name="disc"]').forEach(function(r){
+    r.checked=store.get(K.disc,"")===r.value;
+    r.addEventListener("change",function(){store.set(K.disc,r.value);$("discFields").hidden=r.value!=="used";update()});
+  });
+  $("discFields").hidden=store.get(K.disc,"")!=="used";
+  $("discTool").value=store.get(K.tool,"");$("discWhat").value=store.get(K.what,"");
+  $("discTool").addEventListener("input",function(){store.set(K.tool,this.value);update()});
+  $("discWhat").addEventListener("input",function(){store.set(K.what,this.value);update()});
+  $("source").value=store.get(K.src,"");
+  $("source").addEventListener("input",function(){store.set(K.src,this.value);gather()});
+  $("importDraft").addEventListener("click",function(){
+    var found=0,incoming={};
+    FIELDS.forEach(function(f){var v=store.get("ail21l-i-"+f[0],"");if(v&&String(v).trim()){incoming[f[0]]=String(v).trim();found++}});
+    var st=$("draftStatus");
+    if(!found){st.className="status";st.textContent="No Lesson 2.1 inventory was found on this device. Write here instead.";return}
+    var has=FIELDS.some(function(f){return (data[f[0]]||"").trim()});
+    if(has&&!confirm("Replace what is in the fields with your Lesson 2.1 inventory?"))return;
+    FIELDS.forEach(function(f){if(incoming[f[0]]!=null){data[f[0]]=incoming[f[0]];fieldEl[f[0]].value=incoming[f[0]]}});
+    store.set(K.data,data);
+    if(data.sys){store.set(K.own,data.sys);store.set(K.sys,"");pickRender()}
+    update();st.className="status ok";st.textContent="Lesson 2.1 inventory brought in: "+found+" of 11 fields. Revise it here.";
+  });
+  $("clear").addEventListener("click",function(){
+    if(!confirm("Clear every field of your inventory on this device?"))return;
+    data={};store.del(K.data);Object.keys(fieldEl).forEach(function(k){fieldEl[k].value=""});update();
+  });
+
+  /* ---------- Success criteria ---------- */
+  var crit=store.get(K.crit,{});
+  document.querySelectorAll("#criteria input").forEach(function(c){
+    var k=c.getAttribute("data-check");c.checked=!!crit[k];
+    c.addEventListener("change",function(){crit[k]=c.checked;store.set(K.crit,crit)});
+  });
+
+  /* ---------- Rubric self-score ---------- */
+  var score=store.get(K.score,{});
+  function scoreTotal(){
+    var rows=document.querySelectorAll("#rubric tbody tr"),sum=0,done=0;
+    rows.forEach(function(tr,i){if(score[i]!=null){sum+=score[i];done++}});
+    $("selfTotal").textContent=(done===rows.length?sum:"—")+" / 10";
+    $("selfNote").textContent=done===rows.length?(sum===10?"Full marks by your own reading. Make sure the inventory backs it up.":"Where did you lose points? Fix that field before you submit."):(rows.length-done)+" row"+(rows.length-done>1?"s":"")+" left to score.";
+    gather();
+  }
+  document.querySelectorAll("#rubric tbody tr").forEach(function(tr,i){
+    var max=parseInt(tr.getAttribute("data-max"),10),cell=tr.children[1];cell.innerHTML="";
+    var wrap=el("span","pts");
+    for(var p=0;p<=max;p++){(function(p){
+      var b=el("button",null,String(p));b.type="button";b.setAttribute("aria-label",p+" of "+max+" points");b.setAttribute("aria-pressed",score[i]===p?"true":"false");
+      b.addEventListener("click",function(){score[i]=p;store.set(K.score,score);wrap.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});scoreTotal()});
+      wrap.appendChild(b);
+    })(p)}
+    cell.appendChild(wrap);cell.appendChild(el("span","muted"," of "+max));
+  });
+
+  /* ---------- Gathered answers ---------- */
+  $("studentName").value=store.get(K.name,"");
+  $("studentName").addEventListener("input",function(){store.set(K.name,this.value)});
+  $("gDate").textContent=new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
+  function setV(id,txt,empty){var e=$(id);e.textContent=txt||empty;e.classList.toggle("empty",!txt)}
+  function gather(){
+    if(!ready)return;
+    var any=FIELDS.some(function(f){return (data[f[0]]||"").trim()});
+    setV("gInv",any?inventoryText():"","(not written yet)");
+    setV("gDisc",discLine(),"(not chosen yet)");setV("gSrc",(store.get(K.src,"")||"").trim(),"(none)");
+    var rows=document.querySelectorAll("#rubric tbody tr"),sum=0,done=0;rows.forEach(function(tr,i){if(score[i]!=null){sum+=score[i];done++}});
+    $("gScore").textContent=(done===rows.length?sum:"—")+" / 10";
+    $("copy").disabled=!any;
+  }
+  $("copy").addEventListener("click",function(){
+    var dl=discLine(),src=(store.get(K.src,"")||"").trim();
+    var out=inventoryText()+(src?"\n\nDocumentation consulted: "+src:"")+(dl?"\n\n"+dl:"");
+    var st=$("gStatus");
+    function done(ok){st.className="status "+(ok?"ok":"bad");st.textContent=ok?"Copied. Paste it into the Canvas text entry and check that the disclosure is the last line.":"Copy failed. Select the inventory text and copy it by hand."}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(out).then(function(){done(true)},function(){done(false)})}else done(false);
+  });
+  $("pdf").addEventListener("click",function(){var st=$("gStatus");st.className="status";st.textContent="In the print dialog, choose Save as PDF.";window.print()});
+
+  ready=true;update();scoreTotal();
+})();
+</script>
+</body>
+</html>

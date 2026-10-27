@@ -1,1 +1,654 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reading 2.1 — Data, Information, and Representation</title><style>body{font-family:Arial,sans-serif;line-height:1.55;color:#17212b;max-width:920px;margin:auto;padding:2rem}header,footer{border-left:8px solid #1f6f8b;padding-left:1rem}h1,h2{color:#123e52}.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem;background:#eef7fa;padding:1rem;border-radius:8px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #7a8793;padding:.6rem;text-align:left}th{background:#e5f2f6}.callout{background:#fff6df;border-left:5px solid #b7791f;padding:1rem}</style></head><body><header><p>AI Literacy • Module 2 • Lesson 2.1 Reading</p><h1>Data, Information, and Representation</h1><p>Reading before the lesson activity</p></header><section class="meta"><div><strong>Estimated time</strong><br>15–20 minutes</div><div><strong>Focus question</strong><br>How do raw observations become representations a model can use?</div><div><strong>Required for</strong><br>Lesson 2.1: Data Inventory</div></section><p><strong>Begin with a prediction.</strong> A school app records a student’s arrival time, course schedule, quiz responses, and a teacher note. Which items are observations, labels, categories, claims, or decisions?</p><h2>Data are representations, not reality itself</h2><p><strong>Data</strong> are recorded representations of something: a number, word, image, sound sample, location, click, measurement, or category. Data can be useful, but it is never the whole thing being represented. A temperature value records one property at one moment. A photo records a view from one angle under particular lighting. A student profile does not contain a student’s full life.</p><p>When a system uses data, it operates on the representation it has—not directly on the world in all its complexity. Good AI literacy therefore asks what was recorded, how it was recorded, what was left out, and how a label or category was chosen.</p><h2>Observation, label, category, claim, decision</h2><table><thead><tr><th>Term</th><th>Meaning</th><th>Example</th></tr></thead><tbody><tr><td>Observation</td><td>A recorded fact or measurement.</td><td>“The sensor measured 72°F at 9:00 a.m.”</td></tr><tr><td>Label</td><td>A tag attached to an observation for a purpose.</td><td>“spam” on an email example.</td></tr><tr><td>Category</td><td>A group defined by a rule or convention.</td><td>“late arrival” for arrivals after 8:00.</td></tr><tr><td>Claim</td><td>A statement that interprets evidence.</td><td>“The student may need transportation support.”</td></tr><tr><td>Decision</td><td>An action selected using information and judgment.</td><td>“Contact the family” or “do not act yet.”</td></tr></tbody></table><p>These are not interchangeable. A label can be mistaken; a category can be designed differently; a claim may need additional evidence; and a decision should include human responsibility.</p><h2>Representations make patterns visible—and hide some details</h2><p>Computers represent images as numbers, text as tokens or codes, sound as sampled signals, and choices as values or categories. Representation makes comparison possible. A model can compare thousands of image measurements or word patterns faster than a person. But representation also creates limits. If a camera has poor lighting, if a form lacks a needed option, or if a dataset omits a group, the model cannot recover the missing context by itself.</p><div class="callout"><strong>Careful-data habit:</strong> Ask “What does this value stand for?” before asking “What pattern does the model find?” A pattern in the record may reflect measurement choices, labeling rules, or missing context.</div><h2>Key vocabulary</h2><ul><li><strong>data:</strong> recorded representations used for analysis or computation.</li><li><strong>representation:</strong> a form used to stand for an object, event, property, or idea.</li><li><strong>label:</strong> a tag assigned to an example for a purpose.</li><li><strong>feature:</strong> a measurable or encoded property used by a model.</li><li><strong>proxy:</strong> a measurable stand-in for something harder to measure directly.</li></ul><h2>As you move to the lesson</h2><p>Choose one familiar app or school process. Be ready to name one observation it might collect, one label it might apply, and one human decision that should not be confused with either.</p><footer><p>AI Literacy • Module 2 • Lesson 2.1 Reading | Essential content is available as selectable text.</p></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reading 2.1 — Data, Information, and Representation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .page{max-width:860px}
+  .reading p{font-size:1.06rem}
+  .vocab{list-style:none;padding:0;margin:.8rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem}
+  .vocab li{margin:0;padding:.8rem .95rem;background:var(--paper-2);border:1px solid var(--rule);border-top:3px solid var(--teal);border-radius:var(--radius)}
+  .vocab li strong{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+  @keyframes slidein{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:none}}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .tools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.7rem}
+  .counts{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft)}
+  .counts b{color:var(--teal-deep)}
+
+  /* ---------- The school app record (before / after) ---------- */
+  .vote{display:grid;gap:.6rem}
+  .vote .meta{display:flex;justify-content:space-between;gap:.6rem;flex-wrap:wrap;font-family:var(--mono);font-size:.78rem;color:var(--ink-soft)}
+  .vote .meta b{color:var(--teal-deep)}
+  .vote .qcard{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:1rem 1.2rem;background:linear-gradient(160deg,#fff,var(--paper-2));box-shadow:var(--shadow);animation:slidein .35s ease-out}
+  .vote .qcard .kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:500}
+  .vote .qcard .item{font-size:1.25rem;font-weight:700;color:var(--teal-deep);margin:.25rem 0 .7rem}
+  .vote .choices{display:flex;gap:.4rem;flex-wrap:wrap}
+  .vote .choices button{font:inherit;font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;padding:.5rem .8rem;border:1px solid var(--teal);border-radius:999px;background:#fff;color:var(--teal-deep);cursor:pointer}
+  .vote .choices button:hover{background:var(--teal-pale)}
+  .vote .choices button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .vote .choices button.more{border-color:var(--gold);background:var(--gold-pale);color:#6d4a00}
+  .tally{display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.2rem}
+  .tally .pip{font-family:var(--mono);font-size:.72rem;letter-spacing:.04em;padding:.25rem .55rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;color:var(--ink-soft)}
+  .tally .pip.set{background:var(--teal-pale);border-color:var(--teal);color:var(--teal-deep)}
+  .shift{margin-top:.9rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden}
+  .shift table{margin:0;font-size:.95rem}
+  .shift td:first-child{font-weight:600;color:var(--teal-deep)}
+  .shift tr.moved td{background:var(--gold-pale)}
+  .shift tr.read td{border-top:0;padding-top:0}
+  .shift tbody tr:nth-child(even){background:transparent}
+  .shift td .q{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:.15rem}
+  .shift .pip{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;white-space:nowrap}
+
+  /* ---------- Record vs. world (blueprint panel) ---------- */
+  .xray{background:var(--navy);background-image:linear-gradient(rgba(79,209,232,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(79,209,232,.07) 1px,transparent 1px);background-size:24px 24px;border:1px solid var(--teal-deep);border-radius:var(--radius);padding:1rem;box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);color:#e8f3f7}
+  .xray .boxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem}
+  .xbox{font:inherit;font-family:var(--sans);color:#dff4f9;text-align:center;cursor:pointer;background:rgba(255,255,255,.03);border:1.5px solid rgba(79,209,232,.45);border-radius:10px;padding:.8rem .5rem .6rem;display:flex;flex-direction:column;align-items:center;gap:.35rem;transition:background .2s,border-color .2s,box-shadow .2s,transform .12s}
+  .xbox:hover{background:rgba(79,209,232,.1);transform:translateY(-1px)}
+  .xbox:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .xbox[aria-selected="true"]{background:rgba(79,209,232,.16);border-color:var(--cyan);box-shadow:0 0 0 3px var(--glow),0 0 18px var(--glow)}
+  .xbox.scanned{border-style:solid;border-color:#7fe3c7}
+  .xbox .rec{font-family:var(--mono);font-size:.86rem;color:var(--cyan);border:1px solid currentColor;border-radius:6px;padding:.25rem .5rem;opacity:.9;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .xbox.scanned .rec{color:#7fe3c7;background:rgba(127,227,199,.12)}
+  .xbox .lbl{font-size:.9rem;font-weight:600;line-height:1.2}
+  .xbox .st{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#9fb3bf}
+  .xbox.scanned .st{color:#7fe3c7}
+  .stage{margin-top:1rem;border:1px solid rgba(79,209,232,.35);border-radius:10px;background:rgba(0,0,0,.18);overflow:hidden}
+  .stage .top{display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap;padding:.6rem .9rem;border-bottom:1px solid rgba(79,209,232,.25)}
+  .stage .top .name{font-weight:700;font-size:1.1rem;color:#fff}
+  .stage .top .name small{display:block;font-weight:400;font-size:.88rem;color:#b9cfd8}
+  .stage .scanbtn{font:inherit;font-family:var(--mono);font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--cyan);color:var(--navy);border:0;border-radius:8px;padding:.5rem .9rem;cursor:pointer}
+  .stage .scanbtn:hover{box-shadow:0 0 0 3px var(--glow),0 0 16px var(--glow)}
+  .stage .scanbtn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
+  .stage .scanbtn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .layer{display:grid;grid-template-columns:170px minmax(0,1fr);gap:.5rem .9rem;align-items:start;padding:.75rem .9rem;border-bottom:1px solid rgba(79,209,232,.18);position:relative;overflow:hidden;opacity:.28;transition:opacity .35s}
+  .layer:last-child{border-bottom:0}
+  .layer .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);padding-top:.15rem}
+  .layer .v{font-size:.98rem;line-height:1.5;color:#e8f3f7;visibility:hidden}
+  .layer.on{opacity:1}
+  .layer.on .v{visibility:visible}
+  .layer.on::before{content:"";position:absolute;top:0;bottom:0;left:-30%;width:30%;background:linear-gradient(90deg,transparent,rgba(79,209,232,.35),transparent);animation:sweep .7s ease-out}
+  @keyframes sweep{from{left:-30%}to{left:110%}}
+  .layer.gone .k{color:var(--gold)}
+  .layer.gone.on .v{color:#ffe9b8}
+  .xray .idle{padding:1.4rem .9rem;color:#b9cfd8;font-size:.98rem;text-align:center}
+  @media (max-width:560px){.layer{grid-template-columns:1fr;gap:.25rem}}
+
+  /* ---------- Chain reaction (order the steps) ---------- */
+  .chain .scen{display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
+  .chain .scen button{font-family:var(--sans);font-size:.92rem;padding:.45rem .85rem;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .chain .scen button[aria-selected="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px var(--glow)}
+  .chain .scen button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .chain .slots{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.5rem;margin-top:.6rem}
+  .chain .slot{border:1.5px dashed var(--teal);border-radius:var(--radius);min-height:96px;padding:.5rem;background:#fff;position:relative;transition:background .2s,box-shadow .2s}
+  .chain .slot.over{background:var(--teal-pale);box-shadow:0 0 0 3px var(--glow)}
+  .chain .slot h4{margin:0 0 .4rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep)}
+  .chain .slot .chip{display:block;width:100%;cursor:grab}
+  .chain .slot .chip.right{border-color:var(--ok);background:var(--ok-bg)}
+  .chain .slot .chip.wrong{border-color:var(--bad);background:var(--bad-bg)}
+  .chain .slot .warn{display:block;margin-top:.4rem;padding:.35rem .5rem;font-size:.84rem;background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;color:#4a3300;animation:reveal .3s ease-out}
+  .chain .slot .warn .k{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#6d4a00}
+  .chain .arrowrow{display:none}
+
+  /* ---------- Representation bench ---------- */
+  .bench .tabs{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.7rem}
+  .bench .tabs button{font:inherit;font-family:var(--mono);font-size:.76rem;letter-spacing:.08em;text-transform:uppercase;padding:.45rem .85rem;border:1px solid var(--teal);border-radius:8px;background:#fff;color:var(--teal-deep);cursor:pointer}
+  .bench .tabs button[aria-selected="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px var(--glow)}
+  .bench .tabs button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .bench .panel{display:none;border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.9rem 1rem;background:#fff;animation:reveal .3s ease-out}
+  .bench .panel.on{display:block}
+  .bench .two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;align-items:start}
+  @media (max-width:640px){.bench .two{grid-template-columns:1fr}}
+  .bench h4{margin:0 0 .4rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep)}
+  .bench .hint{font-size:.9rem;color:var(--ink-soft);margin:.3rem 0 0}
+  .bench .readout{font-family:var(--mono);font-size:.8rem;line-height:1.5;background:var(--navy);color:var(--cyan);padding:.7rem .8rem;border-radius:8px;white-space:pre;overflow:auto;min-height:120px}
+  .bench .ctl{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-top:.5rem;font-size:.9rem}
+  .bench .ctl input[type=range]{flex:1 1 140px;accent-color:var(--teal)}
+  .bench .ctl b{font-family:var(--mono);color:var(--teal-deep)}
+  /* image */
+  .pix{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;width:100%;max-width:260px;aspect-ratio:1;touch-action:none;user-select:none}
+  .pix div{background:#fff;border:1px solid var(--rule-strong);border-radius:2px;cursor:crosshair}
+  .pix.coarse{grid-template-columns:repeat(5,1fr)}
+  /* text */
+  .tokens{display:flex;gap:.35rem;flex-wrap:wrap;min-height:2.4em;margin-top:.4rem}
+  .tokens .tok{font-family:var(--mono);font-size:.8rem;border:1px solid var(--teal);border-radius:6px;padding:.25rem .45rem;background:var(--teal-pale);color:var(--teal-deep)}
+  .tokens .tok small{display:block;font-size:.66rem;color:var(--ink-soft)}
+  .tokens .tok.unk{border-color:var(--gold);background:var(--gold-pale);color:#6d4a00}
+  .bench input[type=text]{width:100%;font:inherit;font-size:.98rem;padding:.5rem .65rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .bench input[type=text]:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  /* sound */
+  .bench canvas{width:100%;height:150px;display:block;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  /* choice */
+  .form{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.7rem .9rem;background:var(--paper-2)}
+  .form p{margin:0 0 .4rem;font-weight:600;color:var(--teal-deep)}
+  .form label{display:flex;gap:.5rem;align-items:center;margin:.25rem 0;font-size:.98rem;cursor:pointer}
+  .form input{accent-color:var(--teal)}
+  .form .add{margin-top:.5rem}
+  .ds{margin-top:.6rem}
+  .ds table{font-size:.9rem;margin:0}
+  .ds td.miss{color:var(--bad);font-style:italic}
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 2 • Lesson 2.1 Reading" data-title="Data, Information, and Representation" data-key="ail-intro-2.1-reading"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 2 • Lesson 2.1 Reading</p>
+    <h1>Data, Information, and Representation</h1>
+    <p class="lede">Reading before the lesson activity</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <section class="ledger" aria-label="Reading details">
+    <div><span class="k">Estimated time</span><span class="v">15–20 minutes</span></div>
+    <div><span class="k">Focus question</span><span class="v">How do raw observations become representations a model can use?</span></div>
+    <div><span class="k">Required for</span><span class="v">Lesson 2.1: Data Inventory</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Begin with a prediction.</strong> A school app records a student’s arrival time, course schedule, quiz responses, and a teacher note. Which items are observations, labels, categories, claims, or decisions?</p>
+  </div>
+
+  <div class="widget" id="voteBefore">
+    <div class="bar"><span>Interactive · The school app record</span><span class="tag">Before reading</span></div>
+    <div class="body">
+      <p>The four items the school app records, one at a time. Go with your first instinct: what kind of thing is each one? You will see the same four again at the end of the reading, after the terms have been defined.</p>
+      <div class="vote" id="voteB">
+        <div class="meta"><span>Item <b id="voteBNum">1</b> of 4</span><span>First instinct only</span></div>
+        <div class="deck" id="voteBDeck"></div>
+        <div class="tally" id="voteBTally" aria-label="Your answers so far"></div>
+      </div>
+      <div class="status" id="voteBStatus" role="status" aria-live="polite">Press Start when you are ready.</div>
+    </div>
+  </div>
+
+  <div class="reading">
+    <h2>Data are representations, not reality itself</h2>
+    <p><strong>Data</strong> are recorded representations of something: a number, word, image, sound sample, location, click, measurement, or category. Data can be useful, but it is never the whole thing being represented. A temperature value records one property at one moment. A photo records a view from one angle under particular lighting. A student profile does not contain a student’s full life.</p>
+    <p>When a system uses data, it operates on the representation it has—not directly on the world in all its complexity. Good AI literacy therefore asks what was recorded, how it was recorded, what was left out, and how a label or category was chosen.</p>
+
+    <div class="widget" id="xrayWidget">
+      <div class="bar"><span>Interactive · Record vs. world</span><span class="tag">Scan the record</span></div>
+      <div class="body">
+        <p>Each tile is a record a system might hold. Pick one and scan it with the four questions from the paragraph above. The last layer, in gold, is the part the record cannot give back.</p>
+        <div class="xray">
+          <div class="boxes" id="boxes" role="tablist" aria-label="Records to scan"></div>
+          <div class="stage" id="stage">
+            <div class="idle" id="stageIdle">Select a record above to begin scanning.</div>
+            <div id="stageBody" hidden>
+              <div class="top">
+                <div class="name" id="stageName"></div>
+                <button type="button" class="scanbtn" id="scanBtn">Scan next question</button>
+              </div>
+              <div class="layers" id="layers"></div>
+            </div>
+          </div>
+        </div>
+        <div class="status" id="xrayStatus" role="status" aria-live="polite">0 of 5 records scanned.</div>
+      </div>
+    </div>
+
+    <h2>Observation, label, category, claim, decision</h2>
+    <table>
+      <thead><tr><th>Term</th><th>Meaning</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Observation</td><td>A recorded fact or measurement.</td><td>“The sensor measured 72°F at 9:00 a.m.”</td></tr>
+        <tr><td>Label</td><td>A tag attached to an observation for a purpose.</td><td>“spam” on an email example.</td></tr>
+        <tr><td>Category</td><td>A group defined by a rule or convention.</td><td>“late arrival” for arrivals after 8:00.</td></tr>
+        <tr><td>Claim</td><td>A statement that interprets evidence.</td><td>“The student may need transportation support.”</td></tr>
+        <tr><td>Decision</td><td>An action selected using information and judgment.</td><td>“Contact the family” or “do not act yet.”</td></tr>
+      </tbody>
+    </table>
+    <p>These are not interchangeable. A label can be mistaken; a category can be designed differently; a claim may need additional evidence; and a decision should include human responsibility.</p>
+
+    <div class="widget chain" id="chainWidget">
+      <div class="bar"><span>Interactive · Chain reaction</span><span class="tag">Order the steps</span></div>
+      <div class="body">
+        <p>A real record travels through all four kinds of thing before anyone acts on it. Pick a scenario, then put its four sentences in order from observation to decision: drag a sentence onto a slot, or click a sentence and then a slot. Press <strong>Check</strong> to see which link each sentence is, and where that link can break.</p>
+        <div class="scen" id="scen" role="tablist" aria-label="Scenarios"></div>
+        <div class="pool" id="chainPool" aria-label="Sentences to order"></div>
+        <div class="slots" id="chainSlots">
+          <div class="slot" data-slot="0"><h4>1 · Observation</h4><div class="drop"></div></div>
+          <div class="slot" data-slot="1"><h4>2 · Label or category</h4><div class="drop"></div></div>
+          <div class="slot" data-slot="2"><h4>3 · Claim</h4><div class="drop"></div></div>
+          <div class="slot" data-slot="3"><h4>4 · Decision</h4><div class="drop"></div></div>
+        </div>
+        <div class="tools">
+          <span class="counts"><span><b id="chainDone">0</b> of 3 scenarios checked</span></span>
+          <span><button type="button" class="btn ghost" id="chainReset">Start over</button> <button type="button" class="btn" id="chainCheck" disabled>Check</button></span>
+        </div>
+        <div class="status" id="chainStatus" role="status" aria-live="polite">Pick a scenario.</div>
+      </div>
+    </div>
+
+    <h2>Representations make patterns visible—and hide some details</h2>
+    <p>Computers represent images as numbers, text as tokens or codes, sound as sampled signals, and choices as values or categories. Representation makes comparison possible. A model can compare thousands of image measurements or word patterns faster than a person. But representation also creates limits. If a camera has poor lighting, if a form lacks a needed option, or if a dataset omits a group, the model cannot recover the missing context by itself.</p>
+
+    <div class="widget bench" id="benchWidget">
+      <div class="bar"><span>Interactive · Representation bench</span><span class="tag">Four representations</span></div>
+      <div class="body">
+        <p>The four representations from the paragraph, on one bench. In each one, make something, watch it become numbers or codes, and then look for what the numbers do not keep.</p>
+        <div class="tabs" id="benchTabs" role="tablist" aria-label="Representations">
+          <button type="button" role="tab" data-tab="img" aria-selected="true">Image → numbers</button>
+          <button type="button" role="tab" data-tab="txt" aria-selected="false">Text → tokens</button>
+          <button type="button" role="tab" data-tab="snd" aria-selected="false">Sound → samples</button>
+          <button type="button" role="tab" data-tab="chc" aria-selected="false">Choice → categories</button>
+        </div>
+
+        <div class="panel on" data-panel="img" role="tabpanel">
+          <div class="two">
+            <div>
+              <h4>Draw on the grid</h4>
+              <div class="pix" id="pix" aria-label="Ten by ten drawing grid"></div>
+              <div class="ctl"><button type="button" class="btn ghost" id="pixClear">Clear</button><button type="button" class="btn ghost" id="pixCoarse" aria-pressed="false">Record at 5 × 5 instead</button></div>
+              <p class="hint">Draw a letter or a face. Each cell becomes one number: 1 for ink, 0 for blank. Then record the same drawing at a coarser resolution.</p>
+            </div>
+            <div>
+              <h4>What the computer holds</h4>
+              <div class="readout" id="pixOut"></div>
+              <p class="hint" id="pixNote">The grid of numbers is the image, as far as a model is concerned. Nothing outside the grid, and nothing finer than a cell, made it into the record.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" data-panel="txt" role="tabpanel">
+          <div class="two">
+            <div>
+              <h4>Type a sentence</h4>
+              <label for="txtIn" class="sr">Sentence</label>
+              <input type="text" id="txtIn" maxlength="120" placeholder="The student arrived late again." value="The student arrived late again.">
+              <p class="hint">Each word is looked up in a small vocabulary and replaced by its code. Words the vocabulary never saw get the same code: UNK, for unknown.</p>
+            </div>
+            <div>
+              <h4>What the computer holds</h4>
+              <div class="tokens" id="tokens"></div>
+              <div class="readout" id="txtOut" style="min-height:60px;margin-top:.5rem"></div>
+              <p class="hint">The codes keep which words appeared, in which order. They do not keep tone of voice, who wrote it, or why.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" data-panel="snd" role="tabpanel">
+          <div class="two">
+            <div>
+              <h4>A sound, sampled</h4>
+              <canvas id="wave" width="600" height="300" aria-label="A wave and its samples"></canvas>
+              <div class="ctl"><label for="rate">Samples</label><input type="range" id="rate" min="4" max="64" value="8"><b id="rateVal">8</b></div>
+              <p class="hint">The grey curve is the sound in the air. The dots are what gets recorded: the height of the curve at evenly spaced moments. Slide to take more or fewer samples.</p>
+            </div>
+            <div>
+              <h4>What the computer holds</h4>
+              <div class="readout" id="sndOut"></div>
+              <p class="hint" id="sndNote">With few samples the stair-step line between the dots is all a model can see; the bumps between samples are gone.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" data-panel="chc" role="tabpanel">
+          <div class="two">
+            <div>
+              <h4>A form with fixed options</h4>
+              <div class="form" id="chcForm">
+                <p>How did you get to school today?</p>
+                <label><input type="radio" name="chc" value="Bus"> Bus</label>
+                <label><input type="radio" name="chc" value="Car"> Car</label>
+                <label><input type="radio" name="chc" value="Walk"> Walk</label>
+                <div class="add"><button type="button" class="btn ghost" id="chcAdd">Add an “Other” option</button></div>
+              </div>
+              <p class="hint">Three students answered before you. One of them rides a bike. Try to record that honestly with the options given.</p>
+            </div>
+            <div>
+              <h4>What the dataset holds</h4>
+              <div class="ds" id="chcDs"></div>
+              <p class="hint" id="chcNote">Without a needed option, the bike rider is recorded as something they are not, or not at all. A model trained on this table cannot discover bikes exist.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="status" id="benchStatus" role="status" aria-live="polite">Four representations to try. 0 of 4 visited.</div>
+      </div>
+    </div>
+
+    <div class="callout"><strong>Careful-data habit:</strong> Ask “What does this value stand for?” before asking “What pattern does the model find?” A pattern in the record may reflect measurement choices, labeling rules, or missing context.</div>
+
+    <h2>Key vocabulary</h2>
+    <ul class="vocab">
+      <li><strong>data:</strong> recorded representations used for analysis or computation.</li>
+      <li><strong>representation:</strong> a form used to stand for an object, event, property, or idea.</li>
+      <li><strong>label:</strong> a tag assigned to an example for a purpose.</li>
+      <li><strong>feature:</strong> a measurable or encoded property used by a model.</li>
+      <li><strong>proxy:</strong> a measurable stand-in for something harder to measure directly.</li>
+    </ul>
+
+    <div class="widget" id="voteAfter">
+      <div class="bar"><span>Interactive · The school app record</span><span class="tag">After reading</span></div>
+      <div class="body">
+        <p>The same four items. This time you also have <strong>more than one</strong>: choose it when an item starts as one kind of thing and becomes another once a rule or a purpose is applied. Then compare with your first instincts from the top of the page.</p>
+        <div class="vote" id="voteA">
+          <div class="meta"><span>Item <b id="voteANum">1</b> of 4</span><span>Now with the terms defined</span></div>
+          <div class="deck" id="voteADeck"></div>
+          <div class="tally" id="voteATally" aria-label="Your answers so far"></div>
+        </div>
+        <div class="shift" id="shift" hidden>
+          <table>
+            <thead><tr><th scope="col">Item</th><th scope="col">Before</th><th scope="col">After</th></tr></thead>
+            <tbody id="shiftBody"></tbody>
+          </table>
+        </div>
+        <div class="status" id="voteAStatus" role="status" aria-live="polite">Press Start when you are ready.</div>
+      </div>
+    </div>
+
+    <h2>As you move to the lesson</h2>
+    <p>Choose one familiar app or school process. Be ready to name one observation it might collect, one label it might apply, and one human decision that should not be confused with either.</p>
+  </div>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 2 • Lesson 2.1 Reading | Essential content is available as selectable text.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+  };
+
+  /* ---------- The school app record (before / after) ---------- */
+  var ITEMS=[
+    {id:"arr",name:"Arrival time",desc:"The app records that the student arrived at 8:07 a.m.",
+     read:"An observation: a recorded fact or measurement. It becomes a category, like “late arrival,” only once a rule such as “after 8:00” is applied."},
+    {id:"sch",name:"Course schedule",desc:"The app stores the student’s list of courses and periods.",
+     read:"A set of observations, or records, of what was assigned. The course names are categories defined by convention; nothing in the schedule interprets anything."},
+    {id:"quiz",name:"Quiz responses",desc:"The app stores each answer the student chose on a quiz.",
+     read:"Observations of what was chosen. Marking an answer “correct” adds a label, and a score is a category defined by a rule. Neither says why the answer was chosen."},
+    {id:"note",name:"Teacher note",desc:"A teacher writes: “Seems distracted lately; may need a check-in.”",
+     read:"Mostly a claim: a statement that interprets evidence. “Seems distracted” may need additional evidence, and a check-in would be a decision that should include human responsibility."}
+  ];
+  var KINDS=[["obs","Observation"],["lab","Label"],["cat","Category"],["claim","Claim"],["dec","Decision"]];
+  var KNAME={obs:"Observation",lab:"Label",cat:"Category",claim:"Claim",dec:"Decision",more:"More than one"};
+
+  function voteRun(opts){
+    var votes=store.get(opts.key,{});
+    var deck=$(opts.deck),tally=$(opts.tally),num=$(opts.num),status=$(opts.status);
+    function count(){var n=0;ITEMS.forEach(function(s){if(votes[s.id])n++});return n}
+    function renderTally(){
+      tally.innerHTML="";
+      ITEMS.forEach(function(s){var v=votes[s.id];tally.appendChild(el("span","pip"+(v?" set":""),s.name+(v?": "+KNAME[v]:"")))});
+    }
+    function card(i){
+      deck.innerHTML="";var s=ITEMS[i];num.textContent=i+1;
+      var c=el("div","qcard");c.appendChild(el("div","kicker",s.name));c.appendChild(el("div","item",s.desc));
+      var ch=el("div","choices");
+      var opts2=KINDS.slice();if(opts.more)opts2.push(["more","More than one"]);
+      opts2.forEach(function(k){
+        var b=el("button",k[0]==="more"?"more":null,k[1]);b.type="button";
+        b.addEventListener("click",function(){votes[s.id]=k[0];store.set(opts.key,votes);renderTally();next(i+1)});
+        ch.appendChild(b);
+      });
+      c.appendChild(ch);deck.appendChild(c);
+    }
+    function next(i){
+      if(i<ITEMS.length){card(i);status.className="status";status.textContent="Item "+(i+1)+" of 4.";return}
+      deck.innerHTML="";var c=el("div","qcard");c.appendChild(el("div","kicker","Done"));
+      c.appendChild(el("div","item",opts.more?"Four items sorted twice.":"Four first instincts saved."));
+      var p=el("p",null,opts.more?"The table below compares your two passes with one reading of each item.":"Keep these in mind. The reading will define each term, and you will sort the same four again at the end.");c.appendChild(p);
+      var again=el("button","btn ghost","Sort again");again.type="button";again.addEventListener("click",function(){next(0)});c.appendChild(again);
+      deck.appendChild(c);num.textContent=4;
+      status.className="status ok";status.textContent=opts.more?"Compare the two passes below.":"Saved on this device. Now read on.";
+      if(opts.done)opts.done(votes);
+    }
+    function start(){
+      deck.innerHTML="";var c=el("div","qcard");c.appendChild(el("div","kicker","Ready?"));c.appendChild(el("div","item","Four items, "+(opts.more?"six":"five")+" choices each."));
+      var b=el("button","btn","Start");b.type="button";b.addEventListener("click",function(){next(0)});c.appendChild(b);deck.appendChild(c);
+    }
+    renderTally();
+    if(count()===ITEMS.length)next(ITEMS.length);else start();
+    return {votes:function(){return votes}};
+  }
+  var before=voteRun({key:"ail21-vote-before",deck:"voteBDeck",tally:"voteBTally",num:"voteBNum",status:"voteBStatus"});
+  var after=voteRun({key:"ail21-vote-after",deck:"voteADeck",tally:"voteATally",num:"voteANum",status:"voteAStatus",more:true,done:function(aVotes){
+    var tb=$("shiftBody");tb.innerHTML="";var b=before.votes(),a=aVotes,moved=0;
+    ITEMS.forEach(function(s){
+      var tr=el("tr");tr.appendChild(el("td",null,s.name));
+      var t1=el("td");t1.appendChild(el("span","pip",b[s.id]?KNAME[b[s.id]]:"—"));tr.appendChild(t1);
+      var t2=el("td");t2.appendChild(el("span","pip",a[s.id]?KNAME[a[s.id]]:"—"));tr.appendChild(t2);
+      var tr2=el("tr","read");var t3=el("td");t3.colSpan=3;t3.appendChild(el("span","q","One reading: "+s.read));tr2.appendChild(t3);
+      if(b[s.id]&&a[s.id]&&b[s.id]!==a[s.id]){tr.classList.add("moved");tr2.classList.add("moved");moved++}
+      tb.appendChild(tr);tb.appendChild(tr2);
+    });
+    $("shift").hidden=false;
+    var st=$("voteAStatus");st.className="status ok";
+    st.textContent=(moved?moved+" item"+(moved>1?"s":"")+" changed between your two passes (gold rows). ":"Your two passes agree. ")+"The point is not the final answer: it is that the same record can be an observation, then a category, then a claim, depending on what has been done to it.";
+  }});
+
+  /* ---------- Record vs. world ---------- */
+  var RECORDS=[
+    {id:"temp",name:"Temperature value",rec:"72°F",sub:"a number in a sensor log",layers:[
+      ["What was recorded","One property, air temperature, at one moment: 72°F at 9:00 a.m."],
+      ["How it was recorded","A sensor in one spot, rounded to a whole degree, logged on a schedule."],
+      ["How a label or category was chosen","If the building rule says “above 70 is warm,” this row is tagged warm. Move the cutoff and the tag changes."],
+      ["What was left out","Everything the sensor cannot feel: humidity, sun through the window, a draft by the door, and whether the room felt uncomfortable to anyone in it."]]},
+    {id:"photo",name:"A photo",rec:"[1920×1080]",sub:"a grid of pixel numbers",layers:[
+      ["What was recorded","A view from one angle under particular lighting, frozen as a grid of color numbers."],
+      ["How it was recorded","A lens, a shutter speed, and a sensor; the camera chose exposure before anyone looked."],
+      ["How a label or category was chosen","Someone or something wrote “cat” on it. The label can be mistaken, and the photo cannot argue back."],
+      ["What was left out","What was outside the frame, what happened a second later, how it smelled or sounded, and who was holding the camera."]]},
+    {id:"profile",name:"A student profile",rec:"ID 20417",sub:"a row in a school database",layers:[
+      ["What was recorded","Arrival times, course list, quiz answers, and a few notes; whatever the fields allowed."],
+      ["How it was recorded","Scans, form entries, and typed notes, each by a different person on a different day."],
+      ["How a label or category was chosen","“Late arrival” applies after 8:00 by rule. “At risk” would be a claim dressed as a category."],
+      ["What was left out","A student’s full life: what the bus did that morning, what home was like, what they are good at that no field asks about."]]},
+    {id:"click",name:"A click",rec:"btn_42 → 1",sub:"one event in a log",layers:[
+      ["What was recorded","That a button was pressed, by which account, at which millisecond."],
+      ["How it was recorded","The app sent one event to a server; the server kept the fields it was built to keep."],
+      ["How a label or category was chosen","A rule may tag it “engaged.” The tag comes from the rule, not from the person."],
+      ["What was left out","Whether the click was on purpose, a slip of the thumb, curiosity, or frustration."]]},
+    {id:"email",name:"An email marked spam",rec:"spam = 1",sub:"a label on a message",layers:[
+      ["What was recorded","The words of the message, the sender address, the time, and one tag: spam."],
+      ["How it was recorded","A filter compared the message to patterns in millions of earlier messages, then a person may or may not have corrected it."],
+      ["How a label or category was chosen","“Spam” was attached for the purpose of filtering. A label can be mistaken, and here the mistake hides the message."],
+      ["What was left out","Whether the recipient actually wanted this one: the reason a message mattered is not in the record."]]}
+  ];
+  var scanned=store.get("ail21-xray",{}),cur=null,layerIdx=0;
+  function xrayStatus(){var n=Object.keys(scanned).length;var s=$("xrayStatus");s.className="status"+(n===5?" ok":"");s.textContent=n===5?"All five records scanned. Every one has a gold layer: the part no model can recover by itself.":n+" of 5 records scanned."}
+  function renderBoxes(){
+    var wrap=$("boxes");wrap.innerHTML="";
+    RECORDS.forEach(function(r){
+      var b=el("button","xbox"+(scanned[r.id]?" scanned":""));b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",cur===r.id?"true":"false");
+      b.appendChild(el("span","rec",r.rec));b.appendChild(el("span","lbl",r.name));b.appendChild(el("span","st",scanned[r.id]?"scanned":"unscanned"));
+      b.addEventListener("click",function(){openRecord(r)});wrap.appendChild(b);
+    });
+  }
+  function openRecord(r){
+    cur=r.id;layerIdx=0;renderBoxes();
+    $("stageIdle").hidden=true;$("stageBody").hidden=false;
+    var nm=$("stageName");nm.innerHTML="";nm.appendChild(document.createTextNode(r.name));nm.appendChild(el("small",null,r.rec+" · "+r.sub));
+    var ls=$("layers");ls.innerHTML="";
+    r.layers.forEach(function(l,i){var d=el("div","layer"+(i===3?" gone":""));d.appendChild(el("span","k",l[0]));d.appendChild(el("span","v",l[1]));ls.appendChild(d)});
+    $("scanBtn").disabled=false;$("scanBtn").textContent="Scan next question";
+    if(scanned[r.id]){ls.querySelectorAll(".layer").forEach(function(d){d.classList.add("on")});layerIdx=4;$("scanBtn").disabled=true;$("scanBtn").textContent="Fully scanned"}
+  }
+  $("scanBtn").addEventListener("click",function(){
+    var ls=$("layers").querySelectorAll(".layer");if(layerIdx>=ls.length)return;
+    ls[layerIdx].classList.add("on");layerIdx++;
+    if(layerIdx>=ls.length){scanned[cur]=true;store.set("ail21-xray",scanned);$("scanBtn").disabled=true;$("scanBtn").textContent="Fully scanned";renderBoxes();xrayStatus()}
+  });
+  renderBoxes();xrayStatus();
+
+  /* ---------- Chain reaction ---------- */
+  var SCEN=[
+    {id:"arrive",name:"The 8:07 arrival",steps:[
+      "The door scanner logs the student’s badge at 8:07 a.m.",
+      "The attendance system files the entry under “late arrival,” the category for arrivals after 8:00.",
+      "A counselor reads three such entries and writes, “The student may need transportation support.”",
+      "The counselor decides to contact the family, or to wait and ask the student first."]},
+    {id:"spam",name:"The filtered message",steps:[
+      "A message arrives from an address that has never written to this inbox before.",
+      "The filter tags the message “spam.”",
+      "The inbox summary reports that the account “receives a lot of junk.”",
+      "The user chooses to block the sender, or to open the spam folder and check."]},
+    {id:"temp",name:"The warm classroom",steps:[
+      "The sensor measured 72°F at 9:00 a.m.",
+      "The building system marks the room “warm,” its category for anything above 70.",
+      "A report suggests that the room is uncomfortable for learning.",
+      "The teacher opens the window, or decides the reading does not match the room and leaves it."]}
+  ];
+  var WARN=[
+    ["Observation","A measurement is already a choice: one property, one spot, one moment."],
+    ["Label or category","A label can be mistaken; a category can be designed differently. Move the cutoff and this sentence changes."],
+    ["Claim","A claim may need additional evidence. Ask what else could explain the record."],
+    ["Decision","A decision should include human responsibility. The record informs it; it does not make it."]
+  ];
+  var chain=store.get("ail21-chain",{}),curScen=null,chainSel=null,placed={};
+  function chainCountDone(){var n=0;SCEN.forEach(function(s){if(chain[s.id])n++});$("chainDone").textContent=n;return n}
+  function renderScen(){
+    var wrap=$("scen");wrap.innerHTML="";
+    SCEN.forEach(function(s){var b=el("button",null,s.name+(chain[s.id]?" ✓":""));b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",curScen===s.id?"true":"false");b.addEventListener("click",function(){loadScen(s)});wrap.appendChild(b)});
+  }
+  function chainChip(text,i){
+    var ch=el("button","chip",text);ch.type="button";ch.setAttribute("draggable","true");ch._i=i;
+    ch.addEventListener("click",function(){if(chainSel===ch){ch.classList.remove("sel");chainSel=null;return}if(chainSel)chainSel.classList.remove("sel");chainSel=ch;ch.classList.add("sel");chainMsg("","Sentence selected. Now click a slot.")});
+    ch.addEventListener("dragstart",function(e){if(chainSel)chainSel.classList.remove("sel");chainSel=ch;ch.classList.add("sel");try{e.dataTransfer.setData("text/plain",String(i))}catch(x){}});
+    return ch;
+  }
+  function chainMsg(kind,t){var s=$("chainStatus");s.className="status"+(kind?" "+kind:"");s.textContent=t}
+  function loadScen(s){
+    curScen=s.id;chainSel=null;placed={};renderScen();
+    var pool=$("chainPool");pool.innerHTML="";
+    document.querySelectorAll("#chainSlots .drop").forEach(function(d){d.innerHTML=""});
+    document.querySelectorAll("#chainSlots .warn").forEach(function(w){w.remove()});
+    var order=shuffle([0,1,2,3]);
+    order.forEach(function(i){pool.appendChild(chainChip(s.steps[i],i))});
+    $("chainCheck").disabled=true;
+    chainMsg("",s.name+": four sentences, four slots.");
+  }
+  function placeChain(ch,slot){
+    var k=slot.getAttribute("data-slot"),drop=slot.querySelector(".drop");
+    var existing=drop.querySelector(".chip");if(existing){$("chainPool").appendChild(existing);existing.classList.remove("right","wrong");delete placed[k]}
+    var w=slot.querySelector(".warn");if(w)w.remove();
+    drop.appendChild(ch);ch.classList.remove("sel","right","wrong");chainSel=null;placed[k]=ch._i;
+    var n=Object.keys(placed).length;$("chainCheck").disabled=n<4;
+    chainMsg(n===4?"ok":"",n===4?"All four placed. Press Check.":(4-n)+" slot"+(4-n>1?"s":"")+" to fill.");
+  }
+  document.querySelectorAll("#chainSlots .slot").forEach(function(slot){
+    slot.tabIndex=0;slot.setAttribute("role","button");
+    slot.addEventListener("click",function(e){if(e.target.closest(".chip"))return;if(chainSel)placeChain(chainSel,slot)});
+    slot.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&chainSel){e.preventDefault();placeChain(chainSel,slot)}});
+    slot.addEventListener("dragover",function(e){e.preventDefault();slot.classList.add("over")});
+    slot.addEventListener("dragleave",function(){slot.classList.remove("over")});
+    slot.addEventListener("drop",function(e){e.preventDefault();slot.classList.remove("over");if(chainSel)placeChain(chainSel,slot)});
+  });
+  $("chainPool").addEventListener("dragover",function(e){e.preventDefault()});
+  $("chainPool").addEventListener("drop",function(e){e.preventDefault();if(chainSel){var slot=chainSel.closest(".slot");if(slot){delete placed[slot.getAttribute("data-slot")]}$("chainPool").appendChild(chainSel);chainSel.classList.remove("sel","right","wrong");chainSel=null;$("chainCheck").disabled=true}});
+  $("chainCheck").addEventListener("click",function(){
+    var right=0;
+    document.querySelectorAll("#chainSlots .slot").forEach(function(slot){
+      var k=parseInt(slot.getAttribute("data-slot"),10),ch=slot.querySelector(".chip");if(!ch)return;
+      var ok=ch._i===k;ch.classList.add(ok?"right":"wrong");if(ok)right++;
+      var w=slot.querySelector(".warn");if(w)w.remove();
+      w=el("span","warn");w.appendChild(el("span","k",ok?"Where it can break":"Not this one"));w.appendChild(document.createTextNode(ok?WARN[k][1]:"This sentence is the "+WARN[ch._i][0].toLowerCase()+". Move it."));slot.appendChild(w);
+    });
+    if(right===4){chain[curScen]=true;store.set("ail21-chain",chain);renderScen();var n=chainCountDone();chainMsg("ok","In order. Read the gold notes: each link is a place the chain can break. "+(n<3?"Try another scenario.":"All three scenarios done. These are not interchangeable."))}
+    else chainMsg("bad",right+" of 4 in the right slot. Move the red ones and check again.");
+  });
+  $("chainReset").addEventListener("click",function(){if(curScen)loadScen(SCEN.filter(function(s){return s.id===curScen})[0])});
+  renderScen();chainCountDone();
+
+  /* ---------- Representation bench ---------- */
+  var visited=store.get("ail21-bench",{img:true});
+  function benchStatus(){var n=Object.keys(visited).length;var s=$("benchStatus");s.className="status"+(n===4?" ok":"");s.textContent=n===4?"All four visited. In every one, the record made comparison possible and lost something the world still had.":"Four representations to try. "+n+" of 4 visited."}
+  document.querySelectorAll("#benchTabs button").forEach(function(b){
+    b.addEventListener("click",function(){
+      var t=b.getAttribute("data-tab");
+      document.querySelectorAll("#benchTabs button").forEach(function(x){x.setAttribute("aria-selected",x===b?"true":"false")});
+      document.querySelectorAll("#benchWidget .panel").forEach(function(p){p.classList.toggle("on",p.getAttribute("data-panel")===t)});
+      visited[t]=true;store.set("ail21-bench",visited);benchStatus();
+      if(t==="snd")drawWave();
+    });
+  });
+  benchStatus();
+
+  // Image → numbers
+  var N=10,grid=store.get("ail21-pix",null);if(!grid||grid.length!==N*N){grid=[];for(var i=0;i<N*N;i++)grid.push(0)}
+  var coarse=false,painting=false,paintVal=1;
+  var pix=$("pix");
+  function pixRender(){
+    pix.innerHTML="";pix.classList.toggle("coarse",coarse);
+    var cells=coarse?coarseGrid():grid,n=coarse?5:N;
+    cells.forEach(function(v,i){var d=el("div");d.style.background=v?"#0f2233":"#fff";if(coarse&&v>0&&v<1)d.style.background="rgba(15,34,51,"+v+")";d.setAttribute("data-i",i);pix.appendChild(d)});
+    var out=[];for(var r=0;r<n;r++){var row=[];for(var c=0;c<n;c++){var v=cells[r*n+c];row.push(coarse?(Math.round(v*100)/100).toFixed(2):v)}out.push(row.join(" "))}
+    $("pixOut").textContent=out.join("\n");
+    $("pixNote").textContent=coarse?"At 5 × 5 each number is the average of four cells. Compare with the 10 × 10 version: a diagonal line becomes a grey smear. The detail was in the world, not in this record.":"The grid of numbers is the image, as far as a model is concerned. Nothing outside the grid, and nothing finer than a cell, made it into the record.";
+  }
+  function coarseGrid(){var out=[];for(var r=0;r<5;r++)for(var c=0;c<5;c++){var s=grid[(2*r)*N+2*c]+grid[(2*r)*N+2*c+1]+grid[(2*r+1)*N+2*c]+grid[(2*r+1)*N+2*c+1];out.push(s/4)}return out}
+  function paintAt(x,y){
+    if(coarse)return;var rect=pix.getBoundingClientRect();var c=Math.floor((x-rect.left)/rect.width*N),r=Math.floor((y-rect.top)/rect.height*N);
+    if(c<0||r<0||c>=N||r>=N)return;var i=r*N+c;if(grid[i]!==paintVal){grid[i]=paintVal;store.set("ail21-pix",grid);pixRender()}
+  }
+  pix.addEventListener("pointerdown",function(e){if(coarse)return;painting=true;var rect=pix.getBoundingClientRect();var c=Math.floor((e.clientX-rect.left)/rect.width*N),r=Math.floor((e.clientY-rect.top)/rect.height*N);paintVal=grid[r*N+c]?0:1;paintAt(e.clientX,e.clientY);pix.setPointerCapture(e.pointerId)});
+  pix.addEventListener("pointermove",function(e){if(painting)paintAt(e.clientX,e.clientY)});
+  pix.addEventListener("pointerup",function(){painting=false});pix.addEventListener("pointercancel",function(){painting=false});
+  $("pixClear").addEventListener("click",function(){grid=grid.map(function(){return 0});store.set("ail21-pix",grid);pixRender()});
+  $("pixCoarse").addEventListener("click",function(){coarse=!coarse;this.setAttribute("aria-pressed",coarse?"true":"false");this.textContent=coarse?"Back to 10 × 10":"Record at 5 × 5 instead";pixRender()});
+  if(!grid.some(function(v){return v})){[12,13,14,15,16,21,27,31,37,41,43,45,47,51,57,61,67,72,76,83,84,85].forEach(function(i){grid[i]=1})}
+  pixRender();
+
+  // Text → tokens
+  var VOC=["the","a","student","arrived","late","again","early","on","time","is","was","teacher","note","quiz","score","bus","car","walk","to","school","today","and","not","did","class","photo","cat","dog","email","spam","sensor","room","warm","cold","open","window","may","need","support","family","contact","record","data","label","claim","decision"];
+  function tokenize(){
+    var t=$("txtIn").value,words=t.toLowerCase().match(/[a-z0-9']+|[.,!?;]/g)||[];
+    var box=$("tokens");box.innerHTML="";var codes=[];
+    words.forEach(function(w){var i=VOC.indexOf(w);var tok=el("span","tok"+(i<0?" unk":""));tok.appendChild(document.createTextNode(w));tok.appendChild(el("small",null,i<0?"UNK":"#"+(i+1)));box.appendChild(tok);codes.push(i<0?0:i+1)});
+    $("txtOut").textContent=codes.length?"["+codes.join(", ")+"]":"[ ]";
+  }
+  $("txtIn").addEventListener("input",tokenize);tokenize();
+
+  // Sound → samples
+  function wave(x){return 0.55*Math.sin(x*2*Math.PI)+0.25*Math.sin(x*2*Math.PI*3.2+1)+0.12*Math.sin(x*2*Math.PI*9)}
+  function drawWave(){
+    var cv=$("wave"),ctx=cv.getContext("2d"),W=cv.width,H=cv.height,n=parseInt($("rate").value,10);$("rateVal").textContent=n;
+    ctx.clearRect(0,0,W,H);
+    ctx.strokeStyle="#c2ccd7";ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(0,H/2);ctx.lineTo(W,H/2);ctx.stroke();
+    ctx.strokeStyle="#9aa7b4";ctx.lineWidth=2.5;ctx.beginPath();
+    for(var px=0;px<=W;px++){var y=H/2-wave(px/W)*H*0.42;if(px===0)ctx.moveTo(px,y);else ctx.lineTo(px,y)}ctx.stroke();
+    var samples=[];for(var i=0;i<n;i++){var x=(i+0.5)/n;samples.push(wave(x))}
+    ctx.strokeStyle="#0e8fa8";ctx.lineWidth=2.5;ctx.beginPath();
+    for(var j=0;j<n;j++){var x0=j/n*W,x1=(j+1)/n*W,yy=H/2-samples[j]*H*0.42;if(j===0)ctx.moveTo(x0,yy);else ctx.lineTo(x0,yy);ctx.lineTo(x1,yy)}ctx.stroke();
+    ctx.fillStyle="#d19a1e";
+    for(var k=0;k<n;k++){var cx=(k+0.5)/n*W,cy=H/2-samples[k]*H*0.42;ctx.beginPath();ctx.arc(cx,cy,n>40?3:5,0,Math.PI*2);ctx.fill()}
+    var vals=samples.map(function(v){return (v>=0?"+":"")+v.toFixed(2)});
+    $("sndOut").textContent=n+" samples:\n"+vals.join(n>24?" ":"  ");
+    $("sndNote").textContent=n<12?"With "+n+" samples the stair-step line is all a model can see. The quick wobbles in the grey curve are gone from the record.":n<32?"With "+n+" samples the shape is roughly there, but the fastest wobble still slips between samples.":"With "+n+" samples the record follows the curve closely. More numbers, closer to the world, and still only numbers at chosen moments.";
+  }
+  $("rate").addEventListener("input",drawWave);drawWave();
+
+  // Choice → categories
+  var ROWS=[["Student 1","Bus"],["Student 2","Walk"],["Student 3 (rides a bike)",null]];
+  var chcOther=false,chcMine="";
+  function chcRender(){
+    var ds=$("chcDs");ds.innerHTML="";var t=el("table");var th=el("thead");th.innerHTML="<tr><th>Student</th><th>How they got to school</th></tr>";t.appendChild(th);var tb=el("tbody");
+    ROWS.forEach(function(r){var tr=el("tr");tr.appendChild(el("td",null,r[0]));var v=r[1];if(v===null)v=chcOther?"Other":null;var td=el("td",v===null?"miss":null,v===null?"(no row, or a wrong one)":v);tr.appendChild(td);tb.appendChild(tr)});
+    var tr=el("tr");tr.appendChild(el("td",null,"You"));tr.appendChild(el("td",chcMine?null:"miss",chcMine||"(not answered)"));tb.appendChild(tr);
+    t.appendChild(tb);ds.appendChild(t);
+    $("chcNote").textContent=chcOther?"With “Other,” the bike rider is at least present in the table, as a category defined by the form’s designer. The model still does not know a bike exists; it knows “Other.”":"Without a needed option, the bike rider is recorded as something they are not, or not at all. A model trained on this table cannot discover bikes exist.";
+  }
+  document.querySelectorAll('input[name="chc"]').forEach(function(r){r.addEventListener("change",function(){chcMine=r.value;chcRender()})});
+  $("chcAdd").addEventListener("click",function(){
+    if(chcOther)return;chcOther=true;var lab=el("label");var r=document.createElement("input");r.type="radio";r.name="chc";r.value="Other";r.addEventListener("change",function(){chcMine="Other";chcRender()});lab.appendChild(r);lab.appendChild(document.createTextNode(" Other"));
+    $("chcForm").insertBefore(lab,$("chcForm").querySelector(".add"));this.disabled=true;this.textContent="“Other” added";chcRender();
+  });
+  chcRender();
+})();
+</script>
+</body>
+</html>
