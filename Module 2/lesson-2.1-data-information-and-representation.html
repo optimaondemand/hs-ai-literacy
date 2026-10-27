@@ -1,1 +1,644 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lesson 2.1 — Data, Information, and Representation</title><style>body{font-family:Arial,sans-serif;line-height:1.55;max-width:960px;margin:auto;padding:2rem;color:#17212b}header,footer{border-left:8px solid #1f6f8b;padding-left:1rem}h1,h2{color:#123e52}.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;background:#eef7fa;padding:1rem;border-radius:8px}.step{border:1px solid #b8c6cc;border-radius:8px;padding:1rem;margin:1rem 0}.num{font-weight:bold;color:#fff;background:#1f6f8b;border-radius:50%;padding:.2rem .55rem}.note{background:#fff6df;border-left:5px solid #b7791f;padding:1rem}</style></head><body><header><p>AI Literacy • Module 2 • Lesson 2.1</p><h1>Data, Information, and Representation</h1><p>Lesson activity and guided application</p></header><section class="meta"><div><strong>Estimated time</strong><br>45–55 minutes</div><div><strong>Lesson type</strong><br>Data literacy + classification</div><div><strong>Submit today</strong><br>Data Inventory</div><div><strong>Module project</strong><br>Choose a possible model context</div></section><p><strong>Today’s Focus Question:</strong> How do observations become data representations that support, but do not replace, judgment?</p><h2>What you will be able to do</h2><ul><li>Distinguish observations, labels, categories, claims, and decisions.</li><li>Explain why data are representations rather than complete reality.</li><li>Identify features and missing context in a familiar process.</li></ul><p><strong>Materials:</strong> Reading 2.1, Canvas text-entry access, and one familiar app or school process. No external account is required.</p><section class="step"><p><span class="num">1</span> <strong>Retrieve and predict — 5 minutes</strong></p><p>Classify these: “72°F,” “hot day,” “the classroom is uncomfortable,” and “open the window.” Which are an observation, category/label, claim, and decision?</p></section><section class="step"><p><span class="num">2</span> <strong>Experience: data-type sorter — 8 minutes</strong></p><p>For each item, mark observation, label, category, claim, decision, or more than one: a photo; “cat” written on a photo; a school’s “on time” rule; a statement that a student is disengaged; a recommendation to contact a family; a count of missed assignments.</p><p><strong>Accessible text fallback:</strong> Make a six-row table with columns <em>item, type, why, what may be missing</em>. There may be more than one reasonable answer if you explain it.</p><div class="note"><strong>Feedback check:</strong> A label is not the same as a fact about a person. “Disengaged” is an interpretation that may need more context. A decision is an action, not merely a prediction.</div></section><section class="step"><p><span class="num">3</span> <strong>Learn — 10 minutes</strong></p><p>Read Reading 2.1. In your notes, write one example of each term: data, representation, label, feature, and proxy. Add a sentence explaining what each example leaves out.</p></section><section class="step"><p><span class="num">4</span> <strong>Practice with feedback — 8 minutes</strong></p><p>Complete Guided Practice 2.1 in Canvas. You may retake it. Expect items about labels versus claims, features versus people, and missing context.</p></section><section class="step"><p><span class="num">5</span> <strong>Apply independently — 15 minutes</strong></p><p>Open <strong>Assignment 2.1 — Data Inventory</strong>. Analyze one familiar app or school process using observations, labels, categories, claims, decisions, features, and missing context.</p><p><strong>AI-use guidance:</strong> Do not use generative AI to draft the inventory. You may consult a product’s documentation for factual details and cite it.</p></section><section class="step"><p><span class="num">6</span> <strong>Build the portfolio — 5 minutes</strong></p><p>List two possible low-risk model contexts you could investigate later (for example: classifying recyclable items from descriptions, sorting plant-leaf descriptions, or identifying music genres from teacher-provided examples). Do not collect personal or sensitive data.</p></section><h2>Success checklist</h2><ul><li>I can distinguish a recorded observation from a label, claim, or decision.</li><li>I can name what a representation leaves out.</li><li>I completed Guided Practice 2.1 and read feedback.</li><li>I submitted a Data Inventory with a disclosure.</li></ul><h2>AI Lab Notebook</h2><p>Write 3–5 sentences: What is one piece of data a familiar system could collect, and what might that data fail to represent? Add your AI-use disclosure.</p><footer><p>AI Literacy • Module 2 • Lesson 2.1 | If an interactive is unavailable, complete the text fallback.</p></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lesson 2.1 — Data, Information, and Representation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .objectives{counter-reset:obj;list-style:none;padding:0;margin:.6rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.6rem}
+  .objectives li{counter-increment:obj;margin:0;padding:.7rem .9rem .7rem 2.9rem;position:relative;background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--radius)}
+  .objectives li::before{content:counter(obj,decimal-leading-zero);position:absolute;left:.8rem;top:.8rem;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--teal)}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .tools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.7rem}
+  .counts span b{color:var(--teal-deep)}
+
+  /* ---------- Warm-up sort (Step 1) ---------- */
+  .warm .bins{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+  .warm .bin{min-height:110px}
+  .warm .chip{font-family:var(--mono);font-size:.92rem}
+  .warm .chip .ex{display:block;font-family:var(--sans);font-size:.84rem;color:var(--ink-soft);margin-top:.3rem;animation:reveal .3s ease-out}
+
+  /* ---------- The Data-Type Sorter (Step 2) ---------- */
+  .sorter .items{display:grid;gap:.7rem;margin-top:.6rem}
+  .sorter .item{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.75rem .9rem;background:#fff;transition:border-color .25s,box-shadow .25s}
+  .sorter .item.typed{border-color:#a9c9d4;box-shadow:0 0 0 3px rgba(14,143,168,.08)}
+  .sorter .item .it{display:flex;gap:.6rem;align-items:baseline;margin-bottom:.45rem}
+  .sorter .item .it b{font-family:var(--mono);color:var(--teal);font-size:.8rem}
+  .sorter .item .it span{font-weight:600;color:var(--teal-deep)}
+  .sorter .types{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.5rem}
+  .sorter .type{font:inherit;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .6rem;border:1px solid var(--teal);border-radius:999px;background:#fff;color:var(--teal);cursor:pointer;transition:background .15s,color .15s}
+  .sorter .type:hover{background:var(--teal-pale)}
+  .sorter .type[aria-pressed="true"]{background:var(--navy);color:var(--cyan);border-color:var(--cyan)}
+  .sorter .type:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .sorter .multi{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:#6d4a00;background:var(--gold-pale);border:1px dashed var(--gold);border-radius:999px;padding:.25rem .55rem;align-self:center}
+  .sorter .fields{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+  @media (max-width:640px){.sorter .fields{grid-template-columns:1fr}}
+  .sorter .fields label{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+  .sorter .fields textarea{width:100%;min-height:54px;font-family:var(--sans);font-size:.94rem;line-height:1.45;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
+  .sorter .fields textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .debrief{display:none;margin-top:.9rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden}
+  .debrief.show{display:block;animation:reveal .35s ease-out}
+  .debrief table{margin:0;font-size:.94rem}
+  .debrief td:first-child{font-weight:600;color:var(--teal-deep)}
+  .debrief .pip{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;white-space:nowrap;margin:0 .2rem .2rem 0}
+  .debrief .pip.match{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+  .debrief .pip.near{border-color:var(--gold);background:var(--gold-pale);color:#6d4a00}
+  .debrief .why{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:.2rem}
+  .debrief .note{margin:0;border-radius:0;border-left-width:0;border-top:1px solid var(--rule-strong)}
+
+  /* ---------- Vocabulary ledger (Step 3) ---------- */
+  .vocab{display:grid;gap:.6rem;margin-top:.6rem}
+  .vocab .term{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) minmax(0,1.1fr);gap:.6rem;align-items:start;border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.7rem .8rem;background:#fff;transition:border-color .25s,background .25s}
+  @media (max-width:760px){.vocab .term{grid-template-columns:1fr}}
+  .vocab .term.done{border-color:#b7dcc6;background:#f7fcf9}
+  .vocab .term .w{font-family:var(--mono);font-weight:600;color:var(--teal-deep);font-size:1rem}
+  .vocab .term .d{font-size:.9rem;color:var(--ink-soft);margin:.2rem 0 0}
+  .vocab .term label{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+  .vocab .term textarea{width:100%;min-height:60px;font-family:var(--sans);font-size:.94rem;line-height:1.45;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
+  .vocab .term textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+
+  /* ---------- Inventory Builder (Step 5) ---------- */
+  .builder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;align-items:start}
+  @media (max-width:720px){.builder{grid-template-columns:1fr}}
+  .parts{display:grid;gap:.6rem}
+  .part{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.6rem .8rem;background:#fff}
+  .part.pair{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
+  .part.pair > label{grid-column:1 / -1}
+  .part label{display:flex;justify-content:space-between;gap:.5rem;align-items:baseline;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.3rem}
+  .part label .n{color:var(--teal)}
+  .part .q{font-size:.9rem;color:var(--ink-soft);margin:0 0 .4rem;font-family:var(--sans)}
+  .part textarea,.part input[type=text]{width:100%;font-family:var(--sans);font-size:.96rem;line-height:1.5;padding:.5rem .65rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
+  .part textarea{min-height:58px}
+  .part textarea:focus,.part input[type=text]:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .part .flag{margin-top:.3rem;min-height:1.2em;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft)}
+  .part .flag .word{display:inline-block;background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.08rem .45rem;font-family:var(--sans);font-size:.82rem;margin:0 .15rem .15rem 0}
+  .part .flag .warn{display:inline-block;background:var(--gold-pale);border:1px solid var(--gold);color:#6d4a00;border-radius:999px;padding:.08rem .45rem;font-family:var(--sans);font-size:.82rem;margin:0 .15rem .15rem 0}
+  .part .flag .clean{color:var(--ok)}
+  .draftpane{position:sticky;top:3.6rem}
+  .draftpane .out{min-height:260px;padding:.9rem 1rem;border:1px solid var(--teal-deep);border-radius:var(--radius);background:var(--navy);color:#e8f3f7;font-size:.95rem;line-height:1.6;white-space:pre-wrap;font-family:var(--mono)}
+  .draftpane .out .ph{color:#7f97a4;font-style:italic;font-family:var(--sans)}
+  .draftpane .out .k{color:var(--cyan)}
+  .draftpane .reqs{margin-top:.6rem}
+
+  /* ---------- Model context shortlist (Step 6) ---------- */
+  .shortlist{list-style:none;padding:0;margin:.6rem 0;display:grid;gap:.6rem}
+  .shortlist li{display:grid;grid-template-columns:28px minmax(0,1fr) minmax(0,1.2fr);gap:.5rem;align-items:start;margin:0}
+  @media (max-width:640px){.shortlist li{grid-template-columns:28px 1fr}.shortlist li .second{grid-column:2}}
+  .shortlist .n{font-family:var(--mono);font-size:.8rem;color:var(--teal);text-align:center;padding-top:.5rem}
+  .shortlist input[type=text]{width:100%;font:inherit;font-size:.95rem;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .shortlist input[type=text]:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .shortlist .flag{grid-column:2 / -1;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);min-height:1em}
+  .shortlist .flag .word{display:inline-block;background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.08rem .45rem;font-family:var(--sans);font-size:.82rem;margin:0 .15rem .15rem 0}
+  .shortlist .flag .clean{color:var(--ok)}
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 2 • Lesson 2.1" data-title="Data, Information, and Representation" data-key="ail-intro-2.1-lesson"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 2 • Lesson 2.1</p>
+    <h1>Data, Information, and Representation</h1>
+    <p class="lede">Lesson activity and guided application</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <div class="rail" id="rail" aria-label="Lesson progress">
+    <span class="label">Lesson progress</span>
+    <div class="segs" id="segs" aria-hidden="true"></div>
+    <span class="pct" id="pct" aria-live="polite">0 of 6 steps</span>
+    <button type="button" id="resetAll" title="Clear saved progress on this device">Reset</button>
+  </div>
+
+  <section class="ledger" aria-label="Lesson details">
+    <div><span class="k">Estimated time</span><span class="v">45–55 minutes</span></div>
+    <div><span class="k">Lesson type</span><span class="v">Data literacy + classification</span></div>
+    <div><span class="k">Submit today</span><span class="v">Data Inventory</span></div>
+    <div><span class="k">Module project</span><span class="v">Choose a possible model context</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Today’s Focus Question:</strong> How do observations become data representations that support, but do not replace, judgment?</p>
+  </div>
+
+  <h2>What you will be able to do</h2>
+  <ul class="objectives">
+    <li>Distinguish observations, labels, categories, claims, and decisions.</li>
+    <li>Explain why data are representations rather than complete reality.</li>
+    <li>Identify features and missing context in a familiar process.</li>
+  </ul>
+  <p><strong>Materials:</strong> Reading 2.1, Canvas text-entry access, and one familiar app or school process. No external account is required.</p>
+
+  <h2>Lesson sequence</h2>
+  <ol class="sequence" id="sequence">
+
+    <!-- ============ STEP 1 ============ -->
+    <li class="step" data-step="1">
+      <span class="num" aria-hidden="true">1</span>
+      <div class="head"><h3>Retrieve and predict</h3><span class="time">5 minutes</span></div>
+      <p>Classify these: “72°F,” “hot day,” “the classroom is uncomfortable,” and “open the window.” Which are an observation, category/label, claim, and decision?</p>
+      <div class="widget warm" id="warmWidget">
+        <div class="bar"><span>Interactive · Warm-up sort</span><span class="tag">Four phrases, four bins</span></div>
+        <div class="body">
+          <p>Drag each phrase into a bin, or click a phrase and then a bin. Press <strong>Check</strong> when all four are placed. The bin definitions come straight from the reading.</p>
+          <div class="pool" id="warmPool" aria-label="Phrases to sort"></div>
+          <div class="bins" id="warmBins">
+            <div class="bin" data-bin="obs"><h4>Observation <span class="cnt"></span></h4><p class="def">A recorded fact or measurement.</p><div class="drop"></div></div>
+            <div class="bin" data-bin="cat"><h4>Category / label <span class="cnt"></span></h4><p class="def">A tag attached to an observation, or a group defined by a rule or convention.</p><div class="drop"></div></div>
+            <div class="bin" data-bin="claim"><h4>Claim <span class="cnt"></span></h4><p class="def">A statement that interprets evidence.</p><div class="drop"></div></div>
+            <div class="bin" data-bin="dec"><h4>Decision <span class="cnt"></span></h4><p class="def">An action selected using information and judgment.</p><div class="drop"></div></div>
+          </div>
+          <div class="tools">
+            <span class="counts"><span><b id="warmPlaced">0</b> of 4 placed</span></span>
+            <span><button type="button" class="btn ghost" id="warmReset">Start over</button> <button type="button" class="btn" id="warmCheck" disabled>Check</button></span>
+          </div>
+          <div class="status" id="warmStatus" role="status" aria-live="polite">Four phrases. Which one is a measurement, which is a tag, which interprets, and which acts?</div>
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="1" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 2 ============ -->
+    <li class="step" data-step="2">
+      <span class="num" aria-hidden="true">2</span>
+      <div class="head"><h3>Experience: data-type sorter</h3><span class="time">8 minutes</span></div>
+      <p>For each item, mark observation, label, category, claim, decision, or more than one: a photo; “cat” written on a photo; a school’s “on time” rule; a statement that a student is disengaged; a recommendation to contact a family; a count of missed assignments.</p>
+
+      <div class="widget sorter" id="sorterWidget">
+        <div class="bar"><span>Interactive · The Data-Type Sorter</span><span class="tag">Type, explain, then debrief</span></div>
+        <div class="body">
+          <p>Each item is a row of the six-row table. Press one or more type chips (pressing two or more means “more than one”), then write <em>why</em> and <em>what may be missing</em>. When all six have a type, press <strong>Debrief</strong> to compare your reading with the reading’s own definitions. More than one answer can be reasonable; the debrief shows which ones, as long as you explained it.</p>
+          <div class="items" id="sorterItems"></div>
+          <div class="tools">
+            <span class="counts"><span><b id="sorterTyped">0</b> of 6 typed</span><span><b id="sorterWhy">0</b> of 6 explained</span><span><b id="sorterMiss">0</b> of 6 missing-context notes</span></span>
+            <span><button type="button" class="btn ghost" id="sorterReset">Start over</button> <button type="button" class="btn" id="sorterDebrief" disabled>Debrief</button></span>
+          </div>
+          <div class="status" id="sorterStatus" role="status" aria-live="polite">Six items. Give each a type and a reason.</div>
+          <div class="debrief" id="sorterOut" aria-live="polite">
+            <table>
+              <thead><tr><th scope="col">Item</th><th scope="col">Your type</th><th scope="col">Best supported by the reading</th></tr></thead>
+              <tbody id="sorterBody"></tbody>
+            </table>
+            <div class="note" id="sorterNote"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="note"><p><strong>Accessible text fallback:</strong> Make a six-row table with columns <em>item, type, why, what may be missing</em>. There may be more than one reasonable answer if you explain it.</p></div>
+      <div class="note"><p><strong>Feedback check:</strong> A label is not the same as a fact about a person. “Disengaged” is an interpretation that may need more context. A decision is an action, not merely a prediction.</p></div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="2" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 3 ============ -->
+    <li class="step" data-step="3">
+      <span class="num" aria-hidden="true">3</span>
+      <div class="head"><h3>Learn</h3><span class="time">10 minutes</span></div>
+      <p>Read Reading 2.1. In your notes, write one example of each term: data, representation, label, feature, and proxy. Add a sentence explaining what each example leaves out.</p>
+      <div class="widget" id="vocabWidget">
+        <div class="bar"><span>Interactive · Vocabulary ledger</span><span class="tag">This device only</span></div>
+        <div class="body">
+          <p>The five terms, with the reading’s definitions beside them. Write your example and what it leaves out here instead of on paper; the ledger stays on this device.</p>
+          <div class="vocab" id="vocab"></div>
+          <div class="tools">
+            <span class="counts"><span><b id="vocabEx">0</b> of 5 examples</span><span><b id="vocabLo">0</b> of 5 leave-outs</span></span>
+            <button type="button" class="btn ghost" id="vocabCopy" disabled>Copy ledger</button>
+          </div>
+          <div class="status" id="vocabStatus" role="status" aria-live="polite">Five terms, two lines each.</div>
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="3" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 4 ============ -->
+    <li class="step" data-step="4">
+      <span class="num" aria-hidden="true">4</span>
+      <div class="head"><h3>Practice with feedback</h3><span class="time">8 minutes</span></div>
+      <p>Complete Guided Practice 2.1 in Canvas. You may retake it. Expect items about labels versus claims, features versus people, and missing context.</p>
+      <div class="foot"><button type="button" class="markbtn" data-mark="4" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 5 ============ -->
+    <li class="step" data-step="5">
+      <span class="num" aria-hidden="true">5</span>
+      <div class="head"><h3>Apply independently</h3><span class="time">15 minutes</span></div>
+      <p>Open <strong>Assignment 2.1 — Data Inventory</strong>. Analyze one familiar app or school process using observations, labels, categories, claims, decisions, features, and missing context.</p>
+      <div class="note"><p><strong>AI-use guidance:</strong> Do not use generative AI to draft the inventory. You may consult a product’s documentation for factual details and cite it.</p></div>
+
+      <div class="widget" id="builderWidget">
+        <div class="bar"><span>Interactive · Inventory Builder</span><span class="tag">Draft before you submit</span></div>
+        <div class="body">
+          <p>Fill the assignment’s template one field at a time. The right-hand panel assembles the inventory in the exact format the assignment asks for, and runs four checks: every field written, no personal or sensitive data named, features that describe properties rather than people, and a claim that sounds like an interpretation rather than a fact. Nothing is written for you. When all four checks are lit, copy the inventory into Canvas.</p>
+          <div class="builder">
+            <div class="parts" id="parts">
+              <div class="part"><label><span><span class="n">1</span> System/process</span></label><p class="q">A familiar, non-sensitive app or school process.</p><input type="text" data-part="sys" data-store="ail21l-i-sys" placeholder="A navigation app / the library checkout process…"><div class="flag"></div></div>
+              <div class="part"><label><span><span class="n">2</span> Purpose</span></label><p class="q">What is it for?</p><input type="text" data-part="pur" data-store="ail21l-i-pur" placeholder="It exists to…"><div class="flag"></div></div>
+              <div class="part pair"><label><span><span class="n">3</span> Observations</span></label><div><textarea data-part="o1" data-store="ail21l-i-o1" placeholder="Observation 1: a recorded fact or measurement"></textarea></div><div><textarea data-part="o2" data-store="ail21l-i-o2" placeholder="Observation 2"></textarea></div><div class="flag" style="grid-column:1 / -1"></div></div>
+              <div class="part"><label><span><span class="n">4</span> Label or category</span></label><p class="q">A tag it attaches, or a group it defines by rule.</p><textarea data-part="lab" data-store="ail21l-i-lab" placeholder="It may tag a record as… / it groups arrivals after 8:00 as…"></textarea><div class="flag"></div></div>
+              <div class="part"><label><span><span class="n">5</span> Claim</span></label><p class="q">A statement it might produce or support. A claim interprets evidence, so hedge it.</p><textarea data-part="clm" data-store="ail21l-i-clm" placeholder="The system might suggest that…"></textarea><div class="flag"></div></div>
+              <div class="part"><label><span><span class="n">6</span> Decision</span></label><p class="q">An action a person or system might take. An action, not merely a prediction.</p><textarea data-part="dec" data-store="ail21l-i-dec" placeholder="A person might then…"></textarea><div class="flag"></div></div>
+              <div class="part pair"><label><span><span class="n">7</span> Features / inputs</span></label><div><textarea data-part="f1" data-store="ail21l-i-f1" placeholder="Feature/input 1: a measurable or encoded property"></textarea></div><div><textarea data-part="f2" data-store="ail21l-i-f2" placeholder="Feature/input 2"></textarea></div><div class="flag" style="grid-column:1 / -1"></div></div>
+              <div class="part"><label><span><span class="n">8</span> Missing context</span></label><p class="q">One important thing the records cannot show.</p><textarea data-part="mis" data-store="ail21l-i-mis" placeholder="The records do not show…"></textarea><div class="flag"></div></div>
+              <div class="part"><label><span><span class="n">9</span> Why the representation is incomplete</span></label><p class="q">One sentence on why data are not the same as complete reality.</p><textarea data-part="why" data-store="ail21l-i-why" placeholder="Data are representations, not reality itself, because…"></textarea><div class="flag"></div></div>
+            </div>
+            <div class="draftpane">
+              <div class="out" id="draftOut" aria-live="polite"><span class="ph">Your inventory assembles here as you write, in the assignment’s template.</span></div>
+              <div class="counts" style="margin-top:.5rem"><span><b id="fillCount">0</b> of 11 fields</span><span><b id="wc">0</b> words</span></div>
+              <ul class="reqs" id="breqs">
+                <li data-req="parts"><span class="dot"></span><span>All eleven fields written</span></li>
+                <li data-req="safe"><span class="dot"></span><span>No personal or sensitive data named</span></li>
+                <li data-req="feat"><span class="dot"></span><span>Features and labels describe properties, not people</span></li>
+                <li data-req="hedge"><span class="dot"></span><span>The claim is hedged (may, might, likely, suggests…)</span></li>
+              </ul>
+              <div class="tools">
+                <span class="muted" style="font-size:.86rem">Add your AI-use disclosure line in Canvas.</span>
+                <span><button type="button" class="btn ghost" id="bClear">Clear</button> <button type="button" class="btn" id="bCopy" disabled>Copy inventory</button></span>
+              </div>
+              <div class="status" id="bStatus" role="status" aria-live="polite">Start with field 1.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="5" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 6 ============ -->
+    <li class="step" data-step="6">
+      <span class="num" aria-hidden="true">6</span>
+      <div class="head"><h3>Build the portfolio</h3><span class="time">5 minutes</span></div>
+      <p>List two possible low-risk model contexts you could investigate later (for example: classifying recyclable items from descriptions, sorting plant-leaf descriptions, or identifying music genres from teacher-provided examples). Do not collect personal or sensitive data.</p>
+      <div class="widget" id="ctxWidget">
+        <div class="bar"><span>Interactive · Model context shortlist</span><span class="tag">Copy into your notebook</span></div>
+        <div class="body">
+          <p>Name each context and what its examples would describe. The list checks each line for personal or sensitive data before you copy it into your notebook.</p>
+          <ul class="shortlist" id="ctxList"></ul>
+          <div class="tools">
+            <span class="counts"><span><b id="ctxN">0</b> of 2 named</span><span><b id="ctxD">0</b> of 2 described</span></span>
+            <button type="button" class="btn ghost" id="ctxCopy" disabled>Copy list</button>
+          </div>
+          <div class="status" id="ctxStatus" role="status" aria-live="polite">Two contexts, both low-risk, neither about people.</div>
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="6" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+  </ol>
+
+  <h2>Success checklist</h2>
+  <ul class="checklist" id="checklist">
+    <li><label><input type="checkbox" data-check="0"><span>I can distinguish a recorded observation from a label, claim, or decision.</span></label></li>
+    <li><label><input type="checkbox" data-check="1"><span>I can name what a representation leaves out.</span></label></li>
+    <li><label><input type="checkbox" data-check="2"><span>I completed Guided Practice 2.1 and read feedback.</span></label></li>
+    <li><label><input type="checkbox" data-check="3"><span>I submitted a Data Inventory with a disclosure.</span></label></li>
+  </ul>
+  <p class="aside">Checkmarks, step progress, and notes are saved only in this browser. They are not submitted or graded.</p>
+
+  <h2>AI Lab Notebook</h2>
+  <p>Write 3–5 sentences: What is one piece of data a familiar system could collect, and what might that data fail to represent? Add your AI-use disclosure.</p>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 2 • Lesson 2.1 | If an interactive is unavailable, complete the text fallback.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+  function words(t){var m=t.trim().match(/\S+/g);return m?m.length:0}
+  function copyText(txt,st,okMsg){
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){st.className="status ok";st.textContent=okMsg},function(){st.className="status bad";st.textContent="Copy failed. Select the text and copy it by hand."})}
+    else{st.className="status bad";st.textContent="Copy failed. Select the text and copy it by hand."}
+  }
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+  // Words that suggest personal or sensitive data. The assignment says: do not use personal records or private data.
+  var SENSITIVE=/\b(names?|home address|address(es)?|phone( number)?s?|e-?mails?|passwords?|health|medical|diagnos\w*|disabilit\w*|IEP|income|religion|race|ethnic\w*|immigration|faces?|facial|fingerprints?|birthdays?|date of birth|social security|discipline records?|grades?|GPA|test scores?)\b/gi;
+  // Words that judge a person instead of describing a measurable property ("features versus people").
+  var PERSON=/\b(lazy|disengaged|unmotivated|motivated|smart|dumb|stupid|bright|gifted|slow|rude|difficult|irresponsible|responsible|troublemaker|at[- ]risk|good student|bad student|bad kid|good kid|hard[- ]working)\b/gi;
+  var HEDGE=/\b(may|might|likely|could|possibly|probably|perhaps|suggests?|appears?|seems?|indicates?|is consistent with|I cannot verify|I can’t verify|I can't verify)\b/i;
+
+  /* ---------- Step progress + rail ---------- */
+  var KEY_STEPS="ail21l-steps",KEY_CHECK="ail21l-checklist",TOTAL=6;
+  var steps=store.get(KEY_STEPS,{});
+  function renderRail(){
+    var segs=$("segs");segs.innerHTML="";var n=0;
+    for(var i=1;i<=TOTAL;i++){var s=el("span","seg"+(steps[i]?" done":""));segs.appendChild(s);if(steps[i])n++}
+    $("pct").textContent=n+" of "+TOTAL+" steps";
+    document.querySelectorAll(".step").forEach(function(li){
+      var k=li.getAttribute("data-step");li.classList.toggle("done",!!steps[k]);
+      var b=li.querySelector(".markbtn");if(b){b.setAttribute("aria-pressed",steps[k]?"true":"false");
+        b.innerHTML='<span class="tick" aria-hidden="true">'+(steps[k]?"✓":"○")+'</span> '+(steps[k]?"Step complete":"Mark step complete")}
+    });
+  }
+  document.querySelectorAll(".markbtn").forEach(function(b){
+    b.addEventListener("click",function(){var k=b.getAttribute("data-mark");steps[k]=!steps[k];store.set(KEY_STEPS,steps);renderRail()});
+  });
+  var checks=store.get(KEY_CHECK,{});
+  document.querySelectorAll("#checklist input").forEach(function(c){
+    var k=c.getAttribute("data-check");c.checked=!!checks[k];
+    c.addEventListener("change",function(){checks[k]=c.checked;store.set(KEY_CHECK,checks)});
+  });
+  document.querySelectorAll("textarea[data-store],input[type=text][data-store]").forEach(function(t){
+    var k=t.getAttribute("data-store");t.value=store.get(k,"");
+    t.addEventListener("input",function(){store.set(k,t.value)});
+  });
+  $("resetAll").addEventListener("click",function(){
+    if(!confirm("Clear saved progress, checkmarks, and notes for this lesson on this device?"))return;
+    steps={};checks={};store.del(KEY_STEPS);store.del(KEY_CHECK);
+    document.querySelectorAll("#checklist input").forEach(function(c){c.checked=false});
+    document.querySelectorAll("textarea[data-store],input[type=text][data-store]").forEach(function(t){t.value="";store.del(t.getAttribute("data-store"))});
+    ["ail21l-warm","ail21l-warm-order","ail21l-sorter","ail21l-sorter-order"].forEach(store.del);
+    for(var i=0;i<5;i++){store.del("ail21l-v"+i+"e");store.del("ail21l-v"+i+"l")}
+    for(var j=1;j<=2;j++){store.del("ail21l-c"+j+"n");store.del("ail21l-c"+j+"d")}
+    renderRail();warmReset();sorterReset();vocabRender();buildDraft();ctxRender();
+  });
+  renderRail();
+
+  /* ---------- Warm-up sort ---------- */
+  var WBIN={obs:"Observation",cat:"Category / label",claim:"Claim",dec:"Decision"};
+  var WARM=[
+    {id:"t",t:"“72°F”",best:"obs",why:"A recorded fact or measurement: the sensor measured 72°F."},
+    {id:"h",t:"“hot day”",best:"cat",why:"A tag or a group defined by a rule: “hot” is a category someone chose a cutoff for."},
+    {id:"u",t:"“the classroom is uncomfortable”",best:"claim",why:"A statement that interprets evidence. It may need additional evidence."},
+    {id:"w",t:"“open the window”",best:"dec",why:"An action selected using information and judgment, and a decision should include human responsibility."}
+  ];
+  var warm=store.get("ail21l-warm",{}),warmSel=null;
+  function warmStatus(kind,text){var s=$("warmStatus");s.className="status"+(kind?" "+kind:"");s.textContent=text}
+  function warmCounts(){
+    var placed=0;WARM.forEach(function(w){if(warm[w.id])placed++});
+    $("warmPlaced").textContent=placed;$("warmCheck").disabled=placed<4;
+    document.querySelectorAll("#warmBins .bin").forEach(function(b){var n=b.querySelectorAll(".chip").length;b.querySelector(".cnt").textContent=n?n+" placed":""});
+    return placed;
+  }
+  function warmChip(w){
+    var ch=el("button","chip",w.t);ch.type="button";ch.setAttribute("draggable","true");ch._w=w;
+    ch.setAttribute("aria-label",w.t+". Press to select, then choose a bin.");
+    ch.addEventListener("click",function(){
+      if(warmSel===ch){ch.classList.remove("sel");warmSel=null;return}
+      if(warmSel)warmSel.classList.remove("sel");warmSel=ch;ch.classList.add("sel");warmStatus("","Selected "+w.t+". Now click a bin.");
+    });
+    ch.addEventListener("dragstart",function(e){if(warmSel)warmSel.classList.remove("sel");warmSel=ch;ch.classList.add("sel");try{e.dataTransfer.setData("text/plain",w.id)}catch(x){}e.dataTransfer.effectAllowed="move"});
+    return ch;
+  }
+  function warmPlace(ch,bin){
+    var key=bin.getAttribute("data-bin");warm[ch._w.id]=key;store.set("ail21l-warm",warm);
+    bin.querySelector(".drop").appendChild(ch);ch.classList.remove("sel","right","wrong");var ex=ch.querySelector(".ex");if(ex)ex.remove();warmSel=null;
+    var n=warmCounts();
+    if(n===4)warmStatus("ok","All four placed. Press Check.");else warmStatus("",ch._w.t+" placed under "+WBIN[key]+". "+(4-n)+" to go.");
+  }
+  document.querySelectorAll("#warmBins .bin").forEach(function(bin){
+    bin.tabIndex=0;bin.setAttribute("role","button");
+    bin.addEventListener("click",function(e){if(e.target.closest(".chip"))return;if(warmSel)warmPlace(warmSel,bin)});
+    bin.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&warmSel){e.preventDefault();warmPlace(warmSel,bin)}});
+    bin.addEventListener("dragover",function(e){e.preventDefault();bin.classList.add("over")});
+    bin.addEventListener("dragleave",function(){bin.classList.remove("over")});
+    bin.addEventListener("drop",function(e){e.preventDefault();bin.classList.remove("over");if(warmSel)warmPlace(warmSel,bin)});
+  });
+  var wpool=$("warmPool");
+  wpool.addEventListener("dragover",function(e){e.preventDefault()});
+  wpool.addEventListener("drop",function(e){e.preventDefault();if(warmSel){delete warm[warmSel._w.id];store.set("ail21l-warm",warm);wpool.appendChild(warmSel);warmSel.classList.remove("sel","right","wrong");warmSel=null;warmCounts()}});
+  function warmRender(){
+    wpool.innerHTML="";document.querySelectorAll("#warmBins .drop").forEach(function(x){x.innerHTML=""});
+    var order=store.get("ail21l-warm-order",null);
+    if(!order){order=shuffle(WARM.map(function(w){return w.id}));store.set("ail21l-warm-order",order)}
+    order.forEach(function(id){
+      var w=WARM.filter(function(x){return x.id===id})[0];var ch=warmChip(w);
+      if(warm[w.id]){document.querySelector('#warmBins .bin[data-bin="'+warm[w.id]+'"] .drop').appendChild(ch)}else wpool.appendChild(ch);
+    });
+    warmCounts();
+  }
+  function warmReset(){warm={};store.del("ail21l-warm");store.del("ail21l-warm-order");warmSel=null;warmRender();warmStatus("","Four phrases. Which one is a measurement, which is a tag, which interprets, and which acts?")}
+  $("warmReset").addEventListener("click",warmReset);
+  $("warmCheck").addEventListener("click",function(){
+    var right=0;
+    document.querySelectorAll("#warmBins .chip").forEach(function(ch){
+      var w=ch._w,ok=warm[w.id]===w.best;ch.classList.remove("right","wrong");ch.classList.add(ok?"right":"wrong");if(ok)right++;
+      var ex=ch.querySelector(".ex");if(ex)ex.remove();ex=el("span","ex",(ok?"":"Best fit: "+WBIN[w.best]+". ")+w.why);ch.appendChild(ex);
+    });
+    if(right===4)warmStatus("ok","All four fit. These are not interchangeable: a label can be mistaken, a category can be designed differently, a claim may need additional evidence, and a decision should include human responsibility.");
+    else warmStatus("bad",right+" of 4 fit. Read the note under each phrase, move the ones that do not fit, and check again.");
+  });
+  warmRender();
+
+  /* ---------- The Data-Type Sorter ---------- */
+  var TYPES=[["observation","Observation"],["label","Label"],["category","Category"],["claim","Claim"],["decision","Decision"]];
+  var TNAME={};TYPES.forEach(function(t){TNAME[t[0]]=t[1]});
+  var ITEMS=[
+    {id:"A",t:"a photo",best:["observation"],also:[],
+     why:"A recorded representation: a photo records a view from one angle under particular lighting. If you also pressed another type, say what purpose the photo serves.",
+     miss:"what was outside the frame, the lighting, and the moment before and after"},
+    {id:"B",t:"“cat” written on a photo",best:["label"],also:[],
+     why:"A tag attached to an observation for a purpose, like “spam” on an email example. A label can be mistaken.",
+     miss:"who wrote the tag, by what rule, and whether the photo actually shows a cat"},
+    {id:"C",t:"a school’s “on time” rule",best:["category"],also:[],
+     why:"A group defined by a rule or convention, like “late arrival” for arrivals after 8:00. A category can be designed differently.",
+     miss:"why the cutoff sits where it does and what counts as arriving"},
+    {id:"D",t:"a statement that a student is disengaged",best:["claim"],also:["label"],
+     why:"A statement that interprets evidence. “Disengaged” is an interpretation that may need more context. If you pressed label, that is reasonable too: a label is not the same as a fact about a person.",
+     miss:"what was observed, over how long, and what else was happening for the student"},
+    {id:"E",t:"a recommendation to contact a family",best:["decision"],also:["claim"],
+     why:"An action selected using information and judgment, like “Contact the family” or “do not act yet.” A decision is an action, not merely a prediction. If you read the recommendation as a statement that still needs a person to act on it, claim is reasonable if you explain it.",
+     miss:"who is responsible for the decision and what evidence it rests on"},
+    {id:"F",t:"a count of missed assignments",best:["observation"],also:[],
+     why:"A recorded fact or measurement. A model might use it as a feature, or as a proxy for something harder to measure, but the count alone does not say why assignments were missed.",
+     miss:"the reasons behind the missed work and anything the count does not capture"}
+  ];
+  var sorter=store.get("ail21l-sorter",{}); // {A:{types:["claim"],why:"",miss:""}}
+  function sorterSave(){store.set("ail21l-sorter",sorter)}
+  function sorterStatus(kind,text){var s=$("sorterStatus");s.className="status"+(kind?" "+kind:"");s.textContent=text}
+  function sorterCounts(){
+    var typed=0,why=0,miss=0;
+    ITEMS.forEach(function(it){var d=sorter[it.id]||{};if(d.types&&d.types.length)typed++;if((d.why||"").trim())why++;if((d.miss||"").trim())miss++});
+    $("sorterTyped").textContent=typed;$("sorterWhy").textContent=why;$("sorterMiss").textContent=miss;$("sorterDebrief").disabled=typed<6;
+    document.querySelectorAll("#sorterItems .item").forEach(function(div){var d=sorter[div.getAttribute("data-id")]||{};div.classList.toggle("typed",!!(d.types&&d.types.length))});
+    return {typed:typed,why:why,miss:miss};
+  }
+  function sorterRender(){
+    var host=$("sorterItems");host.innerHTML="";
+    var order=store.get("ail21l-sorter-order",null);
+    if(!order){order=shuffle(ITEMS.map(function(i){return i.id}));store.set("ail21l-sorter-order",order)}
+    order.forEach(function(id){
+      var it=ITEMS.filter(function(x){return x.id===id})[0];
+      var d=sorter[it.id]||(sorter[it.id]={types:[],why:"",miss:""});
+      var div=el("div","item");div.setAttribute("data-id",it.id);
+      var head=el("div","it");head.appendChild(el("b",null,it.id));head.appendChild(el("span",null,it.t));div.appendChild(head);
+      var types=el("div","types");types.setAttribute("role","group");types.setAttribute("aria-label","Type of item "+it.id);
+      var multi=el("span","multi","more than one");multi.hidden=d.types.length<2;
+      TYPES.forEach(function(t){
+        var b=el("button","type",t[1]);b.type="button";b.setAttribute("aria-pressed",d.types.indexOf(t[0])>=0?"true":"false");
+        b.addEventListener("click",function(){
+          var i=d.types.indexOf(t[0]);if(i>=0)d.types.splice(i,1);else d.types.push(t[0]);
+          b.setAttribute("aria-pressed",i>=0?"false":"true");multi.hidden=d.types.length<2;sorterSave();
+          var n=sorterCounts();$("sorterOut").classList.remove("show");
+          if(n.typed===6)sorterStatus("ok","All six typed. Fill any missing reasons, then press Debrief.");
+          else sorterStatus("","Item "+it.id+": "+(d.types.length?d.types.map(function(k){return TNAME[k]}).join(" + "):"no type yet")+". "+(6-n.typed)+" item"+(6-n.typed===1?"":"s")+" still untyped.");
+        });
+        types.appendChild(b);
+      });
+      types.appendChild(multi);div.appendChild(types);
+      var fields=el("div","fields");
+      [["why","Why"],["miss","What may be missing"]].forEach(function(f){
+        var wrap=el("div");var lab=el("label",null,f[1]);lab.setAttribute("for","s-"+it.id+"-"+f[0]);
+        var ta=document.createElement("textarea");ta.id="s-"+it.id+"-"+f[0];ta.value=d[f[0]]||"";ta.placeholder=f[0]==="why"?"It is a … because…":"The record leaves out…";
+        ta.addEventListener("input",function(){d[f[0]]=ta.value;sorterSave();sorterCounts()});
+        wrap.appendChild(lab);wrap.appendChild(ta);fields.appendChild(wrap);
+      });
+      div.appendChild(fields);host.appendChild(div);
+    });
+    sorterCounts();
+  }
+  function sorterReset(){sorter={};store.del("ail21l-sorter");store.del("ail21l-sorter-order");$("sorterOut").classList.remove("show");sorterRender();sorterStatus("","Six items. Give each a type and a reason.")}
+  $("sorterReset").addEventListener("click",sorterReset);
+  $("sorterDebrief").addEventListener("click",function(){
+    var tb=$("sorterBody");tb.innerHTML="";var match=0,near=0,unexplained=0;
+    ITEMS.forEach(function(it){
+      var d=sorter[it.id],tr=el("tr");
+      var hitBest=d.types.some(function(k){return it.best.indexOf(k)>=0}),hitAlso=d.types.some(function(k){return it.also.indexOf(k)>=0});
+      tr.appendChild(el("td",null,it.id+". "+it.t));
+      var t1=el("td");d.types.forEach(function(k){t1.appendChild(el("span","pip"+(it.best.indexOf(k)>=0?" match":it.also.indexOf(k)>=0?" near":""),TNAME[k]))});
+      if(d.types.length>1)t1.appendChild(el("span","why","More than one: "+((d.why||"").trim()?"explained.":"not yet explained.")));
+      tr.appendChild(t1);
+      var t2=el("td");it.best.forEach(function(k){t2.appendChild(el("span","pip match",TNAME[k]))});it.also.forEach(function(k){t2.appendChild(el("span","pip near",TNAME[k]+" (if explained)"))});
+      var why=el("span","why",it.why);t2.appendChild(why);
+      if(!(d.miss||"").trim())t2.appendChild(el("span","why","What may be missing: "+it.miss+"."));
+      tr.appendChild(t2);tb.appendChild(tr);
+      if(hitBest)match++;else if(hitAlso)near++;
+      if(hitAlso&&!hitBest&&!(d.why||"").trim())unexplained++;
+    });
+    var note=$("sorterNote");
+    note.innerHTML="<p><strong>"+match+" of 6 match the reading’s best-supported type"+(near?", and "+near+" use"+(near===1?"s":"")+" a second reasonable reading":"")+".</strong> "+
+      (unexplained?"A second reading only counts if you explain it; "+unexplained+" of yours "+(unexplained===1?"has":"have")+" no reason yet. ":"")+
+      "A label is not the same as a fact about a person. “Disengaged” is an interpretation that may need more context. A decision is an action, not merely a prediction.</p>";
+    $("sorterOut").classList.add("show");
+    $("sorterOut").scrollIntoView({block:"nearest",behavior:"smooth"});
+  });
+  sorterRender();
+
+  /* ---------- Vocabulary ledger ---------- */
+  var VOCAB=[
+    ["data","recorded representations used for analysis or computation."],
+    ["representation","a form used to stand for an object, event, property, or idea."],
+    ["label","a tag assigned to an example for a purpose."],
+    ["feature","a measurable or encoded property used by a model."],
+    ["proxy","a measurable stand-in for something harder to measure directly."]
+  ];
+  function vocabRender(){
+    var host=$("vocab");host.innerHTML="";
+    VOCAB.forEach(function(v,i){
+      var row=el("div","term");
+      var left=el("div");left.appendChild(el("div","w",v[0]));left.appendChild(el("p","d",v[1]));row.appendChild(left);
+      [["e","One example"],["l","What it leaves out"]].forEach(function(f){
+        var wrap=el("div");var lab=el("label",null,f[1]);lab.setAttribute("for","v"+i+f[0]);
+        var ta=document.createElement("textarea");ta.id="v"+i+f[0];ta.setAttribute("data-store","ail21l-v"+i+f[0]);ta.value=store.get("ail21l-v"+i+f[0],"");
+        ta.placeholder=f[0]==="e"?"For example, …":"This example leaves out…";
+        ta.addEventListener("input",function(){store.set(ta.getAttribute("data-store"),ta.value);vocabStatus()});
+        wrap.appendChild(lab);wrap.appendChild(ta);row.appendChild(wrap);
+      });
+      host.appendChild(row);
+    });
+    vocabStatus();
+  }
+  function vocabStatus(){
+    var ex=0,lo=0;
+    document.querySelectorAll("#vocab .term").forEach(function(row,i){
+      var e=(store.get("ail21l-v"+i+"e","")||"").trim(),l=(store.get("ail21l-v"+i+"l","")||"").trim();
+      if(e)ex++;if(l)lo++;row.classList.toggle("done",!!(e&&l));
+    });
+    $("vocabEx").textContent=ex;$("vocabLo").textContent=lo;$("vocabCopy").disabled=ex+lo===0;
+    var st=$("vocabStatus");
+    if(ex===5&&lo===5){st.className="status ok";st.textContent="All five terms have an example and a leave-out. Copy the ledger into your notes."}
+    else{st.className="status";var t=[];if(ex<5)t.push((5-ex)+" example"+(5-ex>1?"s":""));if(lo<5)t.push((5-lo)+" leave-out"+(5-lo>1?"s":""));st.textContent="Still needed: "+t.join("; ")+"."}
+  }
+  $("vocabCopy").addEventListener("click",function(){
+    var lines=[];VOCAB.forEach(function(v,i){var e=(store.get("ail21l-v"+i+"e","")||"").trim(),l=(store.get("ail21l-v"+i+"l","")||"").trim();if(!e&&!l)return;lines.push(v[0]+": "+(e||"—")+(l?"\n  leaves out: "+l:""))});
+    copyText("Lesson 2.1 vocabulary\n"+lines.join("\n"),$("vocabStatus"),"Ledger copied. Paste it into your notes.");
+  });
+  vocabRender();
+
+  /* ---------- Inventory Builder ---------- */
+  var FIELDS=[["sys","System/process"],["pur","Purpose"],["o1","Observation 1"],["o2","Observation 2"],["lab","Label or category"],["clm","Claim"],["dec","Decision"],["f1","Feature/input 1"],["f2","Feature/input 2"],["mis","Missing context"],["why","Why the representation is incomplete"]];
+  var fieldEl={};document.querySelectorAll("#parts [data-part]").forEach(function(t){fieldEl[t.getAttribute("data-part")]=t});
+  function uniq(found){var seen={},u=[];(found||[]).forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;u.push(w)}});return u}
+  function buildDraft(){
+    var filled=0,sens=0,person=0,lines=[],all=[];
+    // per-part flags
+    document.querySelectorAll("#parts .part").forEach(function(part){
+      var f=part.querySelector(".flag");f.innerHTML="";
+      var inputs=part.querySelectorAll("[data-part]");var text=[];
+      inputs.forEach(function(t){text.push(t.value.trim())});
+      var v=text.join(" ").trim();if(!v)return;
+      var s=uniq(v.match(SENSITIVE)),p=[];
+      var k=inputs[0].getAttribute("data-part");
+      if(k==="o1"||k==="lab"||k==="f1")p=uniq(v.match(PERSON));
+      if(s.length){f.appendChild(el("span",null,"Personal or sensitive? "));s.forEach(function(w){f.appendChild(el("span","warn",w))});sens+=s.length}
+      if(p.length){f.appendChild(el("span",null,(s.length?" ":"")+"Judges a person: "));p.forEach(function(w){f.appendChild(el("span","word",w))});person+=p.length}
+      if(!s.length&&!p.length){
+        if(k==="clm")f.appendChild(el("span",HEDGE.test(v)?"clean":null,HEDGE.test(v)?"Hedged.":"Reads as a fact. Add may, might, likely, or suggests."));
+        else f.appendChild(el("span","clean","Clean."));
+      }
+    });
+    FIELDS.forEach(function(fd){var v=(fieldEl[fd[0]].value||"").trim();if(v)filled++;all.push(v);lines.push({k:fd[1],v:v})});
+    var out=$("draftOut");out.innerHTML="";
+    if(filled){lines.forEach(function(l,i){var k=el("span","k",l.k+": ");out.appendChild(k);out.appendChild(document.createTextNode((l.v||"")+(i<lines.length-1?"\n":"")))})}
+    else out.appendChild(el("span","ph","Your inventory assembles here as you write, in the assignment’s template."));
+    var text=all.join(" ");var wc=words(text);$("wc").textContent=wc;$("fillCount").textContent=filled;
+    var met={parts:filled===11,safe:text.length>0&&sens===0,feat:text.length>0&&person===0,hedge:HEDGE.test((fieldEl.clm.value||""))};
+    var n=0;document.querySelectorAll("#breqs li").forEach(function(li){var ok=met[li.getAttribute("data-req")];li.classList.toggle("met",!!ok);if(ok)n++});
+    $("bCopy").disabled=!filled;
+    var s=$("bStatus");
+    if(!filled){s.className="status";s.textContent="Start with field 1."}
+    else if(n===4){s.className="status ok";s.textContent="All four checks lit. Copy the inventory, paste it into the Canvas assignment, and add your AI-use disclosure line."}
+    else{
+      var tips=[];if(!met.parts)tips.push("write all eleven fields ("+(11-filled)+" to go)");if(!met.safe)tips.push("choose a non-sensitive example or remove the personal data");if(!met.feat)tips.push("replace the words that judge a person with measurable properties");if(!met.hedge&&(fieldEl.clm.value||"").trim())tips.push("hedge the claim");
+      s.className="status"+(sens||person?" bad":"");s.textContent="Next: "+tips.join("; ")+".";
+    }
+  }
+  Object.keys(fieldEl).forEach(function(k){fieldEl[k].addEventListener("input",buildDraft)});
+  $("bClear").addEventListener("click",function(){if(!confirm("Clear all fields of your inventory?"))return;Object.keys(fieldEl).forEach(function(k){fieldEl[k].value="";store.del(fieldEl[k].getAttribute("data-store"))});buildDraft()});
+  $("bCopy").addEventListener("click",function(){copyText($("draftOut").textContent,$("bStatus"),"Inventory copied. Paste it into the Canvas text entry box.")});
+  buildDraft();
+
+  /* ---------- Model context shortlist ---------- */
+  function ctxRender(){
+    var ul=$("ctxList");ul.innerHTML="";
+    for(var i=1;i<=2;i++){
+      var li=el("li");li.appendChild(el("span","n",String(i)));
+      var a=document.createElement("input");a.type="text";a.placeholder="Context "+i+" (what would be sorted or classified)";a.setAttribute("data-store","ail21l-c"+i+"n");a.setAttribute("aria-label","Context "+i);a.value=store.get("ail21l-c"+i+"n","");
+      var b=document.createElement("input");b.type="text";b.className="second";b.placeholder="What each example would describe";b.setAttribute("data-store","ail21l-c"+i+"d");b.setAttribute("aria-label","Context "+i+" examples");b.value=store.get("ail21l-c"+i+"d","");
+      var flag=el("div","flag");
+      [a,b].forEach(function(inp){inp.addEventListener("input",function(){store.set(inp.getAttribute("data-store"),inp.value);ctxStatus()})});
+      li.appendChild(a);li.appendChild(b);li.appendChild(flag);ul.appendChild(li);
+    }
+    ctxStatus();
+  }
+  function ctxStatus(){
+    var named=0,desc=0,sens=0;
+    document.querySelectorAll("#ctxList li").forEach(function(li,idx){
+      var i=idx+1,n=(store.get("ail21l-c"+i+"n","")||"").trim(),d=(store.get("ail21l-c"+i+"d","")||"").trim();
+      if(n)named++;if(d)desc++;
+      var f=li.querySelector(".flag");f.innerHTML="";var s=uniq((n+" "+d).match(SENSITIVE));
+      if(s.length){f.appendChild(el("span",null,"Personal or sensitive? "));s.forEach(function(w){f.appendChild(el("span","word",w))});sens+=s.length}
+      else if(n||d)f.appendChild(el("span","clean","Low-risk so far."));
+    });
+    $("ctxN").textContent=named;$("ctxD").textContent=desc;$("ctxCopy").disabled=named===0;
+    var st=$("ctxStatus");
+    if(sens){st.className="status bad";st.textContent="One of these looks like it would collect personal or sensitive data. Pick a context about things, not people."}
+    else if(named===2&&desc===2){st.className="status ok";st.textContent="Two low-risk contexts, both described. Copy the list into your notebook."}
+    else{st.className="status";var t=[];if(named<2)t.push((2-named)+" more context"+(2-named>1?"s":""));if(desc<2)t.push("describe "+(2-desc)+" of them");st.textContent="Still needed: "+t.join("; ")+"."}
+  }
+  $("ctxCopy").addEventListener("click",function(){
+    var lines=[];for(var i=1;i<=2;i++){var n=(store.get("ail21l-c"+i+"n","")||"").trim();if(!n)continue;var d=(store.get("ail21l-c"+i+"d","")||"").trim();lines.push(i+". "+n+(d?" — examples describe: "+d:""))}
+    copyText("Module 2 possible model contexts\n"+lines.join("\n"),$("ctxStatus"),"List copied. Paste it into your AI Lab Notebook.");
+  });
+  ctxRender();
+})();
+</script>
+</body>
+</html>
