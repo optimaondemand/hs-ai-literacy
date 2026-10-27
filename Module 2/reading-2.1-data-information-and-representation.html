@@ -44,39 +44,45 @@
   .shift td .q{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:.15rem}
   .shift .pip{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;white-space:nowrap}
 
-  /* ---------- Record vs. world (blueprint panel) ---------- */
-  .xray{background:var(--navy);background-image:linear-gradient(rgba(79,209,232,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(79,209,232,.07) 1px,transparent 1px);background-size:24px 24px;border:1px solid var(--teal-deep);border-radius:var(--radius);padding:1rem;box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);color:#e8f3f7}
-  .xray .boxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem}
-  .xbox{font:inherit;font-family:var(--sans);color:#dff4f9;text-align:center;cursor:pointer;background:rgba(255,255,255,.03);border:1.5px solid rgba(79,209,232,.45);border-radius:10px;padding:.8rem .5rem .6rem;display:flex;flex-direction:column;align-items:center;gap:.35rem;transition:background .2s,border-color .2s,box-shadow .2s,transform .12s}
-  .xbox:hover{background:rgba(79,209,232,.1);transform:translateY(-1px)}
-  .xbox:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-  .xbox[aria-selected="true"]{background:rgba(79,209,232,.16);border-color:var(--cyan);box-shadow:0 0 0 3px var(--glow),0 0 18px var(--glow)}
-  .xbox.scanned{border-style:solid;border-color:#7fe3c7}
-  .xbox .rec{font-family:var(--mono);font-size:.86rem;color:var(--cyan);border:1px solid currentColor;border-radius:6px;padding:.25rem .5rem;opacity:.9;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .xbox.scanned .rec{color:#7fe3c7;background:rgba(127,227,199,.12)}
-  .xbox .lbl{font-size:.9rem;font-weight:600;line-height:1.2}
-  .xbox .st{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#9fb3bf}
-  .xbox.scanned .st{color:#7fe3c7}
-  .stage{margin-top:1rem;border:1px solid rgba(79,209,232,.35);border-radius:10px;background:rgba(0,0,0,.18);overflow:hidden}
-  .stage .top{display:flex;justify-content:space-between;align-items:center;gap:.6rem;flex-wrap:wrap;padding:.6rem .9rem;border-bottom:1px solid rgba(79,209,232,.25)}
-  .stage .top .name{font-weight:700;font-size:1.1rem;color:#fff}
-  .stage .top .name small{display:block;font-weight:400;font-size:.88rem;color:#b9cfd8}
-  .stage .scanbtn{font:inherit;font-family:var(--mono);font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--cyan);color:var(--navy);border:0;border-radius:8px;padding:.5rem .9rem;cursor:pointer}
-  .stage .scanbtn:hover{box-shadow:0 0 0 3px var(--glow),0 0 16px var(--glow)}
-  .stage .scanbtn:disabled{opacity:.4;cursor:not-allowed;box-shadow:none}
-  .stage .scanbtn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-  .layer{display:grid;grid-template-columns:170px minmax(0,1fr);gap:.5rem .9rem;align-items:start;padding:.75rem .9rem;border-bottom:1px solid rgba(79,209,232,.18);position:relative;overflow:hidden;opacity:.28;transition:opacity .35s}
-  .layer:last-child{border-bottom:0}
-  .layer .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);padding-top:.15rem}
-  .layer .v{font-size:.98rem;line-height:1.5;color:#e8f3f7;visibility:hidden}
-  .layer.on{opacity:1}
-  .layer.on .v{visibility:visible}
-  .layer.on::before{content:"";position:absolute;top:0;bottom:0;left:-30%;width:30%;background:linear-gradient(90deg,transparent,rgba(79,209,232,.35),transparent);animation:sweep .7s ease-out}
-  @keyframes sweep{from{left:-30%}to{left:110%}}
-  .layer.gone .k{color:var(--gold)}
-  .layer.gone.on .v{color:#ffe9b8}
-  .xray .idle{padding:1.4rem .9rem;color:#b9cfd8;font-size:.98rem;text-align:center}
-  @media (max-width:560px){.layer{grid-template-columns:1fr;gap:.25rem}}
+  /* ---------- Reconstruct the morning ---------- */
+  .morning .reccard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);padding:.8rem .9rem;margin:.4rem 0 .9rem;box-shadow:inset 0 0 0 1px rgba(79,209,232,.25)}
+  @media (max-width:480px){.morning .reccard{grid-template-columns:1fr}}
+  .morning .reccard .f{border:1px solid rgba(79,209,232,.45);border-radius:8px;padding:.5rem .6rem;background:rgba(255,255,255,.03)}
+  .morning .reccard .k{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+  .morning .reccard .v{display:block;font-family:var(--mono);font-size:1.25rem;font-weight:600;color:#fff;margin-top:.1rem}
+  .morning .reccard .f.gold .k{color:var(--gold)}
+  .morning .qcard{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:1rem 1.2rem;background:linear-gradient(160deg,#fff,var(--paper-2));box-shadow:var(--shadow);animation:slidein .35s ease-out}
+  .morning .qcard .kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:500}
+  .morning .qcard .q{font-size:1.25rem;font-weight:700;color:var(--teal-deep);margin:.25rem 0 .7rem}
+  .morning .choices{display:flex;gap:.45rem;flex-wrap:wrap}
+  .morning .choices .btn{flex:1 1 120px;font-size:.98rem}
+  .morning .choices .btn.no{background:#fff;color:var(--ink);border-color:var(--rule-strong)}
+  .morning .choices .btn.no:hover{background:var(--paper-2);border-color:var(--ink-soft);box-shadow:none}
+  .morning .choices .btn.cant{background:var(--gold-pale);color:#6d4a00;border-color:var(--gold)}
+  .morning .choices .btn.cant:hover{background:#ffeec2;box-shadow:0 0 0 3px rgba(209,154,30,.3)}
+  .morning .verdict{margin-top:.7rem;padding:.6rem .8rem;border-radius:0 var(--radius) var(--radius) 0;border-left:4px solid var(--gold);background:var(--gold-pale);font-size:.96rem;animation:reveal .3s ease-out}
+  .morning .verdict.ok{border-left-color:var(--ok);background:var(--ok-bg)}
+  .morning .verdict .k{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#6d4a00;margin-bottom:.15rem}
+  .morning .verdict.ok .k{color:var(--ok)}
+  .morning .meta{display:flex;justify-content:space-between;gap:.6rem;flex-wrap:wrap;font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);margin-bottom:.5rem}
+  .morning .meta b{color:var(--teal-deep)}
+  .morning .scene{margin-top:.9rem;border:1px solid var(--teal-deep);border-radius:var(--radius);overflow:hidden;background:var(--navy);animation:reveal .5s ease-out}
+  .morning .scene svg{display:block;width:100%;height:auto}
+  .morning .scene .cap{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.6rem;padding:.8rem .9rem;border-top:1px solid rgba(79,209,232,.25)}
+  .morning .scene .cap div{font-size:.9rem;line-height:1.45;color:#dff4f9}
+  .morning .scene .cap .k{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:.15rem}
+  .morning .scene .cap div.gone .k{color:var(--gold)}
+  .morning .scene .cap div.gone{color:#ffe9b8}
+  .morning .legend{display:flex;gap:.9rem;flex-wrap:wrap;padding:.5rem .9rem 0;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:#b9cfd8}
+  .morning .legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:.35rem;vertical-align:middle}
+  .morning .legend .kept::before{background:var(--cyan)}
+  .morning .legend .lost::before{background:var(--gold)}
+  .morning .sc-kept{stroke:#4fd1e8;fill:none;stroke-width:2}
+  .morning .sc-lost{stroke:#d19a1e;fill:none;stroke-width:2;stroke-dasharray:5 4}
+  .morning .sc-txt{font-family:"IBM Plex Mono",Consolas,monospace;font-size:11px;letter-spacing:.08em;fill:#4fd1e8}
+  .morning .sc-txt.lost{fill:#d19a1e}
+  .morning .sc-fill{fill:#d19a1e;opacity:.85}
+  .morning .sc-dim{stroke:rgba(255,255,255,.22);fill:none;stroke-width:1.5}
 
   /* ---------- Chain reaction (order the steps) ---------- */
   .chain .scen{display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
@@ -172,24 +178,19 @@
     <p><strong>Data</strong> are recorded representations of something: a number, word, image, sound sample, location, click, measurement, or category. Data can be useful, but it is never the whole thing being represented. A temperature value records one property at one moment. A photo records a view from one angle under particular lighting. A student profile does not contain a student’s full life.</p>
     <p>When a system uses data, it operates on the representation it has—not directly on the world in all its complexity. Good AI literacy therefore asks what was recorded, how it was recorded, what was left out, and how a label or category was chosen.</p>
 
-    <div class="widget" id="xrayWidget">
-      <div class="bar"><span>Interactive · Record vs. world</span><span class="tag">Scan the record</span></div>
+    <div class="widget morning" id="morningWidget">
+      <div class="bar"><span>Interactive · Reconstruct the morning</span><span class="tag">From the record alone</span></div>
       <div class="body">
-        <p>Each tile is a record a system might hold. Pick one and scan it with the four questions from the paragraph above. The last layer, in gold, is the part the record cannot give back.</p>
-        <div class="xray">
-          <div class="boxes" id="boxes" role="tablist" aria-label="Records to scan"></div>
-          <div class="stage" id="stage">
-            <div class="idle" id="stageIdle">Select a record above to begin scanning.</div>
-            <div id="stageBody" hidden>
-              <div class="top">
-                <div class="name" id="stageName"></div>
-                <button type="button" class="scanbtn" id="scanBtn">Scan next question</button>
-              </div>
-              <div class="layers" id="layers"></div>
-            </div>
-          </div>
+        <p>Here is everything a classroom system recorded at 9:00 one morning: three fields. Using only the record, answer six questions about the morning it came from. One of the three answers is always honest; see how often you reach past the record.</p>
+        <div class="reccard" id="recCard" aria-label="The record">
+          <div class="f"><span class="k">temp</span><span class="v">72°F</span></div>
+          <div class="f"><span class="k">time</span><span class="v">09:00</span></div>
+          <div class="f gold"><span class="k">note</span><span class="v">late</span></div>
         </div>
-        <div class="status" id="xrayStatus" role="status" aria-live="polite">0 of 5 records scanned.</div>
+        <div class="meta"><span>Question <b id="mNum">1</b> of 6</span><span><b id="mOver">0</b> reaches past the record</span></div>
+        <div class="deck" id="mDeck"></div>
+        <div class="scene" id="mScene" hidden></div>
+        <div class="status" id="mStatus" role="status" aria-live="polite">Press Start when you are ready.</div>
       </div>
     </div>
 
@@ -431,59 +432,78 @@
     st.textContent=(moved?moved+" item"+(moved>1?"s":"")+" changed between your two passes (gold rows). ":"Your two passes agree. ")+"The point is not the final answer: it is that the same record can be an observation, then a category, then a claim, depending on what has been done to it.";
   }});
 
-  /* ---------- Record vs. world ---------- */
-  var RECORDS=[
-    {id:"temp",name:"Temperature value",rec:"72°F",sub:"a number in a sensor log",layers:[
-      ["What was recorded","One property, air temperature, at one moment: 72°F at 9:00 a.m."],
-      ["How it was recorded","A sensor in one spot, rounded to a whole degree, logged on a schedule."],
-      ["How a label or category was chosen","If the building rule says “above 70 is warm,” this row is tagged warm. Move the cutoff and the tag changes."],
-      ["What was left out","Everything the sensor cannot feel: humidity, sun through the window, a draft by the door, and whether the room felt uncomfortable to anyone in it."]]},
-    {id:"photo",name:"A photo",rec:"[1920×1080]",sub:"a grid of pixel numbers",layers:[
-      ["What was recorded","A view from one angle under particular lighting, frozen as a grid of color numbers."],
-      ["How it was recorded","A lens, a shutter speed, and a sensor; the camera chose exposure before anyone looked."],
-      ["How a label or category was chosen","Someone or something wrote “cat” on it. The label can be mistaken, and the photo cannot argue back."],
-      ["What was left out","What was outside the frame, what happened a second later, how it smelled or sounded, and who was holding the camera."]]},
-    {id:"profile",name:"A student profile",rec:"ID 20417",sub:"a row in a school database",layers:[
-      ["What was recorded","Arrival times, course list, quiz answers, and a few notes; whatever the fields allowed."],
-      ["How it was recorded","Scans, form entries, and typed notes, each by a different person on a different day."],
-      ["How a label or category was chosen","“Late arrival” applies after 8:00 by rule. “At risk” would be a claim dressed as a category."],
-      ["What was left out","A student’s full life: what the bus did that morning, what home was like, what they are good at that no field asks about."]]},
-    {id:"click",name:"A click",rec:"btn_42 → 1",sub:"one event in a log",layers:[
-      ["What was recorded","That a button was pressed, by which account, at which millisecond."],
-      ["How it was recorded","The app sent one event to a server; the server kept the fields it was built to keep."],
-      ["How a label or category was chosen","A rule may tag it “engaged.” The tag comes from the rule, not from the person."],
-      ["What was left out","Whether the click was on purpose, a slip of the thumb, curiosity, or frustration."]]},
-    {id:"email",name:"An email marked spam",rec:"spam = 1",sub:"a label on a message",layers:[
-      ["What was recorded","The words of the message, the sender address, the time, and one tag: spam."],
-      ["How it was recorded","A filter compared the message to patterns in millions of earlier messages, then a person may or may not have corrected it."],
-      ["How a label or category was chosen","“Spam” was attached for the purpose of filtering. A label can be mistaken, and here the mistake hides the message."],
-      ["What was left out","Whether the recipient actually wanted this one: the reason a message mattered is not in the record."]]}
+  /* ---------- Reconstruct the morning ---------- */
+  var MQ=[
+    {q:"Was it warmer than 70°F by the thermometer?",ans:"yes",ok:"The record can answer this one. 72°F is an observation: one property, at one spot, at one moment.",bad:"Look again: the record holds 72°F, a recorded measurement. This is the one question it can answer."},
+    {q:"Was the window open?",ans:"cant",ok:"No field for windows. The thermometer recorded one number and nothing about why the air was that temperature.",bad:"There is no field for windows. Whatever you pictured came from you, not from the record."},
+    {q:"Was it sunny outside?",ans:"cant",ok:"Nothing in the record looked outside. A number, a time, and a tag.",bad:"Nothing in the record looked outside. The sun you added is not in any field."},
+    {q:"Did the student run to class?",ans:"cant",ok:"“late” is a category: arrivals after 8:00 get the tag. How anyone got there was never recorded.",bad:"“late” is a category applied by a rule. The run down the hall, if there was one, left no trace in the record."},
+    {q:"Was the room comfortable?",ans:"cant",ok:"72°F is an observation. “Comfortable” would be a claim, and the record contains no claim.",bad:"72°F is a measurement, not a verdict. “Comfortable” would be a claim; the record has none."},
+    {q:"Did a person decide the student was late?",ans:"cant",ok:"The record keeps the tag, not where it came from. A rule or a person could have attached “late,” and either can be mistaken.",bad:"The record keeps the tag, not its origin. A rule or a person could have attached “late”; the record does not say which."}
   ];
-  var scanned=store.get("ail21-xray",{}),cur=null,layerIdx=0;
-  function xrayStatus(){var n=Object.keys(scanned).length;var s=$("xrayStatus");s.className="status"+(n===5?" ok":"");s.textContent=n===5?"All five records scanned. Every one has a gold layer: the part no model can recover by itself.":n+" of 5 records scanned."}
-  function renderBoxes(){
-    var wrap=$("boxes");wrap.innerHTML="";
-    RECORDS.forEach(function(r){
-      var b=el("button","xbox"+(scanned[r.id]?" scanned":""));b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-selected",cur===r.id?"true":"false");
-      b.appendChild(el("span","rec",r.rec));b.appendChild(el("span","lbl",r.name));b.appendChild(el("span","st",scanned[r.id]?"scanned":"unscanned"));
-      b.addEventListener("click",function(){openRecord(r)});wrap.appendChild(b);
+  var morning=store.get("ail21-morning",{i:0,over:0,answers:[]});
+  function mStatus(kind,t){var s=$("mStatus");s.className="status"+(kind?" "+kind:"");s.textContent=t}
+  function mSave(){store.set("ail21-morning",morning)}
+  function mCard(){
+    var deck=$("mDeck");deck.innerHTML="";var i=morning.i,it=MQ[i];$("mNum").textContent=i+1;$("mOver").textContent=morning.over;
+    var c=el("div","qcard");c.appendChild(el("div","kicker","From the record alone"));c.appendChild(el("div","q",it.q));
+    var ch=el("div","choices");
+    [["yes","Yes","btn"],["no","No","btn no"],["cant","The record can’t say","btn cant"]].forEach(function(o){
+      var b=el("button",o[2],o[1]);b.type="button";
+      b.addEventListener("click",function(){
+        if(c.querySelector(".verdict"))return;
+        var right=o[0]===it.ans;if(!right)morning.over++;morning.answers[i]=o[0];mSave();$("mOver").textContent=morning.over;
+        var v=el("div","verdict"+(right?" ok":""));v.appendChild(el("span","k",right?"Honest answer":"Reached past the record"));v.appendChild(document.createTextNode(right?it.ok:it.bad));c.appendChild(v);
+        var n=el("button","btn ghost",i<MQ.length-1?"Next question":"Reveal the morning");n.type="button";n.style.marginTop=".7rem";
+        n.addEventListener("click",function(){morning.i=i+1;mSave();mNext()});c.appendChild(n);
+        mStatus(right?"ok":"","Question "+(i+1)+" of 6. "+(right?"Honest.":"The record never had that field."));
+      });
+      ch.appendChild(b);
     });
+    c.appendChild(ch);deck.appendChild(c);
+    mStatus("","Question "+(i+1)+" of 6. Answer from the three fields only.");
   }
-  function openRecord(r){
-    cur=r.id;layerIdx=0;renderBoxes();
-    $("stageIdle").hidden=true;$("stageBody").hidden=false;
-    var nm=$("stageName");nm.innerHTML="";nm.appendChild(document.createTextNode(r.name));nm.appendChild(el("small",null,r.rec+" · "+r.sub));
-    var ls=$("layers");ls.innerHTML="";
-    r.layers.forEach(function(l,i){var d=el("div","layer"+(i===3?" gone":""));d.appendChild(el("span","k",l[0]));d.appendChild(el("span","v",l[1]));ls.appendChild(d)});
-    $("scanBtn").disabled=false;$("scanBtn").textContent="Scan next question";
-    if(scanned[r.id]){ls.querySelectorAll(".layer").forEach(function(d){d.classList.add("on")});layerIdx=4;$("scanBtn").disabled=true;$("scanBtn").textContent="Fully scanned"}
+  function mScene(){
+    var sc=$("mScene");sc.hidden=false;sc.innerHTML=
+      '<svg viewBox="0 0 640 250" aria-label="The classroom the record came from" role="img">'+
+      '<line x1="20" y1="215" x2="620" y2="215" class="sc-dim"/>'+
+      '<rect x="60" y="40" width="130" height="95" rx="4" class="sc-lost"/><line x1="125" y1="40" x2="125" y2="135" class="sc-dim"/><line x1="60" y1="88" x2="190" y2="88" class="sc-dim"/>'+
+      '<path d="M125 40 L150 24 L150 119 L125 135" class="sc-lost"/>'+
+      '<circle cx="92" cy="66" r="12" class="sc-fill"/><g class="sc-lost"><line x1="92" y1="46" x2="92" y2="40"/><line x1="92" y1="92" x2="92" y2="86"/><line x1="72" y1="66" x2="66" y2="66"/><line x1="106" y1="52" x2="110" y2="48"/><line x1="78" y1="52" x2="74" y2="48"/></g>'+
+      '<text x="60" y="178" class="sc-txt lost">WINDOW OPEN · SUN · LEFT OUT</text>'+
+      '<rect x="232" y="48" width="14" height="70" rx="7" class="sc-kept"/><circle cx="239" cy="125" r="11" class="sc-kept"/><rect x="236" y="80" width="6" height="38" fill="#4fd1e8"/>'+
+      '<text x="206" y="160" class="sc-txt">72°F · KEPT</text>'+
+      '<circle cx="330" cy="70" r="26" class="sc-kept"/><line x1="330" y1="70" x2="330" y2="52" class="sc-kept"/><line x1="330" y1="70" x2="344" y2="70" class="sc-kept"/>'+
+      '<text x="364" y="74" class="sc-txt">09:00 · KEPT</text>'+
+      '<rect x="400" y="118" width="110" height="10" class="sc-dim"/><line x1="408" y1="128" x2="408" y2="214" class="sc-dim"/><line x1="502" y1="128" x2="502" y2="214" class="sc-dim"/>'+
+      '<rect x="548" y="50" width="56" height="165" rx="3" class="sc-kept"/><circle cx="596" cy="135" r="3" fill="#4fd1e8"/><rect x="552" y="72" width="30" height="16" rx="3" class="sc-kept"/>'+
+      '<text x="620" y="238" text-anchor="end" class="sc-txt">BADGE SCAN → “LATE” · KEPT</text>'+
+      '<g class="sc-lost" transform="translate(18,0)"><circle cx="470" cy="60" r="9"/><line x1="470" y1="69" x2="464" y2="100"/><line x1="464" y1="100" x2="446" y2="122"/><line x1="464" y1="100" x2="486" y2="118"/><line x1="468" y1="80" x2="448" y2="72"/><line x1="468" y1="80" x2="492" y2="90"/></g>'+
+      '<text x="330" y="40" class="sc-txt lost">THE RUN · LEFT OUT</text><text x="60" y="238" class="sc-txt lost">HOW THE ROOM FELT · LEFT OUT</text>'+
+      '</svg>'+
+      '<div class="legend"><span class="kept">In the record</span><span class="lost">Left out</span></div>'+
+      '<div class="cap">'+
+      '<div><span class="k">What was recorded</span>72°F, 09:00, and the tag “late.” Three fields.</div>'+
+      '<div><span class="k">How it was recorded</span>A thermometer by the door, a wall clock, and a badge scanner with a rule attached.</div>'+
+      '<div><span class="k">How a label or category was chosen</span>“late” is the category for arrivals after 8:00. The record keeps the tag, not who or what applied it.</div>'+
+      '<div class="gone"><span class="k">What was left out</span>The open window, the sun, the run down the hall, how the room felt. You could not reconstruct any of it from three fields, and a model cannot either.</div>'+
+      '</div>';
   }
-  $("scanBtn").addEventListener("click",function(){
-    var ls=$("layers").querySelectorAll(".layer");if(layerIdx>=ls.length)return;
-    ls[layerIdx].classList.add("on");layerIdx++;
-    if(layerIdx>=ls.length){scanned[cur]=true;store.set("ail21-xray",scanned);$("scanBtn").disabled=true;$("scanBtn").textContent="Fully scanned";renderBoxes();xrayStatus()}
-  });
-  renderBoxes();xrayStatus();
+  function mNext(){
+    if(morning.i<MQ.length){$("mScene").hidden=true;mCard();return}
+    var deck=$("mDeck");deck.innerHTML="";$("mNum").textContent=6;$("mOver").textContent=morning.over;
+    var c=el("div","qcard");c.appendChild(el("div","kicker","The morning the record came from"));
+    c.appendChild(el("div","q",morning.over===0?"You never reached past the record.":"You reached past the record "+morning.over+" time"+(morning.over>1?"s":"")+"."));
+    c.appendChild(el("p",null,"Below is the morning itself. Everything in cyan made it into the three fields. Everything in gold was there too, and no model working from this record will ever see it."));
+    var again=el("button","btn ghost","Try again");again.type="button";again.addEventListener("click",function(){morning={i:0,over:0,answers:[]};mSave();mNext()});c.appendChild(again);
+    deck.appendChild(c);mScene();
+    mStatus("ok","Five of the six questions had no field in the record. Ask “What does this value stand for?” before asking what pattern it shows.");
+  }
+  function mStart(){
+    var deck=$("mDeck");deck.innerHTML="";var c=el("div","qcard");c.appendChild(el("div","kicker","Ready?"));c.appendChild(el("div","q","Six questions about one morning. Three fields to answer them from."));
+    var b=el("button","btn","Start");b.type="button";b.addEventListener("click",function(){mNext()});c.appendChild(b);deck.appendChild(c);
+  }
+  if(morning.i>0)mNext();else mStart();
 
   /* ---------- Chain reaction ---------- */
   var SCEN=[
