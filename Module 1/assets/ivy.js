@@ -33,6 +33,7 @@
   ".ivy-panel .go a:hover{background:var(--teal-deep,#0b3b4f)}"+
   ".ivy-panel .go small{font-family:var(--mono,monospace);font-size:.64rem;color:var(--ink-faint,#7c8794);letter-spacing:.04em}"+
   ".ivy-panel .ivy-note{padding:0 1rem .9rem;font-size:.78rem;color:var(--ink-faint,#7c8794);line-height:1.45}"+
+  ".ivy-panel{overflow:hidden}.ivy-px{position:absolute;inset:0;z-index:2;pointer-events:none;display:grid;grid-template-columns:repeat(14,1fr);grid-auto-rows:1fr;border-radius:inherit}.ivy-px i{display:block;opacity:1;animation:ivyPx .5s steps(4,end) forwards}@keyframes ivyPx{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.15)}}.ivy-fab.pulse{animation:ivyPulse .45s ease-out}@keyframes ivyPulse{0%{box-shadow:0 0 0 0 rgba(79,209,232,.7)}100%{box-shadow:0 0 0 16px rgba(79,209,232,0)}}@media (prefers-reduced-motion:reduce){.ivy-px,.ivy-fab.pulse{animation:none;display:none}}"+
   "@media print{.ivy-fab,.ivy-panel{display:none!important}}";
   var st=document.createElement("style");st.textContent=css;document.head.appendChild(st);
 
@@ -63,7 +64,8 @@
   var go=el("div","go");var a=el("a",null,"Open Ivy in a new tab ↗");a.href=url;a.target="_blank";a.rel="noopener noreferrer";go.appendChild(a);go.appendChild(el("small",null,"opens live.arthur.digital"));panel.appendChild(go);
   panel.appendChild(el("div","ivy-note","Ivy is a tutor, not a source. Your submitted work must be in your own words; if Ivy helped you, say so in your AI-use disclosure."));
 
-  function setOpen(o){panel.classList.toggle("show",o);fab.setAttribute("aria-expanded",o?"true":"false");try{sessionStorage.setItem(KEY,o?"1":"0")}catch(e){}}
+  function pixels(){if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;var old=panel.querySelector(".ivy-px");if(old)old.remove();var g=el("div","ivy-px");var cols=14,rows=Math.max(8,Math.round(panel.offsetHeight/(panel.offsetWidth/cols)));g.style.gridTemplateRows="repeat("+rows+",1fr)";var pal=["#0f2233","#0b3b4f","#0e8fa8","#4fd1e8","#e3f4f8"];for(var i=0;i<cols*rows;i++){var c=el("i");c.style.background=pal[Math.floor(Math.random()*pal.length)];c.style.animationDelay=(Math.random()*.45).toFixed(2)+"s";g.appendChild(c)}panel.appendChild(g);setTimeout(function(){g.remove()},1100)}
+  function setOpen(o){var was=panel.classList.contains("show");panel.classList.toggle("show",o);if(o&&!was){pixels();fab.classList.remove("pulse");void fab.offsetWidth;fab.classList.add("pulse")}fab.setAttribute("aria-expanded",o?"true":"false");try{sessionStorage.setItem(KEY,o?"1":"0")}catch(e){}}
   fab.addEventListener("click",function(){setOpen(!panel.classList.contains("show"))});
   x.addEventListener("click",function(){setOpen(false);fab.focus()});
   document.addEventListener("keydown",function(e){if(e.key==="Escape"&&panel.classList.contains("show")){setOpen(false);fab.focus()}});
