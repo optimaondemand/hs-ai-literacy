@@ -46,15 +46,74 @@
   .debrief .why{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:.2rem}
   .debrief .note{margin:0;border-radius:0;border-left-width:0;border-top:1px solid var(--rule-strong)}
 
-  /* ---------- Four-question notes ---------- */
-  .syschoice{display:flex;gap:.5rem;flex-wrap:wrap;margin:.4rem 0 .8rem}
-  .syschoice label{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem .8rem;border:1px solid var(--teal);border-radius:8px;background:#fff;cursor:pointer;font-size:.95rem}
-  .syschoice input{accent-color:var(--teal)}
-  .syschoice label:has(input:checked){background:var(--navy);color:var(--cyan);border-color:var(--cyan)}
+  /* ---------- Does this show adaptation? (step 1) ---------- */
+  .evs .qcard{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:1rem 1.2rem;background:linear-gradient(160deg,#fff,var(--paper-2));box-shadow:var(--shadow);animation:slidein .3s ease-out}
+  @keyframes slidein{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+  .evs .kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:500}
+  .evs .obs{font-size:1.2rem;font-weight:600;color:var(--teal-deep);margin:.2rem 0 .6rem;line-height:1.35}
+  .evs .choices{display:flex;gap:.5rem;flex-wrap:wrap}
+  .evs .choices .btn{flex:1 1 150px;font-size:.95rem;padding:.6rem .8rem}
+  .evs .choices .btn.rule{background:#fff;color:var(--ink);border-color:var(--rule-strong)}
+  .evs .choices .btn.rule:hover{background:var(--paper-2);border-color:var(--ink-soft);box-shadow:none}
+  .evs .choices .btn.unk{background:var(--gold-pale);color:#6d4a00;border-color:var(--gold)}
+  .evs .choices .btn.unk:hover{background:#ffeec2;box-shadow:0 0 0 3px rgba(209,154,30,.3)}
+  .evs .why{margin-top:.7rem;padding:.6rem .8rem;border-radius:8px;font-size:.95rem;animation:slidein .25s ease-out}
+  .evs .why.ok{background:var(--ok-bg);border-left:4px solid var(--ok)}
+  .evs .why.bad{background:var(--bad-bg);border-left:4px solid var(--bad)}
+  .evs .meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.76rem;color:var(--ink-soft);margin-bottom:.4rem}
+  .evs .meta b{color:var(--teal-deep)}
+  .evs .tally{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.6rem}
+  .evs .pip{font-family:var(--mono);font-size:.7rem;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;color:var(--ink-soft)}
+  .evs .pip.ok{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+  .evs .pip.bad{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+  .smartline{margin-top:.8rem}
+  .smartline label{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.3rem}
+  .smartline input{width:100%;font:inherit;font-size:.96rem;padding:.5rem .7rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
+  .smartline input:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+
+  /* ---------- Wire the box (step 3) ---------- */
   .qtable td:first-child{width:38%}
-  .qtable td textarea{width:100%;min-height:64px;font-family:var(--sans);font-size:.95rem;line-height:1.45;padding:.5rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
-  .qtable td textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
   .qtable .lbl{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:.15rem}
+  .syspick{display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0 .7rem}
+  .syspick button{font-family:var(--sans);font-size:.92rem;padding:.4rem .85rem;border-radius:999px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .syspick button[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px var(--glow)}
+  .syspick button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .wire{background:var(--navy);background-image:linear-gradient(rgba(79,209,232,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(79,209,232,.07) 1px,transparent 1px);background-size:24px 24px;border:1px solid var(--teal-deep);border-radius:var(--radius);padding:.9rem;box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);color:#e8f3f7}
+  .wire .tray{display:flex;gap:.45rem;flex-wrap:wrap;min-height:56px;padding:.6rem;border:1px dashed rgba(79,209,232,.5);border-radius:10px;margin-bottom:.8rem}
+  .wire .tray .traylbl{width:100%;font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:#9fb3bf}
+  .tile{font-family:var(--sans);font-size:.9rem;line-height:1.3;padding:.4rem .65rem;border-radius:8px;border:1px solid var(--cyan);background:rgba(79,209,232,.1);color:#e8f3f7;cursor:grab;user-select:none;text-align:left;display:inline-flex;align-items:center;gap:.4rem;transition:transform .12s,box-shadow .12s}
+  .tile:hover{transform:translateY(-1px);box-shadow:0 0 10px var(--glow)}
+  .tile.sel{outline:3px solid var(--gold);outline-offset:1px}
+  .tile:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .tile .stamp{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.12rem .4rem;border-radius:3px;white-space:nowrap}
+  .tile .stamp.obs{background:var(--cyan);color:var(--navy)}
+  .tile .stamp.inf{background:var(--gold);color:#2b1d00}
+  .tile .stamp.unk{background:transparent;color:#c9d9e0;border:1px dashed #c9d9e0}
+  .tile .stamp.none{background:transparent;color:#9fb3bf;border:1px dashed #6c8795}
+  .tile.right{border-color:#7fe3c7;background:rgba(127,227,199,.14)}
+  .tile.wrong{border-color:#ff8a8a;background:rgba(178,59,59,.2);animation:shake .35s}
+  .tile.stampbad .stamp{outline:2px solid #ff8a8a}
+  .boxgrid{display:grid;grid-template-columns:1fr auto 1fr;gap:.6rem;align-items:stretch}
+  @media (max-width:640px){.boxgrid{grid-template-columns:1fr}}
+  .port{border:1.5px dashed rgba(79,209,232,.55);border-radius:10px;padding:.5rem;min-height:92px;transition:background .2s,box-shadow .2s;cursor:pointer}
+  .port.over{background:rgba(79,209,232,.14);box-shadow:0 0 0 3px var(--glow)}
+  .port:focus-visible{outline:3px solid var(--gold)}
+  .port h5{margin:0 0 .35rem;font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+  .port .slots{display:flex;flex-direction:column;gap:.35rem}
+  .port .tile{cursor:pointer}
+  .bodybox{border:1.5px solid var(--cyan);border-radius:12px;padding:.6rem;display:flex;flex-direction:column;gap:.5rem;justify-content:center;min-width:200px;background:rgba(0,0,0,.18)}
+  .bodybox .nm{font-weight:700;color:#fff;text-align:center;font-size:1.05rem}
+  .bodybox .port{min-height:70px}
+  .wiretools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.7rem}
+  .wire .legend{display:flex;gap:.6rem 1rem;flex-wrap:wrap;align-items:center;margin-top:.6rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;color:#b9cfd8}
+  .wire .legend .stamp{font-family:var(--mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;padding:.12rem .4rem;border-radius:3px}
+  .wirereview{display:none;margin-top:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden;animation:slidein .3s ease-out}
+  .wirereview.show{display:block}
+  .wirereview table{margin:0;font-size:.9rem}
+  .wirereview td .w{display:block;font-size:.84rem;color:var(--ink-soft)}
+  .wirereview tr.good td{background:var(--ok-bg)}
+  .wirereview tr.off td{background:var(--bad-bg)}
+  .wirereview tr.stamp td{background:var(--gold-pale)}
 
   /* ---------- System Check Builder ---------- */
   .builder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;align-items:start}
@@ -78,6 +137,8 @@
   /* ---------- Field Guide shortlist ---------- */
   .shortlist{list-style:none;padding:0;margin:.6rem 0;display:grid;gap:.5rem}
   .shortlist li{display:grid;grid-template-columns:28px minmax(0,1.3fr) minmax(0,1fr) auto;gap:.5rem;align-items:center;margin:0}
+  .shortlist select{width:100%;font:inherit;font-size:.92rem;padding:.45rem .5rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;color:var(--ink)}
+  .shortlist select:focus{outline:3px solid var(--glow);border-color:var(--teal)}
   @media (max-width:640px){.shortlist li{grid-template-columns:28px 1fr;}.shortlist li .unsure{grid-column:2}}
   .shortlist .n{font-family:var(--mono);font-size:.8rem;color:var(--teal);text-align:center}
   .shortlist input[type=text]{width:100%;font:inherit;font-size:.95rem;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
@@ -133,13 +194,17 @@
       <div class="head"><h3>Retrieve and predict</h3><span class="time">5 minutes</span></div>
       <p>Return to the prediction you made before reading: name one device or app that seems “smart.” In 2–3 sentences, explain what it does that led you to use that word.</p>
       <p>Then answer this question before moving on: <strong>What evidence would convince you that a system adapts rather than merely follows a fixed rule?</strong></p>
-      <div class="widget">
-        <div class="bar"><span>Private notes</span><span class="tag">This device only</span></div>
+      <div class="widget" id="evsWidget">
+        <div class="bar"><span>Interactive · Does this show adaptation?</span><span class="tag">Eight observations</span></div>
         <div class="body">
-          <div class="notes">
-            <div><label for="n1a">The system that seems “smart,” and why</label><textarea id="n1a" data-store="ail11l-n1a" placeholder="It seems smart because it…"></textarea></div>
-            <div><label for="n1b">Evidence that would show adaptation</label><textarea id="n1b" data-store="ail11l-n1b" placeholder="I would be convinced if…"></textarea></div>
+          <p>Eight things a student noticed about one home thermostat. For each one, decide: does it show the system adapting, is it just a fixed rule at work, or is it not enough to tell? You will learn which kinds of evidence actually count.</p>
+          <div class="evs" id="evs">
+            <div class="meta"><span>Observation <b id="evsNum">1</b> of 8</span><span><b id="evsRight">0</b> right so far</span></div>
+            <div id="evsDeck"></div>
+            <div class="tally" id="evsTally" aria-label="Your answers so far"></div>
           </div>
+          <div class="status" id="evsStatus" role="status" aria-live="polite">Read the observation, then tap one of the three.</div>
+          <div class="smartline"><label for="n1a">The system that seems “smart,” and why (one line)</label><input type="text" id="n1a" data-store="ail11l-n1a" maxlength="200" placeholder="My … seems smart because it …"></div>
         </div>
       </div>
       <div class="foot"><button type="button" class="markbtn" data-mark="1" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
@@ -198,25 +263,41 @@
       <span class="num" aria-hidden="true">3</span>
       <div class="head"><h3>Use the four-question system check</h3><span class="time">8 minutes</span></div>
       <p>Choose either the map app, photo organizer, or chatbot from Step 2. Complete the table in your notes. Use cautious language when you are inferring rather than observing.</p>
-      <div class="widget" id="fourqWidget">
-        <div class="bar"><span>Interactive · Four-question notes</span><span class="tag">Carries into Step 5</span></div>
+      <table class="qtable">
+        <thead><tr><th scope="col">Question</th><th scope="col">Your notes</th></tr></thead>
+        <tbody>
+          <tr><td>What does the system receive?</td><td>List likely inputs.</td></tr>
+          <tr><td>What does it produce?</td><td>List likely outputs.</td></tr>
+          <tr><td>What process seems to connect the two?</td><td>State what you know and what you infer.</td></tr>
+          <tr><td>What changes over time?</td><td>Describe adaptation, updating, or uncertainty.</td></tr>
+        </tbody>
+      </table>
+      <div class="widget" id="wireWidget">
+        <div class="bar"><span>Interactive · Wire the box</span><span class="tag">Carries into Step 5</span></div>
         <div class="body">
-          <p>Pick one system, then fill the table here instead of on paper. Your notes stay on this device and can be pulled into the description builder in Step 5.</p>
-          <div class="syschoice" role="radiogroup" aria-label="System to check">
-            <label><input type="radio" name="sys" value="the map app"> Map app</label>
-            <label><input type="radio" name="sys" value="the photo organizer"> Photo organizer</label>
-            <label><input type="radio" name="sys" value="the chatbot"> Chatbot</label>
+          <p>Instead of filling the table, wire it. Pick a system; it appears as a sealed box with four ports, one per question. The tray holds pieces that might belong to it, and a few that do not. Drag each piece to its port, or tap a piece and then a port. Then tap a placed piece to stamp how you know it: <strong>observed</strong>, <strong>inferred</strong>, or <strong>unknown</strong>. Check when the tray holds only the pieces that do not belong.</p>
+          <div class="syspick" id="wireSys" role="group" aria-label="System to wire"></div>
+          <div class="wire">
+            <div class="tray" id="tray"><span class="traylbl">Pieces</span></div>
+            <div class="boxgrid">
+              <div class="port" data-port="receives" tabindex="0" role="button" aria-label="Port: what does the system receive?"><h5>Receives</h5><div class="slots"></div></div>
+              <div class="bodybox">
+                <div class="nm" id="wireName">Pick a system</div>
+                <div class="port" data-port="process" tabindex="0" role="button" aria-label="Port: what process connects the two?"><h5>Process</h5><div class="slots"></div></div>
+                <div class="port" data-port="change" tabindex="0" role="button" aria-label="Port: what changes over time?"><h5>Changes over time</h5><div class="slots"></div></div>
+              </div>
+              <div class="port" data-port="produces" tabindex="0" role="button" aria-label="Port: what does it produce?"><h5>Produces</h5><div class="slots"></div></div>
+            </div>
+            <div class="legend"><span>Stamp by tapping a placed piece:</span><span class="stamp obs">observed</span><span class="stamp inf">inferred</span><span class="stamp unk">unknown</span></div>
           </div>
-          <table class="qtable">
-            <thead><tr><th scope="col">Question</th><th scope="col">Your notes</th></tr></thead>
-            <tbody>
-              <tr><td>What does the system receive?<span class="lbl">List likely inputs.</span></td><td><textarea data-store="ail11l-q1" aria-label="What does the system receive?"></textarea></td></tr>
-              <tr><td>What does it produce?<span class="lbl">List likely outputs.</span></td><td><textarea data-store="ail11l-q2" aria-label="What does it produce?"></textarea></td></tr>
-              <tr><td>What process seems to connect the two?<span class="lbl">State what you know and what you infer.</span></td><td><textarea data-store="ail11l-q3" aria-label="What process seems to connect the two?"></textarea></td></tr>
-              <tr><td>What changes over time?<span class="lbl">Describe adaptation, updating, or uncertainty.</span></td><td><textarea data-store="ail11l-q4" aria-label="What changes over time?"></textarea></td></tr>
-            </tbody>
-          </table>
-          <div class="status" id="fourqStatus" role="status" aria-live="polite">Choose a system and fill all four rows.</div>
+          <div class="wiretools">
+            <span class="counts"><span><b id="wirePlaced">0</b> placed</span><span><b id="wireStamped">0</b> stamped</span><span><b id="wireLeft">0</b> left in tray</span></span>
+            <span><button type="button" class="btn ghost" id="wireReset">Start over</button> <button type="button" class="btn" id="wireCheck" disabled>Check the wiring</button></span>
+          </div>
+          <div class="status" id="wireStatus" role="status" aria-live="polite">Pick a system to begin.</div>
+          <div class="wirereview" id="wireReview">
+            <table><thead><tr><th scope="col">Piece</th><th scope="col">Your port · stamp</th><th scope="col">Best supported</th></tr></thead><tbody id="wireBody"></tbody></table>
+          </div>
         </div>
       </div>
       <div class="foot"><button type="button" class="markbtn" data-mark="3" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
@@ -287,7 +368,7 @@
       <div class="widget" id="guideWidget">
         <div class="bar"><span>Interactive · Field Guide shortlist</span><span class="tag">Copy into your notebook</span></div>
         <div class="body">
-          <p>Draft the list here, then copy it into your notebook. Mark the ones you are not sure about.</p>
+          <p>Name each system, pick where you meet it, and mark the ones you are not sure about. Then copy the list into your notebook.</p>
           <ul class="shortlist" id="shortlist"></ul>
           <div class="tools" style="display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;align-items:center;margin-top:.5rem">
             <span class="counts"><span><b id="glN">0</b> of 5 named</span><span><b id="glS">0</b> settings</span><span><b id="glU">0</b> marked unsure</span></span>
@@ -367,8 +448,9 @@
     steps={};checks={};store.del(KEY_STEPS);store.del(KEY_CHECK);
     document.querySelectorAll("#checklist input").forEach(function(c){c.checked=false});
     document.querySelectorAll("textarea[data-store],input[type=text][data-store]").forEach(function(t){t.value="";store.del(t.getAttribute("data-store"))});
-    store.del("ail11l-desk");store.del("ail11l-sys");store.del("ail11l-guide-unsure");
-    renderRail();deskReset();fourqLoad();buildDraft();guideRender();
+    store.del("ail11l-desk");store.del("ail11l-sys");store.del("ail11l-guide-unsure");store.del("ail11l-evs");store.del("ail11l-wire");Q.forEach(function(k){store.del(k)});
+    evs={};wire={sys:null,tiles:{},checked:false};wireSel=null;$("wireReview").classList.remove("show");
+    renderRail();deskReset();evsCard();wireRender();buildDraft();guideRender();
   });
   renderRail();
 
@@ -490,23 +572,154 @@
   });
   deskRender();
 
-  /* ---------- Four-question notes ---------- */
+  /* ---------- Does this show adaptation? (step 1) ---------- */
+  var EVS=[
+    {t:"It turned the heat on at 6:00 a.m. every day for a month.",a:"rule",why:"The same thing at the same time, every day, is a schedule. Nothing here changed in response to anything."},
+    {t:"After I overrode it three evenings in a row, it started warming the house earlier on its own.",a:"adapt",why:"Behavior changed after feedback. That is the kind of evidence that counts."},
+    {t:"The box says it learns your schedule.",a:"unk",why:"A claim on a box is a claim, not a behavior. Say “the company states,” and look for what it actually does."},
+    {t:"When the weather turned cold, it ran the furnace longer.",a:"rule",why:"Running longer when it is cold fits a fixed rule: hold 68 degrees. Reacting to a sensor is not the same as learning from one."},
+    {t:"It shows the current temperature on its screen.",a:"unk",why:"That is an output. Outputs alone say nothing about whether the process behind them changes."},
+    {t:"A software update changed how it decides when to start heating.",a:"adapt",why:"The system changed over time, through an update. The reading counts that as change, even though the thermostat did not learn it on its own. Note who made the change."},
+    {t:"It has a dial on the side that my dad set once.",a:"rule",why:"A dial set once is a fixed rule with a human in the loop. Until someone turns it again, nothing changes."},
+    {t:"Its settings page lists “learned schedule: 7 entries” that nobody typed in.",a:"adapt",why:"Entries that appeared without anyone typing them are evidence of the system changing itself, and the documentation says so."}
+  ];
+  var EVL={adapt:"Shows adaptation",rule:"Just a fixed rule",unk:"Not enough to tell"};
+  var evs=store.get("ail11l-evs",{});
+  function evsIdx(){var n=0;EVS.forEach(function(e,i){if(evs[i])n++});return n}
+  function evsTally(){var t=$("evsTally");t.innerHTML="";var r=0;EVS.forEach(function(e,i){if(evs[i]){var ok=evs[i]===e.a;if(ok)r++;t.appendChild(el("span","pip "+(ok?"ok":"bad"),(i+1)+" · "+EVL[evs[i]]))}});$("evsRight").textContent=r;return r}
+  function evsCard(){
+    var d=$("evsDeck");d.innerHTML="";var i=evsIdx();$("evsNum").textContent=Math.min(i+1,8);var r=evsTally();
+    if(i>=EVS.length){
+      var c=el("div","qcard");c.appendChild(el("span","kicker","Done"));c.appendChild(el("div","obs",r+" of 8 right."));
+      c.appendChild(el("p",null,"Two kinds of evidence showed adaptation: behavior that changed after feedback, and documentation of something the system changed on its own. Reacting to a sensor, running on a schedule, and a claim printed on a box did not. Keep that distinction for the rest of the lesson."));
+      var ch=el("div","choices");var b=el("button","btn ghost","Start over");b.type="button";b.addEventListener("click",function(){evs={};store.set("ail11l-evs",evs);evsCard();var st=$("evsStatus");st.className="status";st.textContent="Read the observation, then tap one of the three."});ch.appendChild(b);c.appendChild(ch);d.appendChild(c);
+      var st=$("evsStatus");st.className="status ok";st.textContent="All eight sorted. Now name the system that seemed smart below.";return;
+    }
+    var e=EVS[i],c=el("div","qcard");c.appendChild(el("span","kicker","Observation "+(i+1)));c.appendChild(el("div","obs",e.t));
+    var ch=el("div","choices");
+    [["adapt","btn"],["rule","btn rule"],["unk","btn unk"]].forEach(function(o){
+      var b=el("button",o[1],EVL[o[0]]);b.type="button";
+      b.addEventListener("click",function(){
+        if(evs[i])return;evs[i]=o[0];store.set("ail11l-evs",evs);
+        Array.prototype.forEach.call(ch.children,function(x){x.disabled=true});
+        var ok=o[0]===e.a;var w=el("div","why "+(ok?"ok":"bad"),(ok?"✓ ":"✗ Best answer: "+EVL[e.a]+". ")+e.why);c.appendChild(w);
+        var nx=el("button","btn ghost","Next");nx.type="button";nx.style.marginTop=".6rem";nx.addEventListener("click",evsCard);c.appendChild(nx);
+        evsTally();var st=$("evsStatus");st.className="status"+(ok?" ok":" bad");st.textContent=(ok?"Right. ":"Not quite. ")+(7-i)+" to go.";
+      });
+      ch.appendChild(b);
+    });
+    c.appendChild(ch);d.appendChild(c);
+  }
+  evsCard();
+
+  /* ---------- Wire the box (step 3) ---------- */
   var Q=["ail11l-q1","ail11l-q2","ail11l-q3","ail11l-q4"];
-  function fourqLoad(){
-    var sys=store.get("ail11l-sys","");
-    document.querySelectorAll('input[name="sys"]').forEach(function(r){r.checked=(r.value===sys)});
-    fourqStatus();
+  var PORTS={receives:"Receives",produces:"Produces",process:"Process",change:"Changes over time"};
+  var STAMPS=["obs","inf","unk"],STAMPL={obs:"observed",inf:"inferred",unk:"unknown"};
+  var WIRE={
+    map:{name:"the map app",tiles:[
+      {t:"your destination",p:"receives",s:"obs",w:"You typed it in."},
+      {t:"your current location",p:"receives",s:"obs",w:"You can see the dot move."},
+      {t:"live map and traffic information",p:"receives",s:"obs",w:"You can see it use traffic colors, even though you did not supply them."},
+      {t:"a suggested route",p:"produces",s:"obs",w:"It is on the screen."},
+      {t:"an arrival estimate",p:"produces",s:"obs",w:"Also on the screen."},
+      {t:"compares several possible routes",p:"process",s:"inf",w:"You see the result, not the comparison. Say “appears to.”"},
+      {t:"predicts travel time from current traffic",p:"process",s:"inf",w:"A prediction you infer from the estimate changing with traffic."},
+      {t:"the route changes as traffic updates",p:"change",s:"obs",w:"You can watch it happen."},
+      {t:"whether it learns anything about you",p:"change",s:"unk",w:"Nothing on the screen shows this either way."},
+      {t:"your grades",p:null,w:"A map app has no reason to receive your grades."},
+      {t:"the words you typed in a chat",p:null,w:"That belongs to the chatbot."},
+      {t:"labels for faces",p:null,w:"That belongs to the photo organizer."}
+    ]},
+    photo:{name:"the photo organizer",tiles:[
+      {t:"image pixels",p:"receives",s:"inf",w:"You never see the pixels go in; you infer it from the groupings."},
+      {t:"dates and places attached to photos",p:"receives",s:"inf",w:"Likely, but the app does not show you it using them."},
+      {t:"groupings of photos that may show the same person",p:"produces",s:"obs",w:"You can see the groups."},
+      {t:"labels for faces",p:"produces",s:"obs",w:"Also on the screen."},
+      {t:"compares new photos to patterns in previous ones",p:"process",s:"inf",w:"The best explanation for the groupings, but an inference."},
+      {t:"sometimes groups two different people with similar faces",p:"produces",s:"obs",w:"A mistake you can see is still an output."},
+      {t:"whether and when its makers retrain it",p:"change",s:"unk",w:"Nothing on your screen shows this."},
+      {t:"your destination",p:null,w:"That belongs to the map app."},
+      {t:"an arrival estimate",p:null,w:"That belongs to the map app."},
+      {t:"fluent sentences that read like an answer",p:null,w:"That belongs to the chatbot."}
+    ]},
+    chatbot:{name:"the chatbot",tiles:[
+      {t:"the words you typed",p:"receives",s:"obs",w:"You typed them."},
+      {t:"fluent sentences that read like an answer",p:"produces",s:"obs",w:"On the screen."},
+      {t:"a wrong date inside an otherwise fluent answer",p:"produces",s:"obs",w:"A mistake you can check is still an output, and good evidence about limits."},
+      {t:"draws on patterns in language from a very large amount of text",p:"process",s:"inf",w:"The best explanation, but you cannot see it happen."},
+      {t:"its makers may update it",p:"change",s:"inf",w:"Likely, but not visible from a conversation."},
+      {t:"whether it remembers you between conversations",p:"change",s:"unk",w:"You cannot tell from the outside."},
+      {t:"your current location",p:null,w:"That belongs to the map app."},
+      {t:"image pixels",p:null,w:"That belongs to the photo organizer."},
+      {t:"an arrival estimate",p:null,w:"That belongs to the map app."}
+    ]}
+  };
+  var wire=store.get("ail11l-wire",{sys:null,tiles:{},checked:false});
+  var wireSel=null;
+  function wireSave(){store.set("ail11l-wire",wire)}
+  function wireRender(){
+    var sp=$("wireSys");sp.innerHTML="";
+    Object.keys(WIRE).forEach(function(k){var b=el("button",null,WIRE[k].name.replace(/^the /,"").replace(/^./,function(c){return c.toUpperCase()}));b.type="button";b.setAttribute("aria-pressed",wire.sys===k?"true":"false");b.addEventListener("click",function(){if(wire.sys!==k){wire={sys:k,tiles:{},checked:false};wireSave();wireSel=null;$("wireReview").classList.remove("show");wireRender();wireStatus("", "Wiring "+WIRE[k].name+". Drag or tap pieces into the ports.")}});sp.appendChild(b)});
+    var tray=$("tray");tray.innerHTML="";tray.appendChild(el("span","traylbl","Pieces"));
+    document.querySelectorAll("#wireWidget .port .slots").forEach(function(s){s.innerHTML=""});
+    $("wireName").textContent=wire.sys?WIRE[wire.sys].name:"Pick a system";
+    var placed=0,stamped=0,left=0;
+    if(wire.sys){
+      WIRE[wire.sys].tiles.forEach(function(t,i){
+        var st=wire.tiles[i]||{};
+        var tile=el("button","tile"+(wireSel===i?" sel":"")+(wire.checked?(st.port===(t.p||"tray")||(!t.p&&!st.port)?" right":" wrong"):""));tile.type="button";tile.setAttribute("draggable","true");tile.setAttribute("data-i",i);
+        tile.appendChild(document.createTextNode(t.t));
+        if(st.port){var sp2=el("span","stamp "+(st.stamp||"none"),st.stamp?STAMPL[st.stamp]:"stamp?");tile.appendChild(sp2);if(wire.checked&&t.p&&st.stamp&&st.stamp!==t.s)tile.classList.add("stampbad")}
+        tile.setAttribute("aria-label",t.t+(st.port?", in "+PORTS[st.port]+", stamped "+(st.stamp?STAMPL[st.stamp]:"not yet")+". Press to change the stamp.":". Press to select, then choose a port."));
+        tile.addEventListener("click",function(e){e.stopPropagation();if(wire.checked)return;
+          if(st.port){var k=STAMPS.indexOf(st.stamp||"");wire.tiles[i].stamp=STAMPS[(k+1)%3];wireSave();wireRender();wireStatus("", "“"+t.t+"” stamped "+STAMPL[wire.tiles[i].stamp]+".");return}
+          if(wireSel===i){wireSel=null}else{wireSel=i}wireRender();wireStatus("",wireSel!=null?"Selected “"+t.t+".” Now tap a port, or leave it in the tray if it does not belong.":"")});
+        tile.addEventListener("dragstart",function(e){if(wire.checked){e.preventDefault();return}wireSel=i;try{e.dataTransfer.setData("text/plain",String(i))}catch(x){}});
+        if(st.port){placed++;if(st.stamp)stamped++;document.querySelector('#wireWidget .port[data-port="'+st.port+'"] .slots').appendChild(tile)}else{left++;tray.appendChild(tile)}
+      });
+    }
+    $("wirePlaced").textContent=placed;$("wireStamped").textContent=stamped;$("wireLeft").textContent=left;
+    var need=wire.sys?WIRE[wire.sys].tiles.filter(function(t){return t.p}).length:0;
+    $("wireCheck").disabled=!wire.sys||wire.checked||placed===0||stamped<placed;
   }
-  function fourqStatus(){
-    var sys=store.get("ail11l-sys","");var n=0;Q.forEach(function(k){if((store.get(k,"")||"").trim())n++});
-    var s=$("fourqStatus");
-    if(!sys){s.className="status";s.textContent="Choose a system and fill all four rows."}
-    else if(n<4){s.className="status";s.textContent="Checking "+sys+". "+n+" of 4 rows filled."}
-    else{s.className="status ok";s.textContent="All four rows filled for "+sys+". In Step 5 you can pull these notes into your draft."}
+  function wireStatus(kind,text){if(!text)return;var s=$("wireStatus");s.className="status"+(kind?" "+kind:"");s.textContent=text}
+  function wirePlace(port){
+    if(wireSel==null||wire.checked||!wire.sys)return;var i=wireSel,t=WIRE[wire.sys].tiles[i];
+    wire.tiles[i]={port:port,stamp:(wire.tiles[i]||{}).stamp||""};wireSave();wireSel=null;wireRender();
+    wireStatus("", "“"+t.t+"” wired to "+PORTS[port]+". Tap it to stamp how you know it.");
   }
-  document.querySelectorAll('input[name="sys"]').forEach(function(r){r.addEventListener("change",function(){store.set("ail11l-sys",r.value);fourqStatus()})});
-  Q.forEach(function(k){document.querySelector('textarea[data-store="'+k+'"]').addEventListener("input",fourqStatus)});
-  fourqLoad();
+  document.querySelectorAll("#wireWidget .port").forEach(function(p){
+    var port=p.getAttribute("data-port");
+    p.addEventListener("click",function(e){if(e.target.closest(".tile"))return;wirePlace(port)});
+    p.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&wireSel!=null){e.preventDefault();wirePlace(port)}});
+    p.addEventListener("dragover",function(e){e.preventDefault();p.classList.add("over")});
+    p.addEventListener("dragleave",function(){p.classList.remove("over")});
+    p.addEventListener("drop",function(e){e.preventDefault();p.classList.remove("over");wirePlace(port)});
+  });
+  var trayEl=$("tray");
+  trayEl.addEventListener("dragover",function(e){e.preventDefault()});
+  trayEl.addEventListener("drop",function(e){e.preventDefault();if(wireSel!=null&&!wire.checked){delete wire.tiles[wireSel];wireSave();wireSel=null;wireRender()}});
+  trayEl.addEventListener("click",function(e){if(e.target.closest(".tile"))return;if(wireSel!=null&&!wire.checked&&wire.tiles[wireSel]){delete wire.tiles[wireSel];wireSave();wireSel=null;wireRender();wireStatus("","Back in the tray.")}});
+  $("wireReset").addEventListener("click",function(){var k=wire.sys;wire={sys:k,tiles:{},checked:false};wireSave();wireSel=null;$("wireReview").classList.remove("show");wireRender();wireStatus("",k?"Cleared. Wire "+WIRE[k].name+" again.":"Pick a system to begin.")});
+  $("wireCheck").addEventListener("click",function(){
+    if(!wire.sys)return;var tiles=WIRE[wire.sys].tiles,tb=$("wireBody");tb.innerHTML="";var good=0,total=0,stampOff=0,phr={receives:[],produces:[],process:[],change:[]};
+    tiles.forEach(function(t,i){
+      var st=wire.tiles[i]||{},tr=el("tr");tr.appendChild(el("td",null,t.t));
+      var mine=st.port?PORTS[st.port]+" · "+(st.stamp?STAMPL[st.stamp]:"no stamp"):"left in tray";tr.appendChild(el("td",null,mine));
+      var td=el("td");
+      if(!t.p){td.appendChild(document.createTextNode("Does not belong"));td.appendChild(el("span","w",t.w));tr.className=st.port?"off":"good";if(!st.port)good++;total++}
+      else{total++;td.appendChild(document.createTextNode(PORTS[t.p]+" · "+STAMPL[t.s]));td.appendChild(el("span","w",t.w));
+        if(st.port===t.p){phr[t.p].push(t.t+(t.s==="inf"?" (inferred)":t.s==="unk"?" (unknown)":""));if(st.stamp===t.s){tr.className="good";good++}else{tr.className="stamp";stampOff++}}else tr.className="off"}
+      tb.appendChild(tr);
+    });
+    wire.checked=true;wireSave();wireRender();$("wireReview").classList.add("show");
+    store.set("ail11l-sys",WIRE[wire.sys].name);store.set(Q[0],phr.receives.join(", "));store.set(Q[1],phr.produces.join(", "));store.set(Q[2],phr.process.join("; "));store.set(Q[3],phr.change.join("; "));
+    var st=$("wireStatus");st.className="status"+(good===total?" ok":stampOff?" bad":"");
+    st.textContent=good+" of "+total+" fully right"+(stampOff?", "+stampOff+" in the right port but stamped wrong (gold rows)":"")+". "+(good===total?"Every piece in its port with an honest stamp. ":"Red rows are in the wrong port or should have stayed in the tray. ")+"The pieces you wired correctly are saved; in Step 5 you can pull them into your draft.";
+    $("wireReview").scrollIntoView({block:"nearest",behavior:"smooth"});
+  });
+  wireRender();
 
   /* ---------- System Check Builder ---------- */
   var MIND=/\b(understands?|understood|knows?|knew|thinks?|thought|wants?|wanted|decides?|decided|realiz(?:es?|ed)|feels?|felt|believes?|cares?|intends?|smart|intelligent|wise|chooses|gets me)\b/gi;
@@ -517,7 +730,9 @@
     var texts=[],filled=0,allMind=0;
     partsEl.forEach(function(t){
       var v=t.value.trim();texts.push(v);if(v)filled++;
-      var found=v.match(MIND)||[];var seen={},uniq=[];found.forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;uniq.push(w)}});
+      // A negated mind-word ("does not know") is a limit, not an overclaim.
+      var scrubbed=v.replace(/\b(does not|doesn’t|doesn't|do not|don’t|don't|cannot|can’t|can't|not|never|no evidence that it)\s+(?:\w+\s+){0,2}(knows?|understands?|thinks?|wants?|decides?|realiz(?:es?|ed)|feels?|believes?|cares?|intends?)\b/gi,"");
+      var found=scrubbed.match(MIND)||[];var seen={},uniq=[];found.forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;uniq.push(w)}});
       var f=t.parentNode.querySelector(".flag");f.innerHTML="";
       if(v&&uniq.length){f.appendChild(el("span",null,"Mind-words: "));uniq.forEach(function(w){f.appendChild(el("span","word",w))});allMind+=uniq.length}
       else if(v){f.appendChild(el("span","clean","Clean."))}
@@ -542,8 +757,9 @@
   document.querySelectorAll(".pull").forEach(function(b){
     b.addEventListener("click",function(){
       var i=parseInt(b.getAttribute("data-pull"),10);var t=partsEl[i+1];
-      var src=i===2?[store.get(Q[2],""),store.get(Q[3],"")].filter(function(x){return x&&x.trim()}).join(" "):store.get(Q[i],"");
-      if(!src||!src.trim()){$("bStatus").className="status";$("bStatus").textContent="Nothing saved in Step 3 for that row yet.";return}
+      var src=i===2?[store.get(Q[2],""),store.get(Q[3],"")].filter(function(x){return x&&x.trim()}).join("; over time: "):store.get(Q[i],"");
+      if(!src||!src.trim()){$("bStatus").className="status";$("bStatus").textContent="Nothing wired for that port yet. Wire the box in Step 3 and check it first.";return}
+      src=(i===0?"It appears to receive ":i===1?"It produces ":"The process likely involves ")+src+".";
       t.value=t.value.trim()?t.value.replace(/\s*$/,"\n")+src:src;store.set(t.getAttribute("data-store"),t.value);buildDraft();t.focus();
     });
   });
@@ -563,8 +779,13 @@
     for(var i=1;i<=5;i++){
       var li=el("li");li.appendChild(el("span","n",String(i)));
       var a=document.createElement("input");a.type="text";a.placeholder="System "+i;a.setAttribute("data-store","ail11l-g"+i+"n");a.setAttribute("aria-label","System "+i+" name");a.value=store.get("ail11l-g"+i+"n","");
-      var b=document.createElement("input");b.type="text";b.placeholder="Where I encounter it (setting)";b.setAttribute("data-store","ail11l-g"+i+"s");b.setAttribute("aria-label","System "+i+" setting");b.value=store.get("ail11l-g"+i+"s","");
-      [a,b].forEach(function(inp){inp.addEventListener("input",function(){store.set(inp.getAttribute("data-store"),inp.value);guideStatus()})});
+      var b=document.createElement("select");b.setAttribute("data-store","ail11l-g"+i+"s");b.setAttribute("aria-label","System "+i+" setting");
+      ["","school","home","entertainment","transportation","shopping","sports","health/fitness","creative work"].forEach(function(s){var o=document.createElement("option");o.value=s;o.textContent=s||"Where I meet it…";b.appendChild(o)});
+      b.value=store.get("ail11l-g"+i+"s","");if(b.value!==store.get("ail11l-g"+i+"s",""))b.value="";
+      (function(a,b){
+        a.addEventListener("input",function(){store.set(a.getAttribute("data-store"),a.value);guideStatus()});
+        b.addEventListener("change",function(){store.set(b.getAttribute("data-store"),b.value);guideStatus()});
+      })(a,b);
       var lab=el("label","unsure");var cb=document.createElement("input");cb.type="checkbox";cb.checked=!!unsure[i];
       (function(i,cb){cb.addEventListener("change",function(){unsure[i]=cb.checked;store.set("ail11l-guide-unsure",unsure);guideStatus()})})(i,cb);
       lab.appendChild(cb);lab.appendChild(document.createTextNode("Not sure it’s AI"));

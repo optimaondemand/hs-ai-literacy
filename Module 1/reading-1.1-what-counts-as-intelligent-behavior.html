@@ -139,6 +139,19 @@
   .careful p{margin:0;font-size:1.02rem;line-height:1.6}
   @keyframes curtain{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
   .rw-tools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.6rem}
+  .modes{display:flex;gap:.4rem;margin:.2rem 0 .6rem}
+  .modes button{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:.35rem .8rem;border-radius:8px;border:1px solid var(--teal);background:#fff;color:var(--teal);cursor:pointer}
+  .modes button[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan)}
+  .modes button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .pieces{display:grid;gap:.5rem;margin-bottom:.6rem;padding:.7rem .8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-2)}
+  .pieces .grp{display:flex;gap:.35rem;flex-wrap:wrap;align-items:center}
+  .pieces .grp .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);min-width:90px}
+  .pieces .pc{font-family:var(--sans);font-size:.88rem;padding:.3rem .6rem;border-radius:999px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .pieces .pc:hover{background:var(--teal-pale)}
+  .pieces .pc.hedge{border-color:var(--gold);color:#6d4a00;background:var(--gold-pale)}
+  .pieces .pc:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .pieces .tools{display:flex;gap:.4rem;justify-content:flex-end}
+  .pieces .tools button{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--rule-strong);background:#fff;border-radius:6px;padding:.25rem .55rem;cursor:pointer;color:var(--ink-soft)}
   .starter{margin:0 0 .8rem}
   .starter-toggle{font-family:var(--mono);font-size:.78rem;font-weight:500;letter-spacing:.04em;border:1px dashed var(--gold);background:var(--gold-pale);color:#6d4a00;border-radius:8px;padding:.4rem .8rem;cursor:pointer}
   .starter-toggle:hover{background:#ffeec2}
@@ -265,6 +278,15 @@
             <p class="hint">Fill the blanks with pieces from the lists, or with your own. The Compare button later shows one finished version, so do not peek yet.</p>
             <button type="button" class="btn ghost" id="useFrame">Put the frame in the box</button>
           </div>
+        </div>
+        <div class="modes" role="group" aria-label="How to rewrite"><button type="button" id="modeBuild" aria-pressed="true">Build it from pieces</button><button type="button" id="modeWrite" aria-pressed="false">Write it myself</button></div>
+        <div class="pieces" id="pieces">
+          <div class="grp"><span class="k">Opener</span><span id="pcOpen"></span></div>
+          <div class="grp"><span class="k">It receives</span><span id="pcData"></span></div>
+          <div class="grp"><span class="k">It does</span><span id="pcVerb"></span></div>
+          <div class="grp"><span class="k">It produces</span><span id="pcOut"></span></div>
+          <div class="grp"><span class="k">Closer</span><span id="pcClose"></span></div>
+          <div class="tools"><button type="button" id="pcUndo">Undo last piece</button></div>
         </div>
         <div class="rewrite">
           <div>
@@ -580,8 +602,18 @@
     box.value=box.value.trim()?box.value.replace(/\s*$/,"\n")+frame:frame;
     check();box.focus();var p=box.value.indexOf("___");if(p>=0)box.setSelectionRange(p,p+3);
   });
+  /* Build-it mode: tap pieces to assemble the claim; the same four checks run on the result. */
+  var OPEN=["The app appears to use","The app seems to use","The app likely uses"],VERB=["to predict","to rank","to suggest","to pick"],CLOSE=["but it does not know my reasons.","but I cannot verify how.","and it may be wrong."];
+  var pcHist=[];
+  function pcAppend(txt){var box=$("rewriteBox"),cur=box.value.replace(/\s+$/,"");pcHist.push(cur);box.value=(cur?cur+" ":"")+txt;check();box.focus()}
+  function pcChips(id,list,cls){var w=$(id);w.innerHTML="";list.forEach(function(t){var b=el("button","pc"+(cls?" "+cls:""),t);b.type="button";b.addEventListener("click",function(){pcAppend(t)});w.appendChild(b)})}
+  function loadPieces(){var c=CLAIMS[rwCur];pcChips("pcOpen",OPEN,"hedge");pcChips("pcData",c.inputs);pcChips("pcVerb",VERB);pcChips("pcOut",c.outputs);pcChips("pcClose",CLOSE,"hedge");pcHist=[]}
+  $("pcUndo").addEventListener("click",function(){if(!pcHist.length)return;$("rewriteBox").value=pcHist.pop();check()});
+  function setMode(m){store.set("ail11-rwmode",m);$("modeBuild").setAttribute("aria-pressed",m==="build"?"true":"false");$("modeWrite").setAttribute("aria-pressed",m==="write"?"true":"false");$("pieces").hidden=m!=="build";$("starter").hidden=m==="build"}
+  $("modeBuild").addEventListener("click",function(){setMode("build")});$("modeWrite").addEventListener("click",function(){setMode("write")});
+  setMode(store.get("ail11-rwmode")||"build");
   function loadClaim(){
-    $("vagueText").textContent="“"+CLAIMS[rwCur].v+"”";
+    $("vagueText").textContent="“"+CLAIMS[rwCur].v+"”";loadPieces();
     $("rewriteBox").value=rwState[rwCur]||"";
     $("careful").classList.remove("show");
     loadStarter();
@@ -590,7 +622,9 @@
   function check(){
     var t=$("rewriteBox").value;
     rwState[rwCur]=t;store.set("ail11-rewrite",rwState);
-    var found=t.match(MIND)||[];
+    // A negated mind-word ("does not know", "cannot understand") is a limit, not an overclaim.
+    var scrubbed=t.replace(/\b(does not|doesn’t|doesn't|do not|don’t|don't|cannot|can’t|can't|not|never|no evidence that it)\s+(?:\w+\s+){0,2}(knows?|understands?|thinks?|wants?|decides?|realiz(?:es?|ed)|feels?|believes?|cares?|intends?)\b/gi,"");
+    var found=scrubbed.match(MIND)||[];
     var seen={},words=[];found.forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;words.push(w)}});
     var f=$("flags");f.innerHTML="";
     if(t.trim().length===0){f.textContent=""}
