@@ -15,6 +15,28 @@
   @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
   .tools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.7rem}
   .counts span b{color:var(--teal-deep)}
+  .pick{font-family:var(--sans);font-size:.92rem;padding:.4rem .8rem;border-radius:999px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .pick:hover{background:var(--teal-pale)}
+  .pick[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px var(--glow)}
+  .pick:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .picks{display:flex;gap:.45rem;flex-wrap:wrap;margin:.4rem 0 .6rem}
+  .tile{font-family:var(--sans);font-size:.92rem;line-height:1.35;background:#fff;border:1px solid var(--teal-deep);color:var(--ink);border-radius:8px;padding:.4rem .65rem;cursor:grab;user-select:none;box-shadow:0 1px 0 rgba(27,36,48,.08);text-align:left;transition:transform .12s,box-shadow .12s}
+  .tile:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(11,59,79,.18)}
+  .tile.sel{outline:3px solid var(--gold);outline-offset:1px}
+  .tile.right{border-color:var(--ok);background:var(--ok-bg)}
+  .tile.wrong{border-color:var(--bad);background:var(--bad-bg)}
+  .tile:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .why{display:block;margin-top:.35rem;padding:.3rem .5rem;font-size:.84rem;background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;color:#4a3300;animation:reveal .3s ease-out}
+  .debrief{display:none;margin-top:.9rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden}
+  .debrief.show{display:block;animation:reveal .35s ease-out}
+  .debrief table{margin:0;font-size:.94rem}
+  .debrief td:first-child{font-weight:600;color:var(--teal-deep)}
+  .pip{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;white-space:nowrap;margin:0 .2rem .2rem 0}
+  .pip.match{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+  .pip.near{border-color:var(--gold);background:var(--gold-pale);color:#6d4a00}
+  .pip.miss{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+  .debrief .q{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:.2rem}
+  .debrief .note{margin:0;border-radius:0;border-left-width:0;border-top:1px solid var(--rule-strong)}
 
   /* ---------- Warm-up sort (Step 1) ---------- */
   .warm .bins{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
@@ -29,71 +51,87 @@
   .sorter .item .it{display:flex;gap:.6rem;align-items:baseline;margin-bottom:.45rem}
   .sorter .item .it b{font-family:var(--mono);color:var(--teal);font-size:.8rem}
   .sorter .item .it span{font-weight:600;color:var(--teal-deep)}
-  .sorter .types{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.5rem}
-  .sorter .type{font:inherit;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .6rem;border:1px solid var(--teal);border-radius:999px;background:#fff;color:var(--teal);cursor:pointer;transition:background .15s,color .15s}
-  .sorter .type:hover{background:var(--teal-pale)}
-  .sorter .type[aria-pressed="true"]{background:var(--navy);color:var(--cyan);border-color:var(--cyan)}
-  .sorter .type:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .sorter .row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:.4rem .6rem;align-items:start;margin:.4rem 0}
+  @media (max-width:560px){.sorter .row{grid-template-columns:1fr}}
+  .sorter .row .lbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);padding-top:.45rem}
+  .sorter .opts{display:flex;gap:.4rem;flex-wrap:wrap}
+  .sorter .type,.sorter .opt{font:inherit;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:.3rem .6rem;border:1px solid var(--teal);border-radius:999px;background:#fff;color:var(--teal);cursor:pointer;transition:background .15s,color .15s}
+  .sorter .opt{font-family:var(--sans);text-transform:none;letter-spacing:0;font-size:.86rem;color:var(--ink);border-color:var(--rule-strong);text-align:left}
+  .sorter .type:hover,.sorter .opt:hover{background:var(--teal-pale)}
+  .sorter .type[aria-pressed="true"],.sorter .opt[aria-pressed="true"]{background:var(--navy);color:var(--cyan);border-color:var(--cyan)}
+  .sorter .type:focus-visible,.sorter .opt:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
   .sorter .multi{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:#6d4a00;background:var(--gold-pale);border:1px dashed var(--gold);border-radius:999px;padding:.25rem .55rem;align-self:center}
-  .sorter .fields{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
-  @media (max-width:640px){.sorter .fields{grid-template-columns:1fr}}
-  .sorter .fields label{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
-  .sorter .fields textarea{width:100%;min-height:54px;font-family:var(--sans);font-size:.94rem;line-height:1.45;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
-  .sorter .fields textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
-  .debrief{display:none;margin-top:.9rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden}
-  .debrief.show{display:block;animation:reveal .35s ease-out}
-  .debrief table{margin:0;font-size:.94rem}
-  .debrief td:first-child{font-weight:600;color:var(--teal-deep)}
-  .debrief .pip{display:inline-block;font-family:var(--mono);font-size:.7rem;letter-spacing:.04em;padding:.2rem .5rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;white-space:nowrap;margin:0 .2rem .2rem 0}
-  .debrief .pip.match{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
-  .debrief .pip.near{border-color:var(--gold);background:var(--gold-pale);color:#6d4a00}
-  .debrief .why{display:block;font-size:.86rem;color:var(--ink-soft);margin-top:.2rem}
-  .debrief .note{margin:0;border-radius:0;border-left-width:0;border-top:1px solid var(--rule-strong)}
 
-  /* ---------- Vocabulary ledger (Step 3) ---------- */
-  .vocab{display:grid;gap:.6rem;margin-top:.6rem}
-  .vocab .term{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr) minmax(0,1.1fr);gap:.6rem;align-items:start;border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.7rem .8rem;background:#fff;transition:border-color .25s,background .25s}
-  @media (max-width:760px){.vocab .term{grid-template-columns:1fr}}
-  .vocab .term.done{border-color:#b7dcc6;background:#f7fcf9}
-  .vocab .term .w{font-family:var(--mono);font-weight:600;color:var(--teal-deep);font-size:1rem}
-  .vocab .term .d{font-size:.9rem;color:var(--ink-soft);margin:.2rem 0 0}
-  .vocab .term label{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
-  .vocab .term textarea{width:100%;min-height:60px;font-family:var(--sans);font-size:.94rem;line-height:1.45;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
-  .vocab .term textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  /* ---------- Match the term (Step 3) ---------- */
+  .match .terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem;margin-top:.7rem}
+  .match .term{border:1.5px dashed var(--teal);border-radius:var(--radius);padding:.7rem .8rem;background:#fff;min-height:150px;transition:background .2s,box-shadow .2s}
+  .match .term.over{background:var(--teal-pale);box-shadow:0 0 0 3px var(--glow)}
+  .match .term.done{border-style:solid;border-color:#b7dcc6;background:#f7fcf9}
+  .match .term h4{margin:0;font-family:var(--mono);font-size:.95rem;font-weight:600;color:var(--teal-deep)}
+  .match .term .def{font-size:.86rem;color:var(--ink-soft);margin:.15rem 0 .5rem}
+  .match .term .drop{display:grid;gap:.35rem;min-height:40px}
+  .match .term .tile{cursor:grab}
+  .match .lo{margin-top:.55rem;border-top:1px dashed var(--rule-strong);padding-top:.5rem;animation:reveal .3s ease-out}
+  .match .lo .k{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.3rem}
+  .match .lo button{display:block;width:100%;text-align:left;font:inherit;font-size:.88rem;line-height:1.4;padding:.4rem .6rem;margin:.25rem 0;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;cursor:pointer}
+  .match .lo button:hover{background:var(--teal-pale)}
+  .match .lo button[aria-pressed="true"]{border-color:var(--navy);background:var(--navy);color:var(--cyan)}
+  .match .lo button.right{border-color:var(--ok);background:var(--ok-bg);color:var(--ink)}
+  .match .lo button.wrong{border-color:var(--bad);background:var(--bad-bg);color:var(--ink)}
+  .match .lo button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
 
-  /* ---------- Inventory Builder (Step 5) ---------- */
-  .builder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;align-items:start}
-  @media (max-width:720px){.builder{grid-template-columns:1fr}}
-  .parts{display:grid;gap:.6rem}
-  .part{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.6rem .8rem;background:#fff}
-  .part.pair{display:grid;grid-template-columns:1fr 1fr;gap:.5rem}
-  .part.pair > label{grid-column:1 / -1}
-  .part label{display:flex;justify-content:space-between;gap:.5rem;align-items:baseline;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.3rem}
-  .part label .n{color:var(--teal)}
-  .part .q{font-size:.9rem;color:var(--ink-soft);margin:0 0 .4rem;font-family:var(--sans)}
-  .part textarea,.part input[type=text]{width:100%;font-family:var(--sans);font-size:.96rem;line-height:1.5;padding:.5rem .65rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
-  .part textarea{min-height:58px}
-  .part textarea:focus,.part input[type=text]:focus{outline:3px solid var(--glow);border-color:var(--teal)}
-  .part .flag{margin-top:.3rem;min-height:1.2em;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft)}
-  .part .flag .word{display:inline-block;background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.08rem .45rem;font-family:var(--sans);font-size:.82rem;margin:0 .15rem .15rem 0}
-  .part .flag .warn{display:inline-block;background:var(--gold-pale);border:1px solid var(--gold);color:#6d4a00;border-radius:999px;padding:.08rem .45rem;font-family:var(--sans);font-size:.82rem;margin:0 .15rem .15rem 0}
-  .part .flag .clean{color:var(--ok)}
-  .draftpane{position:sticky;top:3.6rem}
-  .draftpane .out{min-height:260px;padding:.9rem 1rem;border:1px solid var(--teal-deep);border-radius:var(--radius);background:var(--navy);color:#e8f3f7;font-size:.95rem;line-height:1.6;white-space:pre-wrap;font-family:var(--mono)}
-  .draftpane .out .ph{color:#7f97a4;font-style:italic;font-family:var(--sans)}
-  .draftpane .out .k{color:var(--cyan)}
-  .draftpane .reqs{margin-top:.6rem}
+  /* ---------- Assemble the record (Step 5) ---------- */
+  .assemble .layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:1rem;align-items:start;margin-top:.6rem}
+  @media (max-width:760px){.assemble .layout{grid-template-columns:1fr}}
+  .assemble .tray{border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-3);padding:.6rem;min-height:120px;display:grid;gap:.4rem;align-content:start}
+  .assemble .tray .traylbl{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .assemble .tray .tile{cursor:grab}
+  .assemble .tray.over{box-shadow:0 0 0 3px var(--glow)}
+  .assemble .record{background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);padding:.7rem;box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);display:grid;gap:.4rem}
+  .assemble .rhead{display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap;align-items:baseline;padding:.2rem .3rem .4rem;border-bottom:1px solid rgba(79,209,232,.25)}
+  .assemble .rhead .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+  .assemble .rhead .v{font-family:var(--mono);font-size:1rem;font-weight:600;color:#fff}
+  .assemble .slot{display:grid;grid-template-columns:118px minmax(0,1fr);gap:.4rem;align-items:center;border:1.5px dashed rgba(79,209,232,.5);border-radius:8px;padding:.35rem .5rem;min-height:46px;transition:background .2s,box-shadow .2s,border-color .2s;position:relative}
+  @media (max-width:480px){.assemble .slot{grid-template-columns:1fr}}
+  .assemble .slot.over{background:rgba(79,209,232,.14);box-shadow:0 0 0 3px var(--glow)}
+  .assemble .slot.filled{border-style:solid}
+  .assemble .slot .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
+  .assemble .slot .tile{margin:0;cursor:grab;font-size:.88rem;padding:.3rem .5rem}
+  .assemble .slot.pulled{opacity:.55;border-color:var(--gold)}
+  .assemble .slot.pulled .k{color:var(--gold)}
+  .assemble .slot.broken .tile{background:var(--gold-pale);border-color:var(--gold);color:#4a3300;text-decoration:line-through}
+  .assemble .slot .broke{font-family:var(--mono);font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold);position:absolute;right:.5rem;bottom:.25rem}
+  .assemble .pulltest{margin-top:.7rem;border:1px solid #f0dfb2;border-radius:var(--radius);background:var(--gold-pale);padding:.7rem .9rem;animation:reveal .3s ease-out}
+  .assemble .pulltest .k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:#6d4a00;margin-bottom:.3rem}
+  .assemble .pulltest p{margin:.2rem 0 .5rem;font-size:.95rem}
+  .assemble .whyopts button{display:block;width:100%;text-align:left;font:inherit;font-size:.9rem;line-height:1.4;padding:.45rem .65rem;margin:.3rem 0;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;cursor:pointer}
+  .assemble .whyopts button:hover{background:var(--teal-pale)}
+  .assemble .whyopts button.right{border-color:var(--ok);background:var(--ok-bg)}
+  .assemble .whyopts button.wrong{border-color:var(--bad);background:var(--bad-bg)}
+  .assemble .whyopts button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .draftwrap{margin-top:1rem;border-top:1px dashed var(--rule-strong);padding-top:.8rem}
+  .draftwrap h4{margin:0 0 .3rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep)}
+  .draftwrap .draft{min-height:220px;font-family:var(--mono);font-size:.9rem}
+  .draftwrap .flags{min-height:1.5em;display:flex;gap:.35rem;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft);margin-top:.4rem}
+  .flags .word{background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.1rem .5rem;font-family:var(--sans);font-size:.86rem}
+  .flags .warn{background:var(--gold-pale);border:1px solid var(--gold);color:#6d4a00;border-radius:999px;padding:.1rem .5rem;font-family:var(--sans);font-size:.86rem}
+  .flags .clean{color:var(--ok);font-weight:600}
 
-  /* ---------- Model context shortlist (Step 6) ---------- */
-  .shortlist{list-style:none;padding:0;margin:.6rem 0;display:grid;gap:.6rem}
-  .shortlist li{display:grid;grid-template-columns:28px minmax(0,1fr) minmax(0,1.2fr);gap:.5rem;align-items:start;margin:0}
-  @media (max-width:640px){.shortlist li{grid-template-columns:28px 1fr}.shortlist li .second{grid-column:2}}
-  .shortlist .n{font-family:var(--mono);font-size:.8rem;color:var(--teal);text-align:center;padding-top:.5rem}
-  .shortlist input[type=text]{width:100%;font:inherit;font-size:.95rem;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff}
-  .shortlist input[type=text]:focus{outline:3px solid var(--glow);border-color:var(--teal)}
-  .shortlist .flag{grid-column:2 / -1;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);min-height:1em}
-  .shortlist .flag .word{display:inline-block;background:var(--bad-bg);border:1px solid var(--bad);color:var(--bad);border-radius:999px;padding:.08rem .45rem;font-family:var(--sans);font-size:.82rem;margin:0 .15rem .15rem 0}
-  .shortlist .flag .clean{color:var(--ok)}
+  /* ---------- Risk map (Step 6) ---------- */
+  .risk .map{display:grid;grid-template-columns:auto 1fr 1fr;grid-template-rows:auto 1fr 1fr;gap:.4rem;margin-top:.6rem}
+  .risk .ax{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);display:flex;align-items:center;justify-content:center;text-align:center;padding:.2rem}
+  .risk .ax.col{grid-row:1}
+  .risk .ax.row{grid-column:1;writing-mode:vertical-rl;transform:rotate(180deg);padding:.3rem .15rem}
+  .risk .quad{border:1.5px dashed var(--rule-strong);border-radius:var(--radius);min-height:130px;padding:.5rem;background:#fff;display:grid;gap:.35rem;align-content:start;transition:background .2s,box-shadow .2s}
+  .risk .quad.over{background:var(--teal-pale);box-shadow:0 0 0 3px var(--glow)}
+  .risk .quad.low{border-color:var(--ok);background:#f4fbf6;box-shadow:inset 0 0 0 1px #b7dcc6}
+  .risk .quad .qn{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .risk .quad.low .qn{color:var(--ok)}
+  .risk .quad .tile{cursor:grab;font-size:.86rem;padding:.3rem .5rem;display:flex;justify-content:space-between;gap:.4rem;align-items:flex-start}
+  .risk .star{flex:0 0 auto;font:inherit;font-size:1rem;line-height:1;border:0;background:none;cursor:pointer;color:var(--ink-faint);padding:0 .1rem}
+  .risk .star[aria-pressed="true"]{color:var(--gold)}
+  .risk .star:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+  .risk .pool .tile{display:inline-block}
 </style>
 </head>
 <body>
@@ -169,18 +207,18 @@
       <p>For each item, mark observation, label, category, claim, decision, or more than one: a photo; “cat” written on a photo; a school’s “on time” rule; a statement that a student is disengaged; a recommendation to contact a family; a count of missed assignments.</p>
 
       <div class="widget sorter" id="sorterWidget">
-        <div class="bar"><span>Interactive · The Data-Type Sorter</span><span class="tag">Type, explain, then debrief</span></div>
+        <div class="bar"><span>Interactive · The Data-Type Sorter</span><span class="tag">Type, justify, then debrief</span></div>
         <div class="body">
-          <p>Each item is a row of the six-row table. Press one or more type chips (pressing two or more means “more than one”), then write <em>why</em> and <em>what may be missing</em>. When all six have a type, press <strong>Debrief</strong> to compare your reading with the reading’s own definitions. More than one answer can be reasonable; the debrief shows which ones, as long as you explained it.</p>
+          <p>Each item is a row of the six-row table. Press one or more type chips (two or more means “more than one”). Then pick the reading’s definition that justifies your type, and pick what the record most likely leaves out. When all six are typed, press <strong>Debrief</strong>. More than one type can be reasonable; the debrief shows which, as long as your definition backs it.</p>
           <div class="items" id="sorterItems"></div>
           <div class="tools">
-            <span class="counts"><span><b id="sorterTyped">0</b> of 6 typed</span><span><b id="sorterWhy">0</b> of 6 explained</span><span><b id="sorterMiss">0</b> of 6 missing-context notes</span></span>
+            <span class="counts"><span><b id="sorterTyped">0</b> of 6 typed</span><span><b id="sorterWhy">0</b> of 6 justified</span><span><b id="sorterMiss">0</b> of 6 missing-context picks</span></span>
             <span><button type="button" class="btn ghost" id="sorterReset">Start over</button> <button type="button" class="btn" id="sorterDebrief" disabled>Debrief</button></span>
           </div>
-          <div class="status" id="sorterStatus" role="status" aria-live="polite">Six items. Give each a type and a reason.</div>
+          <div class="status" id="sorterStatus" role="status" aria-live="polite">Six items. Give each a type, a definition, and a missing-context pick.</div>
           <div class="debrief" id="sorterOut" aria-live="polite">
             <table>
-              <thead><tr><th scope="col">Item</th><th scope="col">Your type</th><th scope="col">Best supported by the reading</th></tr></thead>
+              <thead><tr><th scope="col">Item</th><th scope="col">Your type · definition · missing</th><th scope="col">Best supported by the reading</th></tr></thead>
               <tbody id="sorterBody"></tbody>
             </table>
             <div class="note" id="sorterNote"></div>
@@ -198,16 +236,17 @@
       <span class="num" aria-hidden="true">3</span>
       <div class="head"><h3>Learn</h3><span class="time">10 minutes</span></div>
       <p>Read Reading 2.1. In your notes, write one example of each term: data, representation, label, feature, and proxy. Add a sentence explaining what each example leaves out.</p>
-      <div class="widget" id="vocabWidget">
-        <div class="bar"><span>Interactive · Vocabulary ledger</span><span class="tag">This device only</span></div>
+      <div class="widget match" id="matchWidget">
+        <div class="bar"><span>Interactive · Match the term</span><span class="tag">Ten examples, five terms</span></div>
         <div class="body">
-          <p>The five terms, with the reading’s definitions beside them. Write your example and what it leaves out here instead of on paper; the ledger stays on this device.</p>
-          <div class="vocab" id="vocab"></div>
+          <p>Ten examples, two for each term. Drag each example onto its term, or tap an example and then a term. When a term has both examples, two sentences about what they leave out appear; pick the honest one. Then copy the matched ledger into your notes.</p>
+          <div class="pool" id="matchPool" aria-label="Examples to match"></div>
+          <div class="terms" id="terms"></div>
           <div class="tools">
-            <span class="counts"><span><b id="vocabEx">0</b> of 5 examples</span><span><b id="vocabLo">0</b> of 5 leave-outs</span></span>
-            <button type="button" class="btn ghost" id="vocabCopy" disabled>Copy ledger</button>
+            <span class="counts"><span><b id="matchPlaced">0</b> of 10 placed</span><span><b id="matchLo">0</b> of 5 leave-outs picked</span></span>
+            <span><button type="button" class="btn ghost" id="matchReset">Start over</button> <button type="button" class="btn" id="matchCheck" disabled>Check</button> <button type="button" class="btn ghost" id="matchCopy" disabled>Copy ledger</button></span>
           </div>
-          <div class="status" id="vocabStatus" role="status" aria-live="polite">Five terms, two lines each.</div>
+          <div class="status" id="matchStatus" role="status" aria-live="polite">Five terms, two examples each.</div>
         </div>
       </div>
       <div class="foot"><button type="button" class="markbtn" data-mark="3" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
@@ -228,37 +267,45 @@
       <p>Open <strong>Assignment 2.1 — Data Inventory</strong>. Analyze one familiar app or school process using observations, labels, categories, claims, decisions, features, and missing context.</p>
       <div class="note"><p><strong>AI-use guidance:</strong> Do not use generative AI to draft the inventory. You may consult a product’s documentation for factual details and cite it.</p></div>
 
-      <div class="widget" id="builderWidget">
-        <div class="bar"><span>Interactive · Inventory Builder</span><span class="tag">Draft before you submit</span></div>
+      <div class="widget assemble" id="assembleWidget">
+        <div class="bar"><span>Interactive · Assemble the record</span><span class="tag">Feeds your draft</span></div>
         <div class="body">
-          <p>Fill the assignment’s template one field at a time. The right-hand panel assembles the inventory in the exact format the assignment asks for, and runs four checks: every field written, no personal or sensitive data named, features that describe properties rather than people, and a claim that sounds like an interpretation rather than a fact. Nothing is written for you. When all four checks are lit, copy the inventory into Canvas.</p>
-          <div class="builder">
-            <div class="parts" id="parts">
-              <div class="part"><label><span><span class="n">1</span> System/process</span></label><p class="q">A familiar, non-sensitive app or school process.</p><input type="text" data-part="sys" data-store="ail21l-i-sys" placeholder="A navigation app / the library checkout process…"><div class="flag"></div></div>
-              <div class="part"><label><span><span class="n">2</span> Purpose</span></label><p class="q">What is it for?</p><input type="text" data-part="pur" data-store="ail21l-i-pur" placeholder="It exists to…"><div class="flag"></div></div>
-              <div class="part pair"><label><span><span class="n">3</span> Observations</span></label><div><textarea data-part="o1" data-store="ail21l-i-o1" placeholder="Observation 1: a recorded fact or measurement"></textarea></div><div><textarea data-part="o2" data-store="ail21l-i-o2" placeholder="Observation 2"></textarea></div><div class="flag" style="grid-column:1 / -1"></div></div>
-              <div class="part"><label><span><span class="n">4</span> Label or category</span></label><p class="q">A tag it attaches, or a group it defines by rule.</p><textarea data-part="lab" data-store="ail21l-i-lab" placeholder="It may tag a record as… / it groups arrivals after 8:00 as…"></textarea><div class="flag"></div></div>
-              <div class="part"><label><span><span class="n">5</span> Claim</span></label><p class="q">A statement it might produce or support. A claim interprets evidence, so hedge it.</p><textarea data-part="clm" data-store="ail21l-i-clm" placeholder="The system might suggest that…"></textarea><div class="flag"></div></div>
-              <div class="part"><label><span><span class="n">6</span> Decision</span></label><p class="q">An action a person or system might take. An action, not merely a prediction.</p><textarea data-part="dec" data-store="ail21l-i-dec" placeholder="A person might then…"></textarea><div class="flag"></div></div>
-              <div class="part pair"><label><span><span class="n">7</span> Features / inputs</span></label><div><textarea data-part="f1" data-store="ail21l-i-f1" placeholder="Feature/input 1: a measurable or encoded property"></textarea></div><div><textarea data-part="f2" data-store="ail21l-i-f2" placeholder="Feature/input 2"></textarea></div><div class="flag" style="grid-column:1 / -1"></div></div>
-              <div class="part"><label><span><span class="n">8</span> Missing context</span></label><p class="q">One important thing the records cannot show.</p><textarea data-part="mis" data-store="ail21l-i-mis" placeholder="The records do not show…"></textarea><div class="flag"></div></div>
-              <div class="part"><label><span><span class="n">9</span> Why the representation is incomplete</span></label><p class="q">One sentence on why data are not the same as complete reality.</p><textarea data-part="why" data-store="ail21l-i-why" placeholder="Data are representations, not reality itself, because…"></textarea><div class="flag"></div></div>
-            </div>
-            <div class="draftpane">
-              <div class="out" id="draftOut" aria-live="polite"><span class="ph">Your inventory assembles here as you write, in the assignment’s template.</span></div>
-              <div class="counts" style="margin-top:.5rem"><span><b id="fillCount">0</b> of 11 fields</span><span><b id="wc">0</b> words</span></div>
-              <ul class="reqs" id="breqs">
-                <li data-req="parts"><span class="dot"></span><span>All eleven fields written</span></li>
-                <li data-req="safe"><span class="dot"></span><span>No personal or sensitive data named</span></li>
-                <li data-req="feat"><span class="dot"></span><span>Features and labels describe properties, not people</span></li>
-                <li data-req="hedge"><span class="dot"></span><span>The claim is hedged (may, might, likely, suggests…)</span></li>
-              </ul>
-              <div class="tools">
-                <span class="muted" style="font-size:.86rem">Add your AI-use disclosure line in Canvas.</span>
-                <span><button type="button" class="btn ghost" id="bClear">Clear</button> <button type="button" class="btn" id="bCopy" disabled>Copy inventory</button></span>
+          <p>Pick a system. Its tray holds twelve tiles: nine belong in the record and three do not. Build the inventory by dragging each tile into its slot, or tapping a tile and then a slot. Press <strong>Check</strong>; the tiles that do not belong explain themselves. Then pull one observation out and watch what happens to the claim. The finished record fills the draft below, which you rewrite in your own words for Canvas.</p>
+          <div class="picks" id="asmPicks" role="group" aria-label="System to inventory"></div>
+          <div class="layout">
+            <div class="tray" id="tray"><span class="traylbl">Tray</span></div>
+            <div>
+              <div class="record" id="record">
+                <div class="rhead"><span><span class="k">System/process</span><br><span class="v" id="recSys">—</span></span><span class="k" id="recCount">0 of 9 slots</span></div>
+                <div class="slot" data-slot="pur" data-type="pur"><span class="k">Purpose</span><div class="drop"></div></div>
+                <div class="slot" data-slot="o1" data-type="obs"><span class="k">Observation 1</span><div class="drop"></div></div>
+                <div class="slot" data-slot="o2" data-type="obs"><span class="k">Observation 2</span><div class="drop"></div></div>
+                <div class="slot" data-slot="lab" data-type="lab"><span class="k">Label or category</span><div class="drop"></div></div>
+                <div class="slot" data-slot="clm" data-type="clm"><span class="k">Claim</span><div class="drop"></div></div>
+                <div class="slot" data-slot="dec" data-type="dec"><span class="k">Decision</span><div class="drop"></div></div>
+                <div class="slot" data-slot="f1" data-type="feat"><span class="k">Feature/input 1</span><div class="drop"></div></div>
+                <div class="slot" data-slot="f2" data-type="feat"><span class="k">Feature/input 2</span><div class="drop"></div></div>
+                <div class="slot" data-slot="mis" data-type="mis"><span class="k">Missing context</span><div class="drop"></div></div>
               </div>
-              <div class="status" id="bStatus" role="status" aria-live="polite">Start with field 1.</div>
+              <div class="tools">
+                <span class="counts"><span><b id="asmPlaced">0</b> placed</span><span><b id="asmLeft">0</b> left in tray</span></span>
+                <span><button type="button" class="btn ghost" id="asmReset">Start over</button> <button type="button" class="btn" id="asmCheck" disabled>Check</button></span>
+              </div>
             </div>
+          </div>
+          <div class="status" id="asmStatus" role="status" aria-live="polite">Pick a system to begin.</div>
+          <div id="pullTest" hidden></div>
+          <div class="draftwrap">
+            <h4>Your draft, in the assignment’s template</h4>
+            <p class="hint" style="margin:.2rem 0 .5rem;font-size:.9rem;color:var(--ink-soft)">The record fills this box once it checks out. Rewrite any line in your own words; your edits are what the assignment page imports. The checker watches for personal or private data, words that judge a person, and an unhedged claim.</p>
+            <label for="draft" class="sr">Your draft</label>
+            <textarea id="draft" class="draft" data-store="ail21l-i-draft" placeholder="Assemble and check the record above, and the template appears here."></textarea>
+            <div class="flags" id="dflags"></div>
+            <div class="tools">
+              <span class="muted" style="font-size:.86rem">Add your AI-use disclosure line in Canvas.</span>
+              <span><button type="button" class="btn ghost" id="dRefill" disabled>Refill from the record</button> <button type="button" class="btn" id="dCopy" disabled>Copy draft</button></span>
+            </div>
+            <div class="status" id="dStatus" role="status" aria-live="polite">Nothing drafted yet.</div>
           </div>
         </div>
       </div>
@@ -270,16 +317,27 @@
       <span class="num" aria-hidden="true">6</span>
       <div class="head"><h3>Build the portfolio</h3><span class="time">5 minutes</span></div>
       <p>List two possible low-risk model contexts you could investigate later (for example: classifying recyclable items from descriptions, sorting plant-leaf descriptions, or identifying music genres from teacher-provided examples). Do not collect personal or sensitive data.</p>
-      <div class="widget" id="ctxWidget">
-        <div class="bar"><span>Interactive · Model context shortlist</span><span class="tag">Copy into your notebook</span></div>
+      <div class="widget risk" id="riskWidget">
+        <div class="bar"><span>Interactive · Risk map</span><span class="tag">Ten contexts, one safe corner</span></div>
         <div class="body">
-          <p>Name each context and what its examples would describe. The list checks each line for personal or sensitive data before you copy it into your notebook.</p>
-          <ul class="shortlist" id="ctxList"></ul>
-          <div class="tools">
-            <span class="counts"><span><b id="ctxN">0</b> of 2 named</span><span><b id="ctxD">0</b> of 2 described</span></span>
-            <button type="button" class="btn ghost" id="ctxCopy" disabled>Copy list</button>
+          <p>Ten possible model contexts. Place each on the map by what it is about and what data it would need: drag it to a quadrant, or tap it and then the quadrant. Press <strong>Check</strong>. Then star two cards in the green corner; those are your two low-risk contexts, ready to copy into your notebook.</p>
+          <div class="pool" id="riskPool" aria-label="Contexts to place"></div>
+          <div class="map" id="riskMap">
+            <span class="ax" aria-hidden="true"></span>
+            <span class="ax col">About things</span>
+            <span class="ax col">About people</span>
+            <span class="ax row">Public or made-up data</span>
+            <div class="quad low" data-quad="tp" tabindex="0" role="button" aria-label="About things, public or made-up data: the low-risk corner"><span class="qn">Low-risk corner</span><div class="drop"></div></div>
+            <div class="quad" data-quad="pp" tabindex="0" role="button" aria-label="About people, public or made-up data"><span class="qn">About people</span><div class="drop"></div></div>
+            <span class="ax row">Private or personal data</span>
+            <div class="quad" data-quad="tv" tabindex="0" role="button" aria-label="About things, private or personal data"><span class="qn">Private data about things</span><div class="drop"></div></div>
+            <div class="quad" data-quad="pv" tabindex="0" role="button" aria-label="About people, private or personal data"><span class="qn">Personal and private</span><div class="drop"></div></div>
           </div>
-          <div class="status" id="ctxStatus" role="status" aria-live="polite">Two contexts, both low-risk, neither about people.</div>
+          <div class="tools">
+            <span class="counts"><span><b id="riskPlaced">0</b> of 10 placed</span><span><b id="riskStars">0</b> of 2 starred</span></span>
+            <span><button type="button" class="btn ghost" id="riskReset">Start over</button> <button type="button" class="btn" id="riskCheck" disabled>Check</button> <button type="button" class="btn ghost" id="riskCopy" disabled>Copy list</button></span>
+          </div>
+          <div class="status" id="riskStatus" role="status" aria-live="polite">Ten cards. Where does each one sit?</div>
         </div>
       </div>
       <div class="foot"><button type="button" class="markbtn" data-mark="6" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
@@ -308,7 +366,7 @@
   var $=function(id){return document.getElementById(id)};
   function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
   function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
-  function words(t){var m=t.trim().match(/\S+/g);return m?m.length:0}
+  function uniq(found){var seen={},u=[];(found||[]).forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;u.push(w)}});return u}
   function copyText(txt,st,okMsg){
     if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){st.className="status ok";st.textContent=okMsg},function(){st.className="status bad";st.textContent="Copy failed. Select the text and copy it by hand."})}
     else{st.className="status bad";st.textContent="Copy failed. Select the text and copy it by hand."}
@@ -318,11 +376,31 @@
     set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
     del:function(k){try{localStorage.removeItem(k)}catch(e){}}
   };
-  // Words that suggest personal or sensitive data. The assignment says: do not use personal records or private data.
   var SENSITIVE=/\b(names?|home address|address(es)?|phone( number)?s?|e-?mails?|passwords?|health|medical|diagnos\w*|disabilit\w*|IEP|income|religion|race|ethnic\w*|immigration|faces?|facial|fingerprints?|birthdays?|date of birth|social security|discipline records?|grades?|GPA|test scores?)\b/gi;
-  // Words that judge a person instead of describing a measurable property ("features versus people").
-  var PERSON=/\b(lazy|disengaged|unmotivated|motivated|smart|dumb|stupid|bright|gifted|slow|rude|difficult|irresponsible|responsible|troublemaker|at[- ]risk|good student|bad student|bad kid|good kid|hard[- ]working)\b/gi;
+  var PERSON=/\b(lazy|disengaged|unmotivated|motivated|smart|dumb|stupid|bright|gifted|slow|rude|difficult|irresponsible|responsible|troublemaker|reckless|at[- ]risk|good student|bad student|bad kid|good kid|hard[- ]working|doesn[’']t care|bad taste)\b/gi;
   var HEDGE=/\b(may|might|likely|could|possibly|probably|perhaps|suggests?|appears?|seems?|indicates?|is consistent with|I cannot verify|I can’t verify|I can't verify)\b/i;
+
+  /* Generic tap-or-drag placement: pool of tiles, targets with .drop */
+  function placer(opts){
+    var sel=null;
+    function select(t){if(sel===t){t.classList.remove("sel");sel=null;opts.onSelect&&opts.onSelect(null);return}if(sel)sel.classList.remove("sel");sel=t;t.classList.add("sel");opts.onSelect&&opts.onSelect(t)}
+    function wireTile(t){
+      t.setAttribute("draggable","true");
+      t.addEventListener("click",function(e){if(e.target.closest("[data-nosel]"))return;select(t)});
+      t.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();select(t)}});
+      t.addEventListener("dragstart",function(e){if(sel)sel.classList.remove("sel");sel=t;t.classList.add("sel");try{e.dataTransfer.setData("text/plain","x")}catch(x){}e.dataTransfer.effectAllowed="move"});
+    }
+    function wireTarget(tg,fn){
+      if(!tg.hasAttribute("tabindex"))tg.tabIndex=0;if(!tg.getAttribute("role"))tg.setAttribute("role","button");
+      tg.addEventListener("click",function(e){if(e.target.closest(".tile"))return;if(sel){var t=sel;fn(t,tg);clear()}});
+      tg.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&sel&&e.target===tg){e.preventDefault();var t=sel;fn(t,tg);clear()}});
+      tg.addEventListener("dragover",function(e){e.preventDefault();tg.classList.add("over")});
+      tg.addEventListener("dragleave",function(){tg.classList.remove("over")});
+      tg.addEventListener("drop",function(e){e.preventDefault();tg.classList.remove("over");if(sel){var t=sel;fn(t,tg);clear()}});
+    }
+    function clear(){if(sel)sel.classList.remove("sel");sel=null}
+    return {wireTile:wireTile,wireTarget:wireTarget,clear:clear,selected:function(){return sel}};
+  }
 
   /* ---------- Step progress + rail ---------- */
   var KEY_STEPS="ail21l-steps",KEY_CHECK="ail21l-checklist",TOTAL=6;
@@ -345,19 +423,13 @@
     var k=c.getAttribute("data-check");c.checked=!!checks[k];
     c.addEventListener("change",function(){checks[k]=c.checked;store.set(KEY_CHECK,checks)});
   });
-  document.querySelectorAll("textarea[data-store],input[type=text][data-store]").forEach(function(t){
-    var k=t.getAttribute("data-store");t.value=store.get(k,"");
-    t.addEventListener("input",function(){store.set(k,t.value)});
-  });
   $("resetAll").addEventListener("click",function(){
-    if(!confirm("Clear saved progress, checkmarks, and notes for this lesson on this device?"))return;
+    if(!confirm("Clear saved progress, checkmarks, and work for this lesson on this device?"))return;
     steps={};checks={};store.del(KEY_STEPS);store.del(KEY_CHECK);
     document.querySelectorAll("#checklist input").forEach(function(c){c.checked=false});
-    document.querySelectorAll("textarea[data-store],input[type=text][data-store]").forEach(function(t){t.value="";store.del(t.getAttribute("data-store"))});
-    ["ail21l-warm","ail21l-warm-order","ail21l-sorter","ail21l-sorter-order"].forEach(store.del);
-    for(var i=0;i<5;i++){store.del("ail21l-v"+i+"e");store.del("ail21l-v"+i+"l")}
-    for(var j=1;j<=2;j++){store.del("ail21l-c"+j+"n");store.del("ail21l-c"+j+"d")}
-    renderRail();warmReset();sorterReset();vocabRender();buildDraft();ctxRender();
+    ["ail21l-warm","ail21l-warm-order","ail21l-sorter","ail21l-sorter-order","ail21l-match","ail21l-match-order","ail21l-asm","ail21l-risk","ail21l-risk-order","ail21l-i-draft"].forEach(store.del);
+    FIELDS.forEach(function(f){store.del("ail21l-i-"+f[0])});
+    renderRail();warmReset();sorterReset();matchReset();asmReset(true);riskReset();
   });
   renderRail();
 
@@ -369,7 +441,7 @@
     {id:"u",t:"“the classroom is uncomfortable”",best:"claim",why:"A statement that interprets evidence. It may need additional evidence."},
     {id:"w",t:"“open the window”",best:"dec",why:"An action selected using information and judgment, and a decision should include human responsibility."}
   ];
-  var warm=store.get("ail21l-warm",{}),warmSel=null;
+  var warm=store.get("ail21l-warm",{}),wp=placer({});
   function warmStatus(kind,text){var s=$("warmStatus");s.className="status"+(kind?" "+kind:"");s.textContent=text}
   function warmCounts(){
     var placed=0;WARM.forEach(function(w){if(warm[w.id])placed++});
@@ -377,35 +449,17 @@
     document.querySelectorAll("#warmBins .bin").forEach(function(b){var n=b.querySelectorAll(".chip").length;b.querySelector(".cnt").textContent=n?n+" placed":""});
     return placed;
   }
-  function warmChip(w){
-    var ch=el("button","chip",w.t);ch.type="button";ch.setAttribute("draggable","true");ch._w=w;
-    ch.setAttribute("aria-label",w.t+". Press to select, then choose a bin.");
-    ch.addEventListener("click",function(){
-      if(warmSel===ch){ch.classList.remove("sel");warmSel=null;return}
-      if(warmSel)warmSel.classList.remove("sel");warmSel=ch;ch.classList.add("sel");warmStatus("","Selected "+w.t+". Now click a bin.");
-    });
-    ch.addEventListener("dragstart",function(e){if(warmSel)warmSel.classList.remove("sel");warmSel=ch;ch.classList.add("sel");try{e.dataTransfer.setData("text/plain",w.id)}catch(x){}e.dataTransfer.effectAllowed="move"});
-    return ch;
-  }
+  function warmChip(w){var ch=el("button","chip tile",w.t);ch.type="button";ch._w=w;ch.setAttribute("aria-label",w.t+". Press to select, then choose a bin.");wp.wireTile(ch);return ch}
   function warmPlace(ch,bin){
     var key=bin.getAttribute("data-bin");warm[ch._w.id]=key;store.set("ail21l-warm",warm);
-    bin.querySelector(".drop").appendChild(ch);ch.classList.remove("sel","right","wrong");var ex=ch.querySelector(".ex");if(ex)ex.remove();warmSel=null;
+    bin.querySelector(".drop").appendChild(ch);ch.classList.remove("right","wrong");var ex=ch.querySelector(".ex");if(ex)ex.remove();
     var n=warmCounts();
     if(n===4)warmStatus("ok","All four placed. Press Check.");else warmStatus("",ch._w.t+" placed under "+WBIN[key]+". "+(4-n)+" to go.");
   }
-  document.querySelectorAll("#warmBins .bin").forEach(function(bin){
-    bin.tabIndex=0;bin.setAttribute("role","button");
-    bin.addEventListener("click",function(e){if(e.target.closest(".chip"))return;if(warmSel)warmPlace(warmSel,bin)});
-    bin.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&warmSel){e.preventDefault();warmPlace(warmSel,bin)}});
-    bin.addEventListener("dragover",function(e){e.preventDefault();bin.classList.add("over")});
-    bin.addEventListener("dragleave",function(){bin.classList.remove("over")});
-    bin.addEventListener("drop",function(e){e.preventDefault();bin.classList.remove("over");if(warmSel)warmPlace(warmSel,bin)});
-  });
-  var wpool=$("warmPool");
-  wpool.addEventListener("dragover",function(e){e.preventDefault()});
-  wpool.addEventListener("drop",function(e){e.preventDefault();if(warmSel){delete warm[warmSel._w.id];store.set("ail21l-warm",warm);wpool.appendChild(warmSel);warmSel.classList.remove("sel","right","wrong");warmSel=null;warmCounts()}});
+  document.querySelectorAll("#warmBins .bin").forEach(function(bin){wp.wireTarget(bin,warmPlace)});
+  wp.wireTarget($("warmPool"),function(ch){delete warm[ch._w.id];store.set("ail21l-warm",warm);$("warmPool").appendChild(ch);ch.classList.remove("right","wrong");warmCounts()});
   function warmRender(){
-    wpool.innerHTML="";document.querySelectorAll("#warmBins .drop").forEach(function(x){x.innerHTML=""});
+    var wpool=$("warmPool");wpool.innerHTML="";document.querySelectorAll("#warmBins .drop").forEach(function(x){x.innerHTML=""});
     var order=store.get("ail21l-warm-order",null);
     if(!order){order=shuffle(WARM.map(function(w){return w.id}));store.set("ail21l-warm-order",order)}
     order.forEach(function(id){
@@ -414,7 +468,7 @@
     });
     warmCounts();
   }
-  function warmReset(){warm={};store.del("ail21l-warm");store.del("ail21l-warm-order");warmSel=null;warmRender();warmStatus("","Four phrases. Which one is a measurement, which is a tag, which interprets, and which acts?")}
+  function warmReset(){warm={};store.del("ail21l-warm");store.del("ail21l-warm-order");wp.clear();warmRender();warmStatus("","Four phrases. Which one is a measurement, which is a tag, which interprets, and which acts?")}
   $("warmReset").addEventListener("click",warmReset);
   $("warmCheck").addEventListener("click",function(){
     var right=0;
@@ -430,32 +484,33 @@
   /* ---------- The Data-Type Sorter ---------- */
   var TYPES=[["observation","Observation"],["label","Label"],["category","Category"],["claim","Claim"],["decision","Decision"]];
   var TNAME={};TYPES.forEach(function(t){TNAME[t[0]]=t[1]});
+  var DEFS={observation:"A recorded fact or measurement.",label:"A tag attached to an observation for a purpose.",category:"A group defined by a rule or convention.",claim:"A statement that interprets evidence.",decision:"An action selected using information and judgment."};
   var ITEMS=[
     {id:"A",t:"a photo",best:["observation"],also:[],
-     why:"A recorded representation: a photo records a view from one angle under particular lighting. If you also pressed another type, say what purpose the photo serves.",
-     miss:"what was outside the frame, the lighting, and the moment before and after"},
+     why:"A recorded representation: a photo records a view from one angle under particular lighting.",
+     miss:["What was outside the frame, and the lighting","The brand of the camera","How many pixels the file has"]},
     {id:"B",t:"“cat” written on a photo",best:["label"],also:[],
      why:"A tag attached to an observation for a purpose, like “spam” on an email example. A label can be mistaken.",
-     miss:"who wrote the tag, by what rule, and whether the photo actually shows a cat"},
+     miss:["Who wrote the tag, by what rule, and whether it is right","The color of the cat","The size of the photo file"]},
     {id:"C",t:"a school’s “on time” rule",best:["category"],also:[],
      why:"A group defined by a rule or convention, like “late arrival” for arrivals after 8:00. A category can be designed differently.",
-     miss:"why the cutoff sits where it does and what counts as arriving"},
+     miss:["Why the cutoff sits where it does, and what counts as arriving","The name of the school","How many students the school has"]},
     {id:"D",t:"a statement that a student is disengaged",best:["claim"],also:["label"],
-     why:"A statement that interprets evidence. “Disengaged” is an interpretation that may need more context. If you pressed label, that is reasonable too: a label is not the same as a fact about a person.",
-     miss:"what was observed, over how long, and what else was happening for the student"},
+     why:"A statement that interprets evidence. “Disengaged” is an interpretation that may need more context. Label is reasonable too: a label is not the same as a fact about a person.",
+     miss:["What was observed, over how long, and what else was going on for the student","The student’s favorite subject","The font the statement was typed in"]},
     {id:"E",t:"a recommendation to contact a family",best:["decision"],also:["claim"],
-     why:"An action selected using information and judgment, like “Contact the family” or “do not act yet.” A decision is an action, not merely a prediction. If you read the recommendation as a statement that still needs a person to act on it, claim is reasonable if you explain it.",
-     miss:"who is responsible for the decision and what evidence it rests on"},
+     why:"An action selected using information and judgment, like “Contact the family” or “do not act yet.” A decision is an action, not merely a prediction. Claim is reasonable if you read it as a statement that still needs a person to act.",
+     miss:["Who is responsible for the decision, and the evidence it rests on","The family’s phone number","The time of day it was printed"]},
     {id:"F",t:"a count of missed assignments",best:["observation"],also:[],
      why:"A recorded fact or measurement. A model might use it as a feature, or as a proxy for something harder to measure, but the count alone does not say why assignments were missed.",
-     miss:"the reasons behind the missed work and anything the count does not capture"}
+     miss:["Why the assignments were missed","How many assignments were ever given","The color of the gradebook"]}
   ];
-  var sorter=store.get("ail21l-sorter",{}); // {A:{types:["claim"],why:"",miss:""}}
+  var sorter=store.get("ail21l-sorter",{}); // {A:{types:[],why:"observation",miss:0}}
   function sorterSave(){store.set("ail21l-sorter",sorter)}
   function sorterStatus(kind,text){var s=$("sorterStatus");s.className="status"+(kind?" "+kind:"");s.textContent=text}
   function sorterCounts(){
     var typed=0,why=0,miss=0;
-    ITEMS.forEach(function(it){var d=sorter[it.id]||{};if(d.types&&d.types.length)typed++;if((d.why||"").trim())why++;if((d.miss||"").trim())miss++});
+    ITEMS.forEach(function(it){var d=sorter[it.id]||{};if(d.types&&d.types.length)typed++;if(d.why)why++;if(d.miss!=null)miss++});
     $("sorterTyped").textContent=typed;$("sorterWhy").textContent=why;$("sorterMiss").textContent=miss;$("sorterDebrief").disabled=typed<6;
     document.querySelectorAll("#sorterItems .item").forEach(function(div){var d=sorter[div.getAttribute("data-id")]||{};div.classList.toggle("typed",!!(d.types&&d.types.length))});
     return {typed:typed,why:why,miss:miss};
@@ -463,13 +518,15 @@
   function sorterRender(){
     var host=$("sorterItems");host.innerHTML="";
     var order=store.get("ail21l-sorter-order",null);
-    if(!order){order=shuffle(ITEMS.map(function(i){return i.id}));store.set("ail21l-sorter-order",order)}
-    order.forEach(function(id){
+    if(!order){order=shuffle(ITEMS.map(function(i){return i.id}));var mo={};ITEMS.forEach(function(i){mo[i.id]=shuffle([0,1,2])});store.set("ail21l-sorter-order",{ids:order,miss:mo});order={ids:order,miss:mo}}
+    order.ids.forEach(function(id){
       var it=ITEMS.filter(function(x){return x.id===id})[0];
-      var d=sorter[it.id]||(sorter[it.id]={types:[],why:"",miss:""});
+      var d=sorter[it.id]||(sorter[it.id]={types:[],why:"",miss:null});
       var div=el("div","item");div.setAttribute("data-id",it.id);
       var head=el("div","it");head.appendChild(el("b",null,it.id));head.appendChild(el("span",null,it.t));div.appendChild(head);
-      var types=el("div","types");types.setAttribute("role","group");types.setAttribute("aria-label","Type of item "+it.id);
+      // types
+      var r1=el("div","row");r1.appendChild(el("span","lbl","Type"));
+      var types=el("div","opts");types.setAttribute("role","group");types.setAttribute("aria-label","Type of item "+it.id);
       var multi=el("span","multi","more than one");multi.hidden=d.types.length<2;
       TYPES.forEach(function(t){
         var b=el("button","type",t[1]);b.type="button";b.setAttribute("aria-pressed",d.types.indexOf(t[0])>=0?"true":"false");
@@ -477,167 +534,366 @@
           var i=d.types.indexOf(t[0]);if(i>=0)d.types.splice(i,1);else d.types.push(t[0]);
           b.setAttribute("aria-pressed",i>=0?"false":"true");multi.hidden=d.types.length<2;sorterSave();
           var n=sorterCounts();$("sorterOut").classList.remove("show");
-          if(n.typed===6)sorterStatus("ok","All six typed. Fill any missing reasons, then press Debrief.");
+          if(n.typed===6)sorterStatus("ok","All six typed. Finish the definition and missing-context picks, then press Debrief.");
           else sorterStatus("","Item "+it.id+": "+(d.types.length?d.types.map(function(k){return TNAME[k]}).join(" + "):"no type yet")+". "+(6-n.typed)+" item"+(6-n.typed===1?"":"s")+" still untyped.");
         });
         types.appendChild(b);
       });
-      types.appendChild(multi);div.appendChild(types);
-      var fields=el("div","fields");
-      [["why","Why"],["miss","What may be missing"]].forEach(function(f){
-        var wrap=el("div");var lab=el("label",null,f[1]);lab.setAttribute("for","s-"+it.id+"-"+f[0]);
-        var ta=document.createElement("textarea");ta.id="s-"+it.id+"-"+f[0];ta.value=d[f[0]]||"";ta.placeholder=f[0]==="why"?"It is a … because…":"The record leaves out…";
-        ta.addEventListener("input",function(){d[f[0]]=ta.value;sorterSave();sorterCounts()});
-        wrap.appendChild(lab);wrap.appendChild(ta);fields.appendChild(wrap);
+      types.appendChild(multi);r1.appendChild(types);div.appendChild(r1);
+      // why: definition pick
+      var r2=el("div","row");r2.appendChild(el("span","lbl","Why"));var defs=el("div","opts");defs.setAttribute("role","group");defs.setAttribute("aria-label","Definition that justifies item "+it.id);
+      TYPES.forEach(function(t){
+        var b=el("button","opt",DEFS[t[0]]);b.type="button";b.setAttribute("aria-pressed",d.why===t[0]?"true":"false");
+        b.addEventListener("click",function(){d.why=d.why===t[0]?"":t[0];sorterSave();defs.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b&&d.why?"true":"false")});sorterCounts();$("sorterOut").classList.remove("show")});
+        defs.appendChild(b);
       });
-      div.appendChild(fields);host.appendChild(div);
+      r2.appendChild(defs);div.appendChild(r2);
+      // missing pick
+      var r3=el("div","row");r3.appendChild(el("span","lbl","What may be missing"));var ms=el("div","opts");ms.setAttribute("role","group");ms.setAttribute("aria-label","What may be missing for item "+it.id);
+      order.miss[it.id].forEach(function(mi){
+        var b=el("button","opt",it.miss[mi]);b.type="button";b.setAttribute("aria-pressed",d.miss===mi?"true":"false");
+        b.addEventListener("click",function(){d.miss=d.miss===mi?null:mi;sorterSave();ms.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b&&d.miss!=null?"true":"false")});sorterCounts();$("sorterOut").classList.remove("show")});
+        ms.appendChild(b);
+      });
+      r3.appendChild(ms);div.appendChild(r3);
+      host.appendChild(div);
     });
     sorterCounts();
   }
-  function sorterReset(){sorter={};store.del("ail21l-sorter");store.del("ail21l-sorter-order");$("sorterOut").classList.remove("show");sorterRender();sorterStatus("","Six items. Give each a type and a reason.")}
+  function sorterReset(){sorter={};store.del("ail21l-sorter");store.del("ail21l-sorter-order");$("sorterOut").classList.remove("show");sorterRender();sorterStatus("","Six items. Give each a type, a definition, and a missing-context pick.")}
   $("sorterReset").addEventListener("click",sorterReset);
   $("sorterDebrief").addEventListener("click",function(){
-    var tb=$("sorterBody");tb.innerHTML="";var match=0,near=0,unexplained=0;
+    var tb=$("sorterBody");tb.innerHTML="";var match=0,near=0,unjust=0,missRight=0;
     ITEMS.forEach(function(it){
       var d=sorter[it.id],tr=el("tr");
       var hitBest=d.types.some(function(k){return it.best.indexOf(k)>=0}),hitAlso=d.types.some(function(k){return it.also.indexOf(k)>=0});
+      var justified=d.why&&(it.best.indexOf(d.why)>=0||it.also.indexOf(d.why)>=0)&&d.types.indexOf(d.why)>=0;
       tr.appendChild(el("td",null,it.id+". "+it.t));
-      var t1=el("td");d.types.forEach(function(k){t1.appendChild(el("span","pip"+(it.best.indexOf(k)>=0?" match":it.also.indexOf(k)>=0?" near":""),TNAME[k]))});
-      if(d.types.length>1)t1.appendChild(el("span","why","More than one: "+((d.why||"").trim()?"explained.":"not yet explained.")));
+      var t1=el("td");d.types.forEach(function(k){t1.appendChild(el("span","pip"+(it.best.indexOf(k)>=0?" match":it.also.indexOf(k)>=0?" near":" miss"),TNAME[k]))});
+      t1.appendChild(el("span","q",d.why?("Definition: "+DEFS[d.why]+(justified?" ✓":" (does not back your type)")):"No definition picked."));
+      t1.appendChild(el("span","q",d.miss!=null?("Missing: "+it.miss[d.miss]+(d.miss===0?" ✓":"")):"No missing-context pick."));
       tr.appendChild(t1);
-      var t2=el("td");it.best.forEach(function(k){t2.appendChild(el("span","pip match",TNAME[k]))});it.also.forEach(function(k){t2.appendChild(el("span","pip near",TNAME[k]+" (if explained)"))});
-      var why=el("span","why",it.why);t2.appendChild(why);
-      if(!(d.miss||"").trim())t2.appendChild(el("span","why","What may be missing: "+it.miss+"."));
+      var t2=el("td");it.best.forEach(function(k){t2.appendChild(el("span","pip match",TNAME[k]))});it.also.forEach(function(k){t2.appendChild(el("span","pip near",TNAME[k]+" (if justified)"))});
+      t2.appendChild(el("span","q",it.why));
+      if(d.miss!==0)t2.appendChild(el("span","q","Most likely missing: "+it.miss[0]+"."));
       tr.appendChild(t2);tb.appendChild(tr);
       if(hitBest)match++;else if(hitAlso)near++;
-      if(hitAlso&&!hitBest&&!(d.why||"").trim())unexplained++;
+      if(hitAlso&&!hitBest&&!justified)unjust++;
+      if(d.miss===0)missRight++;
     });
-    var note=$("sorterNote");
-    note.innerHTML="<p><strong>"+match+" of 6 match the reading’s best-supported type"+(near?", and "+near+" use"+(near===1?"s":"")+" a second reasonable reading":"")+".</strong> "+
-      (unexplained?"A second reading only counts if you explain it; "+unexplained+" of yours "+(unexplained===1?"has":"have")+" no reason yet. ":"")+
+    $("sorterNote").innerHTML="<p><strong>"+match+" of 6 match the reading’s best-supported type"+(near?", and "+near+" use"+(near===1?"s":"")+" a second reasonable reading":"")+". "+missRight+" of 6 missing-context picks are the most likely one.</strong> "+
+      (unjust?"A second reading only counts when the definition backs it; "+unjust+" of yours "+(unjust===1?"does":"do")+" not. ":"")+
       "A label is not the same as a fact about a person. “Disengaged” is an interpretation that may need more context. A decision is an action, not merely a prediction.</p>";
-    $("sorterOut").classList.add("show");
-    $("sorterOut").scrollIntoView({block:"nearest",behavior:"smooth"});
+    $("sorterOut").classList.add("show");$("sorterOut").scrollIntoView({block:"nearest",behavior:"smooth"});
   });
   sorterRender();
 
-  /* ---------- Vocabulary ledger ---------- */
+  /* ---------- Match the term ---------- */
   var VOCAB=[
-    ["data","recorded representations used for analysis or computation."],
-    ["representation","a form used to stand for an object, event, property, or idea."],
-    ["label","a tag assigned to an example for a purpose."],
-    ["feature","a measurable or encoded property used by a model."],
-    ["proxy","a measurable stand-in for something harder to measure directly."]
+    {id:"data",w:"data",d:"recorded representations used for analysis or computation.",
+     lo:["The rows record what the fields allowed; the mornings themselves are not in the sheet.","The spreadsheet holds everything that happened on those days."]},
+    {id:"representation",w:"representation",d:"a form used to stand for an object, event, property, or idea.",
+     lo:["The map shows roads, not traffic, smells, or the people on them.","A good enough map is the same thing as the streets."]},
+    {id:"label",w:"label",d:"a tag assigned to an example for a purpose.",
+     lo:["The tag says what someone decided the example is, not whether they were right.","Once tagged, the example is certainly what the tag says."]},
+    {id:"feature",w:"feature",d:"a measurable or encoded property used by a model.",
+     lo:["A number a model can use; it does not say why the book stayed out.","The feature explains the borrower’s reasons."]},
+    {id:"proxy",w:"proxy",d:"a measurable stand-in for something harder to measure directly.",
+     lo:["Minutes logged can rise while attention falls; the stand-in is not the thing.","Minutes logged measure attention exactly."]}
   ];
-  function vocabRender(){
-    var host=$("vocab");host.innerHTML="";
-    VOCAB.forEach(function(v,i){
-      var row=el("div","term");
-      var left=el("div");left.appendChild(el("div","w",v[0]));left.appendChild(el("p","d",v[1]));row.appendChild(left);
-      [["e","One example"],["l","What it leaves out"]].forEach(function(f){
-        var wrap=el("div");var lab=el("label",null,f[1]);lab.setAttribute("for","v"+i+f[0]);
-        var ta=document.createElement("textarea");ta.id="v"+i+f[0];ta.setAttribute("data-store","ail21l-v"+i+f[0]);ta.value=store.get("ail21l-v"+i+f[0],"");
-        ta.placeholder=f[0]==="e"?"For example, …":"This example leaves out…";
-        ta.addEventListener("input",function(){store.set(ta.getAttribute("data-store"),ta.value);vocabStatus()});
-        wrap.appendChild(lab);wrap.appendChild(ta);row.appendChild(wrap);
-      });
-      host.appendChild(row);
+  var EXAMPLES=[
+    {id:"x1",term:"data",t:"A spreadsheet of arrival times, one row per school day"},
+    {id:"x2",term:"data",t:"The list of clicks a video app logged last week"},
+    {id:"x3",term:"representation",t:"A map standing in for the streets it draws"},
+    {id:"x4",term:"representation",t:"A photo standing in for the room it was taken in"},
+    {id:"x5",term:"label",t:"“spam” written on an email example"},
+    {id:"x6",term:"label",t:"“cat” tagged on a photo"},
+    {id:"x7",term:"feature",t:"Days since the book was checked out, read by a model"},
+    {id:"x8",term:"feature",t:"Pixel brightness values a model reads from an image"},
+    {id:"x9",term:"proxy",t:"Minutes logged in the app, standing in for attention"},
+    {id:"x10",term:"proxy",t:"Number of library visits, standing in for interest in reading"}
+  ];
+  var match=store.get("ail21l-match",{placed:{},lo:{},checked:false}),mp=placer({});
+  function matchSave(){store.set("ail21l-match",match)}
+  function matchStatus(kind,text){var s=$("matchStatus");s.className="status"+(kind?" "+kind:"");s.textContent=text}
+  function matchCounts(){
+    var placed=Object.keys(match.placed).length,lo=Object.keys(match.lo).length;
+    $("matchPlaced").textContent=placed;$("matchLo").textContent=lo;$("matchCheck").disabled=placed<10;$("matchCopy").disabled=!(placed===10&&lo===5&&match.checked);
+    document.querySelectorAll("#terms .term").forEach(function(tc){var id=tc.getAttribute("data-term");var n=tc.querySelectorAll(".tile").length;var box=tc.querySelector(".lo");
+      if(n>=2&&!box){tc.appendChild(loBox(id))}else if(n<2&&box){box.remove()}
+      tc.classList.toggle("done",n>=2&&match.lo[id]!=null);
     });
-    vocabStatus();
+    return {placed:placed,lo:lo};
   }
-  function vocabStatus(){
-    var ex=0,lo=0;
-    document.querySelectorAll("#vocab .term").forEach(function(row,i){
-      var e=(store.get("ail21l-v"+i+"e","")||"").trim(),l=(store.get("ail21l-v"+i+"l","")||"").trim();
-      if(e)ex++;if(l)lo++;row.classList.toggle("done",!!(e&&l));
+  function loBox(id){
+    var v=VOCAB.filter(function(x){return x.id===id})[0];var box=el("div","lo");box.appendChild(el("span","k","What these leave out"));
+    var order=(store.get("ail21l-match-order",{}).lo||{})[id]||[0,1];
+    order.forEach(function(i){
+      var b=el("button",null,v.lo[i]);b.type="button";b.setAttribute("aria-pressed",match.lo[id]===i?"true":"false");
+      if(match.checked&&match.lo[id]===i)b.classList.add(i===0?"right":"wrong");
+      b.addEventListener("click",function(){match.lo[id]=i;match.checked=false;matchSave();box.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false");x.classList.remove("right","wrong")});matchCounts()});
+      box.appendChild(b);
     });
-    $("vocabEx").textContent=ex;$("vocabLo").textContent=lo;$("vocabCopy").disabled=ex+lo===0;
-    var st=$("vocabStatus");
-    if(ex===5&&lo===5){st.className="status ok";st.textContent="All five terms have an example and a leave-out. Copy the ledger into your notes."}
-    else{st.className="status";var t=[];if(ex<5)t.push((5-ex)+" example"+(5-ex>1?"s":""));if(lo<5)t.push((5-lo)+" leave-out"+(5-lo>1?"s":""));st.textContent="Still needed: "+t.join("; ")+"."}
+    return box;
   }
-  $("vocabCopy").addEventListener("click",function(){
-    var lines=[];VOCAB.forEach(function(v,i){var e=(store.get("ail21l-v"+i+"e","")||"").trim(),l=(store.get("ail21l-v"+i+"l","")||"").trim();if(!e&&!l)return;lines.push(v[0]+": "+(e||"—")+(l?"\n  leaves out: "+l:""))});
-    copyText("Lesson 2.1 vocabulary\n"+lines.join("\n"),$("vocabStatus"),"Ledger copied. Paste it into your notes.");
+  function exTile(x){var t=el("button","tile",x.t);t.type="button";t._x=x;t.setAttribute("aria-label",x.t+". Press to select, then choose a term.");mp.wireTile(t);return t}
+  function matchPlace(t,tc){
+    var id=tc.getAttribute("data-term");match.placed[t._x.id]=id;match.checked=false;matchSave();
+    tc.querySelector(".drop").appendChild(t);t.classList.remove("right","wrong");
+    var n=matchCounts();matchStatus(n.placed===10?"ok":"",n.placed===10?"All ten placed. Pick the honest leave-out under each term, then press Check.":(10-n.placed)+" example"+(10-n.placed>1?"s":"")+" still in the pool.");
+  }
+  function matchRender(){
+    var pool=$("matchPool"),terms=$("terms");pool.innerHTML="";terms.innerHTML="";
+    var order=store.get("ail21l-match-order",null);
+    if(!order){order={ex:shuffle(EXAMPLES.map(function(x){return x.id})),lo:{}};VOCAB.forEach(function(v){order.lo[v.id]=shuffle([0,1])});store.set("ail21l-match-order",order)}
+    VOCAB.forEach(function(v){var tc=el("div","term");tc.setAttribute("data-term",v.id);tc.appendChild(el("h4",null,v.w));tc.appendChild(el("p","def",v.d));tc.appendChild(el("div","drop"));mp.wireTarget(tc,matchPlace);terms.appendChild(tc)});
+    order.ex.forEach(function(id){var x=EXAMPLES.filter(function(e){return e.id===id})[0];var t=exTile(x);var where=match.placed[x.id];
+      if(where){document.querySelector('#terms .term[data-term="'+where+'"] .drop').appendChild(t);if(match.checked)t.classList.add(where===x.term?"right":"wrong")}else pool.appendChild(t)});
+    matchCounts();
+  }
+  mp.wireTarget($("matchPool"),function(t){delete match.placed[t._x.id];match.checked=false;matchSave();$("matchPool").appendChild(t);t.classList.remove("right","wrong");matchCounts()});
+  function matchReset(){match={placed:{},lo:{},checked:false};store.del("ail21l-match");store.del("ail21l-match-order");mp.clear();matchRender();matchStatus("","Five terms, two examples each.")}
+  $("matchReset").addEventListener("click",matchReset);
+  $("matchCheck").addEventListener("click",function(){
+    var right=0,loRight=0,loMissing=0;match.checked=true;matchSave();
+    document.querySelectorAll("#terms .term").forEach(function(tc){var id=tc.getAttribute("data-term");
+      tc.querySelectorAll(".tile").forEach(function(t){var ok=t._x.term===id;t.classList.add(ok?"right":"wrong");if(ok)right++});
+      var box=tc.querySelector(".lo");if(box){if(match.lo[id]==null)loMissing++;box.querySelectorAll("button").forEach(function(b){if(b.getAttribute("aria-pressed")==="true"){var ok=b.textContent===VOCAB.filter(function(v){return v.id===id})[0].lo[0];b.classList.add(ok?"right":"wrong");if(ok)loRight++}})}
+    });
+    matchCounts();
+    if(right===10&&loRight===5)matchStatus("ok","All ten examples match and every leave-out is the honest one. Copy the ledger into your notes.");
+    else matchStatus(right===10?"":"bad",right+" of 10 examples on the right term"+(loMissing?", "+loMissing+" leave-out"+(loMissing>1?"s":"")+" not yet picked":"")+(loRight<5&&!loMissing?", "+(5-loRight)+" leave-out"+(5-loRight>1?"s":"")+" overstate what the record holds":"")+". Move the red tiles and check again.");
   });
-  vocabRender();
+  $("matchCopy").addEventListener("click",function(){
+    var lines=[];VOCAB.forEach(function(v){var exs=EXAMPLES.filter(function(x){return match.placed[x.id]===v.id}).map(function(x){return x.t});lines.push(v.w+": "+exs.join("; ")+"\n  leaves out: "+v.lo[match.lo[v.id]])});
+    copyText("Lesson 2.1 vocabulary\n"+lines.join("\n"),$("matchStatus"),"Ledger copied. Paste it into your notes.");
+  });
+  matchRender();
 
-  /* ---------- Inventory Builder ---------- */
+  /* ---------- Assemble the record ---------- */
   var FIELDS=[["sys","System/process"],["pur","Purpose"],["o1","Observation 1"],["o2","Observation 2"],["lab","Label or category"],["clm","Claim"],["dec","Decision"],["f1","Feature/input 1"],["f2","Feature/input 2"],["mis","Missing context"],["why","Why the representation is incomplete"]];
-  var fieldEl={};document.querySelectorAll("#parts [data-part]").forEach(function(t){fieldEl[t.getAttribute("data-part")]=t});
-  function uniq(found){var seen={},u=[];(found||[]).forEach(function(w){var k=w.toLowerCase();if(!seen[k]){seen[k]=1;u.push(w)}});return u}
-  function buildDraft(){
-    var filled=0,sens=0,person=0,lines=[],all=[];
-    // per-part flags
-    document.querySelectorAll("#parts .part").forEach(function(part){
-      var f=part.querySelector(".flag");f.innerHTML="";
-      var inputs=part.querySelectorAll("[data-part]");var text=[];
-      inputs.forEach(function(t){text.push(t.value.trim())});
-      var v=text.join(" ").trim();if(!v)return;
-      var s=uniq(v.match(SENSITIVE)),p=[];
-      var k=inputs[0].getAttribute("data-part");
-      if(k==="o1"||k==="lab"||k==="f1")p=uniq(v.match(PERSON));
-      if(s.length){f.appendChild(el("span",null,"Personal or sensitive? "));s.forEach(function(w){f.appendChild(el("span","warn",w))});sens+=s.length}
-      if(p.length){f.appendChild(el("span",null,(s.length?" ":"")+"Judges a person: "));p.forEach(function(w){f.appendChild(el("span","word",w))});person+=p.length}
-      if(!s.length&&!p.length){
-        if(k==="clm")f.appendChild(el("span",HEDGE.test(v)?"clean":null,HEDGE.test(v)?"Hedged.":"Reads as a fact. Add may, might, likely, or suggests."));
-        else f.appendChild(el("span","clean","Clean."));
-      }
-    });
-    FIELDS.forEach(function(fd){var v=(fieldEl[fd[0]].value||"").trim();if(v)filled++;all.push(v);lines.push({k:fd[1],v:v})});
-    var out=$("draftOut");out.innerHTML="";
-    if(filled){lines.forEach(function(l,i){var k=el("span","k",l.k+": ");out.appendChild(k);out.appendChild(document.createTextNode((l.v||"")+(i<lines.length-1?"\n":"")))})}
-    else out.appendChild(el("span","ph","Your inventory assembles here as you write, in the assignment’s template."));
-    var text=all.join(" ");var wc=words(text);$("wc").textContent=wc;$("fillCount").textContent=filled;
-    var met={parts:filled===11,safe:text.length>0&&sens===0,feat:text.length>0&&person===0,hedge:HEDGE.test((fieldEl.clm.value||""))};
-    var n=0;document.querySelectorAll("#breqs li").forEach(function(li){var ok=met[li.getAttribute("data-req")];li.classList.toggle("met",!!ok);if(ok)n++});
-    $("bCopy").disabled=!filled;
-    var s=$("bStatus");
-    if(!filled){s.className="status";s.textContent="Start with field 1."}
-    else if(n===4){s.className="status ok";s.textContent="All four checks lit. Copy the inventory, paste it into the Canvas assignment, and add your AI-use disclosure line."}
-    else{
-      var tips=[];if(!met.parts)tips.push("write all eleven fields ("+(11-filled)+" to go)");if(!met.safe)tips.push("choose a non-sensitive example or remove the personal data");if(!met.feat)tips.push("replace the words that judge a person with measurable properties");if(!met.hedge&&(fieldEl.clm.value||"").trim())tips.push("hedge the claim");
-      s.className="status"+(sens||person?" bad":"");s.textContent="Next: "+tips.join("; ")+".";
+  var SLOTTYPE={pur:"Purpose",obs:"an Observation slot",lab:"Label or category",clm:"Claim",dec:"Decision",feat:"a Feature slot",mis:"Missing context"};
+  var SYSTEMS=[
+    {id:"nav",name:"A navigation app",tiles:[
+      ["pur","Get a person from where they are to where they want to go"],
+      ["obs","GPS position at 7:42 a.m."],["obs","Speeds of 500 phones on the highway right now"],
+      ["lab","A road segment tagged “heavy traffic” when average speed drops below 15 mph"],
+      ["clm","The route over the bridge is likely 6 minutes faster"],
+      ["dec","The driver takes the bridge, or ignores the suggestion"],
+      ["feat","Distance to destination"],["feat","Time of day"],
+      ["mis","Why the driver is going there, and whether speed matters today"],
+      ["dPerson","The driver is reckless"],["dSens","The driver’s home address and full name"],["dFact","The bridge route is the best route"]]},
+    {id:"att",name:"An attendance process",tiles:[
+      ["pur","Record which students are present each day"],
+      ["obs","Badge scanned at 8:07 a.m."],["obs","Seat empty at first-period roll call"],
+      ["lab","“Late arrival” for arrivals after 8:00"],
+      ["clm","The student may need transportation support"],
+      ["dec","Contact the family, or do not act yet"],
+      ["feat","Minutes after 8:00"],["feat","Number of late arrivals this month"],
+      ["mis","What the bus did that morning"],
+      ["dPerson","The student doesn’t care about school"],["dSens","The family’s immigration status"],["dFact","The student is skipping on purpose"]]},
+    {id:"lib",name:"A library checkout",tiles:[
+      ["pur","Track which books are out and when they are due"],
+      ["obs","Barcode scanned at 3:12 p.m."],["obs","Due date stamped on the record"],
+      ["lab","“Overdue” once the due date passes"],
+      ["clm","The borrower might not have finished the book"],
+      ["dec","A librarian sends a reminder, or waits a week"],
+      ["feat","Days since checkout"],["feat","Number of renewals"],
+      ["mis","Whether the book was returned to the wrong shelf"],
+      ["dPerson","The borrower is irresponsible"],["dSens","The borrower’s home phone number"],["dFact","The borrower lost the book"]]},
+    {id:"mus",name:"A music recommender",tiles:[
+      ["pur","Suggest songs a listener may want to hear next"],
+      ["obs","Song skipped after 11 seconds"],["obs","Playlist played at 6:30 a.m. on weekdays"],
+      ["lab","A track tagged “upbeat” in the catalog"],
+      ["clm","The listener probably prefers faster songs in the morning"],
+      ["dec","The listener plays the suggestion, or searches for something else"],
+      ["feat","Tempo in beats per minute"],["feat","Plays in the last 30 days"],
+      ["mis","Whether the listener chose the song or someone else in the room did"],
+      ["dPerson","The listener has bad taste"],["dSens","The listener’s mood diagnosis from a health app"],["dFact","The listener loves this artist"]]}
+  ];
+  var DISTRACT={dPerson:"Judges a person. A feature is a measurable or encoded property; this is an opinion about someone.",dSens:"Personal or private data. The assignment says do not use personal records or private data.",dFact:"Stated as a fact. A claim interprets evidence, so it needs a hedge: may, might, likely."};
+  var WHYOPTS=["The record holds only what its fields allowed; pull one observation and the claim has nothing to stand on.","The record is complete once every slot is filled.","A model could recover the missing context from the other fields."];
+  var asm=store.get("ail21l-asm",{sys:"",placed:{},checked:false,pulled:false,why:null}),ap=placer({});
+  function asmSave(){store.set("ail21l-asm",asm)}
+  function asmStatus(kind,text){var s=$("asmStatus");s.className="status"+(kind?" "+kind:"");s.textContent=text}
+  function curSys(){return SYSTEMS.filter(function(s){return s.id===asm.sys})[0]}
+  function asmTile(i,tile){var t=el("button","tile",tile[1]);t.type="button";t._i=i;t._type=tile[0];t._t=tile[1];t.setAttribute("aria-label",tile[1]+". Press to select, then choose a slot.");ap.wireTile(t);return t}
+  function asmCounts(){
+    var placed=Object.keys(asm.placed).length,s=curSys();
+    $("asmPlaced").textContent=placed;$("asmLeft").textContent=s?s.tiles.length-placed:0;$("recCount").textContent=placed+" of 9 slots";
+    $("asmCheck").disabled=!s||placed<9;
+    document.querySelectorAll("#record .slot").forEach(function(sl){sl.classList.toggle("filled",!!sl.querySelector(".tile"))});
+  }
+  function asmPlace(t,slot){
+    var key=slot.getAttribute("data-slot"),existing=slot.querySelector(".tile");
+    if(existing){$("tray").appendChild(existing);existing.classList.remove("right","wrong");var w=existing.querySelector(".why");if(w)w.remove();Object.keys(asm.placed).forEach(function(k){if(asm.placed[k]===key)delete asm.placed[k]})}
+    var prev=t.closest(".slot");
+    Object.keys(asm.placed).forEach(function(k){if(parseInt(k,10)===t._i)delete asm.placed[k]});
+    asm.placed[t._i]=key;asm.checked=false;asm.pulled=false;asm.why=null;asmSave();
+    slot.querySelector(".drop").appendChild(t);t.classList.remove("right","wrong");var w2=t.querySelector(".why");if(w2)w2.remove();
+    $("pullTest").hidden=true;document.querySelectorAll("#record .slot").forEach(function(x){x.classList.remove("pulled","broken");var b=x.querySelector(".broke");if(b)b.remove()});
+    asmCounts();var n=Object.keys(asm.placed).length;
+    asmStatus(n===9?"ok":"",n===9?"Nine slots filled. Press Check.":(9-n)+" slot"+(9-n>1?"s":"")+" to fill. Three tiles should stay in the tray.");
+  }
+  document.querySelectorAll("#record .slot").forEach(function(sl){ap.wireTarget(sl,asmPlace)});
+  ap.wireTarget($("tray"),function(t){var slot=t.closest(".slot");if(!slot)return;delete asm.placed[t._i];asm.checked=false;asmSave();$("tray").appendChild(t);t.classList.remove("right","wrong");var w=t.querySelector(".why");if(w)w.remove();asmCounts()});
+  function asmRenderPicks(){
+    var wrap=$("asmPicks");wrap.innerHTML="";
+    SYSTEMS.forEach(function(s){var b=el("button","pick",s.name);b.type="button";b.setAttribute("aria-pressed",asm.sys===s.id?"true":"false");
+      b.addEventListener("click",function(){if(asm.sys===s.id)return;if(Object.keys(asm.placed).length&&!confirm("Switch system? The tiles you placed will go back to the tray."))return;asm={sys:s.id,placed:{},checked:false,pulled:false,why:null,order:shuffle(s.tiles.map(function(_,i){return i}))};asmSave();asmRender();asmStatus("",s.name+": twelve tiles, nine slots.")});
+      wrap.appendChild(b)});
+  }
+  function asmRender(){
+    asmRenderPicks();var tray=$("tray");tray.innerHTML="";tray.appendChild(el("span","traylbl","Tray"));
+    document.querySelectorAll("#record .drop").forEach(function(d){d.innerHTML=""});
+    document.querySelectorAll("#record .slot").forEach(function(x){x.classList.remove("pulled","broken","filled");var b=x.querySelector(".broke");if(b)b.remove()});
+    $("pullTest").hidden=true;$("pullTest").innerHTML="";
+    var s=curSys();$("recSys").textContent=s?s.name:"—";
+    if(!s){asmCounts();return}
+    if(!asm.order){asm.order=shuffle(s.tiles.map(function(_,i){return i}));asmSave()}
+    asm.order.forEach(function(i){var t=asmTile(i,s.tiles[i]);var where=asm.placed[i];
+      if(where){document.querySelector('#record .slot[data-slot="'+where+'"] .drop').appendChild(t)}else tray.appendChild(t)});
+    asmCounts();
+    if(asm.checked)asmCheck(true);
+  }
+  function asmCheck(silent){
+    var s=curSys(),right=0,wrongPlaced=0;
+    document.querySelectorAll("#record .slot").forEach(function(sl){var t=sl.querySelector(".tile");if(!t)return;var ok=t._type===sl.getAttribute("data-type");t.classList.add(ok?"right":"wrong");if(ok)right++;else{wrongPlaced++;var w=el("span","why",DISTRACT[t._type]||("This belongs in "+SLOTTYPE[t._type]+"."));t.appendChild(w)}});
+    document.querySelectorAll("#tray .tile").forEach(function(t){if(DISTRACT[t._type]){t.classList.add("right");if(!t.querySelector(".why"))t.appendChild(el("span","why","Stays out. "+DISTRACT[t._type]))}else{t.classList.add("wrong");if(!t.querySelector(".why"))t.appendChild(el("span","why","Belongs in "+SLOTTYPE[t._type]+"."))}});
+    asm.checked=true;asmSave();
+    if(right===9){
+      FIELDS.forEach(function(f){if(f[0]==="sys"){store.set("ail21l-i-sys",s.name);return}if(f[0]==="why")return;
+        var sl=document.querySelector('#record .slot[data-slot="'+f[0]+'"] .tile');store.set("ail21l-i-"+f[0],sl?sl._t:"")});
+      if(!silent)asmStatus("ok","Every tile in its slot, and the three that do not belong are still in the tray. Now pull one observation out.");
+      renderPullTest();
+      if(!(store.get("ail21l-i-draft","")||"").trim()&&asm.why!=null)fillDraft();
+    }else if(!silent)asmStatus("bad",right+" of 9 slots hold the right kind of tile. Read the notes on the red tiles, move them, and check again.");
+  }
+  $("asmCheck").addEventListener("click",function(){asmCheck(false)});
+  function renderPullTest(){
+    var pt=$("pullTest");pt.hidden=false;pt.innerHTML="";pt.className="pulltest";
+    pt.appendChild(el("span","k","Pull one tile"));
+    if(!asm.pulled){
+      pt.appendChild(el("p",null,"The claim leans on the observations. Pull Observation 2 out of the record and see what the claim can still stand on."));
+      var b=el("button","btn","Pull Observation 2 out");b.type="button";b.addEventListener("click",function(){asm.pulled=true;asmSave();applyPull();renderPullTest()});pt.appendChild(b);
+    }else{
+      applyPull();
+      pt.appendChild(el("p",null,"With one observation gone, the claim is no longer supported, and nothing else in the record can fill the gap. Which sentence says why the representation is incomplete?"));
+      var wrap=el("div","whyopts");
+      WHYOPTS.forEach(function(w,i){var b=el("button",null,w);b.type="button";if(asm.why===i)b.classList.add(i===0?"right":"wrong");
+        b.addEventListener("click",function(){asm.why=i;asmSave();wrap.querySelectorAll("button").forEach(function(x){x.classList.remove("right","wrong")});b.classList.add(i===0?"right":"wrong");
+          if(i===0){store.set("ail21l-i-why",WHYOPTS[0]);asmStatus("ok","That is the sentence. The record is filled in below as your draft; rewrite it in your own words.");fillDraft(true)}
+          else asmStatus("bad",i===1?"Filled is not the same as complete: the fields were chosen before the morning happened.":"The model cannot recover the missing context by itself; that is the reading’s point.")});
+        wrap.appendChild(b)});
+      pt.appendChild(wrap);
+      var back=el("button","btn ghost","Put Observation 2 back");back.type="button";back.style.marginTop=".5rem";back.addEventListener("click",function(){asm.pulled=false;asmSave();document.querySelectorAll("#record .slot").forEach(function(x){x.classList.remove("pulled","broken");var br=x.querySelector(".broke");if(br)br.remove()});renderPullTest()});pt.appendChild(back);
     }
   }
-  Object.keys(fieldEl).forEach(function(k){fieldEl[k].addEventListener("input",buildDraft)});
-  $("bClear").addEventListener("click",function(){if(!confirm("Clear all fields of your inventory?"))return;Object.keys(fieldEl).forEach(function(k){fieldEl[k].value="";store.del(fieldEl[k].getAttribute("data-store"))});buildDraft()});
-  $("bCopy").addEventListener("click",function(){copyText($("draftOut").textContent,$("bStatus"),"Inventory copied. Paste it into the Canvas text entry box.")});
-  buildDraft();
+  function applyPull(){
+    var o2=document.querySelector('#record .slot[data-slot="o2"]'),clm=document.querySelector('#record .slot[data-slot="clm"]');
+    o2.classList.add("pulled");clm.classList.add("broken");if(!clm.querySelector(".broke"))clm.appendChild(el("span","broke","not supported"));
+  }
+  function recordText(){return FIELDS.map(function(f){return f[1]+": "+(store.get("ail21l-i-"+f[0],"")||"")}).join("\n")}
+  function fillDraft(force){
+    var d=$("draft");if(!force&&d.value.trim())return;d.value=recordText();store.set("ail21l-i-draft",d.value);draftUpdate();
+  }
+  function asmReset(keepSys){
+    var sysId=keepSys?"":asm.sys;asm={sys:sysId,placed:{},checked:false,pulled:false,why:null,order:null};store.set("ail21l-asm",asm);ap.clear();
+    if(keepSys){store.del("ail21l-asm")}
+    asmRender();asmStatus("",sysId?"Tiles back in the tray.":"Pick a system to begin.");
+  }
+  $("asmReset").addEventListener("click",function(){asmReset(false)});
+  asmRender();
 
-  /* ---------- Model context shortlist ---------- */
-  function ctxRender(){
-    var ul=$("ctxList");ul.innerHTML="";
-    for(var i=1;i<=2;i++){
-      var li=el("li");li.appendChild(el("span","n",String(i)));
-      var a=document.createElement("input");a.type="text";a.placeholder="Context "+i+" (what would be sorted or classified)";a.setAttribute("data-store","ail21l-c"+i+"n");a.setAttribute("aria-label","Context "+i);a.value=store.get("ail21l-c"+i+"n","");
-      var b=document.createElement("input");b.type="text";b.className="second";b.placeholder="What each example would describe";b.setAttribute("data-store","ail21l-c"+i+"d");b.setAttribute("aria-label","Context "+i+" examples");b.value=store.get("ail21l-c"+i+"d","");
-      var flag=el("div","flag");
-      [a,b].forEach(function(inp){inp.addEventListener("input",function(){store.set(inp.getAttribute("data-store"),inp.value);ctxStatus()})});
-      li.appendChild(a);li.appendChild(b);li.appendChild(flag);ul.appendChild(li);
+  /* draft box: fed by the record, parsed back into the fields the assignment imports */
+  var draft=$("draft");draft.value=store.get("ail21l-i-draft","");
+  function draftUpdate(){
+    var t=draft.value;store.set("ail21l-i-draft",t);
+    // parse "Field: value" lines back into the import keys
+    var filled=0;
+    FIELDS.forEach(function(f){var re=new RegExp("^\\s*"+f[1].replace(/[\/]/g,"\\/")+"\\s*:\\s*(.*)$","mi");var m=t.match(re);if(m){var v=m[1].trim();if(v){filled++;store.set("ail21l-i-"+f[0],v)}}});
+    var s=uniq(t.match(SENSITIVE)),p=uniq(t.match(PERSON)),clm=(t.match(/^\s*Claim\s*:\s*(.*)$/mi)||[])[1]||"",hedged=HEDGE.test(clm);
+    var f=$("dflags");f.innerHTML="";
+    if(!t.trim()){f.appendChild(el("span",null,"Waiting for the record."))}
+    else{
+      if(s.length){f.appendChild(el("span",null,"Personal or private? "));s.forEach(function(w){f.appendChild(el("span","warn",w))})}
+      if(p.length){f.appendChild(el("span",null," Judges a person: "));p.forEach(function(w){f.appendChild(el("span","word",w))})}
+      if(clm&&!hedged)f.appendChild(el("span","warn","claim reads as a fact"));
+      if(!s.length&&!p.length&&(hedged||!clm))f.appendChild(el("span","clean","Clean. "+filled+" of 11 lines filled."));
+      else f.appendChild(el("span",null," "+filled+" of 11 lines filled."));
     }
-    ctxStatus();
+    $("dCopy").disabled=!t.trim();$("dRefill").disabled=!asm.checked;
+    var st=$("dStatus");
+    if(!t.trim()){st.className="status";st.textContent="Nothing drafted yet."}
+    else if(filled===11&&!s.length&&!p.length&&hedged){st.className="status ok";st.textContent="Eleven lines, clean, claim hedged. Copy the draft into the Canvas assignment and add your disclosure line; the assignment page can also import it."}
+    else{var tips=[];if(filled<11)tips.push((11-filled)+" line"+(11-filled>1?"s":"")+" empty");if(s.length)tips.push("remove the personal data");if(p.length)tips.push("replace the words that judge a person");if(clm&&!hedged)tips.push("hedge the claim");st.className="status"+(s.length||p.length?" bad":"");st.textContent="Next: "+tips.join("; ")+"."}
   }
-  function ctxStatus(){
-    var named=0,desc=0,sens=0;
-    document.querySelectorAll("#ctxList li").forEach(function(li,idx){
-      var i=idx+1,n=(store.get("ail21l-c"+i+"n","")||"").trim(),d=(store.get("ail21l-c"+i+"d","")||"").trim();
-      if(n)named++;if(d)desc++;
-      var f=li.querySelector(".flag");f.innerHTML="";var s=uniq((n+" "+d).match(SENSITIVE));
-      if(s.length){f.appendChild(el("span",null,"Personal or sensitive? "));s.forEach(function(w){f.appendChild(el("span","word",w))});sens+=s.length}
-      else if(n||d)f.appendChild(el("span","clean","Low-risk so far."));
+  draft.addEventListener("input",draftUpdate);
+  $("dRefill").addEventListener("click",function(){if(draft.value.trim()&&!confirm("Replace your draft with the record as assembled?"))return;fillDraft(true)});
+  $("dCopy").addEventListener("click",function(){copyText(draft.value,$("dStatus"),"Draft copied. Paste it into the Canvas text entry box.")});
+  draftUpdate();
+
+  /* ---------- Risk map ---------- */
+  var CONTEXTS=[
+    {id:"c1",t:"Classifying recyclable items from descriptions",q:"tp"},
+    {id:"c2",t:"Sorting plant-leaf descriptions",q:"tp"},
+    {id:"c3",t:"Identifying music genres from teacher-provided examples",q:"tp"},
+    {id:"c4",t:"Identifying bird songs from recordings",q:"tp"},
+    {id:"c5",t:"Sorting library books by genre from their summaries",q:"tp"},
+    {id:"c6",t:"Predicting the weather from sky photos",q:"tp"},
+    {id:"c7",t:"Predicting which students will fail a class",q:"pv"},
+    {id:"c8",t:"Recognizing faces at the school door",q:"pv"},
+    {id:"c9",t:"Flagging students as “disengaged” from their clicks",q:"pv"},
+    {id:"c10",t:"Guessing a classmate’s mood from their messages",q:"pv"}
+  ];
+  var QNAME={tp:"the low-risk corner",pp:"about people, public data",tv:"private data about things",pv:"personal and private"};
+  var risk=store.get("ail21l-risk",{placed:{},stars:{},checked:false}),rp=placer({});
+  function riskSave(){store.set("ail21l-risk",risk)}
+  function riskStatus(kind,text){var s=$("riskStatus");s.className="status"+(kind?" "+kind:"");s.textContent=text}
+  function riskCounts(){
+    var placed=Object.keys(risk.placed).length,stars=Object.keys(risk.stars).filter(function(k){return risk.stars[k]}).length;
+    $("riskPlaced").textContent=placed;$("riskStars").textContent=stars;$("riskCheck").disabled=placed<10;$("riskCopy").disabled=stars<2;
+    return {placed:placed,stars:stars};
+  }
+  function ctxTile(c){
+    var t=el("button","tile");t.type="button";t._c=c;t.appendChild(el("span",null,c.t));
+    var star=el("button","star","★");star.type="button";star.setAttribute("data-nosel","1");star.setAttribute("aria-label","Star "+c.t+" as one of your two contexts");star.setAttribute("aria-pressed",risk.stars[c.id]?"true":"false");star.hidden=true;
+    star.addEventListener("click",function(e){e.stopPropagation();
+      if(!risk.stars[c.id]&&Object.keys(risk.stars).filter(function(k){return risk.stars[k]}).length>=2){riskStatus("bad","Two stars only. Unstar one first.");return}
+      risk.stars[c.id]=!risk.stars[c.id];riskSave();star.setAttribute("aria-pressed",risk.stars[c.id]?"true":"false");var n=riskCounts();
+      riskStatus(n.stars===2?"ok":"",n.stars===2?"Two low-risk contexts starred. Copy the list into your notebook.":"Star "+(2-n.stars)+" more in the green corner.");
     });
-    $("ctxN").textContent=named;$("ctxD").textContent=desc;$("ctxCopy").disabled=named===0;
-    var st=$("ctxStatus");
-    if(sens){st.className="status bad";st.textContent="One of these looks like it would collect personal or sensitive data. Pick a context about things, not people."}
-    else if(named===2&&desc===2){st.className="status ok";st.textContent="Two low-risk contexts, both described. Copy the list into your notebook."}
-    else{st.className="status";var t=[];if(named<2)t.push((2-named)+" more context"+(2-named>1?"s":""));if(desc<2)t.push("describe "+(2-desc)+" of them");st.textContent="Still needed: "+t.join("; ")+"."}
+    t.appendChild(star);t.setAttribute("aria-label",c.t+". Press to select, then choose a quadrant.");rp.wireTile(t);return t;
   }
-  $("ctxCopy").addEventListener("click",function(){
-    var lines=[];for(var i=1;i<=2;i++){var n=(store.get("ail21l-c"+i+"n","")||"").trim();if(!n)continue;var d=(store.get("ail21l-c"+i+"d","")||"").trim();lines.push(i+". "+n+(d?" — examples describe: "+d:""))}
-    copyText("Module 2 possible model contexts\n"+lines.join("\n"),$("ctxStatus"),"List copied. Paste it into your AI Lab Notebook.");
+  function riskPlace(t,quad){
+    var q=quad.getAttribute("data-quad");risk.placed[t._c.id]=q;risk.checked=false;if(q!=="tp"){risk.stars[t._c.id]=false}riskSave();
+    quad.querySelector(".drop").appendChild(t);t.classList.remove("right","wrong");var w=t.querySelector(".why");if(w)w.remove();t.querySelector(".star").hidden=true;
+    var n=riskCounts();riskStatus(n.placed===10?"ok":"",n.placed===10?"All ten placed. Press Check.":t._c.t+" placed in "+QNAME[q]+". "+(10-n.placed)+" to go.");
+  }
+  document.querySelectorAll("#riskMap .quad").forEach(function(q){rp.wireTarget(q,riskPlace)});
+  rp.wireTarget($("riskPool"),function(t){delete risk.placed[t._c.id];risk.stars[t._c.id]=false;risk.checked=false;riskSave();$("riskPool").appendChild(t);t.classList.remove("right","wrong");var w=t.querySelector(".why");if(w)w.remove();t.querySelector(".star").hidden=true;riskCounts()});
+  function riskRender(){
+    var pool=$("riskPool");pool.innerHTML="";document.querySelectorAll("#riskMap .drop").forEach(function(d){d.innerHTML=""});
+    var order=store.get("ail21l-risk-order",null);if(!order){order=shuffle(CONTEXTS.map(function(c){return c.id}));store.set("ail21l-risk-order",order)}
+    order.forEach(function(id){var c=CONTEXTS.filter(function(x){return x.id===id})[0];var t=ctxTile(c);var q=risk.placed[c.id];
+      if(q){document.querySelector('#riskMap .quad[data-quad="'+q+'"] .drop').appendChild(t)}else pool.appendChild(t)});
+    riskCounts();if(risk.checked)riskCheck(true);
+  }
+  function riskCheck(silent){
+    var right=0;risk.checked=true;riskSave();
+    document.querySelectorAll("#riskMap .quad").forEach(function(quad){var q=quad.getAttribute("data-quad");quad.querySelectorAll(".tile").forEach(function(t){var ok=t._c.q===q;if(ok)right++;t.classList.add(ok?"right":"wrong");var w=t.querySelector(".why");if(w)w.remove();
+      if(!ok)t.appendChild(el("span","why",t._c.q==="tp"?"This one is about things and needs no personal data. It belongs in the green corner.":"This one is about people and would need personal or sensitive data: who fails, whose face, who seems disengaged, how someone feels."));
+      t.querySelector(".star").hidden=!(ok&&q==="tp")})});
+    if(!silent)riskStatus(right===10?"ok":"",right===10?"All ten in place. Star two cards in the green corner as your contexts.":right+" of 10 in the right quadrant. Read the notes, move the red cards, and check again.");
+  }
+  $("riskCheck").addEventListener("click",function(){riskCheck(false)});
+  function riskReset(){risk={placed:{},stars:{},checked:false};store.del("ail21l-risk");store.del("ail21l-risk-order");rp.clear();riskRender();riskStatus("","Ten cards. Where does each one sit?")}
+  $("riskReset").addEventListener("click",riskReset);
+  $("riskCopy").addEventListener("click",function(){
+    var lines=CONTEXTS.filter(function(c){return risk.stars[c.id]}).map(function(c,i){return (i+1)+". "+c.t+" (about things; no personal or sensitive data)"});
+    store.set("ail21l-ctx",lines);copyText("Module 2 possible model contexts\n"+lines.join("\n"),$("riskStatus"),"List copied. Paste it into your AI Lab Notebook.");
   });
-  ctxRender();
+  riskRender();
 })();
 </script>
 </body>
