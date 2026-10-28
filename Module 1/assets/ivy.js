@@ -39,7 +39,7 @@
   function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
 
   var fab=el("button","ivy-fab");fab.type="button";fab.setAttribute("aria-expanded","false");fab.setAttribute("aria-controls","ivyPanel");
-  var dot=el("span","dot","Iv");dot.setAttribute("aria-hidden","true");fab.appendChild(dot);fab.appendChild(el("span",null,"Ask Ivy"));
+  var dot=el("span","dot","Iv");dot.setAttribute("aria-hidden","true");fab.appendChild(dot);fab.appendChild(el("span",null,"Ask your Tutor"));
 
   var panel=el("aside","ivy-panel");panel.id="ivyPanel";panel.setAttribute("aria-label","Ask Ivy, the course tutor");
   var hd=el("div","hd");var hl=el("div");var k=el("span","k","Course tutor");hl.appendChild(k);hl.appendChild(el("h3",null,"Stuck on "+lesson+"? Ask Ivy."));hd.appendChild(hl);
