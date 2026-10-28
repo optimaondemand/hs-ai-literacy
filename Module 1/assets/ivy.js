@@ -14,7 +14,7 @@
   ".ivy-fab{position:fixed;right:18px;bottom:18px;z-index:9000;display:flex;align-items:center;gap:.55rem;padding:.6rem 1rem .6rem .7rem;border:1px solid var(--teal-deep,#0b3b4f);border-radius:999px;background:var(--navy,#0f2233);color:#e6f3f7;font:600 .9rem/1 var(--sans,'IBM Plex Sans',sans-serif);cursor:pointer;box-shadow:0 6px 20px rgba(15,34,51,.28);transition:transform .15s,box-shadow .15s}"+
   ".ivy-fab:hover{transform:translateY(-1px);box-shadow:0 10px 26px rgba(15,34,51,.34)}"+
   ".ivy-fab:focus-visible{outline:3px solid var(--cyan,#4fd1e8);outline-offset:2px}"+
-  ".ivy-fab .dot{width:26px;height:26px;border-radius:50%;background:var(--cyan,#4fd1e8);color:var(--navy,#0f2233);display:grid;place-items:center;font-family:var(--mono,monospace);font-size:.8rem;font-weight:600}"+
+  ".ivy-fab .dot{width:28px;height:28px;border-radius:50%;background:var(--cyan,#4fd1e8);color:var(--navy,#0f2233);display:grid;place-items:center;font-family:var(--mono,monospace);font-size:.8rem;font-weight:600}"+
   ".ivy-panel{position:fixed;right:18px;bottom:76px;z-index:9000;width:min(360px,calc(100vw - 36px));background:var(--paper,#fff);color:var(--ink,#1b2430);border:1px solid var(--rule-strong,#c2ccd7);border-top:4px solid var(--teal,#0e8fa8);border-radius:var(--radius,12px);box-shadow:0 14px 40px rgba(15,34,51,.25);font-family:var(--sans,'IBM Plex Sans',sans-serif);display:none;animation:ivyUp .18s ease-out}"+
   ".ivy-panel.show{display:block}"+
   "@keyframes ivyUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}"+
@@ -39,7 +39,7 @@
   function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
 
   var fab=el("button","ivy-fab");fab.type="button";fab.setAttribute("aria-expanded","false");fab.setAttribute("aria-controls","ivyPanel");
-  var dot=el("span","dot","Iv");dot.setAttribute("aria-hidden","true");fab.appendChild(dot);fab.appendChild(el("span",null,"Ask your Tutor"));
+  var dot=el("span","dot");dot.setAttribute("aria-hidden","true");dot.innerHTML='<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4A2.5 2.5 0 0 1 4 13.5z"/><path d="M12 6.5l.9 2.1 2.1.9-2.1.9-.9 2.1-.9-2.1-2.1-.9 2.1-.9z" fill="currentColor" stroke="none"/></svg>';fab.appendChild(dot);fab.appendChild(el("span",null,"Ask your Tutor"));
 
   var panel=el("aside","ivy-panel");panel.id="ivyPanel";panel.setAttribute("aria-label","Ask Ivy, the course tutor");
   var hd=el("div","hd");var hl=el("div");var k=el("span","k","Course tutor");hl.appendChild(k);hl.appendChild(el("h3",null,"Stuck on "+lesson+"? Ask Ivy."));hd.appendChild(hl);
