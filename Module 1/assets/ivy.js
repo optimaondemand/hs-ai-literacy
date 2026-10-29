@@ -27,6 +27,7 @@
   ".ivy-panel .qs{list-style:none;margin:.7rem 0 0;padding:0 1rem;display:grid;gap:.4rem}"+
   ".ivy-panel .qs button{width:100%;text-align:left;border:1px solid var(--rule,#dfe5ec);background:var(--teal-pale,#e3f4f8);color:var(--teal-deep,#0b3b4f);border-radius:8px;padding:.5rem .65rem;font:500 .86rem/1.4 var(--sans,'IBM Plex Sans',sans-serif);cursor:pointer}"+
   ".ivy-panel .qs button:hover{border-color:var(--teal,#0e8fa8)}"+
+  ".ivy-panel .qs .ivy-manual{display:block;width:100%;margin-top:.35rem;padding:.45rem .55rem;border:1px solid var(--teal,#0e8fa8);border-radius:8px;font:500 .86rem/1.4 var(--sans,'IBM Plex Sans',sans-serif);color:var(--ink,#1b2430);background:#fff;resize:none;box-sizing:border-box}"+
   ".ivy-panel .qs button.copied{background:var(--ok-bg,#e3f5ea);color:var(--ok,#1f7a4d);border-color:var(--ok,#1f7a4d)}"+
   ".ivy-panel .go{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.8rem 1rem 1rem}"+
   ".ivy-panel .go a{display:inline-block;white-space:nowrap;background:var(--teal,#0e8fa8);color:#fff;text-decoration:none;font-weight:600;font-size:.9rem;padding:.55rem .95rem;border-radius:8px}"+
@@ -70,14 +71,31 @@
   var x=el("button","x","×");x.type="button";x.setAttribute("aria-label","Close");hd.appendChild(x);panel.appendChild(hd);
   panel.appendChild(el("p",null,"Ivy will ask what you already know, then help you work it out. She gives hints, not answers. No account needed."));
 
+  /* Copy that also works inside cross-origin iframes (Canvas), where navigator.clipboard is denied.
+     execCommand("copy") runs synchronously inside the click, so it keeps the user gesture; the async
+     Clipboard API is the backup. cb(false) only when both fail. */
+  function execCopy(t){var ta=document.createElement("textarea");ta.value=t;ta.setAttribute("readonly","");ta.style.cssText="position:fixed;top:0;left:0;width:2px;height:2px;opacity:0;pointer-events:none";document.body.appendChild(ta);ta.focus();ta.select();var ok=false;try{ok=document.execCommand("copy")}catch(e){}ta.remove();return ok}
+  function copyText(t,cb){
+    if(execCopy(t)){cb(true);return}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){cb(true)},function(){cb(false)})}else{cb(false)}
+  }
+
   if(qs.length){
     var lab=el("p",null,"Tap a question to copy it, then paste it to Ivy:");lab.style.marginTop=".7rem";lab.style.fontSize=".8rem";panel.appendChild(lab);
     var ul=el("ul","qs");
     qs.forEach(function(q){
       var li=el("li");var b=el("button",null,q);b.type="button";
+      var manual=null;
       b.addEventListener("click",function(){
-        var done=function(){b.classList.add("copied");b.textContent="Copied — now paste it to Ivy";setTimeout(function(){b.classList.remove("copied");b.textContent=q},2200)};
-        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(q).then(done,done)}else{done()}
+        if(manual){manual.remove();manual=null}
+        copyText(q,function(ok){
+          if(ok){b.classList.add("copied");b.textContent="Copied — now paste it to Ivy";setTimeout(function(){b.classList.remove("copied");b.textContent=q},2200);return}
+          /* Clipboard blocked (e.g. inside a Canvas iframe): show the text selected so the student can copy it by hand. */
+          b.textContent="Couldn't copy automatically — select the text below and press Ctrl+C (⌘C on Mac)";
+          manual=el("textarea","ivy-manual");manual.value=q;manual.readOnly=true;manual.rows=2;manual.setAttribute("aria-label","Question to copy");
+          li.appendChild(manual);manual.focus();manual.select();
+          setTimeout(function(){b.textContent=q},4000);
+        });
       });
       li.appendChild(b);ul.appendChild(li);
     });
