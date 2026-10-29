@@ -62,17 +62,31 @@
   @keyframes crawl{to{stroke-dashoffset:-22}}
   #map .band{fill:rgba(209,154,30,.14);stroke:rgba(209,154,30,.6);stroke-width:1;pointer-events:none}
   #map .band.lit{fill:rgba(209,154,30,.3)}
-  #map .pin{cursor:pointer}
-  #map .pin circle{fill:var(--gold);stroke:var(--navy);stroke-width:2}
-  #map .pin text{font-family:var(--sans);font-size:12.5px;fill:#fff;paint-order:stroke;stroke:var(--navy);stroke-width:4px;stroke-linejoin:round;pointer-events:none}
-  #map .pin.sel circle{stroke:#fff;r:9}
-  #map .pin.placed circle{fill:var(--cyan)}
-  #map .pin.right circle{fill:#7fe3c7}
-  #map .pin.wrong circle{fill:#ff8a8a;animation:shake .35s}
+  #map .pin{cursor:grab;touch-action:none}
+  #map .pin.dragging{cursor:grabbing}
+  #map .pin .hit{fill:transparent}
+  #map .pin circle.dot{fill:var(--gold);stroke:var(--navy);stroke-width:2.5;transition:r .15s}
+  #map .pin text{font-family:var(--mono);font-weight:600;font-size:15px;fill:var(--navy);text-anchor:middle;pointer-events:none}
+  #map .pin:hover circle.dot{r:18}
+  #map .pin.sel circle.dot{stroke:#fff;stroke-width:3.5;r:19;filter:drop-shadow(0 0 6px rgba(255,255,255,.7))}
+  #map .pin.placed circle.dot{fill:var(--cyan)}
+  #map .pin.right circle.dot{fill:#7fe3c7}
+  #map .pin.wrong circle.dot{fill:#ff8a8a;animation:shake .35s}
+  #map .pin:focus{outline:none}
+  #map .pin:focus-visible circle.dot{stroke:var(--gold);stroke-width:4}
+  /* While a pin is selected, every region shows it can take a drop */
+  #map.placing .zone{stroke:var(--cyan);stroke-width:2;stroke-dasharray:8 6;fill:rgba(79,209,232,.05);animation:march 1.2s linear infinite}
+  #map.placing .zone:hover,#map.placing .zone.over{fill:rgba(79,209,232,.18)}
+  @keyframes march{to{stroke-dashoffset:-28}}
   .pintray{display:flex;gap:.5rem;flex-wrap:wrap;margin:.6rem 0;padding:.6rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-3);min-height:52px}
-  .pintray .chip{cursor:grab}
-  .pintray .chip .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--gold);margin-right:.4rem;vertical-align:middle;border:1.5px solid var(--navy)}
-  .pintray .chip.placed{display:none}
+  .pintray .chip{cursor:grab;font-size:1rem;padding:.55rem .85rem;display:inline-flex;align-items:center;gap:.5rem}
+  .pintray .chip .dot{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--gold);border:2px solid var(--navy);font-family:var(--mono);font-weight:600;font-size:.8rem;color:var(--navy);flex:0 0 26px}
+  .pintray .chip.placed{background:var(--paper-2);border-color:var(--rule-strong);color:var(--ink-soft)}
+  .pintray .chip.placed .dot{background:var(--cyan)}
+  .pintray .chip.placed.right .dot{background:#7fe3c7}
+  .pintray .chip.placed.wrong .dot{background:#ff8a8a}
+  .pintray .chip .where{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--teal-deep);background:var(--teal-pale);border-radius:4px;padding:.1rem .4rem}
+  .pintray .chip.sel{outline:3px solid var(--gold);outline-offset:1px}
   .maptools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.6rem}
   .verdict{display:none;margin-top:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden;animation:reveal .3s ease-out}
   .verdict.show{display:block}
@@ -191,7 +205,7 @@
     <div class="widget" id="mapWidget">
       <div class="bar"><span>Interactive · The map</span><span class="tag">Pin the examples</span></div>
       <div class="body">
-        <p>This is the vocabulary map. Three terms nest: computer science holds AI, and AI holds machine learning. Two terms do not nest. The algorithm thread runs through everything in computing, and the automation band cuts across the whole map, because a process can be automated with fixed rules, with AI, or with neither. Drag each example pin to where it belongs, or click a pin and then click a region. Then answer the two follow-up questions for that pin.</p>
+        <p>This is the vocabulary map. Three terms nest: computer science holds AI, and AI holds machine learning. Two terms do not nest. The algorithm thread runs through everything in computing, and the automation band cuts across the whole map, because a process can be automated with fixed rules, with AI, or with neither. Tap a pin in the tray, then tap the region where it belongs; or drag it there. Each pin becomes a numbered dot on the map. To move one, tap its dot and tap a new region, or drag the dot. Then answer the two follow-up questions for that pin.</p>
         <div class="pintray" id="pintray" aria-label="Example pins to place"></div>
         <div class="mapwrap">
           <svg id="map" viewBox="0 0 760 430" role="img" aria-labelledby="mapTitle mapDesc">
@@ -230,7 +244,7 @@
           <span class="counts"><span><b id="mapPlaced">0</b> of 5 placed</span><span><b id="mapRight">0</b> in the right region</span></span>
           <button type="button" class="btn ghost" id="mapReset">Start over</button>
         </div>
-        <div class="status" id="mapStatus" role="status" aria-live="polite">Five pins. Place each one, then answer its two questions.</div>
+        <div class="status" id="mapStatus" role="status" aria-live="polite">Five pins. Tap one in the tray, then tap a region of the map.</div>
       </div>
     </div>
 
@@ -459,38 +473,76 @@
     {id:"rec",name:"Recommendation system",zone:"ml",alg:"nec",auto:"nec",
      why:{zone:"The reading says a recommendation system can be software, use algorithms, automate suggestions, use AI, and use ML. It lights every ring.",alg:"Ranking posts is a defined procedure, even if the steps were learned.",auto:"Suggestions appear with little ongoing human intervention."}}
   ];
-  var SLOTS={outside:[[80,120],[80,170],[80,220],[80,270],[80,110]],cs:[[235,110],[235,160],[235,210],[235,260],[235,120]],ai:[[370,150],[370,200],[370,250],[370,120],[370,180]],ml:[[520,170],[520,210],[640,170],[640,210],[580,230]]};
+  var SLOTS={outside:[[83,110],[83,160],[83,210],[83,260],[83,135]],cs:[[230,120],[230,170],[230,220],[230,270],[280,145]],ai:[[370,150],[370,200],[370,250],[560,90],[650,90]],ml:[[500,180],[560,180],[620,180],[680,180],[590,225]]};
   var mapState=store.get("ail12-map",{});
   var mapSel=null;
   var svg=$("map"),pinsG=$("pins");
   function svgEl(tag,attrs){var e=document.createElementNS("http://www.w3.org/2000/svg",tag);for(var k in attrs)e.setAttribute(k,attrs[k]);return e}
   function mapSave(){store.set("ail12-map",mapState)}
+  function pinNum(id){var n=0;PINS.forEach(function(p,i){if(p.id===id)n=i+1});return n}
   function tray(){
     var t=$("pintray");t.innerHTML="";
     PINS.forEach(function(p){
-      var c=el("button","chip"+(mapState[p.id]&&mapState[p.id].zone?" placed":""));c.type="button";c.setAttribute("draggable","true");c.setAttribute("data-id",p.id);
-      c.appendChild(el("span","dot"));c.appendChild(document.createTextNode(p.name));
-      c.addEventListener("click",function(){selectPin(p.id,c)});
-      c.addEventListener("dragstart",function(e){selectPin(p.id,c);try{e.dataTransfer.setData("text/plain",p.id)}catch(x){}});
+      var s=mapState[p.id],placed=!!(s&&s.zone);
+      var c=el("button","chip"+(placed?" placed"+(s.zone===p.zone?" right":" wrong"):"")+(mapSel===p.id?" sel":""));c.type="button";c.setAttribute("draggable","true");c.setAttribute("data-id",p.id);
+      c.appendChild(el("span","dot",String(pinNum(p.id))));c.appendChild(document.createTextNode(p.name));
+      if(placed)c.appendChild(el("span","where",ZONE_NAME[s.zone]));
+      c.setAttribute("aria-label",p.name+(placed?", on the map in "+ZONE_NAME[s.zone]+". Press to pick it up and move it.":". Press to pick it up, then press a region of the map."));
+      c.addEventListener("click",function(){selectPin(p.id)});
+      c.addEventListener("dragstart",function(e){if(mapSel!==p.id)selectPin(p.id);try{e.dataTransfer.setData("text/plain",p.id)}catch(x){}});
       t.appendChild(c);
     });
   }
-  function selectPin(id,node){
-    document.querySelectorAll(".pintray .chip.sel,#map .pin.sel").forEach(function(x){x.classList.remove("sel")});
-    if(mapSel===id){mapSel=null;return}
-    mapSel=id;if(node)node.classList.add("sel");
-    var st=$("mapStatus");st.className="status";st.textContent="Selected: "+PINS.filter(function(p){return p.id===id})[0].name+". Now click a region of the map.";
+  function selectPin(id){
+    mapSel=(mapSel===id)?null:id;
+    svg.classList.toggle("placing",mapSel!=null);
+    document.querySelectorAll("#map .pin").forEach(function(g){g.classList.toggle("sel",g.getAttribute("data-id")===mapSel)});
+    tray();
+    var st=$("mapStatus");st.className="status";
+    if(mapSel){var p=PINS.filter(function(x){return x.id===id})[0];st.textContent="Holding “"+p.name+".” Now click or tap any region of the map to put it there"+(mapState[id]&&mapState[id].zone?", or drag the dot on the map.":".")}
+    else st.textContent="Pick a pin from the tray, or tap a numbered dot on the map to move it.";
   }
+  function zoneAt(x,y){
+    // SVG user units; innermost region wins
+    if(x>=440&&x<=708&&y>=110&&y<=250)return "ml";
+    if(x>=300&&x<=730&&y>=56&&y<=278)return "ai";
+    if(x>=170&&x<=752&&y>=8&&y<=422)return "cs";
+    if(x>=8&&x<=158&&y>=8&&y<=292)return "outside";
+    return null;
+  }
+  function svgPoint(e){var pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;var m=svg.getScreenCTM();return m?pt.matrixTransform(m.inverse()):pt}
   function drawPins(){
     pinsG.innerHTML="";var used={};
     PINS.forEach(function(p){
       var s=mapState[p.id];if(!s||!s.zone)return;
       used[s.zone]=(used[s.zone]||0);var pos=SLOTS[s.zone][used[s.zone]%SLOTS[s.zone].length];used[s.zone]++;
-      var g=svgEl("g",{"class":"pin placed"+(s.zone===p.zone?" right":" wrong"),"data-id":p.id,tabindex:"0",role:"button","aria-label":p.name+", placed in "+ZONE_NAME[s.zone]});
-      g.appendChild(svgEl("circle",{cx:pos[0],cy:pos[1],r:7}));
-      var t=svgEl("text",{x:pos[0]+11,y:pos[1]+4});t.textContent=p.name.length>24?p.name.slice(0,22)+"…":p.name;g.appendChild(t);
-      g.addEventListener("click",function(e){e.stopPropagation();selectPin(p.id,g);showVerdict(p.id)});
-      g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();selectPin(p.id,g);showVerdict(p.id)}});
+      var g=svgEl("g",{"class":"pin placed"+(s.zone===p.zone?" right":" wrong")+(mapSel===p.id?" sel":""),"data-id":p.id,tabindex:"0",role:"button","aria-label":"Pin "+pinNum(p.id)+", "+p.name+", in "+ZONE_NAME[s.zone]+". Press to pick it up; use arrow keys or drag to move it."});
+      g.appendChild(svgEl("circle",{"class":"hit",cx:pos[0],cy:pos[1],r:26}));
+      g.appendChild(svgEl("circle",{"class":"dot",cx:pos[0],cy:pos[1],r:16}));
+      var t=svgEl("text",{x:pos[0],y:pos[1]+5});t.textContent=String(pinNum(p.id));g.appendChild(t);
+      // Pointer drag on the map itself: a short press is a select, a longer move is a drag.
+      var drag=null;
+      g.addEventListener("pointerdown",function(e){if(e.button!==0&&e.pointerType==="mouse")return;e.preventDefault();drag={x0:e.clientX,y0:e.clientY,moved:false};try{g.setPointerCapture(e.pointerId)}catch(x){}});
+      g.addEventListener("pointermove",function(e){
+        if(!drag)return;var dx=e.clientX-drag.x0,dy=e.clientY-drag.y0;
+        if(!drag.moved&&Math.hypot(dx,dy)<6)return;
+        if(!drag.moved){drag.moved=true;g.classList.add("dragging");if(mapSel!==p.id){mapSel=p.id;svg.classList.add("placing");tray()}}
+        var pt=svgPoint(e);g.setAttribute("transform","translate("+(pt.x-pos[0])+","+(pt.y-pos[1])+")");
+        var z=zoneAt(pt.x,pt.y);document.querySelectorAll("#map .zone").forEach(function(zz){zz.classList.toggle("over",zz.getAttribute("data-zone")===z)});
+      });
+      function endDrag(e){
+        if(!drag)return;var was=drag;drag=null;g.classList.remove("dragging");try{g.releasePointerCapture(e.pointerId)}catch(x){}
+        document.querySelectorAll("#map .zone.over").forEach(function(zz){zz.classList.remove("over")});
+        if(was.moved){var pt=svgPoint(e);var z=zoneAt(pt.x,pt.y);g.removeAttribute("transform");if(z){mapSel=p.id;place(p.id,z)}else{svg.classList.remove("placing");mapSel=null;drawPins();showVerdict(p.id)}}
+        else{selectPin(p.id);showVerdict(p.id)}
+      }
+      g.addEventListener("pointerup",endDrag);g.addEventListener("pointercancel",endDrag);
+      g.addEventListener("keydown",function(e){
+        if(e.key==="Enter"||e.key===" "){e.preventDefault();selectPin(p.id);showVerdict(p.id);return}
+        var order=["outside","cs","ai","ml"],cur=order.indexOf(s.zone);
+        if(e.key==="ArrowRight"&&cur<3){e.preventDefault();mapSel=p.id;place(p.id,order[cur+1])}
+        if(e.key==="ArrowLeft"&&cur>0){e.preventDefault();mapSel=p.id;place(p.id,order[cur-1])}
+      });
       pinsG.appendChild(g);
     });
     var placed=0,right=0;PINS.forEach(function(p){var s=mapState[p.id];if(s&&s.zone){placed++;if(s.zone===p.zone)right++}});
@@ -505,7 +557,7 @@
   function place(id,zone){
     var p=PINS.filter(function(x){return x.id===id})[0];
     mapState[id]=mapState[id]||{};mapState[id].zone=zone;mapSave();
-    mapSel=null;drawPins();lightZone(zone,zone===p.zone);
+    mapSel=null;svg.classList.remove("placing");drawPins();lightZone(zone,zone===p.zone);
     var st=$("mapStatus");
     if(zone===p.zone){st.className="status ok";st.textContent=p.name+": right region. "+p.why.zone}
     else{st.className="status bad";st.textContent=p.name+" is not best supported in “"+ZONE_NAME[zone]+".” Think about the evidence in the example, then move it."}
@@ -548,7 +600,7 @@
     z.addEventListener("dragleave",function(){z.classList.remove("over")});
     z.addEventListener("drop",function(e){e.preventDefault();z.classList.remove("over");if(mapSel)place(mapSel,zone)});
   });
-  $("mapReset").addEventListener("click",function(){mapState={};store.del("ail12-map");mapSel=null;drawPins();lightZone(null);$("verdict").classList.remove("show");var st=$("mapStatus");st.className="status";st.textContent="Five pins. Place each one, then answer its two questions."});
+  $("mapReset").addEventListener("click",function(){mapState={};store.del("ail12-map");mapSel=null;svg.classList.remove("placing");drawPins();lightZone(null);$("verdict").classList.remove("show");var st=$("mapStatus");st.className="status";st.textContent="Five pins. Place each one, then answer its two questions."});
   drawPins();mapScore();
 
   /* ---------- Claim scrubber ---------- */
