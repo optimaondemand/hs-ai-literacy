@@ -35,7 +35,7 @@
   ".ivy-panel .ivy-note{padding:0 1rem .9rem;font-size:.78rem;color:var(--ink-faint,#7c8794);line-height:1.45}"+
   ".ivy-panel{overflow:hidden}.ivy-px{position:absolute;inset:0;z-index:2;pointer-events:none;display:grid;grid-template-columns:repeat(14,1fr);grid-auto-rows:1fr;border-radius:inherit}.ivy-px i{display:block;opacity:1;animation:ivyPx .5s steps(4,end) forwards}@keyframes ivyPx{0%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(.15)}}.ivy-fab.pulse{animation:ivyPulse .45s ease-out}@keyframes ivyPulse{0%{box-shadow:0 0 0 0 rgba(79,209,232,.7)}100%{box-shadow:0 0 0 16px rgba(79,209,232,0)}}@media (prefers-reduced-motion:reduce){.ivy-px,.ivy-fab.pulse{animation:none;display:none}}"+
   /* waving bot perched on the pill */
-  ".ivy-bot{position:absolute;left:10px;top:-25px;width:36px;height:36px;pointer-events:none;transition:opacity .2s,transform .2s}"+
+  ".ivy-bot{position:absolute;left:8px;top:-34px;width:48px;height:48px;pointer-events:none;transition:opacity .2s,transform .2s}"+
   ".ivy-bot svg{display:block;width:100%;height:100%;overflow:visible}"+
   ".ivy-bot .arm{transform-origin:27px 18px;transform-box:view-box}"+
   ".ivy-bot .head{transform-origin:17px 20px;transform-box:view-box}"+
@@ -44,8 +44,8 @@
   "@keyframes ivyWave{0%,100%{transform:rotate(0)}15%{transform:rotate(-120deg)}35%{transform:rotate(-150deg)}55%{transform:rotate(-105deg)}75%{transform:rotate(-150deg)}}"+
   "@keyframes ivyTilt{0%,100%{transform:rotate(0)}30%,70%{transform:rotate(-8deg)}}"+
   ".ivy-fab[aria-expanded=true] .ivy-bot{opacity:0;transform:translateY(8px)}"+
-  ".ivy-say{position:absolute;right:0;bottom:calc(100% + 40px);background:#fff;color:var(--teal-deep,#0b3b4f);border:1px solid var(--teal,#0e8fa8);border-radius:10px;padding:.45rem .7rem;font:500 .8rem/1.3 var(--sans,'IBM Plex Sans',sans-serif);white-space:nowrap;box-shadow:0 6px 18px rgba(15,34,51,.18);opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s;pointer-events:none}"+
-  ".ivy-say:after{content:'';position:absolute;left:22px;bottom:-6px;width:10px;height:10px;background:#fff;border-right:1px solid var(--teal,#0e8fa8);border-bottom:1px solid var(--teal,#0e8fa8);transform:rotate(45deg)}"+
+  ".ivy-say{position:absolute;right:0;bottom:calc(100% + 50px);background:#fff;color:var(--teal-deep,#0b3b4f);border:1px solid var(--teal,#0e8fa8);border-radius:10px;padding:.45rem .7rem;font:500 .8rem/1.3 var(--sans,'IBM Plex Sans',sans-serif);white-space:nowrap;box-shadow:0 6px 18px rgba(15,34,51,.18);opacity:0;transform:translateY(4px);transition:opacity .25s,transform .25s;pointer-events:none}"+
+  ".ivy-say:after{content:'';position:absolute;left:26px;bottom:-6px;width:10px;height:10px;background:#fff;border-right:1px solid var(--teal,#0e8fa8);border-bottom:1px solid var(--teal,#0e8fa8);transform:rotate(45deg)}"+
   ".ivy-say.show{opacity:1;transform:none}"+
   "@media (prefers-reduced-motion:reduce){.ivy-bot.wave .arm,.ivy-bot.wave .head{animation:none}}"+
   "@media print{.ivy-fab,.ivy-panel{display:none!important}}";
