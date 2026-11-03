@@ -1,1 +1,453 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Reading 1.3 — A History of Thinking Machines</title><style>body{font-family:Arial,sans-serif;line-height:1.55;max-width:920px;margin:auto;padding:2rem;color:#17212b}header,footer{border-left:8px solid #1f6f8b;padding-left:1rem}h1,h2{color:#123e52}.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:.7rem;background:#eef7fa;padding:1rem;border-radius:8px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #7a8793;padding:.6rem;text-align:left}th{background:#e5f2f6}.callout{background:#fff6df;border-left:5px solid #b7791f;padding:1rem}</style></head><body><header><p>AI Literacy • Module 1 • Lesson 1.3 Reading</p><h1>A History of Thinking Machines</h1><p>Reading before the lesson activity</p></header><section class="meta"><div><strong>Estimated time</strong><br>15–20 minutes</div><div><strong>Focus question</strong><br>What can AI history teach us about current promises and limitations?</div><div><strong>Required for</strong><br>Lesson 1.3: Timeline Source Card</div></section><p><strong>Begin with a prediction.</strong> Put these in the order you think they appeared: programmable computers, the phrase “artificial intelligence,” expert systems, deep learning breakthroughs, and large language models.</p><h2>History is a tool for judgment</h2><p>Today’s systems can feel sudden and unprecedented, but they come from a long history of questions about logic, language, calculation, machinery, learning, and mind. That history includes real achievements as well as repeated cycles of bold promises, disappointment, funding cuts, and renewed progress. A striking demonstration is not the same as a solved human problem.</p><h2>Foundations: logic and computation</h2><p>Long before electronic computers, philosophers and mathematicians asked whether reasoning could be represented as rules. Formal logic showed that some forms of reasoning could be expressed symbolically. Ada Lovelace and later Alan Turing helped clarify that a general-purpose machine could follow instructions to perform many calculations. These ideas did not prove that machines think; they made a new question possible: which parts of intelligent activity can be represented as steps?</p><h2>Symbolic AI and the birth of the field</h2><p>The term <strong>artificial intelligence</strong> was popularized in 1956 at the Dartmouth summer research project. Early researchers often hoped that theorem proving, language translation, and game playing would become easy once the right symbolic rules were written. Symbolic AI represented knowledge with explicit symbols and rules. It succeeded in narrow, structured settings, but ordinary language, visual perception, common sense, and the open-ended world proved harder than early optimism predicted.</p><h2>Expert systems and AI winters</h2><p>In the 1970s and 1980s, <strong>expert systems</strong> used extensive if–then rules from specialists in areas such as medicine, geology, or equipment maintenance. They could be useful within tightly defined domains. Yet they were expensive to build, difficult to update, and brittle when cases fell outside their rules.</p><p>When systems failed to meet inflated expectations, investment and enthusiasm declined. Such periods are often called <strong>AI winters</strong>. An AI winter does not prove that AI is useless; it reminds us that promises can outrun evidence.</p><h2>Data, learning, and neural networks</h2><p>As more digital data and computing power became available, machine-learning methods gained influence. Instead of hand-writing every rule, researchers trained systems to find statistical patterns in examples. Improvements in neural-network methods, data, specialized hardware, and engineering produced strong results in image recognition, speech, translation, games, and other tasks.</p><h2>Generative AI and current questions</h2><p>Large language models and other generative systems produce text, images, audio, code, and video by learning patterns from very large collections of data. Their outputs can be useful and persuasive. They can also be incorrect, biased, untraceable, or inappropriate for a situation.</p><div class="callout"><strong>Historical habit:</strong> Ask what the system demonstrably does, what conditions it needs, what it fails at, who benefits, and who remains accountable.</div><h2>Timeline in brief</h2><table><thead><tr><th>Milestone</th><th>Promise</th><th>Limitation or consequence</th></tr></thead><tbody><tr><td>Logic and computation</td><td>Some reasoning can be expressed as steps.</td><td>Representing steps is not the same as settling questions about mind or understanding.</td></tr><tr><td>Symbolic AI</td><td>Rules and symbols could support reasoning.</td><td>Open-ended language and common sense were difficult.</td></tr><tr><td>Expert systems</td><td>Specialist rules could support narrow decisions.</td><td>Systems were brittle and hard to maintain.</td></tr><tr><td>AI winters</td><td>Expectations would be corrected.</td><td>Funding and enthusiasm declined after overpromising.</td></tr><tr><td>Machine/deep learning</td><td>Patterns could be learned from data.</td><td>Performance depends on data, design, context, and evaluation.</td></tr><tr><td>Generative AI</td><td>Content can be generated at scale.</td><td>Fluency does not guarantee truth, fairness, or appropriate use.</td></tr></tbody></table><h2>Key vocabulary</h2><ul><li><strong>symbolic AI:</strong> AI that represents knowledge with explicit symbols and rules.</li><li><strong>expert system:</strong> rule-based software designed to apply specialized knowledge in a narrow domain.</li><li><strong>AI winter:</strong> reduced enthusiasm and investment after systems fail to meet expectations.</li><li><strong>neural network:</strong> a machine-learning model made of connected computational units that can learn patterns from data.</li><li><strong>generative AI:</strong> AI that produces new content based on learned patterns.</li></ul><h2>As you move to the lesson</h2><p>Choose one milestone that interests you. Be ready to separate what people hoped it would do from what it could actually do at the time.</p><footer><p>AI Literacy • Module 1 • Lesson 1.3 Reading | All essential content is available on this page as selectable text.</p></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reading 1.3 — A History of Thinking Machines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .page{max-width:880px}
+  .reading p{font-size:1.06rem}
+  .vocab{list-style:none;padding:0;margin:.8rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem}
+  .vocab li{margin:0;padding:.8rem .95rem;background:var(--paper-2);border:1px solid var(--rule);border-top:3px solid var(--teal);border-radius:var(--radius)}
+  .vocab li strong{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+  /* ---------- Hype Curve: sequence by insertion ---------- */
+  .seq{display:grid;gap:.6rem}
+  .seq .incoming{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.9rem 1.1rem;background:linear-gradient(160deg,#fff,var(--paper-2));box-shadow:var(--shadow);animation:reveal .3s ease-out}
+  .seq .incoming .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+  .seq .incoming .t{font-size:1.25rem;font-weight:700;color:var(--teal-deep);margin:.15rem 0 .2rem}
+  .seq .incoming .d{margin:0;color:var(--ink-soft);font-size:.95rem}
+  .seq .track{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;padding:.5rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-3);min-height:70px}
+  .seq .gap{flex:0 0 auto;width:34px;min-height:56px;display:flex;align-items:center;justify-content:center;cursor:pointer;border-radius:8px;color:var(--teal);font-size:1.4rem;font-weight:700;transition:background .15s,transform .15s}
+  .seq .gap:hover,.seq .gap:focus-visible{background:var(--teal-pale);transform:scale(1.1);outline:none}
+  .seq .gap.only{flex:1 1 100%;width:auto;font-size:1rem;font-family:var(--mono);color:var(--ink-soft)}
+  .seq .placed{flex:1 1 90px;min-width:90px;max-width:180px;padding:.45rem .55rem;border:1px solid var(--teal-deep);border-radius:8px;background:#fff;font-size:.86rem;line-height:1.25;display:flex;flex-direction:column;gap:.15rem;animation:reveal .25s ease-out}
+  .seq .placed .yr{font-family:var(--mono);font-size:.66rem;color:var(--ink-faint);letter-spacing:.04em}
+  .seq .placed.ok{border-color:var(--ok);background:var(--ok-bg)}
+  .seq .placed.off{border-color:var(--bad);background:var(--bad-bg)}
+  .seq .meta{display:flex;justify-content:space-between;gap:.6rem;flex-wrap:wrap;font-family:var(--mono);font-size:.76rem;color:var(--ink-soft)}
+  .seq .meta b{color:var(--teal-deep)}
+
+  /* ---------- Hype Curve: chart ---------- */
+  .chartwrap{background:var(--navy);background-image:linear-gradient(rgba(79,209,232,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(79,209,232,.07) 1px,transparent 1px);background-size:24px 24px;border:1px solid var(--teal-deep);border-radius:var(--radius);padding:.6rem;box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);margin-top:.8rem}
+  #hype{display:block;width:100%;height:auto;font-family:var(--sans)}
+  #hype .axis{stroke:#6c8795;stroke-width:1}
+  #hype .lbl{font-family:var(--mono);font-size:11px;fill:#9fb3bf;letter-spacing:.06em}
+  #hype .lbl.axisname{fill:var(--cyan);text-transform:uppercase;letter-spacing:.12em}
+  #hype .exp{fill:none;stroke:var(--gold);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+  #hype .cap{fill:none;stroke:var(--cyan);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+  #hype .winter{fill:rgba(178,59,59,.18);stroke:none;opacity:0;transition:opacity .6s}
+  #hype .winter.on{opacity:1}
+  #hype .wlbl{font-family:var(--mono);font-size:11px;fill:#ff9a9a;letter-spacing:.1em;text-transform:uppercase;opacity:0;transition:opacity .6s}
+  #hype .wlbl.on{opacity:1}
+  #hype .era{cursor:pointer}
+  #hype .era circle{fill:var(--navy);stroke:var(--cyan);stroke-width:2;transition:r .15s,fill .15s}
+  #hype .era:hover circle,#hype .era.open circle{fill:var(--cyan);r:9}
+  #hype .era text{font-family:var(--mono);font-size:10.5px;fill:#dff4f9;text-anchor:middle;pointer-events:none}
+  #hype .era.dim{opacity:.25}
+  #hype .legend text{font-family:var(--mono);font-size:11px;letter-spacing:.06em}
+  .playrow{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.6rem}
+  .eracard{display:none;margin-top:.8rem;border:1px solid var(--teal-deep);border-radius:var(--radius);overflow:hidden;animation:reveal .3s ease-out}
+  .eracard.show{display:block}
+  .eracard .ebar{background:var(--navy);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .9rem;display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .eracard .layers{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0}
+  .eracard .layer{padding:.8rem .9rem;border-right:1px solid var(--rule);font-size:.94rem;line-height:1.5}
+  .eracard .layer:last-child{border-right:0}
+  .eracard .layer .k{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.3rem}
+  .eracard .layer.hope .k{color:#b8860b}.eracard .layer.hope{background:var(--gold-pale)}
+  .eracard .layer.could .k{color:var(--teal-deep)}.eracard .layer.could{background:var(--teal-pale)}
+  .eracard .layer.next .k{color:var(--bad)}.eracard .layer.next{background:var(--paper-2)}
+  .eracard .nav{display:flex;justify-content:space-between;gap:.5rem;padding:.5rem .9rem;border-top:1px solid var(--rule);background:#fff}
+  .eracard .nav button{font:inherit;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--teal);background:#fff;color:var(--teal);border-radius:6px;padding:.3rem .7rem;cursor:pointer}
+  .eracard .nav button:disabled{opacity:.4;cursor:default}
+
+  /* ---------- Expert system ---------- */
+  .term{border:1px solid var(--teal-deep);border-radius:var(--radius);overflow:hidden;background:#0b1b29;color:#cfe9d8;font-family:var(--mono);font-size:.9rem}
+  .term .tbar{background:var(--navy);color:var(--cyan);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.45rem .9rem;display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .term .screen{padding:.9rem 1rem;min-height:190px;display:grid;gap:.45rem;line-height:1.5}
+  .term .line{animation:reveal .2s ease-out}
+  .term .line.sys::before{content:"> ";color:var(--cyan)}
+  .term .line.you{color:#fff}
+  .term .line.you::before{content:"you: ";color:#9fb3bf}
+  .term .line.dx{color:#7fe3c7;font-weight:600}
+  .term .line.fail{color:#ff9a9a}
+  .term .line.note{color:#9fb3bf;font-size:.82rem}
+  .term .answers{display:flex;gap:.45rem;flex-wrap:wrap;padding:0 1rem .9rem}
+  .term .answers button{font:inherit;font-family:var(--mono);font-size:.84rem;padding:.4rem .8rem;border-radius:6px;border:1px solid var(--cyan);background:rgba(79,209,232,.1);color:#dff4f9;cursor:pointer}
+  .term .answers button:hover{background:rgba(79,209,232,.25)}
+  .term .answers button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .term .answers button.primary{background:var(--cyan);color:var(--navy);font-weight:600}
+  .rulebook{margin-top:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden}
+  .rulebook .rbar{background:var(--paper-3);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);padding:.45rem .9rem;display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .rulebook ol{margin:0;padding:.5rem 1rem .5rem 2.2rem;font-family:var(--mono);font-size:.82rem;line-height:1.6;columns:2;column-gap:1.5rem}
+  @media (max-width:640px){.rulebook ol{columns:1}}
+  .rulebook li{break-inside:avoid;margin:.1rem 0}
+  .rulebook li.new{color:var(--ok);font-weight:600}
+  .rulebook li.hit{background:var(--gold-pale)}
+  .addrule{display:none;margin-top:.7rem;padding:.7rem .9rem;border:1.5px dashed var(--gold);border-radius:var(--radius);background:var(--gold-pale)}
+  .addrule.show{display:block;animation:reveal .3s ease-out}
+  .addrule h4{margin:0 0 .4rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#6d4a00}
+  .addrule .row{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center;font-family:var(--mono);font-size:.84rem;color:var(--teal-deep)}
+  .addrule select{font:inherit;font-family:var(--mono);font-size:.84rem;padding:.3rem .5rem;border:1px solid var(--rule-strong);border-radius:6px;background:#fff}
+  .estools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.6rem}
+  .estools .counts span b{color:var(--teal-deep)}
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 1 • Lesson 1.3 Reading" data-title="A History of Thinking Machines" data-key="ail-intro-1.3-reading" data-words="1843|1956|1986|2012|TODAY|PROMISE|EVIDENCE"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 1 • Lesson 1.3 Reading</p>
+    <h1>A History of Thinking Machines</h1>
+    <p class="lede">Reading before the lesson activity</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <section class="ledger" aria-label="Reading details">
+    <div><span class="k">Estimated time</span><span class="v">15–20 minutes</span></div>
+    <div><span class="k">Focus question</span><span class="v">What can AI history teach us about current promises and limitations?</span></div>
+    <div><span class="k">Required for</span><span class="v">Lesson 1.3: Timeline Source Card</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Begin with a prediction.</strong> Put these in the order you think they appeared: programmable computers, the phrase “artificial intelligence,” expert systems, deep learning breakthroughs, and large language models.</p>
+  </div>
+
+  <div class="widget" id="hypeWidget">
+    <div class="bar"><span>Interactive · The Hype Curve</span><span class="tag">Sequence, then play</span></div>
+    <div class="body">
+      <p>Ten moments in the history of thinking machines arrive one at a time, out of order. For each one, tap the gap in the timeline where you think it belongs. When all ten are placed, press play: the moments snap to their real years, and two lines draw themselves across 180 years, what people <strong>expected</strong> and what machines could <strong>demonstrably do</strong>. Watch the gap between them.</p>
+      <div class="seq" id="seq">
+        <div class="meta"><span>Moment <b id="seqNum">1</b> of 10</span><span><b id="seqRight">0</b> placed in the right spot</span></div>
+        <div id="seqIncoming"></div>
+        <div class="track" id="seqTrack" aria-label="Your timeline"></div>
+      </div>
+      <div class="playrow">
+        <span class="counts"><span id="seqNote"></span></span>
+        <span><button type="button" class="btn ghost" id="seqReset">Start over</button> <button type="button" class="btn" id="playBtn" disabled>Play the curve</button></span>
+      </div>
+      <div class="chartwrap" id="chartwrap" hidden>
+        <svg id="hype" viewBox="0 0 820 360" role="img" aria-labelledby="hypeTitle hypeDesc">
+          <title id="hypeTitle">The hype curve: expectation versus demonstrated capability, 1840 to today</title>
+          <desc id="hypeDesc">A chart with years across the bottom. A gold line shows how high expectations ran; a cyan line shows what machines could demonstrably do. The gold line rises above the cyan line and then falls back twice; the two falls are the AI winters.</desc>
+          <g id="hypeG"></g>
+        </svg>
+      </div>
+      <div class="eracard" id="eracard" aria-live="polite">
+        <div class="ebar"><span id="eraName"></span><span id="eraYear"></span></div>
+        <div class="layers">
+          <div class="layer hope"><span class="k">What people hoped</span><span id="eraHope"></span></div>
+          <div class="layer could"><span class="k">What it could actually do</span><span id="eraCould"></span></div>
+          <div class="layer next"><span class="k">What followed</span><span id="eraNext"></span></div>
+        </div>
+        <div class="nav"><button type="button" id="eraPrev">◀ Earlier</button><span class="muted" id="eraCount" style="font-family:var(--mono);font-size:.74rem"></span><button type="button" id="eraNext2">Later ▶</button></div>
+      </div>
+      <div class="status" id="hypeStatus" role="status" aria-live="polite">Tap a gap to place the first moment.</div>
+    </div>
+  </div>
+
+  <div class="reading">
+    <h2>History is a tool for judgment</h2>
+    <p>Today’s systems can feel sudden and unprecedented, but they come from a long history of questions about logic, language, calculation, machinery, learning, and mind. That history includes real achievements as well as repeated cycles of bold promises, disappointment, funding cuts, and renewed progress. A striking demonstration is not the same as a solved human problem.</p>
+
+    <h2>Foundations: logic and computation</h2>
+    <p>Long before electronic computers, philosophers and mathematicians asked whether reasoning could be represented as rules. Formal logic showed that some forms of reasoning could be expressed symbolically. Ada Lovelace and later Alan Turing helped clarify that a general-purpose machine could follow instructions to perform many calculations. These ideas did not prove that machines think; they made a new question possible: which parts of intelligent activity can be represented as steps?</p>
+
+    <h2>Symbolic AI and the birth of the field</h2>
+    <p>The term <strong>artificial intelligence</strong> was popularized in 1956 at the Dartmouth summer research project. Early researchers often hoped that theorem proving, language translation, and game playing would become easy once the right symbolic rules were written. Symbolic AI represented knowledge with explicit symbols and rules. It succeeded in narrow, structured settings, but ordinary language, visual perception, common sense, and the open-ended world proved harder than early optimism predicted.</p>
+
+    <h2>Expert systems and AI winters</h2>
+    <p>In the 1970s and 1980s, <strong>expert systems</strong> used extensive if–then rules from specialists in areas such as medicine, geology, or equipment maintenance. They could be useful within tightly defined domains. Yet they were expensive to build, difficult to update, and brittle when cases fell outside their rules.</p>
+
+    <div class="widget" id="esWidget">
+      <div class="bar"><span>Interactive · Run an expert system, then break it</span><span class="tag">1980s, on your screen</span></div>
+      <div class="body">
+        <p>This is a small expert system of the kind the paragraph above describes: a dozen if–then rules written by a plant specialist, a program that asks questions and follows the rules. Run it on the first plant and it works. Then bring it the second plant.</p>
+        <div class="term" id="term">
+          <div class="tbar"><span>PLANTDOC v1.0 · rule-based diagnosis</span><span id="termCase">Case 1 of 3</span></div>
+          <div class="screen" id="screen"></div>
+          <div class="answers" id="answers"></div>
+        </div>
+        <div class="addrule" id="addrule">
+          <h4>Add a rule to the rulebook</h4>
+          <div class="row">IF <select id="rA"></select> AND <select id="rB"></select> THEN <select id="rC"></select> <button type="button" class="btn" id="rAdd" style="padding:.35rem .8rem;font-size:.86rem">Add rule</button></div>
+        </div>
+        <div class="rulebook" id="rulebook">
+          <div class="rbar"><span>The rulebook</span><span><b id="ruleCount">0</b> rules</span></div>
+          <ol id="ruleList"></ol>
+        </div>
+        <div class="estools">
+          <span class="counts"><span><b id="esRun">0</b> cases run</span><span><b id="esRules">0</b> rules added by you</span></span>
+          <button type="button" class="btn ghost" id="esReset">Start over</button>
+        </div>
+        <div class="status" id="esStatus" role="status" aria-live="polite">Answer the questions the system asks.</div>
+      </div>
+    </div>
+
+    <p>When systems failed to meet inflated expectations, investment and enthusiasm declined. Such periods are often called <strong>AI winters</strong>. An AI winter does not prove that AI is useless; it reminds us that promises can outrun evidence.</p>
+
+    <h2>Data, learning, and neural networks</h2>
+    <p>As more digital data and computing power became available, machine-learning methods gained influence. Instead of hand-writing every rule, researchers trained systems to find statistical patterns in examples. Improvements in neural-network methods, data, specialized hardware, and engineering produced strong results in image recognition, speech, translation, games, and other tasks.</p>
+
+    <h2>Generative AI and current questions</h2>
+    <p>Large language models and other generative systems produce text, images, audio, code, and video by learning patterns from very large collections of data. Their outputs can be useful and persuasive. They can also be incorrect, biased, untraceable, or inappropriate for a situation.</p>
+    <div class="callout"><p><strong>Historical habit:</strong> Ask what the system demonstrably does, what conditions it needs, what it fails at, who benefits, and who remains accountable.</p></div>
+
+    <h2>Timeline in brief</h2>
+    <table>
+      <thead><tr><th>Milestone</th><th>Promise</th><th>Limitation or consequence</th></tr></thead>
+      <tbody>
+        <tr><td>Logic and computation</td><td>Some reasoning can be expressed as steps.</td><td>Representing steps is not the same as settling questions about mind or understanding.</td></tr>
+        <tr><td>Symbolic AI</td><td>Rules and symbols could support reasoning.</td><td>Open-ended language and common sense were difficult.</td></tr>
+        <tr><td>Expert systems</td><td>Specialist rules could support narrow decisions.</td><td>Systems were brittle and hard to maintain.</td></tr>
+        <tr><td>AI winters</td><td>Expectations would be corrected.</td><td>Funding and enthusiasm declined after overpromising.</td></tr>
+        <tr><td>Machine/deep learning</td><td>Patterns could be learned from data.</td><td>Performance depends on data, design, context, and evaluation.</td></tr>
+        <tr><td>Generative AI</td><td>Content can be generated at scale.</td><td>Fluency does not guarantee truth, fairness, or appropriate use.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Key vocabulary</h2>
+    <ul class="vocab">
+      <li><strong>symbolic AI:</strong> AI that represents knowledge with explicit symbols and rules.</li>
+      <li><strong>expert system:</strong> rule-based software designed to apply specialized knowledge in a narrow domain.</li>
+      <li><strong>AI winter:</strong> reduced enthusiasm and investment after systems fail to meet expectations.</li>
+      <li><strong>neural network:</strong> a machine-learning model made of connected computational units that can learn patterns from data.</li>
+      <li><strong>generative AI:</strong> AI that produces new content based on learned patterns.</li>
+    </ul>
+
+    <h2>As you move to the lesson</h2>
+    <p>Choose one milestone that interests you. Be ready to separate what people hoped it would do from what it could actually do at the time.</p>
+  </div>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 1 • Lesson 1.3 Reading | All essential content is available on this page as selectable text.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function svgEl(tag,attrs){var e=document.createElementNS("http://www.w3.org/2000/svg",tag);for(var k in attrs)e.setAttribute(k,attrs[k]);return e}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+
+  /* ---------- The Hype Curve ---------- */
+  var ERAS=[
+    {id:"logic",year:1854,short:"Formal logic",name:"Formal logic: reasoning as symbols",desc:"George Boole and others show that some reasoning can be written as symbols and rules.",
+     hope:"If reasoning could be written as rules, perhaps thinking itself could be calculated.",could:"Certain kinds of argument could be checked step by step on paper. Nothing was built yet.",next:"The question “which parts of thinking can be made into steps?” was now askable. It is still the question.",exp:15,cap:5},
+    {id:"lovelace",year:1843,short:"Lovelace",name:"Ada Lovelace: a general-purpose machine",desc:"Lovelace describes how Babbage’s planned Analytical Engine could follow instructions for many different tasks.",
+     hope:"A machine that follows instructions could do far more than arithmetic.",could:"The Engine was never completed. The idea of a programmable machine was worked out on paper.",next:"Lovelace also wrote that the machine could only do what it was told to do. People still argue about that sentence.",exp:12,cap:3},
+    {id:"turing",year:1936,short:"Turing",name:"Alan Turing: computation defined",desc:"Turing describes a simple abstract machine and shows that one general machine could run any step-by-step procedure.",
+     hope:"One machine, given the right instructions, could compute anything computable. By 1950 Turing was asking whether machines could think.",could:"Electronic computers followed within a decade and could run long calculations without error.",next:"Computers made the question practical, not settled. Turing proposed a conversation test rather than an answer.",exp:28,cap:12},
+    {id:"dartmouth",year:1956,short:"Dartmouth",name:"Dartmouth: the field gets its name",desc:"A summer workshop popularizes the phrase “artificial intelligence.”",
+     hope:"Organizers proposed that a summer of work by a small group could make significant progress on language, abstraction, and self-improvement.",could:"Programs of the era proved simple logic theorems and played checkers. Impressive for the time, and narrow.",next:"Bold forecasts of human-level machines within a generation set up the first great gap between promise and evidence.",exp:72,cap:16},
+    {id:"symbolic",year:1966,short:"Symbolic AI",name:"Symbolic AI: rules and symbols",desc:"Researchers represent knowledge as explicit symbols and hand-written rules.",
+     hope:"Write the right rules and translation, perception, and common sense would follow.",could:"Narrow, structured problems: puzzles, simple dialogue in tiny worlds, algebra word problems.",next:"Machine translation disappointed badly enough that a 1966 report cut much of its funding. Ordinary language would not sit still for rules.",exp:80,cap:24},
+    {id:"winter1",year:1974,short:"First winter",name:"The first AI winter",desc:"After reviews find promises unmet, funding in the US and UK is sharply reduced.",
+     hope:"Patience: the breakthroughs were always a few years away.",could:"Demonstrations stayed in the lab. Programs that handled toy problems broke on real ones.",next:"Money and attention left the field for years. Not proof that the ideas were worthless, proof that claims had outrun evidence.",exp:32,cap:27},
+    {id:"expert",year:1985,short:"Expert systems",name:"Expert systems: the rules of experts",desc:"Companies build systems from thousands of if–then rules drawn from specialists in medicine, chemistry, and equipment configuration.",
+     hope:"Capture an expert’s knowledge once and sell it everywhere. Corporations spent heavily.",could:"Real usefulness inside tight domains, such as configuring a company’s own computers. One famous medical system matched specialists on its narrow cases.",next:"Expensive to build, hard to update, brittle outside their rules. By the late 1980s the market collapsed: the second winter.",exp:78,cap:40},
+    {id:"ml",year:1997,short:"Machine learning",name:"Machine learning: patterns from data",desc:"With more data and faster computers, systems that learn statistical patterns from examples spread quietly through spam filters, search, and games.",
+     hope:"Stop hand-writing rules; let examples do the work.",could:"A chess program beat the world champion in 1997 by searching millions of positions. Filters and recommenders worked well enough to ship.",next:"Progress was real and mostly unglamorous. The methods needed far more data than anyone had yet.",exp:48,cap:50},
+    {id:"deep",year:2012,short:"Deep learning",name:"Deep learning: the ImageNet moment",desc:"A deep neural network cuts the error rate on a large image-recognition contest nearly in half.",
+     hope:"Perception, speech, and translation would fall in turn, and they largely did.",could:"Recognizing objects, transcribing speech, and translating text at useful accuracy, given enormous labeled datasets and specialized chips.",next:"Performance depended on data, design, and evaluation. Systems failed on unfamiliar cases and inherited biases from their data.",exp:76,cap:64},
+    {id:"gen",year:2022,short:"Generative AI",name:"Transformers and generative AI",desc:"Large models trained on vast text and image collections generate fluent writing, code, and pictures on demand.",
+     hope:"Assistants that understand, reason, and work alongside anyone. Forecasts again reach for human-level machines.",could:"Fluent, useful output across many tasks. Also confident errors, invented sources, and outputs that are hard to trace.",next:"That is where the line ends for now. The historical habit applies: ask what it demonstrably does, what it needs, what it fails at, who benefits, and who is accountable.",exp:95,cap:78}
+  ];
+  var ORDER=ERAS.slice().sort(function(a,b){return a.year-b.year});
+  var seq=store.get("ail13-seq",null);
+  function newSeq(){seq={queue:shuffle(ERAS.map(function(e){return e.id})),placed:[],right:0,played:false};store.set("ail13-seq",seq)}
+  if(!seq)newSeq();
+  function era(id){return ERAS.filter(function(e){return e.id===id})[0]}
+  function seqRender(){
+    var inc=$("seqIncoming"),track=$("seqTrack");inc.innerHTML="";track.innerHTML="";
+    var i=seq.placed.length;$("seqNum").textContent=Math.min(i+1,10);$("seqRight").textContent=seq.right;
+    var nextId=seq.queue[i];
+    if(nextId){
+      var e=era(nextId),c=el("div","incoming");c.appendChild(el("span","k","Where does this go?"));c.appendChild(el("div","t",e.name));c.appendChild(el("p","d",e.desc));inc.appendChild(c);
+    }
+    function gapBtn(pos,only){var g=el("button","gap"+(only?" only":""),only?"tap here to place the first moment":"+");g.type="button";g.setAttribute("aria-label","Place here, position "+(pos+1));g.addEventListener("click",function(){seqPlace(pos)});return g}
+    if(!seq.placed.length&&nextId){track.appendChild(gapBtn(0,true))}
+    else{
+      if(nextId)track.appendChild(gapBtn(0));
+      seq.placed.forEach(function(p,k){
+        var e=era(p.id),d=el("div","placed"+(seq.played?"":(p.ok?" ok":" off")));
+        d.appendChild(el("span","yr",seq.played?String(e.year):(p.ok?"✓":"✗")));d.appendChild(document.createTextNode(e.short));track.appendChild(d);
+        if(nextId)track.appendChild(gapBtn(k+1));
+      });
+    }
+    $("playBtn").disabled=!!nextId||seq.played;
+    $("seqNote").textContent=nextId?"":(seq.played?"Played. Tap a dot on the chart to open its three layers.":seq.right+" of 10 landed in the right spot on arrival. Press play to see the real years.");
+    var st=$("hypeStatus");
+    if(nextId){if(!seq.placed.length){st.className="status";st.textContent="Tap the gap to place the first moment."}}
+    else if(!seq.played){st.className="status ok";st.textContent="All ten placed. Press Play the curve."}
+  }
+  function seqPlace(pos){
+    var id=seq.queue[seq.placed.length];if(!id)return;var e=era(id);
+    // Correct if it lands after every placed earlier era and before every placed later era
+    var ok=true;seq.placed.forEach(function(p,k){var y=era(p.id).year;if(k<pos&&y>e.year)ok=false;if(k>=pos&&y<e.year)ok=false});
+    seq.placed.splice(pos,0,{id:id,ok:ok});if(ok)seq.right++;store.set("ail13-seq",seq);
+    var st=$("hypeStatus");st.className="status"+(ok?" ok":" bad");st.textContent=(ok?"✓ ":"✗ ")+e.short+" ("+e.year+"). "+(ok?"That fits with everything placed so far.":"Out of order against what you had placed; the real years will sort it out when you play.");
+    seqRender();
+  }
+  $("seqReset").addEventListener("click",function(){newSeq();$("chartwrap").hidden=true;$("eracard").classList.remove("show");seqRender();var st=$("hypeStatus");st.className="status";st.textContent="Tap a gap to place the first moment."});
+
+  // Chart
+  var X0=70,X1=790,Y0=40,Y1=300,YMIN=1838,YMAX=2030;
+  function xs(y){return X0+(y-YMIN)/(YMAX-YMIN)*(X1-X0)}
+  function ys(v){return Y1-(v/100)*(Y1-Y0)}
+  function smooth(pts){var d="M"+pts[0][0]+" "+pts[0][1];for(var i=1;i<pts.length;i++){var p0=pts[i-1],p1=pts[i];var cx=(p0[0]+p1[0])/2;d+=" C"+cx+" "+p0[1]+","+cx+" "+p1[1]+","+p1[0]+" "+p1[1]}return d}
+  var curEra=null;
+  function drawChart(animate){
+    var g=$("hypeG");g.innerHTML="";$("chartwrap").hidden=false;
+    g.appendChild(svgEl("line",{"class":"axis",x1:X0,y1:Y1,x2:X1,y2:Y1}));g.appendChild(svgEl("line",{"class":"axis",x1:X0,y1:Y0,x2:X0,y2:Y1}));
+    [1850,1900,1950,2000,2025].forEach(function(y){var t=svgEl("text",{"class":"lbl",x:xs(y),y:Y1+16,"text-anchor":"middle"});t.textContent=y;g.appendChild(t);g.appendChild(svgEl("line",{"class":"axis",x1:xs(y),y1:Y1,x2:xs(y),y2:Y1+4}))});
+    var ax=svgEl("text",{"class":"lbl axisname",x:X0,y:Y0-14});ax.textContent="high ↑";g.appendChild(ax);
+    var ax2=svgEl("text",{"class":"lbl axisname",x:X1,y:Y1+32,"text-anchor":"end"});ax2.textContent="year →";g.appendChild(ax2);
+    var lg=svgEl("g",{"class":"legend"});lg.appendChild(svgEl("line",{x1:X0+10,y1:Y0,x2:X0+40,y2:Y0,stroke:"var(--gold)","stroke-width":3}));var l1=svgEl("text",{x:X0+48,y:Y0+4,fill:"var(--gold)"});l1.textContent="what people expected";lg.appendChild(l1);
+    lg.appendChild(svgEl("line",{x1:X0+260,y1:Y0,x2:X0+290,y2:Y0,stroke:"var(--cyan)","stroke-width":3}));var l2=svgEl("text",{x:X0+298,y:Y0+4,fill:"var(--cyan)"});l2.textContent="what machines could demonstrably do";lg.appendChild(l2);g.appendChild(lg);
+    // winters (expectation falls below the previous peak)
+    var W=[{a:1968,b:1980,lbl:"AI winter 1",dy:28},{a:1988,b:1996,lbl:"AI winter 2",dy:44}];
+    var winters=W.map(function(w){var r=svgEl("rect",{"class":"winter",x:xs(w.a),y:Y0+10,width:xs(w.b)-xs(w.a),height:Y1-Y0-10});g.appendChild(r);var t=svgEl("text",{"class":"wlbl",x:(xs(w.a)+xs(w.b))/2,y:Y0+w.dy,"text-anchor":"middle"});t.textContent=w.lbl;g.appendChild(t);return [r,t]});
+    var E=ORDER.map(function(e){return [xs(e.year),ys(e.exp)]}),C=ORDER.map(function(e){return [xs(e.year),ys(e.cap)]});
+    E.unshift([xs(YMIN),ys(10)]);C.unshift([xs(YMIN),ys(2)]);E.push([xs(2028),ys(96)]);C.push([xs(2028),ys(80)]);
+    var pe=svgEl("path",{"class":"exp",d:smooth(E)}),pc=svgEl("path",{"class":"cap",d:smooth(C)});g.appendChild(pc);g.appendChild(pe);
+    ORDER.forEach(function(e,i){
+      var grp=svgEl("g",{"class":"era","data-id":e.id,tabindex:"0",role:"button","aria-label":e.name+", "+e.year});
+      grp.appendChild(svgEl("circle",{cx:xs(e.year),cy:ys(e.cap),r:7}));
+      var OFF=[-16,24,-32,40];var last=i===ORDER.length-1;var t=svgEl("text",{x:xs(e.year)-(last?12:0),y:ys(e.cap)+(last?6:OFF[i%4]),"text-anchor":last?"end":"middle"});t.textContent=e.short;grp.appendChild(t);
+      grp.addEventListener("click",function(){openEra(e.id)});grp.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();openEra(e.id)}});
+      g.appendChild(grp);
+    });
+    if(animate){
+      [pe,pc].forEach(function(p){var L=p.getTotalLength();p.style.strokeDasharray=L;p.style.strokeDashoffset=L;p.style.transition="stroke-dashoffset 4.5s ease-in-out";requestAnimationFrame(function(){requestAnimationFrame(function(){p.style.strokeDashoffset=0})})});
+      g.querySelectorAll(".era").forEach(function(x){x.classList.add("dim")});
+      ORDER.forEach(function(e,i){setTimeout(function(){var n=g.querySelector('.era[data-id="'+e.id+'"]');if(n)n.classList.remove("dim")},400+i*480)});
+      setTimeout(function(){winters.forEach(function(w){w[0].classList.add("on");w[1].classList.add("on")})},3200);
+    }else{winters.forEach(function(w){w[0].classList.add("on");w[1].classList.add("on")})}
+  }
+  function openEra(id){
+    curEra=id;var e=era(id),i=ORDER.indexOf(e);
+    $("eraName").textContent=e.name;$("eraYear").textContent=String(e.year);$("eraHope").textContent=e.hope;$("eraCould").textContent=e.could;$("eraNext").textContent=e.next;
+    $("eraCount").textContent=(i+1)+" of 10";$("eraPrev").disabled=i===0;$("eraNext2").disabled=i===ORDER.length-1;
+    document.querySelectorAll("#hype .era").forEach(function(x){x.classList.toggle("open",x.getAttribute("data-id")===id)});
+    $("eracard").classList.add("show");
+    var seen=store.get("ail13-eras",{});seen[id]=true;store.set("ail13-eras",seen);
+    var n=Object.keys(seen).length,st=$("hypeStatus");st.className="status"+(n===10?" ok":"");st.textContent=n===10?"All ten moments opened. Notice the pattern: the gold line races ahead twice and falls back twice. The cyan line never falls; it climbs slowly. That is the whole lesson in one picture.":n+" of 10 moments opened. The three layers are the same three you will use in the lesson: hope, what it could do, what followed.";
+  }
+  $("eraPrev").addEventListener("click",function(){var i=ORDER.indexOf(era(curEra));if(i>0)openEra(ORDER[i-1].id)});
+  $("eraNext2").addEventListener("click",function(){var i=ORDER.indexOf(era(curEra));if(i<ORDER.length-1)openEra(ORDER[i+1].id)});
+  $("playBtn").addEventListener("click",function(){
+    seq.played=true;store.set("ail13-seq",seq);seqRender();drawChart(true);
+    var st=$("hypeStatus");st.className="status";st.textContent="Watch the gold line. Each time it climbs far above the cyan line, a winter follows. Tap any dot to open its three layers.";
+    $("chartwrap").scrollIntoView({block:"nearest",behavior:"smooth"});
+  });
+  seqRender();if(seq.played)drawChart(false);
+
+  /* ---------- Expert system: PLANTDOC ---------- */
+  var SYMPTOMS={yellow:"leaves turning yellow",crispy:"brown, crispy leaf edges",droop:"leaves drooping",spots:"white fuzzy spots",leggy:"pale, stretched stems",soggy:"soil soggy",dry:"soil bone dry",window:"sits by a heater or hot window",holes:"small holes in the leaves",purple:"leaves turning purple underneath"};
+  var DX={over:"overwatering",under:"underwatering",heat:"heat or low humidity",rot:"root rot",bugs:"mealybugs",light:"not enough light",thirsty:"thirsty, water today",pests:"chewing pests",nutrient:"nutrient shortage"};
+  var BASE=[
+    {a:"yellow",b:"soggy",d:"over"},{a:"yellow",b:"dry",d:"under"},{a:"crispy",b:"window",d:"heat"},{a:"droop",b:"dry",d:"thirsty"},
+    {a:"droop",b:"soggy",d:"rot"},{a:"spots",b:null,d:"bugs"},{a:"leggy",b:null,d:"light"},{a:"crispy",b:"dry",d:"under"},
+    {a:"yellow",b:"window",d:"heat"},{a:"spots",b:"droop",d:"bugs"},{a:"leggy",b:"yellow",d:"light"},{a:"droop",b:"window",d:"heat"}
+  ];
+  var QUESTIONS=["yellow","soggy","dry","crispy","droop","spots","leggy","window"];
+  var CASES=[
+    {name:"Plant 1: a pothos on a desk",facts:{yellow:true,soggy:true,dry:false,crispy:false,droop:false,spots:false,leggy:false,window:false,holes:false,purple:false},intro:"The owner says it looked fine a week ago."},
+    {name:"Plant 2: a basil plant on a balcony",facts:{yellow:false,soggy:false,dry:false,crispy:false,droop:false,spots:false,leggy:false,window:false,holes:true,purple:true},intro:"The owner says the leaves have holes and are turning purple underneath. The system has never heard of either."},
+    {name:"Plant 3: a fern in a bathroom",facts:{yellow:true,soggy:true,dry:false,crispy:false,droop:true,spots:false,leggy:false,window:false,holes:true,purple:true},intro:"Yellow, drooping leaves in soggy soil, with holes and purple undersides. More than one rule will want to speak."}
+  ];
+  var es=store.get("ail13-es",{rules:[],run:0,caseIdx:0});
+  function esSave(){store.set("ail13-es",es)}
+  function rules(){return BASE.concat(es.rules)}
+  function ruleText(r){return "IF "+SYMPTOMS[r.a]+(r.b?" AND "+SYMPTOMS[r.b]:"")+" THEN "+DX[r.d]}
+  function renderRules(hits){
+    var ol=$("ruleList");ol.innerHTML="";var all=rules();
+    all.forEach(function(r,i){var li=el("li",(i>=BASE.length?"new":"")+(hits&&hits.indexOf(i)>-1?" hit":""),ruleText(r));ol.appendChild(li)});
+    $("ruleCount").textContent=all.length;$("esRules").textContent=es.rules.length;$("esRun").textContent=es.run;
+    var sa=$("rA"),sb=$("rB"),sc=$("rC");[sa,sb].forEach(function(s){s.innerHTML="";Object.keys(SYMPTOMS).forEach(function(k){var o=document.createElement("option");o.value=k;o.textContent=SYMPTOMS[k];s.appendChild(o)})});
+    var none=document.createElement("option");none.value="";none.textContent="(nothing else)";sb.insertBefore(none,sb.firstChild);
+    sc.innerHTML="";Object.keys(DX).forEach(function(k){var o=document.createElement("option");o.value=k;o.textContent=DX[k];sc.appendChild(o)});
+  }
+  var screen=$("screen"),answers=$("answers"),state=null;
+  function line(cls,txt){screen.appendChild(el("div","line "+cls,txt));screen.scrollTop=screen.scrollHeight}
+  function clearAnswers(){answers.innerHTML=""}
+  function ask(){
+    var c=CASES[state.c];
+    // Which symptoms still matter? Those appearing in any rule not yet ruled out
+    while(state.q<QUESTIONS.length){
+      var s=QUESTIONS[state.q];
+      var relevant=rules().some(function(r){return (r.a===s||r.b===s)&&!state.dead[rules().indexOf(r)]});
+      if(relevant&&!(s in state.ans))break;state.q++;
+    }
+    if(state.q>=QUESTIONS.length){conclude();return}
+    var s=QUESTIONS[state.q];line("sys","Is it true that the plant has: "+SYMPTOMS[s]+"?");
+    clearAnswers();
+    [["Yes",true],["No",false]].forEach(function(o){var b=el("button",null,o[0]);b.type="button";b.addEventListener("click",function(){
+      var truth=c.facts[s];var a=o[1];
+      line("you",o[0]+(truth===a?"":" (the owner corrects you: actually "+(truth?"yes":"no")+")"));
+      state.ans[s]=truth;
+      rules().forEach(function(r,i){if((r.a===s&&!truth)||(r.b===s&&!truth))state.dead[i]=true});
+      state.q++;ask();
+    });answers.appendChild(b)});
+  }
+  function conclude(){
+    var c=CASES[state.c],fired=[];
+    rules().forEach(function(r,i){if(state.dead[i])return;var okA=state.ans[r.a]===true||c.facts[r.a]===true;var okB=!r.b||state.ans[r.b]===true||c.facts[r.b]===true;if(okA&&okB)fired.push(i)});
+    es.run++;esSave();renderRules(fired);
+    var st=$("esStatus");clearAnswers();
+    if(!fired.length){
+      line("fail","No rule matches. DIAGNOSIS: plant is healthy. Confidence: 100%.");
+      line("note","The owner is looking at a plant with holes in its leaves. The program is certain, because certainty is all it has: it answers only from its rules, and nothing in its rules mentions holes or purple leaves.");
+      st.className="status bad";st.textContent="Brittle. Outside its rules the system did not say “I don’t know.” It said “healthy,” with full confidence. That is what the paragraph above means by brittle.";
+      $("addrule").classList.add("show");
+      var b=el("button","primary","Teach it: add a rule below, then re-run");b.type="button";b.addEventListener("click",function(){$("addrule").scrollIntoView({block:"center",behavior:"smooth"})});answers.appendChild(b);
+    }else if(fired.length===1){
+      var r=rules()[fired[0]];line("dx","DIAGNOSIS: "+DX[r.d]+". Confidence: 100%.");line("note","Rule "+(fired[0]+1)+" fired: "+ruleText(r)+".");
+      st.className="status ok";st.textContent=state.c===0?"It works. Inside its rules, an expert system is genuinely useful; this is why companies spent heavily on them. Now bring it the second plant.":"One rule fired, cleanly.";
+      nextBtn();
+    }else{
+      var names=fired.map(function(i){return DX[rules()[i].d]});
+      line("fail","CONFLICT: "+fired.length+" rules fired. DIAGNOSIS: "+names[0]+". Confidence: 100%.");
+      line("note","Rules "+fired.map(function(i){return i+1}).join(", ")+" all matched. The program picked the first one and never mentioned the others. Each new rule you add can collide with the old ones; keeping thousands of them consistent was the full-time job that made these systems expensive to maintain.");
+      st.className="status bad";st.textContent="Hard to maintain. Your new rule fixed one plant and created a conflict on the next. Multiply by ten thousand rules and you have the 1980s.";
+      nextBtn();
+    }
+  }
+  function nextBtn(){
+    if(state.c<CASES.length-1){var b=el("button","primary","Next plant");b.type="button";b.addEventListener("click",function(){startCase(state.c+1)});answers.appendChild(b)}
+    else{var d=el("button",null,"Run plant 1 again");d.type="button";d.addEventListener("click",function(){startCase(0)});answers.appendChild(d)}
+  }
+  function startCase(i){
+    state={c:i,q:0,ans:{},dead:{}};es.caseIdx=i;esSave();
+    screen.innerHTML="";$("termCase").textContent="Case "+(i+1)+" of 3";
+    var c=CASES[i];line("sys","Loading "+c.name+".");line("note",c.intro);
+    renderRules();
+    if(i===1&&!es.rules.length){/* fall through: the questions will all be no */}
+    ask();
+  }
+  $("rAdd").addEventListener("click",function(){
+    var a=$("rA").value,b=$("rB").value||null,d=$("rC").value;
+    if(a===b){var st=$("esStatus");st.className="status bad";st.textContent="Pick two different symptoms, or “nothing else.”";return}
+    es.rules.push({a:a,b:b,d:d});esSave();renderRules();$("addrule").classList.remove("show");
+    var st2=$("esStatus");st2.className="status ok";st2.textContent="Rule added: "+ruleText(es.rules[es.rules.length-1])+". Now re-run the second plant.";
+    clearAnswers();var rb=el("button","primary","Re-run plant 2");rb.type="button";rb.addEventListener("click",function(){startCase(1)});answers.appendChild(rb);
+  });
+  $("esReset").addEventListener("click",function(){es={rules:[],run:0,caseIdx:0};esSave();$("addrule").classList.remove("show");startCase(0);var st=$("esStatus");st.className="status";st.textContent="Answer the questions the system asks."});
+  renderRules();startCase(es.caseIdx||0);
+})();
+</script>
+</body>
+</html>
