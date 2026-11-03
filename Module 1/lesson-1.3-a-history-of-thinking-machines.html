@@ -1,1 +1,715 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Lesson 1.3 — A History of Thinking Machines</title><style>body{font-family:Arial,sans-serif;line-height:1.55;max-width:960px;margin:auto;padding:2rem;color:#17212b}header,footer{border-left:8px solid #1f6f8b;padding-left:1rem}h1,h2,h3{color:#123e52}.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.7rem;background:#eef7fa;padding:1rem;border-radius:8px}.step{border:1px solid #b8c6cc;border-radius:8px;padding:1rem;margin:1rem 0}.num{font-weight:bold;color:#fff;background:#1f6f8b;border-radius:50%;padding:.2rem .55rem}.note{background:#fff6df;border-left:5px solid #b7791f;padding:1rem}</style></head><body><header><p>AI Literacy • Module 1 • Lesson 1.3</p><h1>A History of Thinking Machines</h1><p>Lesson activity and guided application</p></header><section class="meta"><div><strong>Estimated time</strong><br>50–60 minutes</div><div><strong>Lesson type</strong><br>History + evidence practice</div><div><strong>Submit today</strong><br>Timeline Source Card</div><div><strong>Module project</strong><br>Field Guide: genealogy note</div></section><p><strong>Today’s Focus Question:</strong> How can AI history help us judge current claims without either hype or panic?</p><h2>What you will be able to do</h2><ul><li>Identify major developments in the history of AI.</li><li>Explain why periods of excitement and disappointment both occurred.</li><li>Connect a modern system to an earlier technical or intellectual development.</li></ul><p><strong>What you need:</strong> the Lesson 1.3 reading, access to Canvas text entry, and one credible source for your source card. No outside account is required.</p><h2>Lesson sequence</h2><section class="step"><p><span class="num">1</span> <strong>Retrieve and predict — 5 minutes</strong></p><p>Put these in your predicted order: programmable computers, “artificial intelligence,” expert systems, deep learning breakthroughs, large language models. Then write one question you have about the sequence.</p></section><section class="step"><p><span class="num">2</span> <strong>Experience: Promise, limitation, consequence — 10 minutes</strong></p><p>For each event below, make three notes: what people hoped, what the system could actually do, and what followed.</p><ul><li>Formal logic and early computation</li><li>Dartmouth and symbolic AI</li><li>Expert systems</li><li>AI winters</li><li>Machine learning and neural networks</li><li>Generative AI</li></ul><p><strong>Canvas text fallback:</strong> Make a three-column table labeled <em>hope, demonstrated capability, consequence/limitation</em>. Use the reading’s timeline table. Write one sentence beginning, “This mattered because …” for each event.</p><div class="note"><strong>Reasoning check:</strong> A historical success can be real without proving that every larger promise was fulfilled. An AI winter is not proof that all AI is useless; it is evidence that claims and evidence did not match.</div></section><section class="step"><p><span class="num">3</span> <strong>Make the historical comparison — 10 minutes</strong></p><p>Choose one current AI claim you have encountered. In your notes, complete: “This claim resembles the earlier promise about ___ because ___. The evidence I would need is ___.”</p></section><section class="step"><p><span class="num">4</span> <strong>Guided Practice 1.3 — 8–10 minutes</strong></p><p>Complete the Canvas quiz. You may retake it; feedback is part of the lesson.</p><ul><li>Explain why expert systems were powerful and limited.</li><li>Define AI winter.</li><li>Identify changes that helped modern ML advance.</li><li>Sequence key periods.</li><li>Explain why historical knowledge improves judgment about current AI claims.</li></ul></section><section class="step"><p><span class="num">5</span> <strong>Independent application: Timeline Source Card — 15–20 minutes</strong></p><p>Open <strong>Assignment 1.3 — Timeline Source Card</strong>. Choose one milestone and explain its promise, demonstrated capability, limitation, and one credible source.</p><p><strong>AI-use guidance:</strong> You may use a reliable source to research your milestone and must cite it. Do not use generative AI to draft or rewrite the source card. Your historical explanation must be your own.</p></section><section class="step"><p><span class="num">6</span> <strong>Build your AI Field Guide — 5 minutes</strong></p><p>Select one of your five systems. Add a short genealogy note that connects it conceptually to rules/expert systems, statistical learning, neural networks, search, or generative models. Do not claim direct descent unless you can support it.</p></section><h2>Success checklist</h2><ul><li>I can distinguish a historical promise from demonstrated capability.</li><li>I can explain why AI winters occurred.</li><li>I completed Guided Practice 1.3 and read the feedback.</li><li>I submitted a cited Timeline Source Card.</li><li>I added a careful genealogy note to my Field Guide.</li></ul><h2>AI Lab Notebook entry</h2><p>In 4–6 sentences, identify one historical promise that resembles a claim you hear today. What evidence would you want before accepting that claim? Add your AI-use disclosure.</p><h2>What comes next</h2><p>Lesson 1.4 examines contemporary systems directly. You will practice a system X-ray: inputs, outputs, task, likely process, human choices, and limitations.</p><footer><p>AI Literacy • Module 1 • Lesson 1.3 | This lesson is self-contained. If optional media is unavailable, complete the Canvas text fallback above.</p></footer></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lesson 1.3 — A History of Thinking Machines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .objectives{counter-reset:obj;list-style:none;padding:0;margin:.6rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.6rem}
+  .objectives li{counter-increment:obj;margin:0;padding:.7rem .9rem .7rem 2.9rem;position:relative;background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--radius)}
+  .objectives li::before{content:counter(obj,decimal-leading-zero);position:absolute;left:.8rem;top:.8rem;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--teal)}
+  .quizlist li{padding-left:.2rem}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .tools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.7rem}
+  .pick{display:flex;gap:.4rem;flex-wrap:wrap;margin:.4rem 0 .6rem}
+  .pick button{font-family:var(--sans);font-size:.9rem;padding:.4rem .8rem;border-radius:999px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer;text-align:left}
+  .pick button[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan)}
+  .pick button.done::after{content:" ✓";color:var(--ok)}
+  .pick button.hit{border-color:var(--ok);background:var(--ok-bg);color:var(--ok)}
+  .pick button.miss{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+  .pick button.soft{border-color:var(--gold);background:var(--gold-pale);color:#6d4a00}
+  .pick button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .pick input{font:inherit;font-size:.9rem;padding:.4rem .7rem;border:1px solid var(--rule-strong);border-radius:999px;background:#fff;min-width:220px;flex:1}
+  .lbl{display:block;font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin:.6rem 0 .3rem}
+  .mono{font-family:var(--mono)}
+  .line{margin-top:.6rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff;padding:.7rem .9rem;font-size:1.02rem;line-height:1.6}
+  .line .blank{border-bottom:2px dashed var(--rule-strong);color:var(--ink-faint);padding:0 .3em}
+  .line .fill{border-bottom:2px solid var(--teal);color:var(--teal-deep);font-weight:600;padding:0 .2em}
+  input[type=text].one{font:inherit;font-size:.98rem;padding:.5rem .7rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;width:100%}
+  input[type=text].one:focus,textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+
+  /* ---------- Step 1: prediction slots ---------- */
+  .slots{list-style:none;padding:0;margin:.4rem 0;display:grid;gap:.4rem}
+  .slots li{display:flex;align-items:center;gap:.6rem}
+  .slots .k{font-family:var(--mono);font-size:.78rem;color:var(--teal);width:2.2rem;flex:0 0 auto;text-align:right}
+  .slots .chip{flex:1;margin:0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;min-height:44px}
+  .slots .chip .yr{font-family:var(--mono);font-size:.74rem;color:var(--ink-faint)}
+  .slots.locked .chip{cursor:default}
+  .chip.moving{outline:3px solid var(--gold);outline-offset:1px;background:var(--gold-pale)}
+
+  /* ---------- Step 2: Investor's Desk ---------- */
+  .desk{border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden;background:#fff;margin-top:.4rem}
+  .desk .dhead{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;flex-wrap:wrap;padding:.7rem 1rem;background:var(--navy);color:#fff}
+  .desk .dhead h4{margin:0;font-size:1.05rem;color:#fff}
+  .desk .dhead .yr{font-family:var(--mono);font-size:.76rem;color:var(--cyan);letter-spacing:.08em}
+  .desk .dbody{padding:.9rem 1rem}
+  .pitchq{margin:0 0 .8rem;padding:.8rem 1rem;border-left:4px solid var(--gold);background:var(--gold-pale);border-radius:0 var(--radius) var(--radius) 0;font-size:1.04rem}
+  .pitchq .who{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:#6d4a00;margin-bottom:.25rem}
+  .dial{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.8rem;align-items:center;border:1px solid var(--rule);border-radius:var(--radius);padding:.7rem .9rem;background:var(--paper-2)}
+  .dial input[type=range]{width:100%;accent-color:var(--teal);height:32px;cursor:pointer}
+  .dial .scale{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.68rem;color:var(--ink-faint)}
+  .dial .amt{font-family:var(--mono);font-size:1.6rem;font-weight:600;color:var(--teal-deep);min-width:5.5ch;text-align:right;font-variant-numeric:tabular-nums}
+  .dial .amt small{display:block;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint);font-weight:500}
+  .dial.locked{opacity:.75}
+  .reveal{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.7rem;margin-top:.8rem;animation:reveal .4s ease-out}
+  .reveal div{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.7rem .9rem;background:#fff}
+  .reveal h5{margin:0 0 .3rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep)}
+  .reveal .could{border-top:3px solid var(--cyan)}
+  .reveal .next{border-top:3px solid var(--gold)}
+  .because{margin-top:.8rem;animation:reveal .4s ease-out}
+  .because .pick button{width:100%;border-radius:10px;padding:.55rem .8rem}
+  .capbar{margin-top:.5rem;display:flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.74rem;color:var(--ink-soft)}
+  .capbar .track{flex:1;height:10px;border-radius:5px;background:var(--paper-3);border:1px solid var(--rule);position:relative;overflow:visible}
+  .capbar .track i{position:absolute;top:-1px;height:10px;border-radius:5px;left:0}
+  .capbar .track i.you{background:var(--gold);opacity:.85}
+  .capbar .track i.cap{background:var(--cyan);height:4px;top:2px}
+  .curve{margin-top:1rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff;overflow:hidden;animation:reveal .5s ease-out}
+  .curve .cbar{background:var(--navy);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .9rem;display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .curve .cwrap{overflow-x:auto}
+  .curve svg{display:block;width:100%;min-width:560px;height:auto}
+  .legend{display:flex;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);padding:.4rem .9rem 0}
+  .legend i{display:inline-block;width:18px;height:3px;vertical-align:middle;margin-right:.3rem;border-radius:2px}
+  .readout{padding:.6rem .9rem .8rem;font-size:.96rem}
+  .readout b{color:var(--teal-deep)}
+
+  /* ---------- Step 3: echo finder ---------- */
+  .claims{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.5rem;margin:.4rem 0 .6rem}
+  .claims button{font:inherit;font-size:.92rem;text-align:left;padding:.6rem .8rem;border:1px solid var(--rule-strong);border-radius:10px;background:#fff;cursor:pointer;line-height:1.4;min-height:44px}
+  .claims button:hover{border-color:var(--teal)}
+  .claims button[aria-pressed="true"]{border-color:var(--cyan);background:var(--navy);color:#fff}
+  .claims button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .echo-note{font-size:.9rem;color:var(--ink-soft);margin:.2rem 0 0;min-height:1.3em}
+  .stage{margin-top:.5rem;padding-top:.5rem;border-top:1px dashed var(--rule)}
+  .stage[hidden]{display:none}
+
+  /* ---------- Step 6: Lineage Tracer ---------- */
+  .tracer{border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff;overflow:hidden;margin-top:.4rem}
+  .tracer .mapwrap{overflow-x:auto}
+  .tracer svg{display:block;width:100%;min-width:640px;height:auto;background:
+    radial-gradient(circle at 1px 1px,rgba(14,143,168,.14) 1px,transparent 1.5px) 0 0/18px 18px,#fff}
+  .tracer .edge{fill:none;stroke:var(--rule-strong);stroke-width:2;transition:stroke .25s,stroke-width .25s}
+  .tracer .edge.dash{stroke-dasharray:6 5}
+  .tracer .edge.lit{stroke:var(--teal);stroke-width:3.5;filter:drop-shadow(0 0 4px var(--glow))}
+  .tracer .node{cursor:pointer}
+  .tracer .node rect{fill:#fff;stroke:var(--rule-strong);stroke-width:1.5;transition:all .25s}
+  .tracer .node:hover rect{stroke:var(--teal)}
+  .tracer .node text{font-family:var(--sans);font-size:13px;font-weight:600;fill:var(--ink);pointer-events:none}
+  .tracer .node .yr{font-family:var(--mono);font-size:10px;font-weight:500;fill:var(--teal);letter-spacing:.08em}
+  .tracer .node.root rect{stroke-dasharray:4 3}
+  .tracer .node.anc rect{stroke:var(--teal);fill:var(--teal-pale)}
+  .tracer .node.pick rect{stroke:var(--cyan);fill:var(--navy);stroke-width:2.5}
+  .tracer .node.pick text{fill:#fff}
+  .tracer .node.pick .yr{fill:var(--cyan)}
+  .tracer .node:focus{outline:none}
+  .tracer .node:focus rect{stroke:var(--gold);stroke-width:3}
+  .path{padding:.6rem .9rem;border-top:1px solid var(--rule);font-family:var(--mono);font-size:.8rem;color:var(--teal-deep);min-height:2.2em;display:flex;align-items:center;gap:.4rem;flex-wrap:wrap}
+  .path .arrow{color:var(--ink-faint)}
+  .hedge .pick button{border-radius:10px}
+  .gennote{margin-top:.6rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-2);padding:.7rem .9rem;font-size:1rem;line-height:1.6;min-height:3.6em}
+  .gennote.empty{color:var(--ink-faint);font-style:italic}
+
+  /* ---------- Notebook ---------- */
+  .nb textarea{width:100%;min-height:120px;font-family:var(--sans);font-size:.98rem;line-height:1.5;padding:.55rem .65rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
+  .disc{margin-top:.6rem;border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.6rem .8rem;background:#fff}
+  .disc label.opt{display:flex;gap:.5rem;align-items:flex-start;margin:.25rem 0;cursor:pointer;font-size:.94rem}
+  .disc input[type=radio]{accent-color:var(--teal);margin-top:.25rem}
+  .disc .fields{display:grid;gap:.4rem;margin:.3rem 0 .2rem 1.6rem}
+  .disc .fields input{font:inherit;font-size:.9rem;padding:.4rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;width:100%}
+  .disc .dline{margin-top:.4rem;font-family:var(--mono);font-size:.78rem;color:var(--teal-deep);background:var(--teal-pale);border-radius:6px;padding:.35rem .6rem}
+  .pullbtn{font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;border:1px dashed var(--gold);background:var(--gold-pale);color:#6d4a00;border-radius:6px;padding:.25rem .55rem;cursor:pointer}
+  .pullbtn:hover{background:#ffeec2}
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 1 • Lesson 1.3" data-title="A History of Thinking Machines" data-key="ail-intro-1.3-lesson" data-words="PITCH|$100M|PROMISE|WINTER|EVIDENCE|LINEAGE"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 1 • Lesson 1.3</p>
+    <h1>A History of Thinking Machines</h1>
+    <p class="lede">Lesson activity and guided application</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <div class="rail" id="rail" aria-label="Lesson progress">
+    <span class="label">Lesson progress</span>
+    <div class="segs" id="segs" aria-hidden="true"></div>
+    <span class="pct" id="pct" aria-live="polite">0 of 6 steps</span>
+    <button type="button" id="resetAll" title="Clear saved progress on this device">Reset</button>
+  </div>
+
+  <section class="ledger" aria-label="Lesson details">
+    <div><span class="k">Estimated time</span><span class="v">50–60 minutes</span></div>
+    <div><span class="k">Lesson type</span><span class="v">History + evidence practice</span></div>
+    <div><span class="k">Submit today</span><span class="v">Timeline Source Card</span></div>
+    <div><span class="k">Module project</span><span class="v">Field Guide: genealogy note</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Today’s Focus Question:</strong> How can AI history help us judge current claims without either hype or panic?</p>
+  </div>
+
+  <h2>What you will be able to do</h2>
+  <ul class="objectives">
+    <li>Identify major developments in the history of AI.</li>
+    <li>Explain why periods of excitement and disappointment both occurred.</li>
+    <li>Connect a modern system to an earlier technical or intellectual development.</li>
+  </ul>
+  <p><strong>What you need:</strong> the Lesson 1.3 reading, access to Canvas text entry, and one credible source for your source card. No outside account is required.</p>
+
+  <h2>Lesson sequence</h2>
+  <ol class="sequence" id="sequence">
+
+    <!-- ============ STEP 1 ============ -->
+    <li class="step" data-step="1">
+      <span class="num" aria-hidden="true">1</span>
+      <div class="head"><h3>Retrieve and predict</h3><span class="time">5 minutes</span></div>
+      <p>Put these in your predicted order: programmable computers, “artificial intelligence,” expert systems, deep learning breakthroughs, large language models. Then write one question you have about the sequence.</p>
+      <div class="widget" id="predWidget">
+        <div class="bar"><span>Interactive · Predict the order</span><span class="tag">Earliest first</span></div>
+        <div class="body">
+          <p>The five developments are shuffled. Tap one, then tap the slot where it belongs, and they swap. When the column reads earliest to latest, lock your prediction. Dates appear only after you lock.</p>
+          <ol class="slots" id="slots"></ol>
+          <div class="tools">
+            <span class="counts" id="predCount"></span>
+            <button type="button" class="btn" id="predLock">Lock my prediction</button>
+          </div>
+          <div class="status" id="predStatus" role="status" aria-live="polite">Tap two items to swap them.</div>
+          <label class="lbl" for="predQ">One question I have about the sequence</label>
+          <input type="text" id="predQ" class="one" data-store="ail13l-predq" placeholder="e.g. Why did expert systems come before deep learning if neural networks were older?">
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="1" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 2 ============ -->
+    <li class="step" data-step="2">
+      <span class="num" aria-hidden="true">2</span>
+      <div class="head"><h3>Experience: Promise, limitation, consequence</h3><span class="time">10 minutes</span></div>
+      <p>For each event below, make three notes: what people hoped, what the system could actually do, and what followed.</p>
+      <ul>
+        <li>Formal logic and early computation</li>
+        <li>Dartmouth and symbolic AI</li>
+        <li>Expert systems</li>
+        <li>AI winters</li>
+        <li>Machine learning and neural networks</li>
+        <li>Generative AI</li>
+      </ul>
+      <div class="widget" id="invWidget">
+        <div class="bar"><span>Interactive · The Investor’s Desk</span><span class="tag">Six pitches</span></div>
+        <div class="body">
+          <p>You are an investor with $100 million for each pitch, and you only get to hear the <em>hope</em>. Set your funding, then reveal what the system could actually do and what followed. Pick why it mattered. After all six, your funding line is drawn against demonstrated capability, and against what the funders of the time actually did.</p>
+          <div class="pick" id="invTabs" role="tablist" aria-label="Pitches"></div>
+          <div class="desk" id="invDesk"></div>
+          <div class="curve" id="invCurve" hidden></div>
+          <div class="status" id="invStatus" role="status" aria-live="polite">Pitch 1 of 6. Hear the pitch, set your funding, then reveal.</div>
+        </div>
+      </div>
+      <p><strong>Canvas text fallback:</strong> Make a three-column table labeled <em>hope, demonstrated capability, consequence/limitation</em>. Use the reading’s timeline table. Write one sentence beginning, “This mattered because …” for each event.</p>
+      <div class="note"><p><strong>Reasoning check:</strong> A historical success can be real without proving that every larger promise was fulfilled. An AI winter is not proof that all AI is useless; it is evidence that claims and evidence did not match.</p></div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="2" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 3 ============ -->
+    <li class="step" data-step="3">
+      <span class="num" aria-hidden="true">3</span>
+      <div class="head"><h3>Make the historical comparison</h3><span class="time">10 minutes</span></div>
+      <p>Choose one current AI claim you have encountered. In your notes, complete: “This claim resembles the earlier promise about ___ because ___. The evidence I would need is ___.”</p>
+      <div class="widget" id="echoWidget">
+        <div class="bar"><span>Interactive · Echo finder</span><span class="tag">Then → now</span></div>
+        <div class="body">
+          <p>Pick a claim you have heard, or type your own. Then find its echo: the earlier promise it most resembles, the reason, and the evidence you would need. The sentence fills in as you go.</p>
+          <span class="lbl">The claim</span>
+          <div class="claims" id="claims"></div>
+          <div class="pick"><input type="text" id="claimOwn" placeholder="Or type a claim you have actually seen…" aria-label="Your own claim"></div>
+          <div class="stage" id="echoStage1" hidden>
+            <span class="lbl">Which earlier promise does it echo?</span>
+            <div class="pick" id="echoEras"></div>
+            <p class="echo-note" id="echoEraNote"></p>
+          </div>
+          <div class="stage" id="echoStage2" hidden>
+            <span class="lbl">Because…</span>
+            <div class="pick" id="echoReasons"></div>
+            <p class="echo-note" id="echoReasonNote"></p>
+          </div>
+          <div class="stage" id="echoStage3" hidden>
+            <span class="lbl">The evidence I would need (pick up to two)</span>
+            <div class="pick" id="echoEvid"></div>
+            <p class="echo-note" id="echoEvidNote"></p>
+          </div>
+          <div class="line" id="echoLine"></div>
+          <div class="tools">
+            <span class="counts" id="echoCount"></span>
+            <button type="button" class="btn" id="echoCopy" disabled>Copy the sentence</button>
+          </div>
+          <div class="status" id="echoStatus" role="status" aria-live="polite">Start with a claim.</div>
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="3" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 4 ============ -->
+    <li class="step" data-step="4">
+      <span class="num" aria-hidden="true">4</span>
+      <div class="head"><h3>Guided Practice 1.3</h3><span class="time">8–10 minutes</span></div>
+      <p>Complete the Canvas quiz. You may retake it; feedback is part of the lesson.</p>
+      <ul class="quizlist">
+        <li>Explain why expert systems were powerful and limited.</li>
+        <li>Define AI winter.</li>
+        <li>Identify changes that helped modern ML advance.</li>
+        <li>Sequence key periods.</li>
+        <li>Explain why historical knowledge improves judgment about current AI claims.</li>
+      </ul>
+      <div class="foot"><button type="button" class="markbtn" data-mark="4" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 5 ============ -->
+    <li class="step" data-step="5">
+      <span class="num" aria-hidden="true">5</span>
+      <div class="head"><h3>Independent application: Timeline Source Card</h3><span class="time">15–20 minutes</span></div>
+      <p>Open <strong>Assignment 1.3 — Timeline Source Card</strong>. Choose one milestone and explain its promise, demonstrated capability, limitation, and one credible source.</p>
+      <p><strong>AI-use guidance:</strong> You may use a reliable source to research your milestone and must cite it. Do not use generative AI to draft or rewrite the source card. Your historical explanation must be your own.</p>
+      <div class="foot"><button type="button" class="markbtn" data-mark="5" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 6 ============ -->
+    <li class="step" data-step="6">
+      <span class="num" aria-hidden="true">6</span>
+      <div class="head"><h3>Build your AI Field Guide</h3><span class="time">5 minutes</span></div>
+      <p>Select one of your five systems. Add a short genealogy note that connects it conceptually to rules/expert systems, statistical learning, neural networks, search, or generative models. Do not claim direct descent unless you can support it.</p>
+      <div class="widget" id="genWidget">
+        <div class="bar"><span>Interactive · Lineage Tracer</span><span class="tag">Feeds your binder</span></div>
+        <div class="body">
+          <p>Choose one of your systems, then tap the development on the map it most resembles. Its ancestors light up. Set how strongly you are willing to claim the link, say what your evidence is, and the note writes itself. It is saved for the Field Guide binder in Lesson 1.6.</p>
+          <span class="lbl">Your system</span>
+          <div class="pick" id="genSys"></div>
+          <div class="tracer">
+            <div class="mapwrap"><svg id="genMap" viewBox="0 0 900 330" role="img" aria-label="Map of AI developments from formal logic to generative models"></svg></div>
+            <div class="path" id="genPath">Tap a development on the map.</div>
+          </div>
+          <div class="hedge">
+            <span class="lbl">How strong is the link?</span>
+            <div class="pick" id="genHedge"></div>
+            <span class="lbl">What is your evidence?</span>
+            <div class="pick" id="genEvid"></div>
+          </div>
+          <span class="lbl">Genealogy note</span>
+          <div class="gennote empty" id="genNote">Pick a system, a development, a strength, and your evidence.</div>
+          <div class="tools">
+            <span class="counts" id="genCount"></span>
+            <button type="button" class="btn" id="genCopy" disabled>Copy genealogy note</button>
+          </div>
+          <div class="status" id="genStatus" role="status" aria-live="polite">Start with the system.</div>
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="6" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+  </ol>
+
+  <h2>Success checklist</h2>
+  <ul class="checklist" id="checklist">
+    <li><label><input type="checkbox" data-check="0"><span>I can distinguish a historical promise from demonstrated capability.</span></label></li>
+    <li><label><input type="checkbox" data-check="1"><span>I can explain why AI winters occurred.</span></label></li>
+    <li><label><input type="checkbox" data-check="2"><span>I completed Guided Practice 1.3 and read the feedback.</span></label></li>
+    <li><label><input type="checkbox" data-check="3"><span>I submitted a cited Timeline Source Card.</span></label></li>
+    <li><label><input type="checkbox" data-check="4"><span>I added a careful genealogy note to my Field Guide.</span></label></li>
+  </ul>
+  <p class="aside">Checkmarks, step progress, and notes are saved only in this browser. They are not submitted or graded.</p>
+
+  <h2>AI Lab Notebook entry</h2>
+  <p>In 4–6 sentences, identify one historical promise that resembles a claim you hear today. What evidence would you want before accepting that claim? Add your AI-use disclosure.</p>
+  <div class="widget nb" id="nbWidget">
+    <div class="bar"><span>Interactive · Notebook entry</span><span class="tag">4–6 sentences</span></div>
+    <div class="body">
+      <div class="tools" style="margin-top:0"><span class="hint">Your echo-finder sentence from step 3 can start the entry.</span><button type="button" class="pullbtn" id="nbPull">Pull my step 3 sentence</button></div>
+      <label for="nbText" class="sr">Notebook entry</label>
+      <textarea id="nbText" data-store="ail13l-nb" placeholder="One historical promise that resembles a claim I hear today is…"></textarea>
+      <div class="meter" id="nbMeter"><div></div></div>
+      <div class="disc">
+        <label class="opt"><input type="radio" name="disc" value="none"> <span><strong>No AI assistance used.</strong></span></label>
+        <label class="opt"><input type="radio" name="disc" value="used"> <span><strong>AI assistance used:</strong> [tool] helped me with [specific limited purpose].</span></label>
+        <div class="fields" id="discFields" hidden><input type="text" id="discTool" placeholder="Tool" aria-label="Tool"><input type="text" id="discWhat" placeholder="Specific limited purpose" aria-label="Specific limited purpose"></div>
+        <div class="dline" id="discLine">Choose one.</div>
+      </div>
+      <div class="tools">
+        <span class="counts"><span id="nbCount"></span></span>
+        <button type="button" class="btn" id="nbCopy" disabled>Copy for my notebook</button>
+      </div>
+      <div class="status" id="nbStatus" role="status" aria-live="polite">Write 4–6 sentences, choose a disclosure, then copy.</div>
+    </div>
+  </div>
+
+  <h2>What comes next</h2>
+  <p>Lesson 1.4 examines contemporary systems directly. You will practice a system X-ray: inputs, outputs, task, likely process, human choices, and limitations.</p>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 1 • Lesson 1.3 | This lesson is self-contained. If optional media is unavailable, complete the Canvas text fallback above.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function svgEl(tag,attrs){var e=document.createElementNS("http://www.w3.org/2000/svg",tag);for(var k in attrs)e.setAttribute(k,attrs[k]);return e}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+  function setStatus(id,cls,msg){var s=$(id);s.className="status"+(cls?" "+cls:"");s.textContent=msg}
+  function copyText(t,btn,label){
+    function done(ok){var o=btn.textContent;btn.textContent=ok?"Copied ✓":"Select and copy manually";setTimeout(function(){btn.textContent=label||o},1600)}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){done(true)},function(){done(false)})}
+    else{var ta=document.createElement("textarea");ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand("copy");done(true)}catch(e){done(false)}document.body.removeChild(ta)}
+  }
+
+  /* ---------- Step progress + rail ---------- */
+  var KEY_STEPS="ail13l-steps",KEY_CHECK="ail13l-checklist",TOTAL=6;
+  var steps=store.get(KEY_STEPS,{});
+  function renderRail(){
+    var segs=$("segs");segs.innerHTML="";var n=0;
+    for(var i=1;i<=TOTAL;i++){var s=el("span","seg"+(steps[i]?" done":""));segs.appendChild(s);if(steps[i])n++}
+    $("pct").textContent=n+" of "+TOTAL+" steps";
+    document.querySelectorAll(".step").forEach(function(li){
+      var k=li.getAttribute("data-step");li.classList.toggle("done",!!steps[k]);
+      var b=li.querySelector(".markbtn");if(b){b.setAttribute("aria-pressed",steps[k]?"true":"false");
+        b.innerHTML='<span class="tick" aria-hidden="true">'+(steps[k]?"✓":"○")+'</span> '+(steps[k]?"Step complete":"Mark step complete")}
+    });
+  }
+  document.querySelectorAll(".markbtn").forEach(function(b){b.addEventListener("click",function(){var k=b.getAttribute("data-mark");steps[k]=!steps[k];store.set(KEY_STEPS,steps);renderRail()})});
+  var checks=store.get(KEY_CHECK,{});
+  document.querySelectorAll("#checklist input").forEach(function(c){var k=c.getAttribute("data-check");c.checked=!!checks[k];c.addEventListener("change",function(){checks[k]=c.checked;store.set(KEY_CHECK,checks)})});
+  document.querySelectorAll("[data-store]").forEach(function(t){var k=t.getAttribute("data-store");t.value=store.get(k,"");t.addEventListener("input",function(){store.set(k,t.value)})});
+
+  /* ================= STEP 1: Predict the order ================= */
+  var PRED=[
+    {id:"comp",t:"programmable computers",yr:"1940s"},
+    {id:"term",t:"“artificial intelligence”",yr:"1956"},
+    {id:"exp",t:"expert systems",yr:"1980s"},
+    {id:"deep",t:"deep learning breakthroughs",yr:"2012"},
+    {id:"llm",t:"large language models",yr:"2020s"}
+  ];
+  var pred=store.get("ail13l-pred",null);
+  function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+  function newPred(){var o;do{o=shuffle(PRED.map(function(p){return p.id}))}while(o.join()===PRED.map(function(p){return p.id}).join());pred={order:o,locked:false};store.set("ail13l-pred",pred)}
+  if(!pred||!pred.order||pred.order.length!==5)newPred();
+  var moving=null;
+  function predItem(id){return PRED.filter(function(p){return p.id===id})[0]}
+  function predRender(){
+    var ol=$("slots");ol.innerHTML="";ol.classList.toggle("locked",!!pred.locked);var right=0;
+    pred.order.forEach(function(id,i){
+      var p=predItem(id);var li=el("li");li.appendChild(el("span","k",(i+1)+"."));
+      var ok=PRED[i].id===id;if(ok)right++;
+      var c=el("button","chip"+(moving===i?" moving":"")+(pred.locked?(ok?" right":" wrong"):""));c.type="button";
+      c.appendChild(el("span",null,p.t));if(pred.locked)c.appendChild(el("span","yr",p.yr));
+      c.setAttribute("aria-label",p.t+", slot "+(i+1)+(pred.locked?(ok?", correct":", should be slot "+(PRED.map(function(q){return q.id}).indexOf(id)+1)):""));
+      if(!pred.locked)c.addEventListener("click",function(){
+        if(moving===null){moving=i;predRender();setStatus("predStatus","","Now tap the slot where “"+p.t+"” belongs.");return}
+        if(moving===i){moving=null;predRender();setStatus("predStatus","","Tap two items to swap them.");return}
+        var a=pred.order[moving];pred.order[moving]=pred.order[i];pred.order[i]=a;moving=null;store.set("ail13l-pred",pred);predRender();setStatus("predStatus","","Swapped. Keep going, then lock.");
+      });
+      li.appendChild(c);ol.appendChild(li);
+    });
+    $("predCount").textContent=pred.locked?right+" of 5 in the right place":"";
+    var b=$("predLock");
+    if(pred.locked){b.textContent="Shuffle and try again";b.onclick=function(){newPred();moving=null;predRender();setStatus("predStatus","","Tap two items to swap them.")};
+      setStatus("predStatus",right===5?"ok":(right>=3?"":"bad"),right===5?"All five in order. Dates are shown; now write your question below.":right+" of 5 in place. Red items are out of order; the dates show where they belong. Write your question, then shuffle to try again if you like.")}
+    else{b.textContent="Lock my prediction";b.onclick=function(){pred.locked=true;moving=null;store.set("ail13l-pred",pred);predRender()}}
+  }
+  predRender();
+
+  /* ================= STEP 2: Investor's Desk ================= */
+  var INV=[
+    {id:"logic",name:"Formal logic and early computation",yr:"1854–1945",cap:12,era:20,
+     pitch:"Reasoning can be written as symbols and rules, and one general machine can run any step-by-step procedure. Back us, and thinking itself becomes calculation.",
+     could:"Arguments could be checked step by step on paper. By the 1940s electronic computers ran long calculations without error, and that was all.",
+     next:"Computers made the question practical, not settled. Which parts of thinking can be made into steps is still the open question.",
+     because:[{t:"it proved that thinking is just calculation.",k:"hype"},{t:"it made the question “which parts of thinking can be made into steps?” something you could actually test.",k:"ok"},{t:"it showed that machines would never do more than arithmetic.",k:"panic"}]},
+    {id:"dartmouth",name:"Dartmouth and symbolic AI",yr:"1956–1966",cap:20,era:78,
+     pitch:"Give a small group one summer and significant progress on language, abstraction, and self-improvement will follow. Write the right rules and translation, perception, and common sense come next. Human-level machines within a generation.",
+     could:"Programs proved simple logic theorems, played checkers, solved algebra word problems, and held tiny dialogues in toy worlds. Impressive for the time, and narrow.",
+     next:"Machine translation disappointed badly enough that a 1966 report cut much of its funding. Ordinary language would not sit still for rules.",
+     because:[{t:"real but narrow successes were taken as evidence for much larger promises, and the gap set up the first winter.",k:"ok"},{t:"the field had basically solved reasoning and only needed faster computers.",k:"hype"},{t:"the early programs did nothing and the researchers were frauds.",k:"panic"}]},
+    {id:"expert",name:"Expert systems",yr:"1980s",cap:40,era:80,
+     pitch:"Capture an expert’s knowledge once as thousands of if–then rules and sell it everywhere. Doctors, chemists, engineers: a specialist in a box.",
+     could:"Real usefulness inside tight domains, such as configuring a company’s own computers. One famous medical system matched specialists on its narrow cases.",
+     next:"Expensive to build, hard to update, brittle outside their rules. By the late 1980s the market collapsed.",
+     because:[{t:"it showed that machines could replace doctors and engineers.",k:"hype"},{t:"it was a scam with no real use, so rule-based systems should be ignored.",k:"panic"},{t:"capturing an expert’s rules worked inside a narrow domain and broke outside it, which is what a rule-based system should be expected to do.",k:"ok"}]},
+    {id:"winters",name:"AI winters",yr:"1974 and 1988",cap:27,era:30,
+     pitch:"Patience. The breakthroughs are always a few years away. Keep the funding flowing.",
+     could:"Demonstrations stayed in the lab. Programs that handled toy problems broke on real ones, and the expert-systems market collapsed.",
+     next:"Money and attention left the field for years, twice. The ideas did not disappear; many returned when data and computers caught up.",
+     because:[{t:"it proved that AI research was a dead end.",k:"panic"},{t:"claims and evidence had stopped matching, and funders eventually noticed.",k:"ok"},{t:"the researchers were right all along and were simply underfunded.",k:"hype"}]},
+    {id:"ml",name:"Machine learning and neural networks",yr:"1986–2012",cap:62,era:60,
+     pitch:"Stop hand-writing rules. Let examples do the work. With enough data and fast chips, perception, speech, and translation will fall in turn.",
+     could:"Spam filters, search ranking, and recommenders shipped. A chess program beat the world champion in 1997. In 2012 a deep network nearly halved the error rate on a large image-recognition contest.",
+     next:"Progress was real and depended on enormous labeled datasets and specialized chips. Systems failed on unfamiliar cases and inherited biases from their data.",
+     because:[{t:"machines could now learn anything a person can.",k:"hype"},{t:"learning from data produced measurable gains, and those gains came with new dependencies: data, chips, and evaluation.",k:"ok"},{t:"nothing had really changed since the expert-systems era.",k:"panic"}]},
+    {id:"gen",name:"Generative AI",yr:"2017–today",cap:78,era:95,
+     pitch:"Assistants that understand, reason, and work alongside anyone. Human-level machines are, once again, a few years away.",
+     could:"Fluent, useful output across many tasks: writing, code, pictures. Also confident errors, invented sources, and outputs that are hard to trace.",
+     next:"That is where the line ends for now. The historical habit applies: ask what it demonstrably does, what it needs, what it fails at, who benefits, and who is accountable.",
+     because:[{t:"fluent language proves the system understands what it says.",k:"hype"},{t:"generative systems are just the next bubble and do nothing useful.",k:"panic"},{t:"fluent output is demonstrated, and the larger claims about understanding are the same kind of promise this history has seen before.",k:"ok"}]}
+  ];
+  var FEED={hype:"That is the pitch talking. Look again at what it could actually do.",panic:"That is the opposite mistake. A gap between promise and evidence is not proof the work was worthless.",ok:"Yes. That keeps the real success and the unmet promise in the same sentence."};
+  var inv=store.get("ail13l-inv",{cur:0,fund:{},rev:{},why:{}});
+  function invSave(){store.set("ail13l-inv",inv)}
+  function invDone(i){var e=INV[i];return !!inv.rev[e.id]&&inv.why[e.id]==="ok"}
+  function invAllDone(){return INV.every(function(e,i){return invDone(i)})}
+  function invRender(){
+    var tabs=$("invTabs");tabs.innerHTML="";
+    INV.forEach(function(e,i){var b=el("button",null,(i+1)+". "+e.name);b.type="button";b.setAttribute("role","tab");b.setAttribute("aria-pressed",inv.cur===i?"true":"false");if(invDone(i))b.classList.add("done");b.addEventListener("click",function(){inv.cur=i;invSave();invRender()});tabs.appendChild(b)});
+    var e=INV[inv.cur],d=$("invDesk");d.innerHTML="";
+    var head=el("div","dhead");head.appendChild(el("h4",null,"Pitch "+(inv.cur+1)+": "+e.name));head.appendChild(el("span","yr",e.yr));d.appendChild(head);
+    var body=el("div","dbody");
+    var q=el("blockquote","pitchq");q.appendChild(el("span","who","What people hoped"));q.appendChild(document.createTextNode(e.pitch));body.appendChild(q);
+    var revealed=!!inv.rev[e.id];var val=inv.fund[e.id]!=null?inv.fund[e.id]:50;
+    var dial=el("div","dial"+(revealed?" locked":""));
+    var left=el("div");var lab=el("label","lbl","Your funding");lab.setAttribute("for","fund-"+e.id);lab.style.marginTop="0";left.appendChild(lab);
+    var r=document.createElement("input");r.type="range";r.min=0;r.max=100;r.step=5;r.value=val;r.id="fund-"+e.id;r.disabled=revealed;left.appendChild(r);
+    var sc=el("div","scale");sc.appendChild(el("span",null,"$0M · pass"));sc.appendChild(el("span",null,"$50M"));sc.appendChild(el("span",null,"$100M · all in"));left.appendChild(sc);
+    dial.appendChild(left);
+    var amt=el("div","amt","$"+val+"M");amt.appendChild(el("small",null,revealed?"locked":"of $100M"));dial.appendChild(amt);
+    r.addEventListener("input",function(){inv.fund[e.id]=+r.value;amt.firstChild.textContent="$"+r.value+"M";invSave()});
+    body.appendChild(dial);
+    if(!revealed){
+      var tools=el("div","tools");tools.appendChild(el("span","hint","Funding locks when you reveal."));
+      var b=el("button","btn","Fund it and reveal");b.type="button";b.addEventListener("click",function(){inv.fund[e.id]=+r.value;inv.rev[e.id]=true;invSave();invRender();setStatus("invStatus","","You put $"+r.value+"M on the table. Here is what it could actually do, and what followed. Then pick why it mattered.")});
+      tools.appendChild(b);body.appendChild(tools);
+    } else {
+      var rv=el("div","reveal");
+      var c1=el("div","could");c1.appendChild(el("h5",null,"What it could actually do"));c1.appendChild(el("p",null,e.could));c1.lastChild.style.margin="0";rv.appendChild(c1);
+      var c2=el("div","next");c2.appendChild(el("h5",null,"What followed"));c2.appendChild(el("p",null,e.next));c2.lastChild.style.margin="0";rv.appendChild(c2);
+      body.appendChild(rv);
+      var cb=el("div","capbar");cb.appendChild(el("span",null,"you $"+val+"M"));var tr=el("div","track");var y=el("i","you");y.style.width=val+"%";tr.appendChild(y);var cp=el("i","cap");cp.style.width=e.cap+"%";tr.appendChild(cp);cb.appendChild(tr);cb.appendChild(el("span",null,"capability "+e.cap));body.appendChild(cb);
+      var bc=el("div","because");bc.appendChild(el("span","lbl","This mattered because…"));var pk=el("div","pick");
+      e.because.forEach(function(o){var ob=el("button",null,o.t);ob.type="button";var chosen=inv.why[e.id];
+        if(chosen===o.k)ob.classList.add(o.k==="ok"?"hit":"miss");
+        ob.addEventListener("click",function(){inv.why[e.id]=o.k;invSave();invRender();setStatus("invStatus",o.k==="ok"?"ok":"bad",FEED[o.k]+(o.k==="ok"&&inv.cur<5?" Next pitch →":"")+(o.k==="ok"&&invAllDone()?" All six heard. Your curve is below.":""))});
+        pk.appendChild(ob)});
+      bc.appendChild(pk);body.appendChild(bc);
+      if(inv.why[e.id]==="ok"&&inv.cur<5){var t2=el("div","tools");t2.appendChild(el("span"));var nb=el("button","btn","Next pitch");nb.type="button";nb.addEventListener("click",function(){inv.cur++;invSave();invRender();setStatus("invStatus","","Pitch "+(inv.cur+1)+" of 6. Hear the pitch, set your funding, then reveal.")});t2.appendChild(nb);body.appendChild(t2)}
+    }
+    d.appendChild(body);
+    invCurve();
+  }
+  function invCurve(){
+    var c=$("invCurve");
+    if(!invAllDone()){c.hidden=true;c.innerHTML="";return}
+    c.hidden=false;c.innerHTML="";
+    var bar=el("div","cbar");bar.appendChild(el("span",null,"Your funding vs. demonstrated capability"));bar.appendChild(el("span",null,"six pitches, 1854 → today"));c.appendChild(bar);
+    var W=820,H=300,L=46,R=24,T=28,B=58,n=INV.length;
+    var svg=svgEl("svg",{viewBox:"0 0 "+W+" "+H,role:"img","aria-label":"Line chart of your funding, era funding, and demonstrated capability across six pitches"});
+    function X(i){return L+(W-L-R)*i/(n-1)}function Y(v){return T+(H-T-B)*(1-v/100)}
+    [0,25,50,75,100].forEach(function(v){svg.appendChild(svgEl("line",{x1:L,x2:W-R,y1:Y(v),y2:Y(v),stroke:"#dfe5ec","stroke-width":1}));var t=svgEl("text",{x:L-8,y:Y(v)+4,"text-anchor":"end","font-family":"IBM Plex Mono, monospace","font-size":"10",fill:"#7c8794"});t.textContent=v;svg.appendChild(t)});
+    INV.forEach(function(e,i){var t=svgEl("text",{x:X(i),y:H-B+18,"text-anchor":i===0?"start":(i===n-1?"end":"middle"),"font-family":"IBM Plex Sans, sans-serif","font-size":"11",fill:"#4b5664"});t.textContent=e.name.length>22?e.name.split(" and ")[0]:e.name;svg.appendChild(t);var y2=svgEl("text",{x:X(i),y:H-B+32,"text-anchor":i===0?"start":(i===n-1?"end":"middle"),"font-family":"IBM Plex Mono, monospace","font-size":"9.5",fill:"#7c8794"});y2.textContent=e.yr;svg.appendChild(y2)});
+    function path(get,color,dash,width){var d="";INV.forEach(function(e,i){d+=(i?" L":"M")+X(i)+" "+Y(get(e))});var p=svgEl("path",{d:d,fill:"none",stroke:color,"stroke-width":width||3,"stroke-linejoin":"round","stroke-linecap":"round"});if(dash)p.setAttribute("stroke-dasharray",dash);svg.appendChild(p);
+      INV.forEach(function(e,i){svg.appendChild(svgEl("circle",{cx:X(i),cy:Y(get(e)),r:dash?3:5,fill:color,stroke:"#fff","stroke-width":1.5}))})}
+    path(function(e){return e.era},"#7c8794","5 5",2);
+    path(function(e){return e.cap},"#4fd1e8");
+    path(function(e){return inv.fund[e.id]||0},"#d19a1e");
+    var lg=el("div","legend");[["#d19a1e","Your funding"],["#4fd1e8","Demonstrated capability"],["#7c8794","What funders of the time did"]].forEach(function(l){var s=el("span");var i=el("i");i.style.background=l[0];s.appendChild(i);s.appendChild(document.createTextNode(l[1]));lg.appendChild(s)});
+    c.appendChild(lg);var cw=el("div","cwrap");cw.appendChild(svg);c.appendChild(cw);
+    var gapYou=0,gapEra=0,big=null;INV.forEach(function(e){var g=(inv.fund[e.id]||0)-e.cap;gapYou+=g;gapEra+=e.era-e.cap;if(!big||g>big.g)big={g:g,e:e}});
+    gapYou=Math.round(gapYou/n);gapEra=Math.round(gapEra/n);
+    var ro=el("div","readout");var msg;
+    if(gapYou>=25)msg="Your funding ran <b>"+gapYou+" points</b> above demonstrated capability on average. The funders of the time ran "+gapEra+" above. You would have been right there with them, and your biggest overshoot was <b>"+big.e.name+"</b> (+"+big.g+").";
+    else if(gapYou>=10)msg="Your funding ran <b>"+gapYou+" points</b> above demonstrated capability on average, against "+gapEra+" for the funders of the time. More careful than history, with your biggest overshoot at <b>"+big.e.name+"</b> (+"+big.g+").";
+    else if(gapYou>-10)msg="Your funding tracked demonstrated capability within <b>"+Math.abs(gapYou)+" points</b> on average. The funders of the time ran "+gapEra+" above it. Notice that a pitch can be mostly true and still outrun its evidence.";
+    else msg="You funded <b>"+Math.abs(gapYou)+" points</b> below demonstrated capability on average. Hard to fool, but the real gains in machine learning and deep learning would have passed you by. Panic has a cost too.";
+    ro.innerHTML=msg+" The gold line is the one you drew; the gray one is the hype curve from the reading. The cyan line is what actually worked.";
+    c.appendChild(ro);
+  }
+  invRender();
+
+  /* ================= STEP 3: Echo finder ================= */
+  var CLAIMS=[
+    {id:"tutor",t:"“Our AI tutor understands every student and adapts to exactly how they learn.”",echo:{expert:2,dartmouth:2,gen:2,ml:1},why:{expert:"Like the expert-in-a-box pitch, it promises one captured ability that works for every student, everywhere.",dartmouth:"Like the Dartmouth forecasts, it names a general ability (understanding) on the strength of narrow demonstrations.",gen:"It is the generative pitch itself: fluent adaptation read as understanding.",ml:"It echoes the hope that enough examples cover every case; the history says unfamiliar cases are where learning systems fail."},best:["r1","r3"]},
+    {id:"chat",t:"“This chatbot will replace our customer-service department within two years.”",echo:{expert:2,dartmouth:2,gen:1,winters:1},why:{expert:"Expert systems were sold as a specialist in a box that would replace the specialist. They ended up assisting inside narrow cases.",dartmouth:"A date on a breakthrough: Dartmouth-era forecasts also put human-level work a generation away.",gen:"The generative pitch again: fluent replies taken as a replacement for judgment.",winters:"Timelines like this are what funders stopped believing in 1974 and 1988."},best:["r2","r5"]},
+    {id:"doctor",t:"“The model scored higher than doctors on a medical exam, so it can diagnose patients.”",echo:{expert:2,ml:2,dartmouth:1},why:{expert:"One famous expert system matched specialists on its narrow cases. Matching an exam is a narrow case.",ml:"The 2012 image contest showed a benchmark result; the hard part was what happened on unfamiliar cases outside it.",dartmouth:"A narrow demonstration taken as evidence of a general ability, as at Dartmouth."},best:["r4","r1"]},
+    {id:"cars",t:"“Self-driving cars will be everywhere by next year.”",echo:{dartmouth:2,winters:1,ml:1,expert:1},why:{dartmouth:"A date on a breakthrough, like “human-level machines within a generation.”",winters:"“Always a few years away” is the line funders stopped accepting in the winters.",ml:"Perception did advance after 2012; it still fails on unfamiliar cases, and roads are full of those.",expert:"Rules for every driving situation is the expert-system dream in a new domain."},best:["r2","r4"]},
+    {id:"translate",t:"“Our translation app is perfect in any language.”",echo:{dartmouth:2,ml:1,gen:1},why:{dartmouth:"Machine translation was the symbolic era’s showpiece promise, and its 1966 failure helped start the first winter.",ml:"Statistical translation got far better than rules did, and still fails on rare languages and context.",gen:"Fluent output in many languages is demonstrated; “perfect in any” is the old promise."},best:["r1","r4"]},
+    {id:"smarter",t:"“AI will soon be smarter than humans at everything.”",echo:{dartmouth:2,gen:2,winters:1},why:{dartmouth:"Human-level machines within a generation, 1956 edition.",gen:"Human-level machines a few years away, current edition.",winters:"The same forecast twice preceded a winter. That does not make it false; it makes it a claim that needs evidence."},best:["r1","r2"]}
+  ];
+  var REASONS=[{id:"r1",t:"both claim a general ability from a narrow demonstration"},{id:"r2",t:"both put a date on a breakthrough that depended on unsolved problems"},{id:"r3",t:"both treat fluent or confident output as understanding"},{id:"r4",t:"both assume that what works in a controlled test works in the messy world"},{id:"r5",t:"both promise to replace a human expert instead of assisting one"}];
+  var EVID=[{t:"results on cases outside the training or test set",g:1},{t:"independent testing by someone not selling it",g:1},{t:"a report of where it fails and how often",g:1},{t:"a comparison with the current human process on the same task",g:1},{t:"a description of the training data and its gaps",g:1},{t:"a demo video chosen by the company",g:0},{t:"the number of users or downloads",g:0},{t:"a press release or launch keynote",g:0}];
+  var echo=store.get("ail13l-echo",{claim:null,own:"",era:null,reason:null,evid:[]});
+  function echoSave(){store.set("ail13l-echo",echo)}
+  function claimText(){if(echo.claim==="own")return echo.own.trim();var c=CLAIMS.filter(function(x){return x.id===echo.claim})[0];return c?c.t:""}
+  function claimObj(){return CLAIMS.filter(function(x){return x.id===echo.claim})[0]||null}
+  function echoRender(){
+    var w=$("claims");w.innerHTML="";
+    CLAIMS.forEach(function(c){var b=el("button",null,c.t);b.type="button";b.setAttribute("aria-pressed",echo.claim===c.id?"true":"false");b.addEventListener("click",function(){echo.claim=echo.claim===c.id?null:c.id;echo.era=null;echo.reason=null;echo.evid=[];echoSave();echoRender();if(echo.claim)setStatus("echoStatus","","Now find the earlier promise it echoes.")});w.appendChild(b)});
+    var own=$("claimOwn");own.value=echo.own||"";
+    var hasClaim=!!claimText();
+    $("echoStage1").hidden=!hasClaim;$("echoStage2").hidden=!(hasClaim&&echo.era);$("echoStage3").hidden=!(hasClaim&&echo.era&&echo.reason);
+    var co=claimObj();
+    var er=$("echoEras");er.innerHTML="";
+    INV.forEach(function(e){var b=el("button",null,e.name+" · "+e.yr);b.type="button";b.setAttribute("aria-pressed",echo.era===e.id?"true":"false");
+      if(echo.era===e.id&&co){var s=co.echo[e.id]||0;b.classList.add(s===2?"hit":(s===1?"soft":"miss"))}
+      b.addEventListener("click",function(){echo.era=e.id;echo.reason=null;echo.evid=[];echoSave();echoRender();
+        if(co){var s=co.echo[e.id]||0;var note=s?co.why[e.id]:"A weak echo. That promise was about something else; the chips in green and gold are closer. You can keep it, but say why.";$("echoEraNote").textContent=note;setStatus("echoStatus",s===2?"ok":(s===1?"":"bad"),s===2?"Strong echo. Now say why.":(s===1?"A possible echo. Now say why.":"Weak echo. Try another, or defend this one in the next step."))}
+        else{$("echoEraNote").textContent="Your own claim: you decide which promise it echoes. Say why next.";setStatus("echoStatus","","Now say why.")}});
+      er.appendChild(b)});
+    if(echo.era&&co){var s=co.echo[echo.era]||0;$("echoEraNote").textContent=s?co.why[echo.era]:"A weak echo. That promise was about something else; try the others. You can keep it, but say why."}
+    else if(echo.era)$("echoEraNote").textContent="Your own claim: you decide which promise it echoes.";
+    else $("echoEraNote").textContent="";
+    var rs=$("echoReasons");rs.innerHTML="";
+    REASONS.forEach(function(r){var b=el("button",null,r.t);b.type="button";b.setAttribute("aria-pressed",echo.reason===r.id?"true":"false");
+      if(echo.reason===r.id&&co)b.classList.add(co.best.indexOf(r.id)>-1?"hit":"soft");
+      b.addEventListener("click",function(){echo.reason=r.id;echo.evid=[];echoSave();echoRender();
+        if(co){var fit=co.best.indexOf(r.id)>-1;$("echoReasonNote").textContent=fit?"That is the link. Now choose the evidence you would need.":"Possible, but a looser fit for this claim. The strongest links here: "+co.best.map(function(id){return REASONS.filter(function(x){return x.id===id})[0].t}).join("; ")+".";setStatus("echoStatus",fit?"ok":"","Now choose the evidence.")}
+        else{$("echoReasonNote").textContent="Your call for your own claim.";setStatus("echoStatus","","Now choose the evidence.")}});
+      rs.appendChild(b)});
+    if(!echo.reason)$("echoReasonNote").textContent="";
+    var ev=$("echoEvid");ev.innerHTML="";
+    EVID.forEach(function(x,i){var b=el("button",null,x.t);b.type="button";var on=echo.evid.indexOf(i)>-1;b.setAttribute("aria-pressed",on?"true":"false");if(on)b.classList.add(x.g?"hit":"miss");
+      b.addEventListener("click",function(){var k=echo.evid.indexOf(i);if(k>-1)echo.evid.splice(k,1);else{if(echo.evid.length>=2)echo.evid.shift();echo.evid.push(i)}echoSave();echoRender();
+        var weak=echo.evid.filter(function(j){return !EVID[j].g});
+        if(weak.length)$("echoEvidNote").textContent="“"+EVID[weak[0]].t+"” shows polish or popularity, not capability. Expert systems had demos and buyers too.";
+        else if(echo.evid.length)$("echoEvidNote").textContent="That would actually test the claim rather than the pitch.";
+        else $("echoEvidNote").textContent="";
+      });ev.appendChild(b)});
+    var line=$("echoLine");line.innerHTML="";
+    function fill(t,ok){return el("span",ok?"fill":"blank",t)}
+    var eraName=echo.era?INV.filter(function(e){return e.id===echo.era})[0].name:null;
+    var reasonT=echo.reason?REASONS.filter(function(r){return r.id===echo.reason})[0].t:null;
+    var evT=echo.evid.map(function(j){return EVID[j].t}).join(" and ");
+    line.appendChild(document.createTextNode("This claim resembles the earlier promise about "));line.appendChild(fill(eraName||"___",!!eraName));
+    line.appendChild(document.createTextNode(" because "));line.appendChild(fill(reasonT||"___",!!reasonT));
+    line.appendChild(document.createTextNode(". The evidence I would need is "));line.appendChild(fill(evT||"___",!!evT));line.appendChild(document.createTextNode("."));
+    var complete=hasClaim&&eraName&&reasonT&&evT;
+    $("echoCopy").disabled=!complete;
+    $("echoCount").textContent=complete?"Claim: "+claimText():"";
+    if(complete){var weak2=echo.evid.filter(function(j){return !EVID[j].g});setStatus("echoStatus",weak2.length?"":"ok",weak2.length?"Sentence complete, though one piece of evidence would not test the claim. Swap it, or copy as is.":"Sentence complete. Copy it for your notes; the notebook entry below can pull it in.")}
+  }
+  function echoSentence(){var eraName=echo.era?INV.filter(function(e){return e.id===echo.era})[0].name:"___";var reasonT=echo.reason?REASONS.filter(function(r){return r.id===echo.reason})[0].t:"___";var evT=echo.evid.map(function(j){return EVID[j].t}).join(" and ")||"___";return "Claim: "+claimText()+"\nThis claim resembles the earlier promise about "+eraName+" because "+reasonT+". The evidence I would need is "+evT+"."}
+  $("claimOwn").addEventListener("input",function(){echo.own=this.value;if(this.value.trim()){echo.claim="own"}else if(echo.claim==="own"){echo.claim=null}echo.era=null;echo.reason=null;echo.evid=[];echoSave();echoRender();$("claimOwn").focus();if(echo.claim==="own")setStatus("echoStatus","","Your own claim. Now find the earlier promise it echoes.")});
+  $("echoCopy").addEventListener("click",function(){copyText(echoSentence(),this,"Copy the sentence")});
+  echoRender();
+
+  /* ================= STEP 6: Lineage Tracer ================= */
+  var NODES=[
+    {id:"logic",name:"Formal logic",yr:"1854",x:72,y:165,root:true,line:"reasoning written as symbols and rules"},
+    {id:"comp",name:"Computation",yr:"1936",x:222,y:165,root:true,line:"one general machine running any step-by-step procedure"},
+    {id:"search",name:"Search",yr:"1950s",x:372,y:60,cat:"search",line:"trying many possibilities and scoring them, as in chess programs and route planners"},
+    {id:"symbolic",name:"Symbolic rules",yr:"1956",x:372,y:165,cat:"symbolic rules / expert systems",line:"knowledge written as explicit symbols and hand-made if–then rules"},
+    {id:"neural",name:"Neural networks",yr:"1958",x:372,y:270,cat:"neural networks",line:"layers of simple units whose connection weights are adjusted from examples"},
+    {id:"expert",name:"Expert systems",yr:"1980s",x:522,y:165,cat:"symbolic rules / expert systems",line:"thousands of if–then rules drawn from specialists in one narrow domain"},
+    {id:"stats",name:"Statistical learning",yr:"1990s",x:522,y:270,cat:"statistical learning",line:"patterns estimated from many examples instead of hand-written rules, as in spam filters and recommenders"},
+    {id:"deep",name:"Deep learning",yr:"2012",x:672,y:270,cat:"neural networks",line:"many-layered neural networks trained on very large labeled datasets"},
+    {id:"gen",name:"Generative models",yr:"2022",x:826,y:165,cat:"generative models",line:"large models trained on vast text or image collections that produce new text, code, or pictures"}
+  ];
+  var EDGES=[["logic","comp"],["logic","symbolic"],["comp","search"],["comp","symbolic"],["comp","neural"],["symbolic","expert"],["neural","stats"],["neural","deep"],["stats","deep"],["deep","gen"],["search","deep","dash"]];
+  var HEDGES=[{id:"conceptual",t:"appears to share an approach with",lvl:0},{id:"likely",t:"likely builds on",lvl:1},{id:"direct",t:"descends directly from",lvl:2}];
+  var GEVID=[{id:"doc",t:"The company’s documentation names this method",ok:2,clause:"The company’s documentation names this method"},{id:"report",t:"A credible report or article names this method",ok:2,clause:"A credible report names this method"},{id:"inferred",t:"I inferred it from how the system behaves",ok:1,clause:"I am inferring this from the system’s behavior"},{id:"none",t:"I have no evidence yet",ok:0,clause:"I have not found a source"}];
+  var gen=store.get("ail13l-gen",{sysIdx:null,sysName:"",own:"",node:null,hedge:null,ev:null,note:"",cat:""});
+  function genSave(){store.set("ail13l-gen",gen)}
+  function node(id){return NODES.filter(function(n){return n.id===id})[0]}
+  function earlierSystems(){var out=[];for(var i=1;i<=5;i++){var fg=store.get("ail12l-fg",{})[i]||{};var nm=(fg.name||"").trim()||(store.get("ail11l-g"+i+"n","")||"").trim();if(nm)out.push({i:i-1,name:nm})}return out}
+  function ancestors(id){var seen={};var q=[id];while(q.length){var cur=q.shift();EDGES.forEach(function(e){if(e[1]===cur&&!e[2]&&!seen[e[0]]){seen[e[0]]=1;q.push(e[0])}})}return Object.keys(seen)}
+  function genMapBuild(){
+    var svg=$("genMap");svg.innerHTML="";
+    var defs=svgEl("defs",{});var m=svgEl("marker",{id:"arr",viewBox:"0 0 10 10",refX:"9",refY:"5",markerWidth:"8",markerHeight:"8",markerUnits:"userSpaceOnUse",orient:"auto-start-reverse"});var p=svgEl("path",{d:"M0 0L10 5L0 10z",fill:"#c2ccd7"});m.appendChild(p);defs.appendChild(m);svg.appendChild(defs);
+    var W=122,H=46;
+    EDGES.forEach(function(e){var a=node(e[0]),b=node(e[1]);var x1=a.x+W/2,y1=a.y,x2=b.x-W/2,y2=b.y;var cx=(x1+x2)/2;var d="M"+x1+" "+y1+" C"+cx+" "+y1+","+cx+" "+y2+","+x2+" "+y2;var pth=svgEl("path",{d:d,"class":"edge"+(e[2]?" dash":""),"data-e":e[0]+"-"+e[1],"marker-end":"url(#arr)"});svg.appendChild(pth)});
+    NODES.forEach(function(n){var g=svgEl("g",{"class":"node"+(n.root?" root":""),"data-id":n.id,tabindex:"0",role:"button","aria-label":n.name+", "+n.yr});
+      g.appendChild(svgEl("rect",{x:n.x-W/2,y:n.y-H/2,width:W,height:H,rx:10}));
+      var t=svgEl("text",{x:n.x,y:n.y+1,"text-anchor":"middle"});t.textContent=n.name;g.appendChild(t);
+      var y=svgEl("text",{x:n.x,y:n.y+16,"text-anchor":"middle","class":"yr"});y.textContent=n.yr;g.appendChild(y);
+      function pick(){
+        if(n.root){setStatus("genStatus","","Every computer program traces back to "+n.name.toLowerCase()+". Too far back to be a useful genealogy note; pick a closer development.");return}
+        gen.node=gen.node===n.id?null:n.id;genSave();genRender();
+        if(gen.node)setStatus("genStatus","",n.name+": "+n.line+". Ancestors are lit. Now set how strong the link is.");
+      }
+      g.addEventListener("click",pick);g.addEventListener("keydown",function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();pick()}});
+      svg.appendChild(g)});
+  }
+  function genRender(){
+    var sysWrap=$("genSys");sysWrap.innerHTML="";var es=earlierSystems();
+    es.forEach(function(s){var b=el("button",null,s.name);b.type="button";b.setAttribute("aria-pressed",gen.sysIdx===s.i?"true":"false");b.addEventListener("click",function(){if(gen.sysIdx===s.i){gen.sysIdx=null;gen.sysName=""}else{gen.sysIdx=s.i;gen.sysName=s.name;gen.own=""}genSave();genRender();if(gen.sysName)setStatus("genStatus","","“"+gen.sysName+".” Now tap the development it most resembles.")});sysWrap.appendChild(b)});
+    var inp=document.createElement("input");inp.type="text";inp.placeholder=es.length?"Or type another system…":"Type one of your five systems…";inp.setAttribute("aria-label","System name");inp.value=gen.own||"";
+    inp.addEventListener("input",function(){gen.own=inp.value;if(inp.value.trim()){gen.sysIdx=null;gen.sysName=inp.value.trim()}else if(gen.sysIdx==null){gen.sysName=""}genSave();genUpdate()});
+    sysWrap.appendChild(inp);
+    var anc=gen.node?ancestors(gen.node):[];
+    document.querySelectorAll("#genMap .node").forEach(function(g){var id=g.getAttribute("data-id");g.classList.toggle("pick",gen.node===id);g.classList.toggle("anc",anc.indexOf(id)>-1)});
+    document.querySelectorAll("#genMap .edge").forEach(function(p){var e=p.getAttribute("data-e").split("-");var lit=gen.node&&!p.classList.contains("dash")&&(anc.indexOf(e[0])>-1)&&(e[1]===gen.node||anc.indexOf(e[1])>-1);p.classList.toggle("lit",!!lit)});
+    var path=$("genPath");path.innerHTML="";
+    if(gen.node){var chain=[gen.node];var cur=gen.node;while(true){var par=null;EDGES.forEach(function(e){if(!par&&e[1]===cur&&!e[2])par=e[0]});if(!par)break;chain.push(par);cur=par}
+      path.appendChild(el("span",null,"Lineage:"));chain.forEach(function(id,i){if(i)path.appendChild(el("span","arrow","←"));path.appendChild(el("span",null,node(id).name+" "+node(id).yr))});
+    } else path.textContent="Tap a development on the map.";
+    var hw=$("genHedge");hw.innerHTML="";
+    HEDGES.forEach(function(h){var b=el("button",null,h.t);b.type="button";b.setAttribute("aria-pressed",gen.hedge===h.id?"true":"false");b.addEventListener("click",function(){gen.hedge=h.id;genSave();genRender()});hw.appendChild(b)});
+    var ew=$("genEvid");ew.innerHTML="";
+    GEVID.forEach(function(e){var b=el("button",null,e.t);b.type="button";b.setAttribute("aria-pressed",gen.ev===e.id?"true":"false");b.addEventListener("click",function(){gen.ev=e.id;genSave();genRender()});ew.appendChild(b)});
+    genUpdate();
+  }
+  function genUpdate(){
+    var n=gen.node?node(gen.node):null,h=HEDGES.filter(function(x){return x.id===gen.hedge})[0],e=GEVID.filter(function(x){return x.id===gen.ev})[0];
+    var sys=(gen.sysName||"").trim();var noteEl=$("genNote");var note="";var problem=null;
+    if(sys&&n&&h&&e){
+      if(h.lvl===2&&e.ok<2)problem="Do not claim direct descent unless you can support it. “"+e.t+"” does not. Choose documentation or a credible report, or soften the link.";
+      else if(h.lvl===1&&e.ok<2)problem="“Likely builds on” needs a source that names the method. Inferred behavior supports “appears to share an approach with.” Soften the link or find a source.";
+      else{
+        note=sys+" "+h.t+" "+n.name.toLowerCase()+" ("+n.yr+"): "+n.line+". ";
+        if(h.lvl===0){note+=e.clause+(e.ok<2?"; this is a conceptual connection, not a claim of descent.":". I am still treating this as a conceptual connection, not a claim of direct descent.")}
+        else if(h.lvl===1){note+=e.clause+". I am not claiming direct descent."}
+        else{note+=e.clause+", which supports direct descent."}
+      }
+    }
+    gen.note=note;gen.cat=n?n.cat:"";genSave();
+    document.querySelectorAll("#genHedge button").forEach(function(b){b.classList.remove("miss","hit")});
+    if(problem){noteEl.className="gennote empty";noteEl.textContent=problem;setStatus("genStatus","bad",problem);$("genCopy").disabled=true;$("genCount").textContent="";var hb=document.querySelectorAll("#genHedge button")[h.lvl];if(hb)hb.classList.add("miss")}
+    else if(note){noteEl.className="gennote";noteEl.textContent=note;setStatus("genStatus","ok","Note written and saved for the Lesson 1.6 binder. Copy it for Canvas if you need it now.");$("genCopy").disabled=false;$("genCount").textContent="Saved · "+(n.cat)}
+    else{noteEl.className="gennote empty";noteEl.textContent="Pick a system, a development, a strength, and your evidence.";$("genCopy").disabled=true;$("genCount").textContent="";
+      var missing=[];if(!sys)missing.push("a system");if(!n)missing.push("a development on the map");if(!h)missing.push("how strong the link is");if(!e)missing.push("your evidence");
+      if(sys||n||h||e)setStatus("genStatus","","Still needed: "+missing.join(", ")+".")}
+  }
+  $("genCopy").addEventListener("click",function(){copyText(gen.note,this,"Copy genealogy note")});
+  genMapBuild();genRender();
+
+  /* ================= Notebook ================= */
+  var disc=store.get("ail13l-disc",{mode:"",tool:"",what:""});
+  function discLine(){if(disc.mode==="none")return "AI-use disclosure: No AI assistance used.";if(disc.mode==="used")return "AI-use disclosure: "+(disc.tool||"[tool]")+" helped me with "+(disc.what||"[specific limited purpose]")+".";return ""}
+  function discRender(){document.querySelectorAll("input[name=disc]").forEach(function(r){r.checked=r.value===disc.mode});$("discFields").hidden=disc.mode!=="used";$("discTool").value=disc.tool;$("discWhat").value=disc.what;$("discLine").textContent=discLine()||"Choose one."}
+  document.querySelectorAll("input[name=disc]").forEach(function(r){r.addEventListener("change",function(){disc.mode=r.value;store.set("ail13l-disc",disc);discRender();nbCheck()})});
+  $("discTool").addEventListener("input",function(){disc.tool=this.value;store.set("ail13l-disc",disc);$("discLine").textContent=discLine();nbCheck()});
+  $("discWhat").addEventListener("input",function(){disc.what=this.value;store.set("ail13l-disc",disc);$("discLine").textContent=discLine();nbCheck()});
+  function sentences(t){var m=(t||"").replace(/\s+/g," ").trim().match(/[^.!?]+[.!?]+(\s|$)/g);return m?m.length:0}
+  function nbCheck(){
+    var t=$("nbText").value,n=sentences(t),w=((t.trim().match(/\S+/g))||[]).length;var m=$("nbMeter");m.className="meter"+(n>=4&&n<=6?" inrange":(n>6?" over":""));m.firstChild.style.width=Math.min(100,n/6*100)+"%";
+    $("nbCount").textContent=n+" sentence"+(n===1?"":"s")+" · "+w+" words";
+    var ok=n>=4&&n<=6&&!!discLine();$("nbCopy").disabled=!ok;
+    if(!t.trim())setStatus("nbStatus","","Write 4–6 sentences, choose a disclosure, then copy.");
+    else if(n<4)setStatus("nbStatus","",(4-n)+" more sentence"+(4-n===1?"":"s")+" to reach four. Name the promise, the claim, and the evidence you would want.");
+    else if(n>6)setStatus("nbStatus","bad",n+" sentences. Trim to six.");
+    else if(!discLine())setStatus("nbStatus","","Length is right. Choose a disclosure.");
+    else setStatus("nbStatus","ok","Ready to copy into your AI Lab Notebook.");
+  }
+  $("nbText").addEventListener("input",nbCheck);
+  $("nbPull").addEventListener("click",function(){if(!(echo.era&&echo.reason&&echo.evid.length)){setStatus("nbStatus","bad","Finish the echo finder in step 3 first.");return}var ta=$("nbText");var s=echoSentence().split("\n")[1];ta.value=(ta.value.trim()?ta.value.trim()+" ":"")+s+" ";store.set("ail13l-nb",ta.value);nbCheck();ta.focus()});
+  $("nbCopy").addEventListener("click",function(){copyText($("nbText").value.trim()+"\n\n"+discLine(),this,"Copy for my notebook")});
+  discRender();nbCheck();
+
+  /* ---------- Reset ---------- */
+  $("resetAll").addEventListener("click",function(){
+    if(!confirm("Clear saved progress, checkmarks, and notes for this lesson on this device?"))return;
+    steps={};checks={};store.del(KEY_STEPS);store.del(KEY_CHECK);
+    document.querySelectorAll("#checklist input").forEach(function(c){c.checked=false});
+    document.querySelectorAll("[data-store]").forEach(function(t){t.value="";store.del(t.getAttribute("data-store"))});
+    ["ail13l-pred","ail13l-inv","ail13l-echo","ail13l-gen","ail13l-disc"].forEach(store.del);
+    newPred();moving=null;predRender();inv={cur:0,fund:{},rev:{},why:{}};invRender();setStatus("invStatus","","Pitch 1 of 6. Hear the pitch, set your funding, then reveal.");
+    echo={claim:null,own:"",era:null,reason:null,evid:[]};echoRender();setStatus("echoStatus","","Start with a claim.");
+    gen={sysIdx:null,sysName:"",own:"",node:null,hedge:null,ev:null,note:"",cat:""};genRender();setStatus("genStatus","","Start with the system.");
+    disc={mode:"",tool:"",what:""};discRender();nbCheck();renderRail();
+  });
+  renderRail();
+})();
+</script>
+</body>
+</html>

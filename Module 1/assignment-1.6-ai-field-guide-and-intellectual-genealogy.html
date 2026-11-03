@@ -283,6 +283,8 @@
   var K="ail16a-data",ready=false;
   var D=store.get(K,null)||{entries:[{},{},{},{},{}],gen:{},def:{},score:{},cur:0};
   function save(){store.set(K,D)}
+  /* Prefill the genealogy from the Lesson 1.3 Lineage Tracer if nothing has been written here yet */
+  (function(){var g=store.get("ail13l-gen",null);if(g&&g.note&&D.gen.sys==null&&!D.gen.earlier&&!(D.gen.note||"").trim()){D.gen={sys:(typeof g.sysIdx==="number"?g.sysIdx:null),earlier:g.cat||"",note:g.note};save()}})();
   var FIELDS=[
     ["name","System/context","What is it, and where do you encounter it?"],
     ["inputs","Inputs","What information does it receive?"],
