@@ -167,6 +167,34 @@
   .starter .hints ul{margin:0;padding-left:1.1rem;font-size:.92rem}
   .starter .hints li{margin:.15rem 0}
   .starter p.hint{margin:.6rem 0}
+
+  /* ---------- Check-in with Mr. Magister (Arthur interviewer) ---------- */
+  .interview{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:1.4rem;align-items:center;margin:1.6rem 0 1.8rem;padding:1.2rem;background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25),var(--shadow);color:#dff4f9}
+  @media (max-width:680px){.interview{grid-template-columns:1fr}}
+  .interview .info .k{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:.35rem}
+  .interview .info h2{margin:0 0 .5rem;font-size:1.35rem;line-height:1.25;color:#fff}
+  .interview .info p{margin:0 0 .8rem;font-size:.98rem;line-height:1.5;color:#c6dde5}
+  .interview .chips{list-style:none;margin:0 0 1rem;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+  .interview .chips li{margin:0;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:.28rem .6rem;border-radius:999px;border:1px solid rgba(79,209,232,.45);color:#dff4f9}
+  .interview .go{display:inline-block;white-space:nowrap;background:var(--cyan);color:var(--navy);text-decoration:none;font-weight:700;font-size:.95rem;padding:.65rem 1.1rem;border-radius:8px;transition:transform .15s,box-shadow .15s}
+  .interview .go:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(79,209,232,.35);color:var(--navy)}
+  .interview .go:focus-visible{outline:3px solid #fff;outline-offset:2px}
+  .interview .fine{font-size:.82rem;color:#9fbfcb;margin:.7rem 0 0}
+  /* transcript preview */
+  .interview .tape{position:relative;border-radius:10px;overflow:hidden;border:1px solid rgba(79,209,232,.45);background:#0b0f16;box-shadow:0 10px 28px rgba(0,0,0,.35);padding:1rem 1rem 1.1rem;font-size:.9rem;line-height:1.45}
+  .interview .tape .hdr{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:.7rem}
+  .interview .tape .hdr .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--cyan);margin-right:.4rem;box-shadow:0 0 0 4px rgba(79,209,232,.22)}
+  .interview .tape .line{display:grid;grid-template-columns:auto 1fr;gap:.6rem;margin:.45rem 0;align-items:start}
+  .interview .tape .who{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .45rem;border-radius:6px;margin-top:.15rem;white-space:nowrap}
+  .interview .tape .mm .who{background:var(--cyan);color:var(--navy)}
+  .interview .tape .you .who{background:rgba(255,255,255,.12);color:#dff4f9}
+  .interview .tape .txt{color:#e6f3f7}
+  .interview .tape .you .txt{color:#b9d4de}
+  .interview .tape .txt em{font-style:normal;color:var(--cyan)}
+  .interview .tape .cursor{display:inline-block;width:.55em;height:1em;vertical-align:-.15em;background:var(--cyan);margin-left:.15em;animation:blink 1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  @media (prefers-reduced-motion:reduce){.interview .tape .cursor{animation:none}}
+  @media print{.interview{display:none}}
 </style>
 </head>
 <body>
@@ -350,6 +378,26 @@
       <p><strong>As you move to the lesson:</strong> Choose one familiar system. Be prepared to describe it without saying merely that it is “smart.”</p>
     </div>
   </div>
+
+  <section class="interview" aria-label="Check-in with Mr. Magister">
+    <div class="tape" aria-hidden="true">
+      <div class="hdr"><span><span class="dot"></span>Live check-in</span><span>5 questions</span></div>
+      <div class="line mm"><span class="who">Mr. Magister</span><span class="txt">Which system did you pick, and where do you run into it?</span></div>
+      <div class="line you"><span class="who">You</span><span class="txt">My music app. It makes me playlists.</span></div>
+      <div class="line mm"><span class="who">Mr. Magister</span><span class="txt">Nice. Run the four questions on it for me. What does it <em>receive</em>?</span></div>
+      <div class="line you"><span class="who">You</span><span class="txt">What I play and skip, and probably what other people listen to<span class="cursor"></span></span></div>
+    </div>
+    <div class="info">
+      <span class="k">After the lesson · Optional check-in</span>
+      <h2>Finished Lesson 1.1? Talk it through with Mr. Magister.</h2>
+      <p>Mr. Magister, the course AI interviewer, asks five questions about one system you use every day, in about ten minutes. No grade, no right answers. At the end you get a quick read on where your understanding is today and, if it helps, where in this lesson to look again before you write your Careful Description.</p>
+      <ul class="chips" aria-label="Details">
+        <li>About 10 min</li><li>5 questions</li><li>Not graded</li><li>Opens in a new tab</li>
+      </ul>
+      <a class="go" href="https://live.arthur.digital/ask/2mgetqr8seumc2" target="_blank" rel="noopener noreferrer">Start the check-in ↗</a>
+      <p class="fine">If you note the conversation in your Lab Notebook: <em>AI assistance used: Mr. Magister (course interviewer) asked me questions about my system check.</em></p>
+    </div>
+  </section>
 
   <footer class="colophon">
     <p>AI Literacy • Module 1 • Lesson 1.1 Reading | All essential content is available in this page as text.</p>
