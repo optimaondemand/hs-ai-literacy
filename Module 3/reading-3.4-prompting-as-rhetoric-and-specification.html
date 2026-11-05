@@ -1,11 +1,338 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Reading 3.4: Prompting as Rhetoric and Specification</title><style>
-:root{--navy:#12304a;--teal:#0f766e;--gold:#d97706;--ink:#1f2937;--muted:#f1f5f9;--line:#cbd5e1;--white:#fff}
-body{font-family:Arial,Helvetica,sans-serif;line-height:1.58;color:var(--ink);max-width:920px;margin:0 auto;padding:28px;background:#fff}h1,h2,h3{color:var(--navy);line-height:1.2}.eyebrow{color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:.06em}.callout{background:#eef8f7;border-left:6px solid var(--teal);padding:16px;margin:18px 0}.warning{background:#fff7ed;border-left:6px solid var(--gold);padding:16px;margin:18px 0}.card{border:1px solid var(--line);border-radius:8px;padding:16px;margin:14px 0;background:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.tag{display:inline-block;background:var(--muted);padding:3px 8px;border-radius:999px;font-size:.9em;margin-right:6px}table{width:100%;border-collapse:collapse;margin:12px 0}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:var(--muted)}a{color:#0f5f78}ul,ol{padding-left:24px}.small{font-size:.92em;color:#475569}.checklist li{margin:7px 0}hr{border:0;border-top:1px solid var(--line);margin:28px 0}</style></head><body><p class="eyebrow">AI Literacy · Module 3 · Reading 3.4</p><h1>Prompting as Rhetoric and Specification</h1><p><span class="tag">Estimated time: 25–35 minutes</span><span class="tag">Read independently</span></p><div class="callout"><strong>Essential question:</strong> How does a prompt shape the task a generative system is actually being asked to do?<br><strong>By the end:</strong> Revise prompts using audience, purpose, context, constraints, format, examples, and verification requirements.</div>
-<h2>Begin with a prediction</h2><p>Before reading, write two sentences: What would persuade you that an AI-generated statement is trustworthy? What would make you hesitate?</p>
-<h2>Core idea</h2><p>Generative AI produces new language, images, audio, or code by modeling patterns in large collections of examples. Its output can be useful, surprising, and fluent. Fluency, however, is not a guarantee of accuracy, evidence, authorship, or understanding. Responsible work begins by separating what a system produces from what you can justify.</p>
-<h2>How to reason carefully</h2><div class="grid"><div class="card"><h3>1. Name the task</h3><p>Is the system brainstorming, summarizing, drafting, retrieving, classifying, or making a claim? Different tasks require different checks.</p></div><div class="card"><h3>2. Inspect the evidence</h3><p>Ask where a factual claim came from. A citation is a lead, not proof, until you open the source and check whether it supports the exact statement.</p></div><div class="card"><h3>3. Retain judgment</h3><p>Decide what to accept, revise, narrow, or reject. You remain responsible for claims published under your name.</p></div></div>
-<h2>Worked example</h2><p>Suppose a system writes: “The policy reduced absenteeism by 40 percent.” A careful researcher does not repeat the sentence because it sounds precise. The researcher asks: Which policy? In what place and time period? What study measured the result? Does the source actually report 40 percent, and what were its limits?</p>
-<h2>Common misconception</h2><div class="warning"><strong>Misconception:</strong> “If the system gives a citation, the claim is verified.”<br><strong>Correction:</strong> Citations can be incomplete, irrelevant, fabricated, or misread. Verification requires opening and evaluating the source.</div>
-<h2>Purposeful interaction</h2><div class="card"><p>Prompt compiler: diagnose a weak prompt using a checklist of missing specifications. Accessible fallback: mark the checklist manually and write revision notes.</p><p><strong>Afterward, write:</strong> Which missing specification would most improve the weak prompt first, and why?</p></div>
-<h2>Key vocabulary</h2><table><tr><th>Term</th><th>Student-friendly meaning</th></tr><tr><td>Generative model</td><td>A model that produces new content based on learned patterns.</td></tr><tr><td>Grounding</td><td>Connecting an answer to reliable, inspectable sources or provided evidence.</td></tr><tr><td>Hallucination</td><td>A confident-sounding output that is unsupported, false, or invented.</td></tr><tr><td>Verification</td><td>Checking a claim against credible evidence, not merely trusting its presentation.</td></tr><tr><td>Authorship</td><td>Responsible ownership of the choices, claims, evidence, and final form of work.</td></tr></table>
-<div class="callout"><strong>Readiness check:</strong> You are ready for the lesson when you can explain why an AI output may be useful while still requiring independent verification.</div><p class="small">Canvas note: If an embedded activity is unavailable, complete the text fallback described above and submit your written response in the designated assignment.</p></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reading 3.4 — Prompting as Rhetoric and Specification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .page{max-width:860px}
+  .reading p{font-size:1.06rem}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .tools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.7rem}
+  .counts{font-family:var(--mono);font-size:.8rem;color:var(--ink-soft)}
+  .counts b{color:var(--teal-deep)}
+  .vocab{list-style:none;padding:0;margin:.8rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.7rem}
+  .vocab li{margin:0;padding:.8rem .95rem;background:var(--paper-2);border:1px solid var(--rule);border-top:3px solid var(--teal);border-radius:var(--radius)}
+  .vocab li strong{display:block;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+  .three{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.8rem;margin:.8rem 0}
+  .three .c{padding:.9rem 1rem;border:1px solid var(--rule-strong);border-radius:var(--radius);background:linear-gradient(160deg,#fff,var(--paper-2))}
+  .three .c h3{margin:0 0 .4rem;font-size:1.02rem}
+  .three .c h3 .n{font-family:var(--mono);color:var(--teal);margin-right:.35rem}
+  .three .c p{margin:0;font-size:.98rem}
+
+  /* ---------- Interpretation fan ---------- */
+  .fanw .stage{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,1fr);gap:1rem;align-items:start}
+  @media (max-width:700px){.fanw .stage{grid-template-columns:1fr}}
+  .fanw .scene{background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);overflow:hidden}
+  .fanw .scene svg{display:block;width:100%;height:auto}
+  .fanw .ray{stroke:#4fd1e8;stroke-width:1.6;fill:none;transition:opacity .45s,stroke .45s}
+  .fanw .ray.off{opacity:.12;stroke-dasharray:4 5}
+  .fanw .rlab{font-family:"IBM Plex Mono",Consolas,monospace;font-size:11.5px;letter-spacing:.06em;fill:#dff4f9;transition:opacity .45s,fill .45s}
+  .fanw .rlab.off{opacity:.25;text-decoration:line-through}
+  .fanw .rlab.keep{fill:#d19a1e;font-weight:600}
+  .fanw .ptxt{font-family:"IBM Plex Mono",Consolas,monospace;font-size:13px;fill:#fff}
+  .fanw .pbox{fill:none;stroke:#4fd1e8;stroke-width:2}
+  .fanw .plab{font-family:"IBM Plex Mono",Consolas,monospace;font-size:10px;letter-spacing:.14em;fill:#4fd1e8}
+  .fanw .specs{display:grid;gap:.4rem}
+  .fanw .spec{display:flex;gap:.6rem;align-items:flex-start;padding:.5rem .65rem;border:1px solid var(--rule-strong);border-radius:10px;background:#fff;cursor:pointer;font:inherit;text-align:left;color:var(--ink);transition:border-color .2s,background .2s,box-shadow .2s}
+  .fanw .spec:hover{border-color:var(--teal)}
+  .fanw .spec[aria-pressed="true"]{background:var(--teal-pale);border-color:var(--teal);box-shadow:0 0 0 3px var(--glow)}
+  .fanw .spec:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .fanw .spec .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);display:block}
+  .fanw .spec .l{font-size:.9rem;color:var(--ink-soft);display:block;line-height:1.35}
+  .fanw .spec .box{flex:0 0 18px;width:18px;height:18px;border:1.5px solid var(--teal);border-radius:4px;margin-top:.15rem;position:relative;background:#fff}
+  .fanw .spec[aria-pressed="true"] .box{background:var(--teal)}
+  .fanw .spec[aria-pressed="true"] .box::after{content:"✓";color:#fff;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-family:var(--mono);font-weight:700}
+  .fanw .compiled{margin-top:.8rem;padding:.8rem 1rem;background:var(--navy);color:#e6f3f7;border:1px solid var(--teal-deep);border-left:4px solid var(--cyan);border-radius:0 var(--radius) var(--radius) 0;font-family:var(--mono);font-size:.9rem;line-height:1.6;white-space:pre-wrap}
+  .fanw .compiled .add{color:var(--cyan)}
+  .fanw .gauge{display:flex;align-items:center;gap:.6rem;font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);margin-top:.6rem}
+  .fanw .gauge .bar{flex:1;height:10px;border:1px solid var(--rule-strong);border-radius:5px;background:var(--paper-3);overflow:hidden}
+  .fanw .gauge .bar div{height:100%;width:100%;background:var(--gold);transition:width .45s,background .45s}
+  .fanw .gauge b{color:var(--teal-deep);font-variant-numeric:tabular-nums}
+
+  /* ---------- Ambiguity hunt ---------- */
+  .hunt .prompt{font-family:var(--mono);font-size:1.08rem;line-height:1.9;padding:1rem 1.2rem;background:var(--navy);color:#fff;border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25)}
+  .hunt .w{display:inline-block;padding:.05rem .25rem;border-radius:5px;cursor:pointer;border:1px solid transparent;transition:background .15s,border-color .15s}
+  .hunt .w:hover{background:rgba(79,209,232,.15);border-color:rgba(79,209,232,.5)}
+  .hunt .w:focus-visible{outline:3px solid var(--gold);outline-offset:1px}
+  .hunt .w.hit{background:rgba(209,154,30,.25);border-color:var(--gold);color:#ffe9b8}
+  .hunt .w.miss{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3);color:#b9cfd8;text-decoration:line-through}
+  .hunt .w.solved{background:rgba(31,122,77,.35);border-color:#4fd1a8}
+  .hunt .cardwrap{margin-top:.8rem}
+  .hunt .wcard{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.9rem 1.1rem;background:linear-gradient(160deg,#fff,var(--paper-2));box-shadow:var(--shadow);animation:reveal .3s ease-out}
+  .hunt .wcard .kicker{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);font-weight:500}
+  .hunt .wcard .word{font-family:var(--mono);font-size:1.3rem;font-weight:600;color:var(--teal-deep);margin:.2rem 0 .5rem}
+  .hunt .range{display:flex;gap:.4rem;flex-wrap:wrap;margin:.3rem 0 .7rem}
+  .hunt .range span{font-size:.88rem;padding:.25rem .6rem;border-radius:999px;border:1px solid var(--rule-strong);background:#fff;color:var(--ink-soft)}
+  .hunt .picks{display:flex;gap:.4rem;flex-wrap:wrap}
+  .hunt .picks button{font:inherit;font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;padding:.45rem .7rem;border:1px solid var(--teal);border-radius:999px;background:#fff;color:var(--teal-deep);cursor:pointer}
+  .hunt .picks button:hover{background:var(--teal-pale)}
+  .hunt .picks button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .hunt .picks button.right{background:var(--ok);border-color:var(--ok);color:#fff}
+  .hunt .picks button.wrong{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+  .hunt .verdict{margin-top:.7rem;padding:.6rem .8rem;border-radius:0 var(--radius) var(--radius) 0;border-left:4px solid var(--gold);background:var(--gold-pale);font-size:.96rem;animation:reveal .3s ease-out}
+  .hunt .verdict.ok{border-left-color:var(--ok);background:var(--ok-bg)}
+  .hunt .verdict .k{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:#6d4a00;margin-bottom:.15rem}
+  .hunt .verdict.ok .k{color:var(--ok)}
+  .hunt .score{display:flex;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.8rem;color:var(--ink-soft);margin-top:.6rem}
+  .hunt .score b{color:var(--teal-deep)}
+  .hunt .ledger2{margin-top:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);overflow:hidden;animation:reveal .4s ease-out}
+  .hunt .ledger2 table{margin:0;font-size:.92rem}
+  .hunt .ledger2 td:first-child{font-family:var(--mono);font-weight:600;color:var(--teal-deep);white-space:nowrap}
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 3 • Lesson 3.4 Reading" data-title="Prompting as Rhetoric and Specification" data-key="ail-intro-3.4-reading"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 3 • Reading 3.4</p>
+    <h1>Prompting as Rhetoric and Specification</h1>
+    <p class="lede">Read independently</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <section class="ledger" aria-label="Reading details">
+    <div><span class="k">Estimated time</span><span class="v">25–35 minutes</span></div>
+    <div><span class="k">Essential question</span><span class="v">How does a prompt shape the task a generative system is actually being asked to do?</span></div>
+    <div><span class="k">By the end</span><span class="v">Revise prompts using audience, purpose, context, constraints, format, examples, and verification requirements.</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Begin with a prediction.</strong> Before reading, write two sentences: What do you think happens when a request to a generative system leaves out who the result is for? What would you add to the request first?</p>
+  </div>
+
+  <div class="widget fanw" id="fanWidget">
+    <div class="bar"><span>Interactive · The interpretation fan</span><span class="tag">Watch the task narrow</span></div>
+    <div class="body">
+      <p>One short prompt, and seven things a generative system could legitimately hand back for it. Every ray is a fair reading of the request. Switch on a specification and watch the rays it rules out go dark. The compiled prompt below the fan grows as you add each one.</p>
+      <div class="stage">
+        <div>
+          <div class="scene" id="fanScene" aria-label="The prompt and seven possible outputs"></div>
+          <div class="gauge" aria-live="polite"><span>Open readings</span><div class="bar"><div id="fanBar"></div></div><b id="fanOpen">7</b><span>of 7</span></div>
+          <div class="compiled" id="fanCompiled" aria-live="polite"></div>
+        </div>
+        <div class="specs" id="fanSpecs" role="group" aria-label="Specifications to add"></div>
+      </div>
+      <div class="tools">
+        <span class="counts"><span><b id="fanOn">0</b> of 7 specifications added</span></span>
+        <span><button type="button" class="btn ghost" id="fanReset">Start over</button></span>
+      </div>
+      <div class="status" id="fanStatus" role="status" aria-live="polite">Seven rays open. Add a specification on the right.</div>
+    </div>
+  </div>
+
+  <div class="reading">
+    <h2>Core idea</h2>
+    <p>A prompt is not a magic word. It is a specification: a description of a task complete enough that a system with no knowledge of your intentions can carry it out. Everything you leave unsaid becomes a default the system chooses for you. Prompting is therefore also rhetoric. You are writing for a reader, and you decide what that reader needs to know about audience, purpose, context, constraints, format, examples, and how the result should be verified.</p>
+
+    <h2>How to reason carefully</h2>
+    <div class="three">
+      <div class="c"><h3><span class="n">1.</span>Name the audience and purpose</h3><p>Who will read the output, and what should it do for them? A study guide for a ninth grader and a briefing for a principal are different tasks even when the topic is the same.</p></div>
+      <div class="c"><h3><span class="n">2.</span>Supply the context and constraints</h3><p>Give the system what it cannot know: the situation, the source material, the limits. Length, tone, reading level, what to include, and what to leave out are instructions, not preferences.</p></div>
+      <div class="c"><h3><span class="n">3.</span>Specify format, examples, and verification</h3><p>Say what shape the answer should take, show one example of a good result, and state how claims must be supported. A prompt that asks for sources and flagged uncertainty produces an output you can check.</p></div>
+    </div>
+
+    <h2>Worked example</h2>
+    <p>Suppose a student types: “Write about the water cycle.” A careful prompter does not send that sentence because it is short and clear to the student. The prompter asks: For whom, a third-grade class or a biology teacher? For what purpose, a quiz review, a poster, or a lab introduction? How long, in what format, and in what tone? Should it include a vocabulary list or a diagram description? And what should the system do with a fact it is unsure of? Each answer becomes a line in the prompt, and each line removes a guess.</p>
+
+    <div class="widget hunt" id="huntWidget">
+      <div class="bar"><span>Interactive · Ambiguity hunt</span><span class="tag">Find the words doing hidden work</span></div>
+      <div class="body">
+        <p>A prompt that looks complete. Six of its words are quietly leaving a decision to the system. Click a word you suspect. If it is one of the six, you will see the range of results it allows; then pick the specification that would pin it down. Click a safe word and it is crossed off. Find all six.</p>
+        <div class="prompt" id="huntPrompt" aria-label="The prompt to inspect"></div>
+        <div class="score"><span><b id="huntFound">0</b> of 6 found</span><span><b id="huntMiss">0</b> safe words clicked</span><span><b id="huntPinned">0</b> of 6 pinned</span></span>
+        <div class="cardwrap" id="huntCard"></div>
+        <div class="ledger2" id="huntLedger" hidden></div>
+        <div class="tools">
+          <span class="counts"><span>Six loaded words, one safe prompt at the end.</span></span>
+          <span><button type="button" class="btn ghost" id="huntReset">Start over</button></span>
+        </div>
+        <div class="status" id="huntStatus" role="status" aria-live="polite">Click a word in the prompt.</div>
+      </div>
+    </div>
+
+    <h2>Common misconception</h2>
+    <div class="callout"><p><strong>Misconception:</strong> “A longer, more polite prompt is a better prompt.”<br><strong>Correction:</strong> Length and politeness do not specify a task. A prompt improves when it adds a missing specification: audience, purpose, context, constraints, format, examples, or verification requirements. Three precise lines beat three paragraphs of pleading.</p></div>
+
+    <h2>Purposeful interaction</h2>
+    <div class="note"><p>Prompt compiler: diagnose a weak prompt using a checklist of missing specifications. Accessible fallback: mark the checklist manually and write revision notes.</p><p><strong>Afterward, write:</strong> Which missing specification would most improve the weak prompt first, and why?</p></div>
+
+    <h2>Key vocabulary</h2>
+    <ul class="vocab">
+      <li><strong>Prompt</strong>The written request that specifies a task for a generative system.</li>
+      <li><strong>Specification</strong>A statement of exactly what the task requires: audience, purpose, context, constraints, format, examples, and verification.</li>
+      <li><strong>Audience and purpose</strong>Who the output is for and what it should do for them.</li>
+      <li><strong>Constraint</strong>A limit the output must respect, such as length, tone, reading level, or what to leave out.</li>
+      <li><strong>Format</strong>The shape of the output: a table, a list, a paragraph, an email, or code.</li>
+      <li><strong>Verification requirement</strong>An instruction stating how the output must support its claims, such as citing sources or flagging uncertainty.</li>
+    </ul>
+
+    <div class="plate"><p><strong>Readiness check:</strong> You are ready for the lesson when you can take a one-line request and name which of the seven specifications it is missing.</p></div>
+    <p class="aside">Canvas note: If an embedded activity is unavailable, complete the text fallback described above and submit your written response in the designated assignment.</p>
+  </div>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 3 • Reading 3.4 | Essential content is available as selectable text.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function svgEl(tag,attrs){var e=document.createElementNS("http://www.w3.org/2000/svg",tag);for(var k in attrs)e.setAttribute(k,attrs[k]);return e}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+
+  /* ---------- Interpretation fan ---------- */
+  var SPECS=[
+    {id:"aud",k:"Audience",l:"for a third-grade class",line:"Audience: a third-grade class.",kills:["bio","jargon"]},
+    {id:"pur",k:"Purpose",l:"to review before a quiz",line:"Purpose: a review sheet before Friday’s quiz.",kills:["poem"]},
+    {id:"ctx",k:"Context",l:"they studied evaporation and rain this week",line:"Context: the class studied evaporation, condensation, and precipitation this week.",kills:["ocean"]},
+    {id:"con",k:"Constraints",l:"under 150 words, simple sentences",line:"Constraints: under 150 words, simple sentences, no new terms.",kills:["long"]},
+    {id:"fmt",k:"Format",l:"five bullet points",line:"Format: five bullet points, one step each.",kills:["essay"]},
+    {id:"ex",k:"Examples",l:"show one bullet to copy",line:"Example bullet: “Evaporation: the sun warms water and it rises as vapor.”",kills:[]},
+    {id:"ver",k:"Verification",l:"flag anything uncertain",line:"Verification: do not invent numbers; mark any fact you are unsure of with [check].",kills:["facts"]}
+  ];
+  var RAYS=[
+    {id:"bio",t:"A COLLEGE BIOLOGY ESSAY"},
+    {id:"jargon",t:"FULL OF TECHNICAL TERMS"},
+    {id:"poem",t:"A RHYMING POEM"},
+    {id:"ocean",t:"MOSTLY ABOUT OCEANS"},
+    {id:"long",t:"TWO THOUSAND WORDS"},
+    {id:"essay",t:"ONE DENSE PARAGRAPH"},
+    {id:"facts",t:"WITH A MADE-UP STATISTIC"}
+  ];
+  var KEEP={id:"keep",t:"FIVE SIMPLE REVIEW BULLETS"};
+  var fan=store.get("ail34-fan",{});
+  function fanScene(){
+    var sc=$("fanScene");sc.innerHTML="";
+    var svg=svgEl("svg",{viewBox:"0 0 690 300",role:"img","aria-label":"A prompt on the left; rays to seven possible outputs on the right"});
+    svg.appendChild(svgEl("path",{"class":"pbox",d:"M24 118 H236 V182 H24 Z"}));
+    var pt=svgEl("text",{"class":"ptxt",x:"38",y:"156"});pt.textContent="Write about the water cycle.";svg.appendChild(pt);
+    var pl=svgEl("text",{"class":"plab",x:"24",y:"106"});pl.textContent="THE PROMPT";svg.appendChild(pl);
+    svg.appendChild(svgEl("path",{"class":"ray",d:"M236 150 H300"}));
+    svg.appendChild(svgEl("circle",{cx:"300",cy:"150",r:"4",fill:"#4fd1e8"}));
+    var all=RAYS.slice(0,4).concat([KEEP]).concat(RAYS.slice(4));
+    all.forEach(function(r,i){
+      var y=34+i*31,dead=isDead(r.id);
+      svg.appendChild(svgEl("path",{"class":"ray"+(dead?" off":""),d:"M300 150 L410 "+y+" H440","data-ray":r.id}));
+      var t=svgEl("text",{"class":"rlab"+(dead?" off":"")+(r.id==="keep"?" keep":""),x:"448",y:String(y+4),"data-ray":r.id});t.textContent=r.t;svg.appendChild(t);
+    });
+    var ol=svgEl("text",{"class":"plab",x:"448",y:"20"});ol.textContent="WHAT COULD COME BACK";svg.appendChild(ol);
+    sc.appendChild(svg);
+  }
+  function isDead(rid){return SPECS.some(function(s){return fan[s.id]&&s.kills.indexOf(rid)>=0})}
+  function fanRender(){
+    var wrap=$("fanSpecs");wrap.innerHTML="";var on=0;
+    SPECS.forEach(function(s){
+      var b=el("button","spec");b.type="button";b.setAttribute("aria-pressed",fan[s.id]?"true":"false");
+      b.appendChild(el("span","box"));var t=el("span");t.appendChild(el("span","k",s.k));t.appendChild(el("span","l",s.l));b.appendChild(t);
+      b.addEventListener("click",function(){fan[s.id]=!fan[s.id];store.set("ail34-fan",fan);fanRender()});
+      wrap.appendChild(b);if(fan[s.id])on++;
+    });
+    $("fanOn").textContent=on;
+    fanScene();
+    var open=RAYS.filter(function(r){return !isDead(r.id)}).length;
+    $("fanOpen").textContent=open;$("fanBar").style.width=(open/7*100)+"%";$("fanBar").style.background=open===0?"var(--ok)":(open<4?"var(--teal)":"var(--gold)");
+    var c=$("fanCompiled");c.innerHTML="";c.appendChild(document.createTextNode("Write about the water cycle."));
+    SPECS.forEach(function(s){if(fan[s.id]){c.appendChild(document.createTextNode("\n"));c.appendChild(el("span","add",s.line))}});
+    var st=$("fanStatus");
+    if(!on){st.className="status";st.textContent="Seven rays open. Add a specification on the right."}
+    else if(open===0){st.className="status ok";st.textContent="One reading left: the one you wanted. Every ray you closed was a default the system would have chosen for you. Notice that the example did not close a ray by itself; it shows the system what the bullets should sound like."}
+    else{st.className="status";st.textContent=open+" fair reading"+(open>1?"s":"")+" still open. "+(fan.ex&&on===1?"An example shows what good looks like, but it does not say who the output is for or how long it may be.":"Which specification closes the most rays next?")}
+  }
+  $("fanReset").addEventListener("click",function(){fan={};store.del("ail34-fan");fanRender()});
+  fanRender();
+
+  /* ---------- Ambiguity hunt ---------- */
+  var SPECNAMES={aud:"Audience",pur:"Purpose",ctx:"Context",con:"Constraints",fmt:"Format",ex:"Examples",ver:"Verification"};
+  var HUNT_WORDS=[
+    "Please","write","me","a","short","summary","of","the","French","Revolution","that","is","good","for","class,","and","include","some","key","facts","and","dates.","Make","it","sound","smart","but","keep","it","simple.","Thanks!"
+  ];
+  var LOADED={
+    "short":{range:["Three sentences","Half a page","Six paragraphs"],fix:"con",why:"“Short” is a constraint the system fills in for you. Three sentences and six paragraphs are both short to someone. Name the length."},
+    "summary":{range:["A timeline","A paragraph of causes","A list of people","A story"],fix:"fmt",why:"“Summary” says nothing about shape. A timeline, a paragraph, a list of names, and a story are all summaries. Name the format."},
+    "class,":{range:["A sixth-grade class","An AP history seminar","A college lecture"],fix:"aud",why:"“Class” hides the audience. A sixth-grade class and an AP seminar need different words, different detail, and a different reading level. Name who will read it."},
+    "facts":{range:["Facts the system remembers","Facts the system invents","Facts with no source"],fix:"ver",why:"“Include some key facts” invites invented ones. Nothing here tells the system what to do with a date it is unsure of. Add a verification requirement."},
+    "smart":{range:["Formal academic tone","Big vocabulary","Confident claims, true or not"],fix:"con",why:"“Sound smart” is a tone constraint with no definition, and it rewards confident wording over careful wording. Say the tone you mean, and what to leave out."},
+    "simple.":{range:["Simple words","Simple ideas, detail removed","Simple structure"],fix:"con",why:"“Simple” pulls against “smart” and defines neither. A reading level or an example sentence would say what simple means here."}
+  };
+  var ORDER=["short","summary","class,","facts","smart","simple."];
+  var hunt=store.get("ail34-hunt",{found:{},pinned:{},miss:0,missed:{}});
+  function hSave(){store.set("ail34-hunt",hunt)}
+  function hStatus(kind,t){var s=$("huntStatus");s.className="status"+(kind?" "+kind:"");s.textContent=t}
+  function hCounts(){
+    var f=Object.keys(hunt.found).length,p=Object.keys(hunt.pinned).length;
+    $("huntFound").textContent=f;$("huntPinned").textContent=p;$("huntMiss").textContent=hunt.miss;
+    return {f:f,p:p};
+  }
+  function hRenderPrompt(){
+    var box=$("huntPrompt");box.innerHTML="";
+    HUNT_WORDS.forEach(function(w,i){
+      var s=el("button","w",w);s.type="button";
+      if(LOADED[w]&&hunt.found[w])s.classList.add(hunt.pinned[w]?"solved":"hit");
+      if(!LOADED[w]&&hunt.missed[i])s.classList.add("miss");
+      s.addEventListener("click",function(){hClick(w,i)});
+      box.appendChild(s);box.appendChild(document.createTextNode(" "));
+    });
+  }
+  function hClick(w,i){
+    if(LOADED[w]){
+      if(!hunt.found[w]){hunt.found[w]=1;hSave()}
+      hRenderPrompt();hCounts();hCard(w);
+      hStatus("","“"+w.replace(/[,.]$/,"")+"” is doing hidden work. Pick the specification that would pin it down.");
+    }else{
+      if(!hunt.missed[i]){hunt.missed[i]=1;hunt.miss++;hSave()}
+      hRenderPrompt();hCounts();
+      hStatus("","“"+w+"” is safe: it asks for nothing the system has to guess at. Keep looking.");
+    }
+  }
+  function hCard(w){
+    var L=LOADED[w],wrap=$("huntCard");wrap.innerHTML="";
+    var c=el("div","wcard");c.appendChild(el("div","kicker","Loaded word"));c.appendChild(el("div","word",w.replace(/[,.]$/,"")));
+    c.appendChild(el("p",null,"All of these are fair readings of the prompt as written:"));
+    var r=el("div","range");L.range.forEach(function(x){r.appendChild(el("span",null,x))});c.appendChild(r);
+    c.appendChild(el("p",null,"Which specification pins it down?"));
+    var p=el("div","picks");
+    Object.keys(SPECNAMES).forEach(function(k){
+      var b=el("button",null,SPECNAMES[k]);b.type="button";
+      if(hunt.pinned[w]){if(k===L.fix)b.classList.add("right");b.disabled=true}
+      b.addEventListener("click",function(){
+        if(hunt.pinned[w])return;
+        var right=k===L.fix;
+        if(right){hunt.pinned[w]=1;hSave();b.classList.add("right");p.querySelectorAll("button").forEach(function(x){x.disabled=true});hRenderPrompt();var n=hCounts();
+          var v=el("div","verdict ok");v.appendChild(el("span","k","Pinned by "+SPECNAMES[k]));v.appendChild(document.createTextNode(L.why));c.appendChild(v);
+          if(n.p===6)hFinish();else hStatus("ok",n.f+" of 6 found, "+n.p+" pinned. Back to the prompt for the next one.");
+        }else{b.classList.add("wrong");var v2=c.querySelector(".verdict");if(v2)v2.remove();var v3=el("div","verdict");v3.appendChild(el("span","k","Not that one"));v3.appendChild(document.createTextNode(SPECNAMES[k]+" would help a prompt, but it does not say what “"+w.replace(/[,.]$/,"")+"” means here. Try another."));c.appendChild(v3)}
+      });
+      p.appendChild(b);
+    });
+    c.appendChild(p);
+    if(hunt.pinned[w]){var v=el("div","verdict ok");v.appendChild(el("span","k","Pinned by "+SPECNAMES[L.fix]));v.appendChild(document.createTextNode(L.why));c.appendChild(v)}
+    wrap.appendChild(c);
+  }
+  function hFinish(){
+    var lg=$("huntLedger");lg.hidden=false;lg.innerHTML="";
+    var t=el("table");var th=el("thead");th.innerHTML="<tr><th scope='col'>Loaded word</th><th scope='col'>Pinned by</th><th scope='col'>The line that replaces it</th></tr>";t.appendChild(th);
+    var tb=el("tbody");
+    var LINES={"short":"Length: about 150 words.","summary":"Format: a five-event timeline, one sentence each.","class,":"Audience: a ninth-grade world history class.","facts":"Verification: give the year for each event and mark any date you are unsure of with [check].","smart":"Tone: plain and precise; no claims you cannot support.","simple.":"Reading level: ninth grade; define any term a ninth grader may not know."};
+    ORDER.forEach(function(w){var tr=el("tr");tr.appendChild(el("td",null,w.replace(/[,.]$/,"")));tr.appendChild(el("td",null,SPECNAMES[LOADED[w].fix]));tr.appendChild(el("td",null,LINES[w]));tb.appendChild(tr)});
+    t.appendChild(tb);lg.appendChild(t);
+    $("huntCard").innerHTML="";
+    hStatus("ok","All six pinned. The polite words were never the problem; the vague ones were. The table shows one precise line for each. Notice the prompt got shorter in words that plead and longer in words that specify.");
+  }
+  $("huntReset").addEventListener("click",function(){hunt={found:{},pinned:{},miss:0,missed:{}};hSave();$("huntCard").innerHTML="";$("huntLedger").hidden=true;hRenderPrompt();hCounts();hStatus("","Click a word in the prompt.")});
+  hRenderPrompt();var hc=hCounts();if(hc.p===6)hFinish();
+})();
+</script>
+</body>
+</html>

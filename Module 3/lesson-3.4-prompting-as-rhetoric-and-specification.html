@@ -1,12 +1,698 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Lesson 3.4: Prompting as Rhetoric and Specification</title><style>
-:root{--navy:#12304a;--teal:#0f766e;--gold:#d97706;--ink:#1f2937;--muted:#f1f5f9;--line:#cbd5e1;--white:#fff}
-body{font-family:Arial,Helvetica,sans-serif;line-height:1.58;color:var(--ink);max-width:920px;margin:0 auto;padding:28px;background:#fff}h1,h2,h3{color:var(--navy);line-height:1.2}.eyebrow{color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:.06em}.callout{background:#eef8f7;border-left:6px solid var(--teal);padding:16px;margin:18px 0}.warning{background:#fff7ed;border-left:6px solid var(--gold);padding:16px;margin:18px 0}.card{border:1px solid var(--line);border-radius:8px;padding:16px;margin:14px 0;background:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.tag{display:inline-block;background:var(--muted);padding:3px 8px;border-radius:999px;font-size:.9em;margin-right:6px}table{width:100%;border-collapse:collapse;margin:12px 0}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:var(--muted)}a{color:#0f5f78}ul,ol{padding-left:24px}.small{font-size:.92em;color:#475569}.checklist li{margin:7px 0}hr{border:0;border-top:1px solid var(--line);margin:28px 0}</style></head><body><p class="eyebrow">AI Literacy · Module 3 · Lesson 3.4</p><h1>Prompting as Rhetoric and Specification</h1><p><span class="tag">Estimated time: 30–45 minutes</span><span class="tag">Canvas Page + Practice</span></p><div class="callout"><strong>Today’s target:</strong> Revise prompts using audience, purpose, context, constraints, format, examples, and verification requirements.<br><strong>Why it matters:</strong> How does a prompt shape the task a generative system is actually being asked to do?</div>
-<h2>Step 1 — Retrieve</h2><p>In Canvas, answer this warm-up in 2–3 sentences: When have you seen information that looked convincing before you knew whether it was true? What made it convincing?</p>
-<h2>Step 2 — Experience</h2><div class="card"><h3>Interactive or text fallback</h3><p>Prompt compiler: diagnose a weak prompt using a checklist of missing specifications. Accessible fallback: mark the checklist manually and write revision notes.</p><p><strong>What to notice:</strong> Your first reaction is data about how persuasive presentation can be. Your explanation—not the click or sort alone—is the learning evidence.</p></div>
-<h2>Step 3 — Learn</h2><p>Use the Reading 3.4 page as the core explanation. As you reread, make a three-column note: <em>claim or output</em>, <em>what supports it</em>, and <em>what remains uncertain</em>. This habit prevents a polished response from becoming a substitute for evidence.</p>
-<h3>Mini-protocol: Stop, trace, decide</h3><ol><li><strong>Stop:</strong> Mark any factual, causal, numerical, or quoted claim that matters to your conclusion.</li><li><strong>Trace:</strong> Find the strongest available original or credible source. Read beyond the snippet or citation.</li><li><strong>Decide:</strong> Keep, qualify, revise, or remove the claim. Record why.</li></ol>
-<h2>Step 4 — Practice with feedback</h2><table><tr><th>Practice item</th><th>Strong reasoning looks like</th></tr><tr><td>“The response sounds certain.”</td><td>Certainty is a style feature, not evidence. Trace the claim.</td></tr><tr><td>“A link appears after the sentence.”</td><td>Open it and check that it supports the specific claim in context.</td></tr><tr><td>“The draft is polished.”</td><td>Check authorship, source support, and whether the wording overstates what evidence shows.</td></tr></table>
-<h2>Step 5 — Apply independently</h2><div class="warning"><p><strong>Required task:</strong> Three versions of one prompt, with a 300–400 word explanation of how each revision improves task clarity.</p><p><strong>Guiding question:</strong> Which missing specification would most improve the weak prompt first, and why?</p></div>
-<h2>Step 6 — Check and reflect</h2><p>Before submitting, answer: What did you verify yourself? What did you revise or reject? What remains uncertain?</p>
-<h2>Step 7 — Build the module project</h2><p>This lesson contributes to the <strong>Verified Research Brief and Prompt Portfolio</strong>. Save your notes, source checks, prompt versions, and decisions. They are evidence of your process and authorship.</p>
-<div class="callout"><strong>Accessibility:</strong> Complete the text fallback if an interaction does not work with your device or assistive technology. The fallback meets the same objective and is equally acceptable.</div></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lesson 3.4 — Prompting as Rhetoric and Specification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .tools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-top:.7rem}
+  .counts{display:flex;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.8rem;color:var(--ink-soft)}
+  .counts b{color:var(--teal-deep)}
+  .pick{font-family:var(--sans);font-size:.92rem;padding:.4rem .8rem;border-radius:999px;border:1px solid var(--teal);background:#fff;color:var(--teal-deep);cursor:pointer}
+  .pick:hover{background:var(--teal-pale)}
+  .pick[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 0 3px var(--glow)}
+  .pick:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .picks{display:flex;gap:.45rem;flex-wrap:wrap;margin:.4rem 0 .6rem}
+  .protocol{counter-reset:pro;list-style:none;padding:0;margin:.6rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.6rem}
+  .protocol li{counter-increment:pro;margin:0;padding:.75rem .9rem .75rem 2.9rem;position:relative;background:var(--paper-2);border:1px solid var(--rule);border-radius:var(--radius)}
+  .protocol li::before{content:"0" counter(pro);position:absolute;left:.75rem;top:.8rem;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--teal)}
+  .cols{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.5rem;margin:.6rem 0}
+  @media (max-width:560px){.cols{grid-template-columns:1fr}}
+  .cols div{padding:.6rem .7rem;border:1px solid var(--rule-strong);border-top:3px solid var(--teal);border-radius:8px;background:#fff;font-size:.95rem}
+  .cols div b{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+
+  /* ---------- Prompt Compiler ---------- */
+  .comp .layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;align-items:start}
+  @media (max-width:720px){.comp .layout{grid-template-columns:1fr}}
+  .comp .weak{font-family:var(--mono);font-size:1.05rem;padding:.7rem .9rem;background:var(--navy);color:#fff;border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);margin:.3rem 0 .7rem}
+  .comp .weak .k{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:.2rem}
+  .comp .tray{border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-3);padding:.6rem;min-height:80px;display:flex;flex-wrap:wrap;gap:.45rem;align-content:flex-start}
+  .comp .traylbl{flex:0 0 100%;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep)}
+  .comp .tile{font-family:var(--sans);font-size:.9rem;line-height:1.35;background:#fff;border:1px solid var(--teal-deep);color:var(--ink);border-radius:8px;padding:.4rem .6rem;cursor:grab;user-select:none;box-shadow:0 1px 0 rgba(27,36,48,.08);text-align:left;transition:transform .12s,box-shadow .12s;display:block}
+  .comp .tile:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(11,59,79,.18)}
+  .comp .tile.sel{outline:3px solid var(--gold);outline-offset:1px}
+  .comp .tile:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .comp .tile.right{border-color:var(--ok);background:var(--ok-bg)}
+  .comp .tile.wrong{border-color:var(--bad);background:var(--bad-bg)}
+  .comp .slots{display:grid;gap:.4rem}
+  .comp .slot{display:grid;grid-template-columns:118px minmax(0,1fr);gap:.5rem;align-items:start;border:1.5px dashed var(--teal);border-radius:10px;padding:.45rem .55rem;background:#fff;min-height:48px;transition:background .2s,box-shadow .2s}
+  .comp .slot.over{background:var(--teal-pale);box-shadow:0 0 0 3px var(--glow)}
+  .comp .slot .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);padding-top:.35rem}
+  .comp .slot .drop{min-height:30px}
+  .comp .slot .tile{cursor:default;width:100%}
+  .comp .slot .why{font-size:.84rem;color:#4a3300;background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:.3rem .5rem;margin-top:.3rem;animation:reveal .3s ease-out}
+  .comp .slot .why.ok{color:#0f3d26;background:var(--ok-bg);border-left-color:var(--ok)}
+  @media (max-width:480px){.comp .slot{grid-template-columns:1fr}.comp .slot .k{padding-top:0}}
+  .comp .ticket{background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);overflow:hidden;position:sticky;top:3.4rem}
+  .comp .ticket .th{display:flex;justify-content:space-between;gap:.5rem;padding:.5rem .8rem;border-bottom:1px solid rgba(79,209,232,.25);font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
+  .comp .ticket .th .led{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);margin-right:.4rem;vertical-align:middle}
+  .comp .ticket.clean .th .led{background:#4fd1a8;box-shadow:0 0 8px #4fd1a8}
+  .comp .log{font-family:var(--mono);font-size:.8rem;line-height:1.55;color:#dff4f9;padding:.6rem .8rem;min-height:160px;white-space:pre-wrap}
+  .comp .log .d{color:var(--gold)}
+  .comp .log .g{color:#ff8a8a}
+  .comp .log .s{color:#4fd1a8}
+  .comp .log .m{color:#8fa6b3}
+  .comp .compiled{border-top:1px solid rgba(79,209,232,.25);padding:.6rem .8rem;font-family:var(--mono);font-size:.84rem;line-height:1.55;color:#fff;white-space:pre-wrap}
+  .comp .compiled .k{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:.3rem}
+  .comp .compiled .add{color:var(--cyan)}
+
+  /* ---------- Same prompt, five results ---------- */
+  .five .deck{display:grid;gap:.7rem}
+  .five .res{border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff;overflow:hidden;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(200px,1fr)}
+  @media (max-width:640px){.five .res{grid-template-columns:1fr}}
+  .five .out{padding:.8rem .9rem;background:var(--paper-2);border-right:1px solid var(--rule)}
+  .five .out .k{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);display:block;margin-bottom:.3rem}
+  .five .out .txt{font-size:.93rem;line-height:1.5;color:var(--ink)}
+  .five .out .txt i{color:var(--ink-soft)}
+  .five .tag{padding:.7rem .9rem}
+  .five .tag .k{font-family:var(--mono);font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep);display:block;margin-bottom:.3rem}
+  .five .opts{display:flex;gap:.3rem;flex-wrap:wrap}
+  .five .opts button{font:inherit;font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;padding:.35rem .55rem;border:1px solid var(--teal);border-radius:999px;background:#fff;color:var(--teal-deep);cursor:pointer}
+  .five .opts button:hover{background:var(--teal-pale)}
+  .five .opts button[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan)}
+  .five .opts button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .five .res.right{border-color:var(--ok)}
+  .five .res.near{border-color:var(--gold)}
+  .five .res.wrong{border-color:var(--bad)}
+  .five .fb{margin-top:.5rem;font-size:.88rem;padding:.4rem .55rem;border-radius:0 6px 6px 0;border-left:3px solid var(--gold);background:var(--gold-pale);animation:reveal .3s ease-out}
+  .five .res.right .fb{border-left-color:var(--ok);background:var(--ok-bg)}
+  .five .res.wrong .fb{border-left-color:var(--bad);background:var(--bad-bg)}
+
+  /* ---------- Version ladder ---------- */
+  .ladder .rungs{display:grid;gap:.8rem}
+  .ladder .rung{border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff;overflow:hidden}
+  .ladder .rung .rh{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap;padding:.5rem .8rem;background:var(--paper-3);border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep)}
+  .ladder .rung .rh .n{font-weight:600}
+  .ladder .rung .rb{padding:.7rem .8rem}
+  .ladder .rung textarea{width:100%;min-height:96px;font-family:var(--mono);font-size:.9rem;line-height:1.55;padding:.6rem .7rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
+  .ladder .rung textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .ladder .v1{font-family:var(--mono);font-size:.95rem;padding:.6rem .7rem;background:var(--navy);color:#fff;border-radius:8px}
+  .ladder .diff{margin-top:.5rem;font-family:var(--mono);font-size:.84rem;line-height:1.7;padding:.5rem .7rem;border:1px dashed var(--rule-strong);border-radius:8px;background:var(--paper-2);white-space:pre-wrap}
+  .ladder .diff .k{display:block;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem;font-family:var(--mono)}
+  .ladder .diff ins{background:var(--ok-bg);color:#0f3d26;text-decoration:none;border-radius:3px;padding:0 .1rem}
+  .ladder .diff del{background:var(--bad-bg);color:var(--bad);border-radius:3px;padding:0 .1rem}
+  .ladder .tags{display:flex;gap:.3rem;flex-wrap:wrap;margin-top:.5rem}
+  .ladder .tags button{font:inherit;font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;padding:.3rem .5rem;border:1px solid var(--rule-strong);border-radius:999px;background:#fff;color:var(--ink-soft);cursor:pointer}
+  .ladder .tags button[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan)}
+  .ladder .tags button.seen{border-color:var(--ok);color:var(--ok)}
+  .ladder .tags button[aria-pressed="true"].seen{background:var(--ok);border-color:var(--ok);color:#fff}
+  .ladder .tags button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .ladder .det{margin-top:.35rem;font-family:var(--mono);font-size:.72rem;color:var(--ink-soft);min-height:1.2em}
+  .ladder .det b{color:var(--teal-deep)}
+  .ladder .det .warn{color:#6d4a00}
+  .ladder .wc{font-family:var(--mono);font-size:.72rem;color:var(--ink-faint)}
+
+  /* ---------- Verification clause picker ---------- */
+  .verc .clauses{display:grid;gap:.4rem;margin:.4rem 0 .6rem}
+  .verc .cl{display:flex;gap:.6rem;align-items:flex-start;padding:.5rem .65rem;border:1px solid var(--rule-strong);border-radius:10px;background:#fff;cursor:pointer;font:inherit;text-align:left;color:var(--ink);transition:border-color .2s,background .2s}
+  .verc .cl:hover{border-color:var(--teal)}
+  .verc .cl[aria-pressed="true"]{background:var(--teal-pale);border-color:var(--teal)}
+  .verc .cl:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .verc .cl .box{flex:0 0 18px;width:18px;height:18px;border:1.5px solid var(--teal);border-radius:4px;margin-top:.15rem;position:relative;background:#fff}
+  .verc .cl[aria-pressed="true"] .box{background:var(--teal)}
+  .verc .cl[aria-pressed="true"] .box::after{content:"✓";color:#fff;position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-family:var(--mono);font-weight:700}
+  .verc .cl .t{font-size:.95rem}
+  .verc .cl .t small{display:block;font-size:.8rem;color:var(--ink-soft)}
+  .verc .cl.trap[aria-pressed="true"]{background:var(--gold-pale);border-color:var(--gold)}
+  .verc .prev{font-family:var(--mono);font-size:.86rem;line-height:1.55;padding:.7rem .8rem;background:var(--navy);color:#fff;border-radius:var(--radius);white-space:pre-wrap;border:1px solid var(--teal-deep)}
+  .verc .prev .add{color:#4fd1a8}
+  .verc .prev .k{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:.3rem}
+  .verc .refl{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.6rem;margin-top:.8rem}
+  .verc .refl > div{padding:.6rem .7rem;border:1px solid var(--rule-strong);border-radius:10px;background:var(--paper-2)}
+  .verc .refl h4{margin:0 0 .35rem;font-size:.9rem;color:var(--teal-deep)}
+  .verc .refl .opts{display:flex;gap:.3rem;flex-wrap:wrap}
+  .verc .refl .opts button{font:inherit;font-family:var(--mono);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;padding:.3rem .5rem;border:1px solid var(--teal);border-radius:999px;background:#fff;color:var(--teal-deep);cursor:pointer}
+  .verc .refl .opts button[aria-pressed="true"]{background:var(--navy);border-color:var(--cyan);color:var(--cyan)}
+  .verc .refl .opts button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .verc .refl textarea{width:100%;min-height:60px;font-family:var(--sans);font-size:.94rem;line-height:1.5;padding:.5rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical;margin-top:.3rem}
+  .verc .refl textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 3 • Lesson 3.4" data-title="Prompting as Rhetoric and Specification" data-key="ail-intro-3.4-lesson"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 3 • Lesson 3.4</p>
+    <h1>Prompting as Rhetoric and Specification</h1>
+    <p class="lede">Canvas Page + Practice</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <div class="rail" id="rail" aria-label="Lesson progress">
+    <span class="label">Lesson progress</span>
+    <div class="segs" id="segs" aria-hidden="true"></div>
+    <span class="pct" id="pct" aria-live="polite">0 of 7 steps</span>
+    <button type="button" id="resetAll" title="Clear saved progress on this device">Reset</button>
+  </div>
+
+  <section class="ledger" aria-label="Lesson details">
+    <div><span class="k">Estimated time</span><span class="v">30–45 minutes</span></div>
+    <div><span class="k">Lesson type</span><span class="v">Canvas Page + Practice</span></div>
+    <div><span class="k">Submit today</span><span class="v">Assignment 3.4: three versions of one prompt</span></div>
+    <div><span class="k">Module project</span><span class="v">Verified Research Brief and Prompt Portfolio</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Today’s target:</strong> Revise prompts using audience, purpose, context, constraints, format, examples, and verification requirements.<br><strong>Why it matters:</strong> How does a prompt shape the task a generative system is actually being asked to do?</p>
+  </div>
+
+  <h2>Lesson sequence</h2>
+  <ol class="sequence" id="sequence">
+
+    <!-- ============ STEP 1 ============ -->
+    <li class="step" data-step="1">
+      <span class="num" aria-hidden="true">1</span>
+      <div class="head"><h3>Retrieve</h3><span class="time">5 minutes</span></div>
+      <p>In Canvas, answer this warm-up in 2–3 sentences: When have you asked someone for help and received something different from what you wanted? What did you leave out of the request?</p>
+      <div class="foot"><button type="button" class="markbtn" data-mark="1" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 2 ============ -->
+    <li class="step" data-step="2">
+      <span class="num" aria-hidden="true">2</span>
+      <div class="head"><h3>Experience</h3><span class="time">12 minutes</span></div>
+      <div class="widget comp" id="compWidget">
+        <div class="bar"><span>Interactive · Prompt compiler</span><span class="tag">Seven slots, one job ticket</span></div>
+        <div class="body">
+          <p>Pick a weak prompt. Its tray holds fourteen lines: one real specification for each of the seven slots, and seven that sound like specifications but still leave the system guessing. Drag a line into a slot, or tap a line and then a slot. The job ticket on the right rewrites itself as you go, showing what the system is now actually being asked to do; anything left open is filled with a <span style="color:#6d4a00;font-weight:600">default</span>. When all seven slots are filled, press <strong>Compile</strong>.</p>
+          <div class="picks" id="compPicks" role="group" aria-label="Weak prompt to compile"></div>
+          <div class="layout">
+            <div>
+              <div class="weak" id="compWeak"><span class="k">Weak prompt</span><span id="compWeakTxt">—</span></div>
+              <div class="tray" id="compTray"><span class="traylbl">Tray</span></div>
+              <div class="slots" id="compSlots" style="margin-top:.6rem"></div>
+              <div class="tools">
+                <span class="counts"><span><b id="compPlaced">0</b> of 7 slots filled</span></span>
+                <span><button type="button" class="btn ghost" id="compReset">Start over</button> <button type="button" class="btn" id="compCompile" disabled>Compile</button></span>
+              </div>
+            </div>
+            <div class="ticket" id="compTicket">
+              <div class="th"><span><span class="led" aria-hidden="true"></span>Job ticket</span><span id="compTicketState">7 defaults</span></div>
+              <div class="log" id="compLog"></div>
+              <div class="compiled" id="compOut" hidden><span class="k">Compiled prompt</span><span id="compOutTxt"></span></div>
+            </div>
+          </div>
+          <div class="tools">
+            <span class="muted" style="font-size:.86rem">The compiled prompt feeds the version ladder in step 5.</span>
+            <span><button type="button" class="btn ghost" id="compCopy" disabled>Copy compiled prompt</button></span>
+          </div>
+          <div class="status" id="compStatus" role="status" aria-live="polite">Pick a weak prompt to begin.</div>
+        </div>
+      </div>
+      <div class="note"><p><strong>Interactive or text fallback:</strong> Prompt compiler: diagnose a weak prompt using a checklist of missing specifications. Accessible fallback: mark the checklist manually and write revision notes.</p><p><strong>What to notice:</strong> Every slot you leave empty is a decision the system makes for you. Your explanation of which specification changed the task most—not the compiled prompt alone—is the learning evidence.</p></div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="2" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 3 ============ -->
+    <li class="step" data-step="3">
+      <span class="num" aria-hidden="true">3</span>
+      <div class="head"><h3>Learn</h3><span class="time">8 minutes</span></div>
+      <p>Use the Reading 3.4 page as the core explanation. As you reread, make a three-column note: <em>what I asked for</em>, <em>what the system would have to assume</em>, and <em>which specification removes the assumption</em>. This habit turns a vague request into a task a system can actually carry out.</p>
+      <div class="cols" aria-label="The three columns">
+        <div><b>What I asked for</b>The request as you first wrote it.</div>
+        <div><b>What the system would have to assume</b>Every blank a stranger would fill in.</div>
+        <div><b>Which specification removes the assumption</b>Audience, purpose, context, constraints, format, examples, or verification.</div>
+      </div>
+      <h4 style="margin:1rem 0 .2rem;color:var(--teal-deep)">Mini-protocol: Specify, compile, check</h4>
+      <ol class="protocol">
+        <li><strong>Specify:</strong> Name the audience, purpose, context, constraints, format, examples, and verification requirements.</li>
+        <li><strong>Compile:</strong> Read the prompt as a stranger with no memory of your intent. List every assumption that stranger would have to make.</li>
+        <li><strong>Check:</strong> For each assumption, add a specification or accept the default on purpose. Record why.</li>
+      </ol>
+      <div class="foot"><button type="button" class="markbtn" data-mark="3" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 4 ============ -->
+    <li class="step" data-step="4">
+      <span class="num" aria-hidden="true">4</span>
+      <div class="head"><h3>Practice with feedback</h3><span class="time">8 minutes</span></div>
+      <div class="widget five" id="fiveWidget">
+        <div class="bar"><span>Interactive · Same prompt, five results</span><span class="tag">Name the missing specification</span></div>
+        <div class="body">
+          <p>Five students sent the same prompt and got five different results. Each result is a fair reading of the prompt as written. For each one, tag the specification whose absence let it happen, then press <strong>Check</strong>. Some results have a second defensible tag; the feedback says so.</p>
+          <div class="weak" style="font-family:var(--mono);font-size:1.02rem;padding:.7rem .9rem;background:var(--navy);color:#fff;border:1px solid var(--teal-deep);border-radius:var(--radius);margin:.3rem 0 .8rem"><span style="display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:.2rem">The prompt everyone sent</span>Write a short summary of the French Revolution for class.</div>
+          <div class="deck" id="fiveDeck"></div>
+          <div class="tools">
+            <span class="counts"><span><b id="fiveTagged">0</b> of 5 tagged</span><span><b id="fiveRight">0</b> of 5 best tags</span></span>
+            <span><button type="button" class="btn ghost" id="fiveReset">Start over</button> <button type="button" class="btn" id="fiveCheck" disabled>Check</button></span>
+          </div>
+          <div class="status" id="fiveStatus" role="status" aria-live="polite">Five results. Which slot was left open for each?</div>
+        </div>
+      </div>
+      <table>
+        <thead><tr><th scope="col">Practice item</th><th scope="col">Strong reasoning looks like</th></tr></thead>
+        <tbody>
+          <tr><td>“Write me a summary.”</td><td>A summary of what, for whom, and how long? Audience, purpose, and format are missing, so the system will choose all three.</td></tr>
+          <tr><td>“Make it good.”</td><td>“Good” is not a specification. Replace it with constraints the system can follow: length, tone, reading level, what to leave out.</td></tr>
+          <tr><td>“The prompt is long, so it must be clear.”</td><td>Length is not clarity. A long prompt can still omit the audience or the verification requirement. Check the seven elements, not the word count.</td></tr>
+        </tbody>
+      </table>
+      <div class="foot"><button type="button" class="markbtn" data-mark="4" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 5 ============ -->
+    <li class="step" data-step="5">
+      <span class="num" aria-hidden="true">5</span>
+      <div class="head"><h3>Apply independently</h3><span class="time">12 minutes</span></div>
+      <div class="callout"><p><strong>Required task:</strong> Three versions of one prompt, with a 300–400 word explanation of how each revision improves task clarity.</p><p><strong>Guiding question:</strong> Which missing specification would most improve the weak prompt first, and why?</p></div>
+      <div class="widget ladder" id="ladderWidget">
+        <div class="bar"><span>Interactive · Version ladder</span><span class="tag">Feeds Assignment 3.4</span></div>
+        <div class="body">
+          <p>Build your three versions here. Version 1 is the weak prompt. Write version 2 by adding the specification you think matters most; write version 3 by adding the rest. Under each version, tag what you added; the detector reads your text and lights the tags it can actually find, so a tag you claim but the detector cannot see is worth a second look. The diff shows exactly what changed. Everything here is imported by the assignment page on this device.</p>
+          <div class="tools" style="margin:0 0 .6rem">
+            <span class="muted" style="font-size:.86rem">Start from the weak prompt, or from your compiled prompt in step 2.</span>
+            <span><button type="button" class="btn ghost" id="ladFromWeak">Use the weak prompt</button> <button type="button" class="btn ghost" id="ladFromComp">Use my compiled prompt as version 3</button></span>
+          </div>
+          <div class="rungs">
+            <div class="rung">
+              <div class="rh"><span class="n">Version 1 · the weak prompt</span><span class="wc" id="wc1"></span></div>
+              <div class="rb"><div class="v1" id="v1"></div></div>
+            </div>
+            <div class="rung">
+              <div class="rh"><span class="n">Version 2 · the first specification</span><span class="wc" id="wc2"></span></div>
+              <div class="rb">
+                <label for="v2" class="sr">Version 2</label>
+                <textarea id="v2" placeholder="Rewrite version 1 with the one specification that matters most."></textarea>
+                <div class="diff" id="diff2"><span class="k">Changes from version 1</span><span class="muted">Nothing changed yet.</span></div>
+                <div class="tags" id="tags2" role="group" aria-label="What version 2 adds"></div>
+                <div class="det" id="det2"></div>
+              </div>
+            </div>
+            <div class="rung">
+              <div class="rh"><span class="n">Version 3 · the full specification</span><span class="wc" id="wc3"></span></div>
+              <div class="rb">
+                <label for="v3" class="sr">Version 3</label>
+                <textarea id="v3" placeholder="Rewrite version 2 with the remaining specifications."></textarea>
+                <div class="diff" id="diff3"><span class="k">Changes from version 2</span><span class="muted">Nothing changed yet.</span></div>
+                <div class="tags" id="tags3" role="group" aria-label="What version 3 adds"></div>
+                <div class="det" id="det3"></div>
+              </div>
+            </div>
+          </div>
+          <div class="tools">
+            <span class="counts"><span><b id="ladSpecs">0</b> of 7 specifications detected in version 3</span></span>
+            <span><button type="button" class="btn ghost" id="ladClear">Clear versions</button> <button type="button" class="btn" id="ladCopy" disabled>Copy all three</button></span>
+          </div>
+          <div class="status" id="ladStatus" role="status" aria-live="polite">Version 1 is set. Write version 2.</div>
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="5" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 6 ============ -->
+    <li class="step" data-step="6">
+      <span class="num" aria-hidden="true">6</span>
+      <div class="head"><h3>Check and reflect</h3><span class="time">5 minutes</span></div>
+      <p>Before submitting, answer: Which specification changed the task most? Which default did you accept on purpose? What would you still need to verify in the output?</p>
+      <div class="widget verc" id="vercWidget">
+        <div class="bar"><span>Interactive · Verification clause picker</span><span class="tag">The last line of version 3</span></div>
+        <div class="body">
+          <p>A verification requirement tells the system what to do with a fact it cannot support. Pick the clauses that belong in your version 3; two of the six only sound like verification. The preview shows your version 3 with the clauses appended. Then answer the three reflection questions below; the first two are picks, the third is yours to write.</p>
+          <div class="clauses" id="clauses" role="group" aria-label="Verification clauses"></div>
+          <div class="prev" id="vercPrev"><span class="k">Version 3 with verification</span><span id="vercPrevTxt"></span></div>
+          <div class="tools">
+            <span class="counts"><span><b id="vercN">0</b> clauses chosen</span></span>
+            <span><button type="button" class="btn" id="vercAppend" disabled>Append to version 3</button></span>
+          </div>
+          <div class="refl">
+            <div><h4>Which specification changed the task most?</h4><div class="opts" id="reflMost"></div></div>
+            <div><h4>Which default did you accept on purpose?</h4><div class="opts" id="reflDef"></div></div>
+            <div><h4>What would you still need to verify in the output?</h4><label for="reflVer" class="sr">What you would still need to verify</label><textarea id="reflVer" placeholder="One or two sentences."></textarea></div>
+          </div>
+          <div class="status" id="vercStatus" role="status" aria-live="polite">Pick the clauses that are real verification requirements.</div>
+        </div>
+      </div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="6" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+
+    <!-- ============ STEP 7 ============ -->
+    <li class="step" data-step="7">
+      <span class="num" aria-hidden="true">7</span>
+      <div class="head"><h3>Build the module project</h3><span class="time">3 minutes</span></div>
+      <p>This lesson contributes to the <strong>Verified Research Brief and Prompt Portfolio</strong>. Save your notes, source checks, prompt versions, and decisions. They are evidence of your process and authorship.</p>
+      <div class="tools" style="justify-content:flex-start"><button type="button" class="btn ghost" id="portCopy" disabled>Copy my prompt versions and reflections</button></div>
+      <div class="status" id="portStatus" role="status" aria-live="polite">Finish the version ladder first.</div>
+      <div class="foot"><button type="button" class="markbtn" data-mark="7" aria-pressed="false"><span class="tick" aria-hidden="true">○</span> Mark step complete</button></div>
+    </li>
+  </ol>
+
+  <div class="note"><p><strong>Accessibility:</strong> Complete the text fallback if an interaction does not work with your device or assistive technology. The fallback meets the same objective and is equally acceptable.</p></div>
+  <p class="aside">Step progress and everything you write on this page are saved only in this browser. They are not submitted or graded.</p>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 3 • Lesson 3.4 | If an interactive is unavailable, complete the text fallback.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t}return a}
+  function copyText(txt,st,okMsg){
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){st.className="status ok";st.textContent=okMsg},function(){st.className="status bad";st.textContent="Copy failed. Select the text and copy it by hand."})}
+    else{st.className="status bad";st.textContent="Copy failed. Select the text and copy it by hand."}
+  }
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+  var SPEC=[["aud","Audience"],["pur","Purpose"],["ctx","Context"],["con","Constraints"],["fmt","Format"],["ex","Examples"],["ver","Verification"]];
+  var SPECNAME={};SPEC.forEach(function(s){SPECNAME[s[0]]=s[1]});
+
+  /* Generic tap-or-drag placement */
+  function placer(opts){
+    var sel=null;
+    function select(t){if(sel===t){t.classList.remove("sel");sel=null;return}if(sel)sel.classList.remove("sel");sel=t;t.classList.add("sel");opts.onSelect&&opts.onSelect(t)}
+    function wireTile(t){
+      t.setAttribute("draggable","true");
+      t.addEventListener("click",function(){select(t)});
+      t.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();select(t)}});
+      t.addEventListener("dragstart",function(e){if(sel)sel.classList.remove("sel");sel=t;t.classList.add("sel");try{e.dataTransfer.setData("text/plain","x")}catch(x){}e.dataTransfer.effectAllowed="move"});
+    }
+    function wireTarget(tg,fn){
+      if(!tg.hasAttribute("tabindex"))tg.tabIndex=0;if(!tg.getAttribute("role"))tg.setAttribute("role","button");
+      tg.addEventListener("click",function(e){if(e.target.closest(".tile"))return;if(sel){var t=sel;fn(t,tg);clear()}});
+      tg.addEventListener("keydown",function(e){if((e.key==="Enter"||e.key===" ")&&sel&&e.target===tg){e.preventDefault();var t=sel;fn(t,tg);clear()}});
+      tg.addEventListener("dragover",function(e){e.preventDefault();tg.classList.add("over")});
+      tg.addEventListener("dragleave",function(){tg.classList.remove("over")});
+      tg.addEventListener("drop",function(e){e.preventDefault();tg.classList.remove("over");if(sel){var t=sel;fn(t,tg);clear()}});
+    }
+    function clear(){if(sel)sel.classList.remove("sel");sel=null}
+    return {wireTile:wireTile,wireTarget:wireTarget,clear:clear};
+  }
+
+  /* ---------- Step progress + rail ---------- */
+  var KEY_STEPS="ail34l-steps",TOTAL=7;
+  var steps=store.get(KEY_STEPS,{});
+  function renderRail(){
+    var segs=$("segs");segs.innerHTML="";var n=0;
+    for(var i=1;i<=TOTAL;i++){var s=el("span","seg"+(steps[i]?" done":""));segs.appendChild(s);if(steps[i])n++}
+    $("pct").textContent=n+" of "+TOTAL+" steps";
+    document.querySelectorAll(".step").forEach(function(li){
+      var k=li.getAttribute("data-step");li.classList.toggle("done",!!steps[k]);
+      var b=li.querySelector(".markbtn");if(b){b.setAttribute("aria-pressed",steps[k]?"true":"false");
+        b.innerHTML='<span class="tick" aria-hidden="true">'+(steps[k]?"✓":"○")+'</span> '+(steps[k]?"Step complete":"Mark step complete")}
+    });
+  }
+  document.querySelectorAll(".markbtn").forEach(function(b){
+    b.addEventListener("click",function(){var k=b.getAttribute("data-mark");steps[k]=!steps[k];store.set(KEY_STEPS,steps);renderRail()});
+  });
+  $("resetAll").addEventListener("click",function(){
+    if(!confirm("Clear saved progress and work for this lesson on this device?"))return;
+    steps={};store.del(KEY_STEPS);
+    ["ail34l-comp","ail34l-comp-pick","ail34l-compiled","ail34l-five","ail34l-v1","ail34l-v2","ail34l-v3","ail34l-tags","ail34l-ver","ail34l-most","ail34l-def","ail34l-refl"].forEach(store.del);
+    renderRail();compInit();fiveReset();ladLoad();vercInit();
+  });
+  renderRail();
+
+  /* ---------- Prompt compiler ---------- */
+  var PROMPTS=[
+    {id:"water",weak:"Write about the water cycle.",
+     def:{aud:"a general adult reader",pur:"an encyclopedia-style overview",ctx:"assumes nothing about what the reader already knows",con:"any length, any vocabulary",fmt:"paragraphs",ex:"the system’s usual style",ver:"facts stated with equal confidence, right or wrong"},
+     good:{aud:"For a third-grade class.",pur:"To review the four stages before Friday’s quiz.",ctx:"We studied evaporation, condensation, precipitation, and collection this week.",con:"Under 150 words; simple sentences; no terms we have not studied.",fmt:"Five bullet points, one stage each, then one sentence tying them together.",ex:"Example bullet: “Evaporation: the sun warms water and it rises as vapor.”",ver:"Do not invent numbers; mark any fact you are unsure of with [check]."},
+     bad:{aud:["For anyone who reads it.","Names no reader. The system still has to guess the reading level and background."],pur:["Because I need it for school.","Says why you want it, not what the output should do for its reader."],ctx:["It’s a science thing.","Tells the system nothing it could not guess from the word “water.”"],con:["Make it really good and not too long.","“Good” and “not too long” are not limits the system can follow. Name the length and the vocabulary."],fmt:["Whatever format works best.","Hands the choice of shape back to the system."],ex:["Like the ones you usually write.","The system has no memory of what it usually writes for you. Show one bullet."],ver:["Make sure it’s accurate.","Every system already tries to be accurate. Say what to do with a fact it cannot support."]}},
+    {id:"hist",weak:"Help me with my history project.",
+     def:{aud:"an unknown reader; the system will write for itself",pur:"generic study tips, or a project it invents",ctx:"no topic, no sources, no deadline",con:"any length, any depth, any sources",fmt:"paragraphs of advice",ex:"the system’s usual style",ver:"facts and sources stated with equal confidence, real or not"},
+     good:{aud:"For my ninth-grade world history teacher, who will grade it.",pur:"To outline a five-minute presentation on the causes of World War I.",ctx:"I have read the textbook chapter and have three sources; the presentation is Thursday.",con:"Outline only, no full sentences for me to read aloud; stay within my three sources.",fmt:"A numbered outline with three main causes and two supporting facts each.",ex:"Example line: “1. Alliance system — Europe split into two armed camps by 1907.”",ver:"Cite which of my three sources supports each fact; write [not in sources] if none does."},
+     bad:{aud:["For school.","“School” is a place, not a reader. Who grades it, and what do they expect?"],pur:["To help me get it done.","Describes your deadline pressure, not the task. What is the project?"],ctx:["It’s due soon and I’m behind.","Urgency is not context. The system still does not know the topic or what you have read."],con:["Don’t make it boring.","A wish, not a limit. The system cannot tell what you find boring."],fmt:["However you think is best.","Returns the decision about shape to the system."],ex:["Like a normal outline.","“Normal” is whatever the system guesses. One example line pins the shape."],ver:["Double-check everything.","The system cannot check anything against your sources unless you tell it what the sources are and how to mark gaps."]}}
+  ];
+  var comp=store.get("ail34l-comp",{}),compPick=store.get("ail34l-comp-pick",""),cur=null,cp=placer({});
+  function compState(){return comp[compPick]||(comp[compPick]={slots:{},checked:false})}
+  function compSave(){store.set("ail34l-comp",comp)}
+  function compStatus(kind,t){var s=$("compStatus");s.className="status"+(kind?" "+kind:"");s.textContent=t}
+  function tileFor(p,key){
+    var kind=key.charAt(0),sid=key.slice(1),txt=kind==="g"?p.good[sid]:p.bad[sid][0];
+    var t=el("button","tile",txt);t.type="button";t.setAttribute("data-key",key);cp.wireTile(t);return t;
+  }
+  function compRender(){
+    var p=cur,st=compState();
+    $("compWeakTxt").textContent=p?p.weak:"—";
+    var tray=$("compTray");tray.innerHTML="";tray.appendChild(el("span","traylbl","Tray"));
+    var slots=$("compSlots");slots.innerHTML="";
+    if(!p){$("compPlaced").textContent=0;$("compCompile").disabled=true;$("compCopy").disabled=true;compLog();return}
+    var used={};SPEC.forEach(function(s){if(st.slots[s[0]])used[st.slots[s[0]]]=1});
+    var keys=[];SPEC.forEach(function(s){keys.push("g"+s[0]);keys.push("b"+s[0])});
+    var order=st.order||(st.order=shuffle(keys));compSave();
+    order.forEach(function(k){if(!used[k])tray.appendChild(tileFor(p,k))});
+    cp.wireTarget(tray,function(t,tg){var k=t.getAttribute("data-key");SPEC.forEach(function(s){if(st.slots[s[0]]===k)delete st.slots[s[0]]});st.checked=false;compSave();compRender()});
+    var n=0;
+    SPEC.forEach(function(s){
+      var slot=el("div","slot");slot.setAttribute("data-slot",s[0]);
+      slot.appendChild(el("span","k",s[1]));var d=el("div","drop");
+      var k=st.slots[s[0]];
+      if(k){n++;var t=tileFor(p,k);t.removeAttribute("draggable");
+        if(st.checked){var good=k.charAt(0)==="g";t.classList.add(good?"right":"wrong");d.appendChild(t);
+          d.appendChild(el("div","why"+(good?" ok":""),good?"A real specification. The system no longer has to guess this one.":p.bad[k.slice(1)][1]))}
+        else d.appendChild(t);
+        t.addEventListener("click",function(e){e.stopPropagation();delete st.slots[s[0]];st.checked=false;compSave();compRender()});
+      }
+      slot.appendChild(d);
+      cp.wireTarget(slot,function(t,tg){
+        var key=t.getAttribute("data-key");
+        SPEC.forEach(function(x){if(st.slots[x[0]]===key)delete st.slots[x[0]]});
+        st.slots[s[0]]=key;st.checked=false;compSave();compRender();
+        compStatus("",n>=6?"All seven slots filled. Press Compile.":"Placed. "+(7-Object.keys(st.slots).length)+" slot"+(7-Object.keys(st.slots).length===1?"":"s")+" still open.");
+      });
+      slots.appendChild(slot);
+    });
+    $("compPlaced").textContent=n;$("compCompile").disabled=n<7;
+    compLog();
+    if(st.checked)compResult();else{$("compOut").hidden=true;$("compCopy").disabled=true;$("compTicket").classList.remove("clean")}
+  }
+  function compLog(){
+    var log=$("compLog");log.innerHTML="";var p=cur,st=p?compState():null;
+    if(!p){log.appendChild(el("span","m","> waiting for a prompt…"));$("compTicketState").textContent="idle";return}
+    log.appendChild(el("span","m","> reading: "));log.appendChild(document.createTextNode(p.weak+"\n"));
+    var defaults=0,guesses=0;
+    SPEC.forEach(function(s){
+      var k=st.slots[s[0]];
+      log.appendChild(el("span","m","> "+s[1].toLowerCase()+": "));
+      if(!k){defaults++;log.appendChild(el("span","d","NOT FOUND → default: "+p.def[s[0]]+"\n"))}
+      else if(st.checked&&k.charAt(0)==="b"){guesses++;log.appendChild(el("span","g","STILL A GUESS → default: "+p.def[s[0]]+"\n"))}
+      else{log.appendChild(el("span",st.checked?"s":null,(k.charAt(0)==="g"?p.good[s[0]]:p.bad[s[0]][0])+"\n"))}
+    });
+    $("compTicketState").textContent=st.checked?(guesses?guesses+" still guessed":"no defaults"):(defaults+" default"+(defaults===1?"":"s"));
+  }
+  function compResult(){
+    var p=cur,st=compState(),bad=0,lines=[p.weak];
+    SPEC.forEach(function(s){var k=st.slots[s[0]];if(k.charAt(0)==="g")lines.push(p.good[s[0]]);else bad++});
+    $("compOut").hidden=false;var o=$("compOutTxt");o.innerHTML="";
+    lines.forEach(function(l,i){if(i)o.appendChild(document.createTextNode("\n"));o.appendChild(el("span",i?"add":null,l))});
+    $("compTicket").classList.toggle("clean",bad===0);
+    $("compCopy").disabled=bad>0;
+    if(bad===0){store.set("ail34l-compiled",lines.join("\n"));compStatus("ok","Compiled with no defaults. Every slot holds a real specification. Copy it, or use it as version 3 in step 5.")}
+    else compStatus("bad",bad+" slot"+(bad===1?"":"s")+" still leave"+(bad===1?"s":"")+" the system guessing (red). Each one explains why. Tap a red line to send it back to the tray and try the other.");
+  }
+  $("compCompile").addEventListener("click",function(){var st=compState();if(Object.keys(st.slots).length<7)return;st.checked=true;compSave();compRender()});
+  $("compReset").addEventListener("click",function(){if(!cur)return;comp[compPick]={slots:{},checked:false};compSave();compRender();compStatus("","Tray refilled.")});
+  $("compCopy").addEventListener("click",function(){copyText(store.get("ail34l-compiled",""),$("compStatus"),"Compiled prompt copied. You may paste it into an approved AI tool to test it; disclose that in the assignment.")});
+  function compPicks(){
+    var w=$("compPicks");w.innerHTML="";
+    PROMPTS.forEach(function(p){var b=el("button","pick",p.weak);b.type="button";b.setAttribute("aria-pressed",compPick===p.id?"true":"false");b.addEventListener("click",function(){compPick=p.id;store.set("ail34l-comp-pick",compPick);compInit()});w.appendChild(b)});
+  }
+  function compInit(){
+    comp=store.get("ail34l-comp",{});compPick=store.get("ail34l-comp-pick","");
+    cur=null;PROMPTS.forEach(function(p){if(p.id===compPick)cur=p});
+    compPicks();compRender();
+    if(cur)compStatus("",Object.keys(compState().slots).length?"Your slots are saved on this device.":"Fourteen lines in the tray. Seven are real specifications.");
+  }
+  compInit();
+
+  /* ---------- Same prompt, five results ---------- */
+  var FIVE=[
+    {id:"essay",k:"Result 1",txt:"Nine hundred words on the bourgeoisie, the ancien régime, and the fiscal crisis of 1788, with a paragraph on historiographical debates.",best:"aud",also:["con"],
+     fb:{aud:"“For class” never said which class. The system wrote for a college seminar.",con:"Defensible: a length limit would have cut it. But the vocabulary problem is the audience, so Audience is the stronger tag.",other:"Look at the words: bourgeoisie, historiographical. This went to the wrong reader."}},
+    {id:"poem",k:"Result 2",txt:"A sixteen-line rhyming poem. “The Bastille fell in summer’s heat / the king would soon face his defeat.”",best:"fmt",also:["pur"],
+     fb:{fmt:"“Summary” says nothing about shape. A poem is one fair reading of it.",pur:"Defensible: a stated purpose (to study from) would also have ruled out a poem. Format is the more direct fix.",other:"Nothing in the prompt rules out a poem. The shape of the output was never specified."}},
+    {id:"dates",k:"Result 3",txt:"A tidy timeline: begins in 1788, ends in 1812, and includes a “Treaty of Lyon” that does not exist. No sources.",best:"ver",also:[],
+     fb:{ver:"Right. The prompt said “facts” and never said what to do with an uncertain one, so an invented treaty arrived with the same confidence as a real date.",other:"The problem is not the shape or the reader. It is a made-up fact delivered confidently. Only a verification requirement addresses that."}},
+    {id:"today",k:"Result 4",txt:"Three paragraphs on why the Revolution still matters today: democracy, human rights, protest movements. No events, no dates.",best:"pur",also:["ctx"],
+     fb:{pur:"The prompt never said what the summary was for. “To review the main events for a test” would have produced events.",ctx:"Defensible: context about the unit (the events studied) would also have steered it. Purpose is the more direct fix.",other:"This result is well written and useless for a test. What was the summary supposed to do?"}},
+    {id:"thin",k:"Result 5",txt:"Two sentences: “The French Revolution was a revolution in France that began in 1789. It changed a lot of things.”",best:"ex",also:["con"],
+     fb:{ex:"One example sentence of the detail expected would have set the bar. Without it, “short” collapsed to nothing.",con:"Defensible: a minimum length or “include at least five events” would also fix it. An example shows both the length and the kind of detail at once.",other:"The result is short, as asked. What it lacks is any sense of what a good sentence looks like."}}
+  ];
+  var five=store.get("ail34l-five",{tags:{},checked:false});
+  function fiveSave(){store.set("ail34l-five",five)}
+  function fiveStatus(kind,t){var s=$("fiveStatus");s.className="status"+(kind?" "+kind:"");s.textContent=t}
+  function fiveRender(){
+    var deck=$("fiveDeck");deck.innerHTML="";var tagged=0,right=0;
+    FIVE.forEach(function(r){
+      var card=el("div","res");var out=el("div","out");out.appendChild(el("span","k",r.k));out.appendChild(el("div","txt",r.txt));card.appendChild(out);
+      var tag=el("div","tag");tag.appendChild(el("span","k","Which slot was open?"));var opts=el("div","opts");
+      SPEC.forEach(function(s){var b=el("button",null,s[1]);b.type="button";b.setAttribute("aria-pressed",five.tags[r.id]===s[0]?"true":"false");
+        b.addEventListener("click",function(){if(five.checked)return;five.tags[r.id]=five.tags[r.id]===s[0]?undefined:s[0];if(!five.tags[r.id])delete five.tags[r.id];fiveSave();fiveRender()});opts.appendChild(b)});
+      tag.appendChild(opts);
+      var t=five.tags[r.id];if(t)tagged++;
+      if(five.checked&&t){
+        var cls=t===r.best?"right":(r.also.indexOf(t)>=0?"near":"wrong");card.classList.add(cls);if(cls==="right")right++;
+        tag.appendChild(el("div","fb",cls==="right"?r.fb[t]:(cls==="near"?r.fb[t]:r.fb.other+" Best tag: "+SPECNAME[r.best]+".")));
+      }
+      card.appendChild(tag);deck.appendChild(card);
+    });
+    $("fiveTagged").textContent=tagged;$("fiveRight").textContent=five.checked?right:0;$("fiveCheck").disabled=tagged<5||five.checked;
+    if(five.checked)fiveStatus(right===5?"ok":"",right===5?"Five for five. Each result was a fair reading; each missing specification was a decision the student handed to the system.":right+" of 5 best tags. Gold cards are defensible second choices; red cards name the best tag. Reread the result before you move on.");
+  }
+  $("fiveCheck").addEventListener("click",function(){five.checked=true;fiveSave();fiveRender()});
+  function fiveReset(){five={tags:{},checked:false};fiveSave();fiveRender();fiveStatus("","Five results. Which slot was left open for each?")}
+  $("fiveReset").addEventListener("click",fiveReset);
+  fiveRender();
+
+  /* ---------- Version ladder ---------- */
+  var DETECT={
+    aud:/\b(for (a|an|my|the) [a-z-]+ (class|grade|graders?|teacher|students?|reader|readers|audience|team|parents?|principal)|audience|reader|readers|grade|graders?|teacher|students?|beginner|expert|who will (read|grade))\b/i,
+    pur:/\b(purpose|so that|so they|to review|to prepare|to help [a-z]+ (understand|learn|decide|study)|in order to|the goal|goal is|will be used (to|for)|for a (quiz|test|poster|presentation|lab|report))\b/i,
+    ctx:/\b(we (studied|read|covered|learned)|i have (read|three|two|a)|this week|last week|background|context|the situation|my sources?|the (textbook|chapter|unit)|is due|on (monday|tuesday|wednesday|thursday|friday))\b/i,
+    con:/\b(under \d+|no more than|at most|at least|\d+ ?(words|sentences|minutes|lines)|word limit|tone|reading level|simple sentences|do not (include|use|mention)|don’t (include|use)|avoid|only|no (terms|jargon|new)|stay within|leave out)\b/i,
+    fmt:/\b(bullet|bullets|bulleted|table|list|numbered|outline|paragraphs?|headings?|email|slides?|timeline|one sentence each|format|json|csv|columns?|rows?)\b/i,
+    ex:/\b(example|for example|e\.g\.|such as|like this|here is one|sample|model answer|should look like)\b/i,
+    ver:/\b(cite|citation|sources?|flag|mark any|unsure|uncertain|not sure|do not invent|don’t invent|verify|verified|\[check\]|\[not in sources\]|not enough information|say so|evidence)\b/i
+  };
+  var WEAK_DEFAULT="Write about the water cycle.";
+  var lad={v1:"",v2:"",v3:""},tags=store.get("ail34l-tags",{2:{},3:{}});
+  function wc(s){s=(s||"").trim();return s?s.split(/\s+/).length:0}
+  function tokens(s){return (s||"").trim().split(/\s+/).filter(Boolean)}
+  function diff(a,b){
+    var A=tokens(a),B=tokens(b),n=A.length,m=B.length,i,j;
+    var L=[];for(i=0;i<=n;i++){L.push(new Array(m+1).fill(0))}
+    for(i=n-1;i>=0;i--)for(j=m-1;j>=0;j--)L[i][j]=A[i]===B[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);
+    var out=[];i=0;j=0;
+    while(i<n&&j<m){if(A[i]===B[j]){out.push(["=",A[i]]);i++;j++}else if(L[i+1][j]>=L[i][j+1]){out.push(["-",A[i]]);i++}else{out.push(["+",B[j]]);j++}}
+    while(i<n){out.push(["-",A[i]]);i++}while(j<m){out.push(["+",B[j]]);j++}
+    return out;
+  }
+  function renderDiff(id,a,b,label){
+    var box=$(id);box.innerHTML="";box.appendChild(el("span","k",label));
+    if(!(b||"").trim()){box.appendChild(el("span","muted","Nothing written yet."));return}
+    if(a.trim()===b.trim()){box.appendChild(el("span","muted","Identical to the version above."));return}
+    var d=diff(a,b),adds=0,dels=0;
+    d.forEach(function(p,i){
+      var node;if(p[0]==="+"){node=el("ins",null,p[1]);adds++}else if(p[0]==="-"){node=el("del",null,p[1]);dels++}else node=document.createTextNode(p[1]);
+      box.appendChild(node);if(i<d.length-1)box.appendChild(document.createTextNode(" "));
+    });
+    box.appendChild(document.createTextNode("\n"));box.appendChild(el("span","muted","+"+adds+" words, −"+dels+" words"));
+  }
+  function detect(text,prevText){
+    var found={},prev={};
+    SPEC.forEach(function(s){found[s[0]]=DETECT[s[0]].test(text||"");prev[s[0]]=DETECT[s[0]].test(prevText||"")});
+    return {found:found,prev:prev};
+  }
+  function renderTags(n,text,prevText){
+    var wrap=$("tags"+n);wrap.innerHTML="";var d=detect(text,prevText),claimed=0,seen=0,unseen=[];
+    SPEC.forEach(function(s){
+      var b=el("button",null,s[1]);b.type="button";var on=!!tags[n][s[0]];b.setAttribute("aria-pressed",on?"true":"false");
+      if(d.found[s[0]]&&!d.prev[s[0]])b.classList.add("seen");
+      if(on){claimed++;if(d.found[s[0]])seen++;else unseen.push(s[1])}
+      b.addEventListener("click",function(){tags[n][s[0]]=!tags[n][s[0]];store.set("ail34l-tags",tags);ladUpdate()});
+      wrap.appendChild(b);
+    });
+    var det=$("det"+n);det.innerHTML="";
+    var newly=SPEC.filter(function(s){return d.found[s[0]]&&!d.prev[s[0]]}).map(function(s){return s[1]});
+    if(!(text||"").trim()){det.textContent="Tags light up when the detector finds that specification in your text."}
+    else{det.appendChild(el("span",null,"Detector finds new in this version: "));det.appendChild(el("b",null,newly.length?newly.join(", "):"nothing yet"));
+      if(unseen.length){det.appendChild(document.createTextNode(". "));det.appendChild(el("span","warn","Tagged but not found: "+unseen.join(", ")+". Make it explicit in the text."))}}
+    return d;
+  }
+  function ladStatus(kind,t){var s=$("ladStatus");s.className="status"+(kind?" "+kind:"");s.textContent=t}
+  function ladUpdate(){
+    $("v1").textContent=lad.v1;$("wc1").textContent=wc(lad.v1)+" words";$("wc2").textContent=wc(lad.v2)+" words";$("wc3").textContent=wc(lad.v3)+" words";
+    renderDiff("diff2",lad.v1,lad.v2,"Changes from version 1");renderDiff("diff3",lad.v2,lad.v3,"Changes from version 2");
+    renderTags(2,lad.v2,lad.v1);var d3=renderTags(3,lad.v3,lad.v2);
+    var n=0;SPEC.forEach(function(s){if(DETECT[s[0]].test(lad.v3||""))n++});$("ladSpecs").textContent=n;
+    var has2=lad.v2.trim(),has3=lad.v3.trim();
+    $("ladCopy").disabled=!(has2&&has3);$("portCopy").disabled=!(has2&&has3);
+    if(has2&&has3){$("portStatus").className="status";$("portStatus").textContent="Your three versions and reflections are ready to copy into your portfolio notes."}
+    if(!has2)ladStatus("","Version 1 is set. Write version 2.");
+    else if(!has3)ladStatus("","Version 2 written. Now write version 3 with the remaining specifications.");
+    else if(n>=6)ladStatus("ok",n+" of 7 specifications detected in version 3. The assignment page will import all three versions and your tags.");
+    else ladStatus("",n+" of 7 specifications detected in version 3. The assignment asks you to explain each revision; the ones the detector cannot find are the ones to make explicit.");
+    vercPreview();
+  }
+  function ladLoad(){
+    lad.v1=store.get("ail34l-v1","")||WEAK_DEFAULT;lad.v2=store.get("ail34l-v2","");lad.v3=store.get("ail34l-v3","");
+    tags=store.get("ail34l-tags",{2:{},3:{}});
+    $("v2").value=lad.v2;$("v3").value=lad.v3;ladUpdate();
+  }
+  $("v2").addEventListener("input",function(){lad.v2=this.value;store.set("ail34l-v2",lad.v2);ladUpdate()});
+  $("v3").addEventListener("input",function(){lad.v3=this.value;store.set("ail34l-v3",lad.v3);ladUpdate()});
+  $("ladFromWeak").addEventListener("click",function(){
+    var p=null;PROMPTS.forEach(function(x){if(x.id===store.get("ail34l-comp-pick",""))p=x});
+    lad.v1=p?p.weak:WEAK_DEFAULT;store.set("ail34l-v1",lad.v1);ladUpdate();ladStatus("","Version 1 set to the weak prompt"+(p?" you compiled in step 2":"")+".");
+  });
+  $("ladFromComp").addEventListener("click",function(){
+    var c=store.get("ail34l-compiled","");if(!c){ladStatus("bad","No compiled prompt yet. Finish step 2 with no defaults first.");return}
+    if(lad.v3.trim()&&!confirm("Replace version 3 with your compiled prompt?"))return;
+    lad.v3=c;$("v3").value=c;store.set("ail34l-v3",c);lad.v1=c.split("\n")[0];store.set("ail34l-v1",lad.v1);ladUpdate();
+    ladStatus("ok","Version 3 is your compiled prompt and version 1 is its weak first line. Write version 2 as the step between them: the weak prompt plus the one specification that matters most.");
+  });
+  $("ladClear").addEventListener("click",function(){
+    if(!confirm("Clear versions 2 and 3 and their tags on this device?"))return;
+    lad.v2="";lad.v3="";tags={2:{},3:{}};["ail34l-v2","ail34l-v3","ail34l-tags"].forEach(store.del);$("v2").value="";$("v3").value="";ladUpdate();
+  });
+  function allVersions(){
+    function tagLine(n){var t=SPEC.filter(function(s){return tags[n][s[0]]}).map(function(s){return s[1]});return t.length?"  Adds: "+t.join(", "):""}
+    return "Version 1 (weak prompt):\n"+lad.v1+"\n\nVersion 2:\n"+lad.v2+"\n"+tagLine(2)+"\n\nVersion 3:\n"+lad.v3+"\n"+tagLine(3);
+  }
+  $("ladCopy").addEventListener("click",function(){copyText(allVersions(),$("ladStatus"),"All three versions copied, with your tags. You may paste a version into an approved AI tool to test it; disclose that in the assignment.")});
+
+  /* ---------- Verification clause picker + reflection ---------- */
+  var CLAUSES=[
+    {id:"cite",t:"Cite the source for every date, number, and quotation.",real:true},
+    {id:"mark",t:"Mark any fact you are unsure of with [check].",real:true},
+    {id:"nei",t:"If the sources do not answer a question, write “not enough information” instead of guessing.",real:true},
+    {id:"invent",t:"Do not invent names, numbers, quotations, or titles.",real:true},
+    {id:"accurate",t:"Make sure everything is accurate.",real:false,why:"Not a requirement the system can act on. It does not say what to do with a fact it cannot support."},
+    {id:"confident",t:"Sound confident and authoritative.",real:false,why:"The opposite of verification. It asks for the tone of certainty whether or not the facts earn it."}
+  ];
+  var verc=store.get("ail34l-ver",{});
+  function vercStatus(kind,t){var s=$("vercStatus");s.className="status"+(kind?" "+kind:"");s.textContent=t}
+  function vercChosen(){return CLAUSES.filter(function(c){return verc[c.id]})}
+  function vercPreview(){
+    var p=$("vercPrevTxt");p.innerHTML="";var base=(lad.v3||"").trim()||"(write version 3 in step 5 first)";
+    p.appendChild(document.createTextNode(base));
+    vercChosen().forEach(function(c){if(c.real&&base.indexOf(c.t)<0){p.appendChild(document.createTextNode("\n"));p.appendChild(el("span","add",c.t))}});
+    var chosen=vercChosen(),traps=chosen.filter(function(c){return !c.real});
+    $("vercN").textContent=chosen.length;$("vercAppend").disabled=!(lad.v3||"").trim()||!chosen.some(function(c){return c.real});
+    if(traps.length)vercStatus("bad","“"+traps[0].t+"” "+traps[0].why);
+    else if(chosen.length)vercStatus("ok",chosen.length+" real verification clause"+(chosen.length===1?"":"s")+" chosen. Append them to version 3 when you are ready.");
+  }
+  function vercInit(){
+    verc=store.get("ail34l-ver",{});var w=$("clauses");w.innerHTML="";
+    CLAUSES.forEach(function(c){
+      var b=el("button","cl"+(c.real?"":" trap"));b.type="button";b.setAttribute("aria-pressed",verc[c.id]?"true":"false");
+      b.appendChild(el("span","box"));var t=el("span","t",c.t);b.appendChild(t);
+      b.addEventListener("click",function(){verc[c.id]=!verc[c.id];store.set("ail34l-ver",verc);vercInit()});
+      w.appendChild(b);
+    });
+    ["reflMost","reflDef"].forEach(function(id){
+      var key=id==="reflMost"?"ail34l-most":"ail34l-def",cur=store.get(key,""),wrap=$(id);wrap.innerHTML="";
+      SPEC.forEach(function(s){var b=el("button",null,s[1]);b.type="button";b.setAttribute("aria-pressed",cur===s[0]?"true":"false");b.addEventListener("click",function(){store.set(key,cur===s[0]?"":s[0]);vercInit()});wrap.appendChild(b)});
+    });
+    $("reflVer").value=store.get("ail34l-refl","");
+    vercPreview();
+  }
+  $("reflVer").addEventListener("input",function(){store.set("ail34l-refl",this.value)});
+  $("vercAppend").addEventListener("click",function(){
+    var lines=vercChosen().filter(function(c){return c.real}).map(function(c){return c.t});
+    var add=lines.filter(function(l){return lad.v3.indexOf(l)<0});
+    if(!add.length){vercStatus("","Those clauses are already in version 3.");return}
+    lad.v3=lad.v3.trim()+"\n"+add.join("\n");$("v3").value=lad.v3;store.set("ail34l-v3",lad.v3);tags[3].ver=true;store.set("ail34l-tags",tags);ladUpdate();
+    vercStatus("ok",add.length+" clause"+(add.length===1?"":"s")+" appended to version 3 in step 5, and Verification tagged there.");
+  });
+  $("portCopy").addEventListener("click",function(){
+    var most=store.get("ail34l-most",""),def=store.get("ail34l-def",""),refl=(store.get("ail34l-refl","")||"").trim();
+    var out=allVersions()+"\n\nReflection:\n- Specification that changed the task most: "+(most?SPECNAME[most]:"—")+"\n- Default accepted on purpose: "+(def?SPECNAME[def]:"—")+"\n- Still to verify in the output: "+(refl||"—");
+    copyText(out,$("portStatus"),"Copied. Paste it into your portfolio notes as evidence of your process and authorship.");
+  });
+  vercInit();ladLoad();
+})();
+</script>
+</body>
+</html>

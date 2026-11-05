@@ -1,9 +1,443 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Assignment 3.4: Prompting as Rhetoric and Specification</title><style>
-:root{--navy:#12304a;--teal:#0f766e;--gold:#d97706;--ink:#1f2937;--muted:#f1f5f9;--line:#cbd5e1;--white:#fff}
-body{font-family:Arial,Helvetica,sans-serif;line-height:1.58;color:var(--ink);max-width:920px;margin:0 auto;padding:28px;background:#fff}h1,h2,h3{color:var(--navy);line-height:1.2}.eyebrow{color:var(--teal);font-weight:700;text-transform:uppercase;letter-spacing:.06em}.callout{background:#eef8f7;border-left:6px solid var(--teal);padding:16px;margin:18px 0}.warning{background:#fff7ed;border-left:6px solid var(--gold);padding:16px;margin:18px 0}.card{border:1px solid var(--line);border-radius:8px;padding:16px;margin:14px 0;background:#fff}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}.tag{display:inline-block;background:var(--muted);padding:3px 8px;border-radius:999px;font-size:.9em;margin-right:6px}table{width:100%;border-collapse:collapse;margin:12px 0}th,td{border:1px solid var(--line);padding:10px;text-align:left;vertical-align:top}th{background:var(--muted)}a{color:#0f5f78}ul,ol{padding-left:24px}.small{font-size:.92em;color:#475569}.checklist li{margin:7px 0}hr{border:0;border-top:1px solid var(--line);margin:28px 0}</style></head><body><p class="eyebrow">AI Literacy · Module 3 · Assignment 3.4</p><h1>Prompting as Rhetoric and Specification — Individual Submission</h1><p><span class="tag">Submit in Canvas</span><span class="tag">Individual work</span></p><div class="callout"><strong>Purpose:</strong> Three versions of one prompt, with a 300–400 word explanation of how each revision improves task clarity.<br><strong>Learning target:</strong> Revise prompts using audience, purpose, context, constraints, format, examples, and verification requirements.</div>
-<h2>What to submit</h2><ol><li>Three versions of one prompt, with a 300–400 word explanation of how each revision improves task clarity.</li><li>A short reflection answering: Which missing specification would most improve the weak prompt first, and why?</li><li>An <strong>AI-use disclosure</strong> using the form below.</li></ol>
-<h2>Directions</h2><ol><li>Complete the lesson’s interactive or its accessible text fallback.</li><li>Complete the required work in your own document or Canvas text-entry box.</li><li>Use clear headings, quoted evidence or links where relevant, and complete sentences.</li><li>Submit one file or text entry before the Canvas due date.</li></ol>
-<h2>AI-use disclosure (required)</h2><div class="warning"><p>You may use an approved AI tool to test your prompts. Include the prompt versions and disclose whether outputs influenced your revisions.</p><p>At the end of your submission, include:</p><ul><li><strong>Tool(s) used:</strong> none, or name each approved tool.</li><li><strong>Purpose:</strong> brainstorming, search-term generation, organization, feedback, testing, or another specific use.</li><li><strong>What you accepted, revised, or rejected:</strong> explain your decision.</li><li><strong>Verification:</strong> identify the sources or checks you used for factual claims.</li></ul></div>
-<h2>Success criteria</h2><ul class="checklist"><li>Prompt versions show purposeful improvement; the explanation connects changes to audience, purpose, constraints, format, and verification; the disclosure is complete.</li><li>Writing is organized, specific, and understandable to a reader who did not complete the activity.</li><li>Evidence and uncertainty are represented truthfully.</li><li>AI use, if any, is disclosed accurately and the student remains responsible for the final submission.</li></ul>
-<h2>Criterion-level rubric (20 points)</h2><table><tr><th>Criterion</th><th>Exceeds (5)</th><th>Meets (4)</th><th>Developing (2–3)</th><th>Beginning (0–1)</th></tr><tr><td>Reasoning and accuracy</td><td>Insightful, precise, and fully supported</td><td>Accurate and responsive</td><td>Partly accurate or general</td><td>Missing, inaccurate, or unsupported</td></tr><tr><td>Evidence and verification</td><td>Evidence is traced, evaluated, and carefully qualified</td><td>Relevant evidence/checks are named and used</td><td>Evidence is thin, unclear, or partly unchecked</td><td>No usable evidence or verification record</td></tr><tr><td>Student authorship and decisions</td><td>Choices, revisions, and independent judgment are clear</td><td>Student’s reasoning and choices are visible</td><td>Some choices are unclear</td><td>Authorship or decision-making is not visible</td></tr><tr><td>Communication and disclosure</td><td>Exceptionally clear; complete, candid disclosure</td><td>Clear; required disclosure complete</td><td>Organization or disclosure is incomplete</td><td>Unclear work or missing disclosure</td></tr></table>
-<h2>Submission checklist</h2><ul class="checklist"><li>I completed the activity or its text fallback.</li><li>I answered the reflection prompt.</li><li>I checked factual claims and represented uncertainty honestly.</li><li>I included the AI-use disclosure.</li><li>I submitted through the Canvas assignment.</li></ul></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Assignment 3.4 — Prompting as Rhetoric and Specification</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/lab.css">
+<style>
+  .page{max-width:860px}
+  .must{counter-reset:must;list-style:none;padding:0;margin:.6rem 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:.5rem}
+  .must li{counter-increment:must;margin:0;padding:.7rem .9rem .7rem 2.8rem;position:relative;background:#fff;border:1px solid var(--rule);border-radius:var(--radius)}
+  .must li::before{content:"0" counter(must);position:absolute;left:.7rem;top:.7rem;width:30px;height:26px;border-radius:6px;background:var(--navy);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-weight:600;font-size:.78rem;border:1px solid var(--teal)}
+  .submit{counter-reset:sub;list-style:none;padding:0;margin:.6rem 0}
+  .submit li{counter-increment:sub;padding:.4rem 0 .4rem 2.2rem;position:relative;border-bottom:1px dashed var(--rule)}
+  .submit li:last-child{border-bottom:0}
+  .submit li::before{content:"0" counter(sub);position:absolute;left:.1rem;top:.5rem;font-family:var(--mono);font-size:.8rem;font-weight:600;color:var(--teal)}
+  @keyframes reveal{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+  .tools{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem;align-items:center;justify-content:space-between}
+  .counts{display:flex;gap:1rem;flex-wrap:wrap;font-family:var(--mono);font-size:.8rem;color:var(--ink-soft)}
+  .counts b{color:var(--teal-deep);font-variant-numeric:tabular-nums}
+
+  /* Prompt Portfolio desk */
+  .desk .vers{display:grid;gap:.6rem}
+  .desk .ver{border:1px solid var(--rule-strong);border-radius:var(--radius);background:#fff;overflow:hidden}
+  .desk .ver .vh{display:flex;justify-content:space-between;align-items:center;gap:.5rem;flex-wrap:wrap;padding:.45rem .8rem;background:var(--paper-3);border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep)}
+  .desk .ver .vb{padding:.6rem .8rem}
+  .desk .ver textarea{width:100%;min-height:72px;font-family:var(--mono);font-size:.88rem;line-height:1.55;padding:.5rem .65rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical}
+  .desk .ver textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .desk .diff{margin-top:.45rem;font-family:var(--mono);font-size:.82rem;line-height:1.7;padding:.45rem .65rem;border:1px dashed var(--rule-strong);border-radius:8px;background:var(--paper-2);white-space:pre-wrap}
+  .desk .diff .k{display:block;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
+  .desk .diff ins{background:var(--ok-bg);color:#0f3d26;text-decoration:none;border-radius:3px;padding:0 .1rem}
+  .desk .diff del{background:var(--bad-bg);color:var(--bad);border-radius:3px;padding:0 .1rem}
+  .desk .found{margin-top:.35rem;font-family:var(--mono);font-size:.7rem;color:var(--ink-soft)}
+  .desk .found b{color:var(--teal-deep)}
+  .desk .found .pill{display:inline-block;border:1px solid var(--ok);color:var(--ok);border-radius:999px;padding:.05rem .45rem;margin:0 .15rem .15rem 0}
+  .desk .found .pill.off{border-color:var(--rule-strong);color:var(--ink-faint)}
+  .scaffold{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(230px,1fr);gap:1rem;margin-top:1rem}
+  @media (max-width:720px){.scaffold{grid-template-columns:1fr}}
+  .scaffold h4{margin:0 0 .4rem;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep);font-family:var(--mono)}
+  .fields{display:grid;gap:.5rem}
+  .field{border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.55rem .75rem;background:#fff}
+  .field label{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.25rem}
+  .field label .n{color:var(--teal);margin-right:.3rem}
+  .field .lead{font-size:.86rem;color:var(--ink-soft);margin:0 0 .35rem}
+  .field textarea{width:100%;font-family:var(--sans);font-size:.96rem;line-height:1.5;padding:.45rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical;min-height:84px}
+  .field textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .field .flag{margin-top:.25rem;min-height:1.1em;font-family:var(--mono);font-size:.7rem;color:var(--ink-soft)}
+  .flag .warn{display:inline-block;background:var(--gold-pale);border:1px solid var(--gold);color:#6d4a00;border-radius:999px;padding:.08rem .45rem;font-family:var(--sans);font-size:.82rem;margin:0 .15rem .15rem 0}
+  .flag .clean{color:var(--ok)}
+  .disc{margin-top:.8rem;border:1px solid var(--rule-strong);border-radius:var(--radius);padding:.7rem .8rem;background:#fff}
+  .disc h4{margin:0 0 .4rem}
+  .disc label.opt{display:flex;gap:.5rem;align-items:flex-start;margin:.3rem 0;cursor:pointer;font-size:.95rem}
+  .disc input[type=radio]{accent-color:var(--teal);margin-top:.25rem}
+  .disc .dfields{display:grid;gap:.4rem;margin:.3rem 0 .2rem 1.6rem}
+  .disc .dfields label{display:block;font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin:.2rem 0 .1rem}
+  .disc .dfields input,.disc .dfields textarea{font:inherit;font-size:.92rem;padding:.4rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;width:100%}
+  .disc .dfields textarea{min-height:48px;resize:vertical;font-family:var(--sans)}
+  .disc .dfields input:focus,.disc .dfields textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+  .disc .line{margin-top:.5rem;font-family:var(--mono);font-size:.8rem;color:var(--teal-deep);background:var(--teal-pale);border-radius:6px;padding:.4rem .6rem;white-space:pre-wrap}
+  .side{position:sticky;top:1rem}
+  .meter{margin:.4rem 0 .2rem}
+
+  /* Rubric self-score */
+  .rubric td:nth-child(2){text-align:center;font-family:var(--mono);font-weight:600;color:var(--teal-deep);min-width:170px}
+  .rubric .pts{display:flex;gap:.25rem;flex-wrap:wrap;justify-content:center}
+  .rubric .pts button{width:30px;height:30px;border-radius:6px;border:1px solid var(--rule-strong);background:#fff;font-family:var(--mono);font-size:.82rem;cursor:pointer;color:var(--ink-soft)}
+  .rubric .pts button:hover{border-color:var(--teal)}
+  .rubric .pts button[aria-pressed="true"]{background:var(--teal);border-color:var(--teal);color:#fff}
+  .rubric .pts button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .rubric tfoot td{font-weight:600;background:var(--paper-2)}
+  .rubric tfoot td:nth-child(2){text-align:center;font-family:var(--mono);color:var(--teal-deep)}
+  .rubric td .lv{display:block;font-size:.82rem;color:var(--ink-soft)}
+  .rubric td .lv b{color:var(--teal-deep);font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;margin-right:.3rem}
+
+  /* Gathered answers */
+  .gather{border:1px solid var(--teal-deep);border-radius:var(--radius);overflow:hidden;background:#fff}
+  .gather .gbar{background:var(--navy);color:var(--cyan);font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;padding:.55rem .9rem;display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+  .gather .gbody{padding:.9rem 1rem}
+  .gather .row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:.4rem .8rem;padding:.45rem 0;border-bottom:1px dashed var(--rule)}
+  .gather .row:last-child{border-bottom:0}
+  .gather .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);padding-top:.2rem}
+  .gather .v{font-size:.98rem;white-space:pre-wrap}
+  .gather .v.empty{color:var(--ink-faint);font-style:italic}
+  .gather .v.mono{font-family:var(--mono);font-size:.86rem}
+  .gather input.name{font:inherit;font-size:.95rem;padding:.35rem .55rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;max-width:320px;width:100%}
+  @media (max-width:560px){.gather .row{grid-template-columns:1fr}}
+  .gather .gtools{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:flex-end;padding:.7rem 1rem;border-top:1px solid var(--rule);background:var(--paper-2)}
+
+  @media print{
+    body{background:#fff}
+    .page{border:0;box-shadow:none;max-width:none;margin:0;padding:0}
+    .page > *:not(#gatherSection){display:none!important}
+    #gatherSection .gtools,#gatherSection .hint{display:none!important}
+    .gather{border-color:#999}
+    .gather .gbar{background:#eee;color:#000}
+    .gather .k{color:#333}
+  }
+</style>
+</head>
+<body>
+<script src="assets/intro.js" data-eyebrow="AI Literacy • Module 3 • Assignment 3.4" data-title="Prompting as Rhetoric and Specification" data-key="ail-intro-3.4-assignment" data-words="VERSION 1|VERSION 2|VERSION 3|WHAT CHANGED|WHY IT HELPS|DISCLOSED"></script>
+<main class="page">
+
+  <header class="masthead">
+    <p class="eyebrow">AI Literacy • Module 3 • Assignment 3.4</p>
+    <h1>Prompting as Rhetoric and Specification — Individual Submission</h1>
+    <p class="lede">Three versions of one prompt, and the reasoning behind each revision</p>
+    <span class="ornament" aria-hidden="true">❦</span>
+  </header>
+
+  <section class="ledger" aria-label="Assignment details">
+    <div><span class="k">Submission</span><span class="v">Submit in Canvas</span></div>
+    <div><span class="k">Work</span><span class="v">Individual work</span></div>
+    <div><span class="k">Points</span><span class="v">20</span></div>
+    <div><span class="k">Explanation length</span><span class="v">300–400 words</span></div>
+  </section>
+
+  <div class="plate">
+    <p><strong>Purpose:</strong> Three versions of one prompt, with a 300–400 word explanation of how each revision improves task clarity.<br><strong>Learning target:</strong> Revise prompts using audience, purpose, context, constraints, format, examples, and verification requirements.</p>
+  </div>
+
+  <h2>What to submit</h2>
+  <ol class="must">
+    <li>Three versions of one prompt, with a 300–400 word explanation of how each revision improves task clarity.</li>
+    <li>A short reflection answering: Which missing specification would most improve the weak prompt first, and why?</li>
+    <li>An <strong>AI-use disclosure</strong> using the form below.</li>
+  </ol>
+
+  <h2>Directions</h2>
+  <ol class="submit">
+    <li>Complete the lesson’s interactive or its accessible text fallback.</li>
+    <li>Complete the required work in your own document or Canvas text-entry box.</li>
+    <li>Use clear headings, quoted evidence or links where relevant, and complete sentences.</li>
+    <li>Submit one file or text entry before the Canvas due date.</li>
+  </ol>
+
+  <div class="widget desk" id="deskWidget">
+    <div class="bar"><span>Interactive · Prompt Portfolio desk</span><span class="tag">Write here, submit in Canvas</span></div>
+    <div class="body">
+      <p>Your three versions, the changes between them, and the explanation, in one place. If you built the version ladder in Lesson 3.4 on this device, bring it in with one click. The desk reads each version for the seven specifications, shows what each revision added or removed, and counts the explanation toward 300–400 words. Nothing on this page is submitted or graded.</p>
+      <div class="tools" style="margin:0 0 .6rem;justify-content:flex-start">
+        <button type="button" class="btn ghost" id="importLadder">Bring in my Lesson 3.4 versions</button>
+      </div>
+      <div class="vers">
+        <div class="ver">
+          <div class="vh"><span>Version 1 · the weak prompt</span><span id="f1"></span></div>
+          <div class="vb"><label for="p1" class="sr">Version 1</label><textarea id="p1" data-part="p1" placeholder="The prompt as it started."></textarea><div class="found" id="found1"></div></div>
+        </div>
+        <div class="ver">
+          <div class="vh"><span>Version 2</span><span id="f2"></span></div>
+          <div class="vb"><label for="p2" class="sr">Version 2</label><textarea id="p2" data-part="p2" placeholder="Version 1 plus the specification that matters most."></textarea><div class="diff" id="d2"><span class="k">What changed from version 1</span><span class="muted">Nothing written yet.</span></div><div class="found" id="found2"></div></div>
+        </div>
+        <div class="ver">
+          <div class="vh"><span>Version 3</span><span id="f3"></span></div>
+          <div class="vb"><label for="p3" class="sr">Version 3</label><textarea id="p3" data-part="p3" placeholder="Version 2 plus the remaining specifications."></textarea><div class="diff" id="d3"><span class="k">What changed from version 2</span><span class="muted">Nothing written yet.</span></div><div class="found" id="found3"></div></div>
+        </div>
+      </div>
+
+      <div class="scaffold">
+        <div>
+          <h4>Explanation: how each revision improves task clarity</h4>
+          <div class="fields" id="fields">
+            <div class="field"><label for="e1"><span class="n">A</span>Version 1 → version 2</label><p class="lead">Which specification did you add first, and what guess does it take away from the system?</p><textarea id="e1" data-part="e1"></textarea><div class="flag"></div></div>
+            <div class="field"><label for="e2"><span class="n">B</span>Version 2 → version 3</label><p class="lead">Which specifications did you add next? Name each one and what it rules out.</p><textarea id="e2" data-part="e2"></textarea><div class="flag"></div></div>
+            <div class="field"><label for="e3"><span class="n">C</span>What version 3 still leaves open</label><p class="lead">Which default did you accept on purpose, and what in the output would still need verification?</p><textarea id="e3" data-part="e3"></textarea><div class="flag"></div></div>
+            <div class="field"><label for="r1"><span class="n">D</span>Reflection: Which missing specification would most improve the weak prompt first, and why?</label><textarea id="r1" data-part="r1"></textarea><div class="flag"></div></div>
+          </div>
+          <div class="disc" id="disc">
+            <h4>AI-use disclosure (required)</h4>
+            <p class="lead" style="font-size:.9rem;color:var(--ink-soft);margin:0 0 .4rem">You may use an approved AI tool to test your prompts. Include the prompt versions and disclose whether outputs influenced your revisions.</p>
+            <label class="opt"><input type="radio" name="disc" value="none"> <span><strong>Tool(s) used:</strong> none</span></label>
+            <label class="opt"><input type="radio" name="disc" value="used"> <span><strong>Tool(s) used:</strong> name each approved tool</span></label>
+            <div class="dfields" id="discFields" hidden>
+              <label for="discTool">Tool(s) used</label><input type="text" id="discTool" placeholder="Name each approved tool" maxlength="100">
+              <label for="discWhat">Purpose</label><input type="text" id="discWhat" placeholder="brainstorming, search-term generation, organization, feedback, testing, or another specific use" maxlength="160">
+              <label for="discDec">What you accepted, revised, or rejected</label><textarea id="discDec" placeholder="Explain your decision."></textarea>
+              <label for="discVer">Verification</label><textarea id="discVer" placeholder="Identify the sources or checks you used for factual claims."></textarea>
+            </div>
+            <div class="line" id="discLine">Choose one.</div>
+          </div>
+          <div class="tools"><button type="button" class="btn ghost" id="clear">Clear the desk</button></div>
+        </div>
+        <div class="side">
+          <h4>Explanation length</h4>
+          <div class="meter" id="meter"><div id="meterBar"></div></div>
+          <div class="counts"><span><b id="wordCount">0</b> words</span><span>target 300–400</span></div>
+          <h4 style="margin-top:1rem">Automatic checks</h4>
+          <ul class="reqs" id="auto">
+            <li data-req="vers"><span class="dot"></span><span>Three versions written, each different from the last</span></li>
+            <li data-req="grow"><span class="dot"></span><span>Each version adds specifications the desk can find (<b id="specCount">0</b>/7 in version 3)</span></li>
+            <li data-req="len"><span class="dot"></span><span>Explanation between 300 and 400 words</span></li>
+            <li data-req="names"><span class="dot"></span><span>Explanation names the specifications it relies on</span></li>
+            <li data-req="refl"><span class="dot"></span><span>Reflection answered</span></li>
+            <li data-req="disc"><span class="dot"></span><span>Disclosure complete</span></li>
+          </ul>
+          <p class="hint">The checks update as you type. The rubric below is yours to score before you submit.</p>
+        </div>
+      </div>
+      <div class="status" id="deskStatus" role="status" aria-live="polite">Start with version 1, or bring in your lesson versions.</div>
+    </div>
+  </div>
+
+  <h2>AI-use disclosure (required)</h2>
+  <div class="callout"><p>You may use an approved AI tool to test your prompts. Include the prompt versions and disclose whether outputs influenced your revisions.</p><p>At the end of your submission, include:</p><ul><li><strong>Tool(s) used:</strong> none, or name each approved tool.</li><li><strong>Purpose:</strong> brainstorming, search-term generation, organization, feedback, testing, or another specific use.</li><li><strong>What you accepted, revised, or rejected:</strong> explain your decision.</li><li><strong>Verification:</strong> identify the sources or checks you used for factual claims.</li></ul></div>
+
+  <h2>Success criteria</h2>
+  <ul class="checklist" id="criteria">
+    <li><label><input type="checkbox" data-check="0"><span>Prompt versions show purposeful improvement; the explanation connects changes to audience, purpose, constraints, format, and verification; the disclosure is complete.</span></label></li>
+    <li><label><input type="checkbox" data-check="1"><span>Writing is organized, specific, and understandable to a reader who did not complete the activity.</span></label></li>
+    <li><label><input type="checkbox" data-check="2"><span>Evidence and uncertainty are represented truthfully.</span></label></li>
+    <li><label><input type="checkbox" data-check="3"><span>AI use, if any, is disclosed accurately and the student remains responsible for the final submission.</span></label></li>
+  </ul>
+
+  <h2>Criterion-level rubric (20 points)</h2>
+  <p class="hint">Score yourself honestly before you submit. Tap the points you think each criterion has earned so far.</p>
+  <table class="rubric" id="rubric">
+    <thead><tr><th scope="col">Criterion</th><th scope="col">Points</th><th scope="col">Levels</th></tr></thead>
+    <tbody>
+      <tr data-max="5"><td>Reasoning and accuracy</td><td>5</td><td><span class="lv"><b>Exceeds (5)</b>Insightful, precise, and fully supported</span><span class="lv"><b>Meets (4)</b>Accurate and responsive</span><span class="lv"><b>Developing (2–3)</b>Partly accurate or general</span><span class="lv"><b>Beginning (0–1)</b>Missing, inaccurate, or unsupported</span></td></tr>
+      <tr data-max="5"><td>Evidence and verification</td><td>5</td><td><span class="lv"><b>Exceeds (5)</b>Evidence is traced, evaluated, and carefully qualified</span><span class="lv"><b>Meets (4)</b>Relevant evidence/checks are named and used</span><span class="lv"><b>Developing (2–3)</b>Evidence is thin, unclear, or partly unchecked</span><span class="lv"><b>Beginning (0–1)</b>No usable evidence or verification record</span></td></tr>
+      <tr data-max="5"><td>Student authorship and decisions</td><td>5</td><td><span class="lv"><b>Exceeds (5)</b>Choices, revisions, and independent judgment are clear</span><span class="lv"><b>Meets (4)</b>Student’s reasoning and choices are visible</span><span class="lv"><b>Developing (2–3)</b>Some choices are unclear</span><span class="lv"><b>Beginning (0–1)</b>Authorship or decision-making is not visible</span></td></tr>
+      <tr data-max="5"><td>Communication and disclosure</td><td>5</td><td><span class="lv"><b>Exceeds (5)</b>Exceptionally clear; complete, candid disclosure</span><span class="lv"><b>Meets (4)</b>Clear; required disclosure complete</span><span class="lv"><b>Developing (2–3)</b>Organization or disclosure is incomplete</span><span class="lv"><b>Beginning (0–1)</b>Unclear work or missing disclosure</span></td></tr>
+    </tbody>
+    <tfoot><tr><td>Your self-score</td><td id="selfTotal">— / 20</td><td id="selfNote" class="muted">Tap a score in each row.</td></tr></tfoot>
+  </table>
+
+  <section id="gatherSection">
+    <h2>My Gathered Answers</h2>
+    <p class="hint">Everything you wrote on this page, in submission order. Copy it for the Canvas text entry, or save a PDF copy for a file upload.</p>
+    <div class="gather" id="gather">
+      <div class="gbar"><span>Assignment 3.4 · Prompting as Rhetoric and Specification</span><span id="gDate"></span></div>
+      <div class="gbody">
+        <div class="row"><span class="k">Name</span><span class="v"><input type="text" class="name" id="studentName" placeholder="Your name" maxlength="80"></span></div>
+        <div class="row"><span class="k">Version 1</span><span class="v mono empty" id="gP1">(not written yet)</span></div>
+        <div class="row"><span class="k">Version 2</span><span class="v mono empty" id="gP2">(not written yet)</span></div>
+        <div class="row"><span class="k">Version 3</span><span class="v mono empty" id="gP3">(not written yet)</span></div>
+        <div class="row"><span class="k">Explanation</span><span class="v empty" id="gExp">(not written yet)</span></div>
+        <div class="row"><span class="k">Reflection</span><span class="v empty" id="gRef">(not written yet)</span></div>
+        <div class="row"><span class="k">Disclosure</span><span class="v empty" id="gDisc">(not chosen yet)</span></div>
+        <div class="row"><span class="k">Self-score</span><span class="v" id="gScore">— / 20</span></div>
+      </div>
+      <div class="gtools">
+        <button type="button" class="btn ghost" id="pdf">Download my answers (PDF)</button>
+        <button type="button" class="btn" id="copy" disabled>Copy for Canvas</button>
+      </div>
+    </div>
+    <div class="status" id="gStatus" role="status" aria-live="polite">Copy puts the three versions, the explanation, the reflection, and the disclosure on the clipboard, ready to paste into Canvas.</div>
+  </section>
+
+  <h2>Submission checklist</h2>
+  <ul class="checklist" id="subcheck">
+    <li><label><input type="checkbox" data-check="0"><span>I completed the activity or its text fallback.</span></label></li>
+    <li><label><input type="checkbox" data-check="1"><span>I answered the reflection prompt.</span></label></li>
+    <li><label><input type="checkbox" data-check="2"><span>I checked factual claims and represented uncertainty honestly.</span></label></li>
+    <li><label><input type="checkbox" data-check="3"><span>I included the AI-use disclosure.</span></label></li>
+    <li><label><input type="checkbox" data-check="4"><span>I submitted through the Canvas assignment.</span></label></li>
+  </ul>
+
+  <footer class="colophon">
+    <p>AI Literacy • Module 3 • Assignment 3.4 | Submit independently.</p>
+  </footer>
+</main>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id)};
+  function el(tag,cls,txt){var e=document.createElement(tag);if(cls)e.className=cls;if(txt!=null)e.textContent=txt;return e}
+  var store={
+    get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+    set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},
+    del:function(k){try{localStorage.removeItem(k)}catch(e){}}
+  };
+  var K={data:"ail34a-data",crit:"ail34a-criteria",sub:"ail34a-subcheck",disc:"ail34a-disc",tool:"ail34a-tool",what:"ail34a-what",dec:"ail34a-dec",ver:"ail34a-ver",name:"ail34a-name",score:"ail34a-score"};
+  var SPEC=[["aud","Audience"],["pur","Purpose"],["ctx","Context"],["con","Constraints"],["fmt","Format"],["ex","Examples"],["ver","Verification"]];
+  var DETECT={
+    aud:/\b(for (a|an|my|the) [a-z-]+ (class|grade|graders?|teacher|students?|reader|readers|audience|team|parents?|principal)|audience|reader|readers|grade|graders?|teacher|students?|beginner|expert|who will (read|grade))\b/i,
+    pur:/\b(purpose|so that|so they|to review|to prepare|to help [a-z]+ (understand|learn|decide|study)|in order to|the goal|goal is|will be used (to|for)|for a (quiz|test|poster|presentation|lab|report))\b/i,
+    ctx:/\b(we (studied|read|covered|learned)|i have (read|three|two|a)|this week|last week|background|context|the situation|my sources?|the (textbook|chapter|unit)|is due|on (monday|tuesday|wednesday|thursday|friday))\b/i,
+    con:/\b(under \d+|no more than|at most|at least|\d+ ?(words|sentences|minutes|lines)|word limit|tone|reading level|simple sentences|do not (include|use|mention)|don’t (include|use)|avoid|only|no (terms|jargon|new)|stay within|leave out)\b/i,
+    fmt:/\b(bullet|bullets|bulleted|table|list|numbered|outline|paragraphs?|headings?|email|slides?|timeline|one sentence each|format|json|csv|columns?|rows?)\b/i,
+    ex:/\b(example|for example|e\.g\.|such as|like this|here is one|sample|model answer|should look like)\b/i,
+    ver:/\b(cite|citation|sources?|flag|mark any|unsure|uncertain|not sure|do not invent|don’t invent|verify|verified|\[check\]|\[not in sources\]|not enough information|say so|evidence)\b/i
+  };
+  var NAMES=/\b(audience|purpose|context|constraints?|format|examples?|verification)\b/gi;
+  var ready=false;
+  var data=store.get(K.data,{});
+  var fieldEl={};document.querySelectorAll("[data-part]").forEach(function(t){var k=t.getAttribute("data-part");fieldEl[k]=t;t.value=data[k]||"";t.addEventListener("input",function(){data[k]=t.value;store.set(K.data,data);update()})});
+
+  function wc(s){s=(s||"").trim();return s?s.split(/\s+/).length:0}
+  function tokens(s){return (s||"").trim().split(/\s+/).filter(Boolean)}
+  function diff(a,b){
+    var A=tokens(a),B=tokens(b),n=A.length,m=B.length,i,j;
+    var L=[];for(i=0;i<=n;i++){L.push(new Array(m+1).fill(0))}
+    for(i=n-1;i>=0;i--)for(j=m-1;j>=0;j--)L[i][j]=A[i]===B[j]?L[i+1][j+1]+1:Math.max(L[i+1][j],L[i][j+1]);
+    var out=[];i=0;j=0;
+    while(i<n&&j<m){if(A[i]===B[j]){out.push(["=",A[i]]);i++;j++}else if(L[i+1][j]>=L[i][j+1]){out.push(["-",A[i]]);i++}else{out.push(["+",B[j]]);j++}}
+    while(i<n){out.push(["-",A[i]]);i++}while(j<m){out.push(["+",B[j]]);j++}
+    return out;
+  }
+  function renderDiff(id,a,b,label){
+    var box=$(id);box.innerHTML="";box.appendChild(el("span","k",label));
+    if(!(b||"").trim()){box.appendChild(el("span","muted","Nothing written yet."));return}
+    if((a||"").trim()===b.trim()){box.appendChild(el("span","muted","Identical to the version above."));return}
+    var d=diff(a,b),adds=0,dels=0;
+    d.forEach(function(p,i){var node;if(p[0]==="+"){node=el("ins",null,p[1]);adds++}else if(p[0]==="-"){node=el("del",null,p[1]);dels++}else node=document.createTextNode(p[1]);box.appendChild(node);if(i<d.length-1)box.appendChild(document.createTextNode(" "))});
+    box.appendChild(document.createTextNode("\n"));box.appendChild(el("span","muted","+"+adds+" words, −"+dels+" words"));
+  }
+  function specsIn(text){var f={};SPEC.forEach(function(s){f[s[0]]=DETECT[s[0]].test(text||"")});return f}
+  function renderFound(n,text,prev){
+    var box=$("found"+n);box.innerHTML="";if(!(text||"").trim()){box.textContent="";return 0}
+    var f=specsIn(text),p=specsIn(prev),cnt=0;box.appendChild(el("span",null,"Specifications the desk can find: "));
+    SPEC.forEach(function(s){var pill=el("span","pill"+(f[s[0]]?"":" off"),s[1]+(f[s[0]]&&!p[s[0]]&&n>1?" +":""));box.appendChild(pill);if(f[s[0]])cnt++});
+    return cnt;
+  }
+  function discLine(){
+    var v=store.get(K.disc,"");
+    if(v==="none")return "Tool(s) used: none";
+    if(v==="used"){
+      var t=(store.get(K.tool,"")||"").trim()||"[tool]",w=(store.get(K.what,"")||"").trim()||"[purpose]",d=(store.get(K.dec,"")||"").trim()||"[what you accepted, revised, or rejected]",vr=(store.get(K.ver,"")||"").trim()||"[verification]";
+      return "Tool(s) used: "+t+"\nPurpose: "+w+"\nWhat you accepted, revised, or rejected: "+d+"\nVerification: "+vr;
+    }
+    return "";
+  }
+  function discComplete(){
+    var v=store.get(K.disc,"");if(v==="none")return true;
+    if(v==="used")return !!((store.get(K.tool,"")||"").trim()&&(store.get(K.what,"")||"").trim()&&(store.get(K.dec,"")||"").trim()&&(store.get(K.ver,"")||"").trim());
+    return false;
+  }
+  function setReq(k,on){var li=document.querySelector('#auto [data-req="'+k+'"]');if(li)li.classList.toggle("met",!!on)}
+  function expText(){return ["e1","e2","e3"].map(function(k){return (data[k]||"").trim()}).filter(Boolean).join("\n\n")}
+  function update(){
+    var p1=(data.p1||"").trim(),p2=(data.p2||"").trim(),p3=(data.p3||"").trim();
+    $("f1").textContent=p1?wc(p1)+" words":"";$("f2").textContent=p2?wc(p2)+" words":"";$("f3").textContent=p3?wc(p3)+" words":"";
+    renderDiff("d2",p1,p2,"What changed from version 1");renderDiff("d3",p2,p3,"What changed from version 2");
+    var c1=renderFound(1,p1,""),c2=renderFound(2,p2,p1),c3=renderFound(3,p3,p2);$("specCount").textContent=c3;
+    var exp=expText(),words=wc(exp);$("wordCount").textContent=words;
+    var m=$("meter");m.className="meter"+(words>=300&&words<=400?" inrange":(words>400?" over":""));$("meterBar").style.width=Math.min(100,words/400*100)+"%";
+    document.querySelectorAll("#fields .field").forEach(function(fd){
+      var t=fd.querySelector("textarea"),f=fd.querySelector(".flag");f.innerHTML="";var v=t.value.trim();if(!v)return;
+      var k=t.getAttribute("data-part");
+      if(k==="r1"){f.appendChild(el("span","clean",wc(v)+" words."));return}
+      var named=[];var mm=v.match(NAMES);if(mm){var seen={};mm.forEach(function(x){x=x.toLowerCase();if(!seen[x]){seen[x]=1;named.push(x)}})}
+      if(named.length)f.appendChild(el("span","clean","Names: "+named.join(", ")+". "+wc(v)+" words."));
+      else{f.appendChild(el("span",null,wc(v)+" words. "));f.appendChild(el("span","warn","Name the specification this change adds"))}
+    });
+    var met={
+      vers:!!(p1&&p2&&p3&&p1!==p2&&p2!==p3),
+      grow:!!(p3&&c3>c2&&c2>=c1&&c3>=4),
+      len:words>=300&&words<=400,
+      names:(function(){var mm=exp.match(NAMES);if(!mm)return false;var s={};mm.forEach(function(x){s[x.toLowerCase().replace(/s$/,"")]=1});return Object.keys(s).length>=3})(),
+      refl:wc(data.r1||"")>=15,
+      disc:discComplete()
+    };
+    var n=0;Object.keys(met).forEach(function(k){setReq(k,met[k]);if(met[k])n++});
+    $("discLine").textContent=discLine()||"Choose one.";
+    var st=$("deskStatus");
+    if(!p1&&!p2&&!p3&&!exp){st.className="status";st.textContent="Start with version 1, or bring in your lesson versions."}
+    else if(n===6){st.className="status ok";st.textContent="All six checks lit. Scroll to My Gathered Answers and copy for Canvas."}
+    else{var tips=[];if(!met.vers)tips.push("write three different versions");if(!met.grow&&p3)tips.push("make version 3 add specifications the desk can find (it reads for all seven)");if(!met.len)tips.push(words<300?(300-words)+" more words in the explanation":(words-400)+" words over the limit");if(!met.names&&exp)tips.push("name at least three specifications in the explanation");if(!met.refl)tips.push("answer the reflection in a few sentences");if(!met.disc)tips.push("complete the disclosure");st.className="status";st.textContent="Next: "+tips.join("; ")+"."}
+    gather();
+  }
+  document.querySelectorAll('input[name="disc"]').forEach(function(r){
+    r.checked=store.get(K.disc,"")===r.value;
+    r.addEventListener("change",function(){store.set(K.disc,r.value);$("discFields").hidden=r.value!=="used";update()});
+  });
+  $("discFields").hidden=store.get(K.disc,"")!=="used";
+  [["discTool",K.tool],["discWhat",K.what],["discDec",K.dec],["discVer",K.ver]].forEach(function(p){var e=$(p[0]);e.value=store.get(p[1],"");e.addEventListener("input",function(){store.set(p[1],e.value);update()})});
+  $("importLadder").addEventListener("click",function(){
+    var v1=store.get("ail34l-v1",""),v2=store.get("ail34l-v2",""),v3=store.get("ail34l-v3",""),st=$("deskStatus");
+    if(!(v2||v3)){st.className="status";st.textContent="No Lesson 3.4 versions were found on this device. Write them here instead.";return}
+    var has=(data.p1||data.p2||data.p3||"").trim();
+    if(has&&!confirm("Replace the three versions on the desk with your Lesson 3.4 versions?"))return;
+    data.p1=v1||"";data.p2=v2||"";data.p3=v3||"";fieldEl.p1.value=data.p1;fieldEl.p2.value=data.p2;fieldEl.p3.value=data.p3;store.set(K.data,data);
+    var tags=store.get("ail34l-tags",null),most=store.get("ail34l-most",""),refl=(store.get("ail34l-refl","")||"").trim();
+    var NAME={aud:"Audience",pur:"Purpose",ctx:"Context",con:"Constraints",fmt:"Format",ex:"Examples",ver:"Verification"};
+    if(tags&&!(data.e1||"").trim()){var t2=Object.keys(tags[2]||{}).filter(function(k){return tags[2][k]}).map(function(k){return NAME[k]});if(t2.length){data.e1="Version 2 adds: "+t2.join(", ")+". ";fieldEl.e1.value=data.e1}}
+    if(tags&&!(data.e2||"").trim()){var t3=Object.keys(tags[3]||{}).filter(function(k){return tags[3][k]}).map(function(k){return NAME[k]});if(t3.length){data.e2="Version 3 adds: "+t3.join(", ")+". ";fieldEl.e2.value=data.e2}}
+    if(refl&&!(data.e3||"").trim()){data.e3="Still to verify: "+refl+" ";fieldEl.e3.value=data.e3}
+    if(most&&!(data.r1||"").trim()){data.r1="The specification that changed the task most was "+NAME[most].toLowerCase()+", because ";fieldEl.r1.value=data.r1}
+    store.set(K.data,data);update();
+    st.className="status ok";st.textContent="Lesson 3.4 versions brought in"+(tags?", with your tags as the first line of each explanation":"")+". Revise them here.";
+  });
+  $("clear").addEventListener("click",function(){
+    if(!confirm("Clear everything on the desk on this device?"))return;
+    data={};store.del(K.data);Object.keys(fieldEl).forEach(function(k){fieldEl[k].value=""});update();
+  });
+
+  /* ---------- Checklists ---------- */
+  [["criteria",K.crit],["subcheck",K.sub]].forEach(function(p){
+    var c=store.get(p[1],{});
+    document.querySelectorAll("#"+p[0]+" input").forEach(function(cb){var k=cb.getAttribute("data-check");cb.checked=!!c[k];cb.addEventListener("change",function(){c[k]=cb.checked;store.set(p[1],c)})});
+  });
+
+  /* ---------- Rubric self-score ---------- */
+  var score=store.get(K.score,{});
+  function scoreTotal(){
+    var rows=document.querySelectorAll("#rubric tbody tr"),sum=0,done=0;
+    rows.forEach(function(tr,i){if(score[i]!=null){sum+=score[i];done++}});
+    $("selfTotal").textContent=(done===rows.length?sum:"—")+" / 20";
+    $("selfNote").textContent=done===rows.length?(sum===20?"Full marks by your own reading. Make sure the three versions and the explanation back it up.":"Where did you lose points? Revise that part before you submit."):(rows.length-done)+" row"+(rows.length-done>1?"s":"")+" left to score.";
+    gather();
+  }
+  document.querySelectorAll("#rubric tbody tr").forEach(function(tr,i){
+    var max=parseInt(tr.getAttribute("data-max"),10),cell=tr.children[1];cell.innerHTML="";
+    var wrap=el("span","pts");
+    for(var p=0;p<=max;p++){(function(p){
+      var b=el("button",null,String(p));b.type="button";b.setAttribute("aria-label",p+" of "+max+" points");b.setAttribute("aria-pressed",score[i]===p?"true":"false");
+      b.addEventListener("click",function(){score[i]=p;store.set(K.score,score);wrap.querySelectorAll("button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});scoreTotal()});
+      wrap.appendChild(b);
+    })(p)}
+    cell.appendChild(wrap);cell.appendChild(el("span","muted"," of "+max));
+  });
+
+  /* ---------- Gathered answers ---------- */
+  $("studentName").value=store.get(K.name,"");
+  $("studentName").addEventListener("input",function(){store.set(K.name,this.value)});
+  $("gDate").textContent=new Date().toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
+  function setV(id,txt,empty){var e=$(id);e.textContent=txt||empty;e.classList.toggle("empty",!txt)}
+  function gather(){
+    if(!ready)return;
+    setV("gP1",(data.p1||"").trim(),"(not written yet)");setV("gP2",(data.p2||"").trim(),"(not written yet)");setV("gP3",(data.p3||"").trim(),"(not written yet)");
+    setV("gExp",expText(),"(not written yet)");setV("gRef",(data.r1||"").trim(),"(not written yet)");setV("gDisc",discLine(),"(not chosen yet)");
+    var rows=document.querySelectorAll("#rubric tbody tr"),sum=0,done=0;rows.forEach(function(tr,i){if(score[i]!=null){sum+=score[i];done++}});
+    $("gScore").textContent=(done===rows.length?sum:"—")+" / 20";
+    $("copy").disabled=!((data.p1||"").trim()||(data.p2||"").trim()||(data.p3||"").trim()||expText());
+  }
+  $("copy").addEventListener("click",function(){
+    var dl=discLine();
+    var out="Version 1 (weak prompt):\n"+(data.p1||"").trim()+"\n\nVersion 2:\n"+(data.p2||"").trim()+"\n\nVersion 3:\n"+(data.p3||"").trim()+"\n\nExplanation:\n"+expText()+"\n\nReflection:\n"+(data.r1||"").trim()+(dl?"\n\nAI-use disclosure\n"+dl:"");
+    var st=$("gStatus");
+    function done(ok){st.className="status "+(ok?"ok":"bad");st.textContent=ok?"Copied. Paste it into the Canvas text entry and check that the disclosure is at the end.":"Copy failed. Select the text and copy it by hand."}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(out).then(function(){done(true)},function(){done(false)})}else done(false);
+  });
+  $("pdf").addEventListener("click",function(){var st=$("gStatus");st.className="status";st.textContent="In the print dialog, choose Save as PDF.";window.print()});
+
+  ready=true;update();scoreTotal();
+})();
+</script>
+</body>
+</html>
