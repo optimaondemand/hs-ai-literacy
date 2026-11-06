@@ -55,7 +55,7 @@
   .comp .slot .why{font-size:.84rem;color:#4a3300;background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:.3rem .5rem;margin-top:.3rem;animation:reveal .3s ease-out}
   .comp .slot .why.ok{color:#0f3d26;background:var(--ok-bg);border-left-color:var(--ok)}
   @media (max-width:480px){.comp .slot{grid-template-columns:1fr}.comp .slot .k{padding-top:0}}
-  .comp .ticket{background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);overflow:hidden;margin-top:.8rem}
+  .comp .ticket{background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);overflow:hidden;margin:0 0 .8rem}
   .comp .ticket .th{display:flex;justify-content:space-between;gap:.5rem;padding:.5rem .8rem;border-bottom:1px solid rgba(79,209,232,.25);font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
   .comp .ticket .th .led{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);margin-right:.4rem;vertical-align:middle}
   .comp .ticket.clean .th .led{background:#4fd1a8;box-shadow:0 0 8px #4fd1a8}
@@ -187,9 +187,14 @@
       <div class="widget comp" id="compWidget">
         <div class="bar"><span>Interactive · Prompt compiler</span><span class="tag">Seven slots, one job ticket</span></div>
         <div class="body">
-          <p>Pick a weak prompt. Its tray holds fourteen lines: one real specification for each of the seven slots, and seven that sound like specifications but still leave the system guessing. Tap a line, then tap the slot it belongs in (or drag it across). The tray stays pinned beside the slots while you work. The job ticket below rewrites itself as you go, showing what the system is now actually being asked to do; anything left open is filled with a <span style="color:#6d4a00;font-weight:600">default</span>. When all seven slots are filled, press <strong>Compile</strong>.</p>
+          <p>Pick a weak prompt. Its tray holds fourteen lines: one real specification for each of the seven slots, and seven that sound like specifications but still leave the system guessing. Tap a line, then tap the slot it belongs in (or drag it across). The tray stays pinned beside the slots while you work. The job ticket above the tray rewrites itself as you go, showing what the system is now actually being asked to do; anything left open is filled with a <span style="color:#6d4a00;font-weight:600">default</span>. When all seven slots are filled, press <strong>Compile</strong>.</p>
           <div class="picks" id="compPicks" role="group" aria-label="Weak prompt to compile"></div>
           <div class="weak" id="compWeak"><span class="k">Weak prompt</span><span id="compWeakTxt">—</span></div>
+          <div class="ticket" id="compTicket">
+              <div class="th"><span><span class="led" aria-hidden="true"></span>Job ticket</span><span id="compTicketState">7 defaults</span></div>
+              <div class="log" id="compLog"></div>
+              <div class="compiled" id="compOut" hidden><span class="k">Compiled prompt</span><span id="compOutTxt"></span></div>
+          </div>
           <div class="bench">
             <div class="tray" id="compTray"><span class="traylbl">Tray</span></div>
             <div class="slots" id="compSlots"></div>
@@ -197,11 +202,6 @@
           <div class="tools">
             <span class="counts"><span><b id="compPlaced">0</b> of 7 slots filled</span></span>
             <span><button type="button" class="btn ghost" id="compReset">Start over</button> <button type="button" class="btn" id="compCompile" disabled>Compile</button></span>
-          </div>
-          <div class="ticket" id="compTicket">
-              <div class="th"><span><span class="led" aria-hidden="true"></span>Job ticket</span><span id="compTicketState">7 defaults</span></div>
-              <div class="log" id="compLog"></div>
-              <div class="compiled" id="compOut" hidden><span class="k">Compiled prompt</span><span id="compOutTxt"></span></div>
           </div>
           <div class="tools">
             <span class="muted" style="font-size:.86rem">The compiled prompt feeds the version ladder in step 5.</span>
