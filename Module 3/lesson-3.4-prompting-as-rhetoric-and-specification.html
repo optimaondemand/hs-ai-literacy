@@ -27,32 +27,39 @@
   .cols div b{display:block;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);margin-bottom:.2rem}
 
   /* ---------- Prompt Compiler ---------- */
-  .comp .layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:1rem;align-items:start}
-  @media (max-width:720px){.comp .layout{grid-template-columns:1fr}}
+  .comp .bench{display:grid;grid-template-columns:minmax(0,10fr) minmax(0,11fr);gap:.8rem;align-items:start}
+  @media (max-width:720px){.comp .bench{grid-template-columns:1fr}}
   .comp .weak{font-family:var(--mono);font-size:1.05rem;padding:.7rem .9rem;background:var(--navy);color:#fff;border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);margin:.3rem 0 .7rem}
   .comp .weak .k{display:block;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:.2rem}
-  .comp .tray{border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-3);padding:.6rem;min-height:80px;display:flex;flex-wrap:wrap;gap:.45rem;align-content:flex-start}
-  .comp .traylbl{flex:0 0 100%;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep)}
-  .comp .tile{font-family:var(--sans);font-size:.9rem;line-height:1.35;background:#fff;border:1px solid var(--teal-deep);color:var(--ink);border-radius:8px;padding:.4rem .6rem;cursor:grab;user-select:none;box-shadow:0 1px 0 rgba(27,36,48,.08);text-align:left;transition:transform .12s,box-shadow .12s;display:block}
+  .comp .tray{position:sticky;top:3.6rem;z-index:3;border:1px solid var(--rule-strong);border-radius:var(--radius);background:var(--paper-3);padding:.5rem;display:flex;flex-direction:column;gap:.35rem;max-height:calc(100vh - 4.6rem);overflow:auto;overscroll-behavior:contain;box-shadow:0 2px 10px rgba(11,59,79,.08)}
+  @media (max-width:720px){.comp .tray{max-height:38vh;top:3.4rem}}
+  .comp .traylbl{position:sticky;top:-.5rem;margin:-.5rem -.5rem .1rem;padding:.45rem .6rem;background:var(--paper-3);border-bottom:1px solid var(--rule-strong);font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep);display:flex;justify-content:space-between;gap:.5rem;z-index:1}
+  .comp .traylbl .hold{text-transform:none;letter-spacing:0;font-family:var(--sans);font-size:.8rem;color:#6d4a00;font-weight:600;text-align:right}
+  .comp .tray.empty::after{content:"Every line is in a slot.";font-size:.86rem;color:var(--ink-soft);padding:.6rem .2rem}
+  .comp .tile{font-family:var(--sans);font-size:.86rem;line-height:1.3;background:#fff;border:1px solid var(--teal-deep);color:var(--ink);border-radius:8px;padding:.32rem .55rem;cursor:grab;user-select:none;box-shadow:0 1px 0 rgba(27,36,48,.08);text-align:left;transition:transform .12s,box-shadow .12s;display:block}
   .comp .tile:hover{transform:translateY(-1px);box-shadow:0 3px 10px rgba(11,59,79,.18)}
   .comp .tile.sel{outline:3px solid var(--gold);outline-offset:1px}
   .comp .tile:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
   .comp .tile.right{border-color:var(--ok);background:var(--ok-bg)}
   .comp .tile.wrong{border-color:var(--bad);background:var(--bad-bg)}
-  .comp .slots{display:grid;gap:.4rem}
-  .comp .slot{display:grid;grid-template-columns:118px minmax(0,1fr);gap:.5rem;align-items:start;border:1.5px dashed var(--teal);border-radius:10px;padding:.45rem .55rem;background:#fff;min-height:48px;transition:background .2s,box-shadow .2s}
+  .comp .slots{display:grid;gap:.35rem}
+  .comp .slot{display:grid;grid-template-columns:96px minmax(0,1fr);gap:.45rem;align-items:start;border:1.5px dashed var(--teal);border-radius:10px;padding:.35rem .5rem;background:#fff;min-height:44px;transition:background .2s,box-shadow .2s,border-color .2s}
+  .comp .slot.armed{border-style:solid;border-color:var(--gold);background:var(--gold-pale);cursor:pointer;animation:armpulse 1.2s ease-in-out infinite}
+  .comp .slot.armed .drop:empty::before{content:"Place here";font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:#6d4a00;line-height:30px}
+  @keyframes armpulse{0%,100%{box-shadow:0 0 0 0 rgba(209,154,30,0)}50%{box-shadow:0 0 0 4px rgba(209,154,30,.35)}}
+  @media (prefers-reduced-motion:reduce){.comp .slot.armed{animation:none}}
   .comp .slot.over{background:var(--teal-pale);box-shadow:0 0 0 3px var(--glow)}
-  .comp .slot .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-deep);padding-top:.35rem}
+  .comp .slot .k{font-family:var(--mono);font-size:.64rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal-deep);padding-top:.4rem}
   .comp .slot .drop{min-height:30px}
   .comp .slot .tile{cursor:default;width:100%}
   .comp .slot .why{font-size:.84rem;color:#4a3300;background:var(--gold-pale);border-left:3px solid var(--gold);border-radius:0 6px 6px 0;padding:.3rem .5rem;margin-top:.3rem;animation:reveal .3s ease-out}
   .comp .slot .why.ok{color:#0f3d26;background:var(--ok-bg);border-left-color:var(--ok)}
   @media (max-width:480px){.comp .slot{grid-template-columns:1fr}.comp .slot .k{padding-top:0}}
-  .comp .ticket{background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);overflow:hidden;position:sticky;top:3.4rem}
+  .comp .ticket{background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);overflow:hidden;margin-top:.8rem}
   .comp .ticket .th{display:flex;justify-content:space-between;gap:.5rem;padding:.5rem .8rem;border-bottom:1px solid rgba(79,209,232,.25);font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan)}
   .comp .ticket .th .led{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);margin-right:.4rem;vertical-align:middle}
   .comp .ticket.clean .th .led{background:#4fd1a8;box-shadow:0 0 8px #4fd1a8}
-  .comp .log{font-family:var(--mono);font-size:.8rem;line-height:1.55;color:#dff4f9;padding:.6rem .8rem;min-height:160px;white-space:pre-wrap}
+  .comp .log{font-family:var(--mono);font-size:.8rem;line-height:1.55;color:#dff4f9;padding:.6rem .8rem;min-height:120px;white-space:pre-wrap}
   .comp .log .d{color:var(--gold)}
   .comp .log .g{color:#ff8a8a}
   .comp .log .s{color:#4fd1a8}
@@ -180,23 +187,21 @@
       <div class="widget comp" id="compWidget">
         <div class="bar"><span>Interactive · Prompt compiler</span><span class="tag">Seven slots, one job ticket</span></div>
         <div class="body">
-          <p>Pick a weak prompt. Its tray holds fourteen lines: one real specification for each of the seven slots, and seven that sound like specifications but still leave the system guessing. Drag a line into a slot, or tap a line and then a slot. The job ticket on the right rewrites itself as you go, showing what the system is now actually being asked to do; anything left open is filled with a <span style="color:#6d4a00;font-weight:600">default</span>. When all seven slots are filled, press <strong>Compile</strong>.</p>
+          <p>Pick a weak prompt. Its tray holds fourteen lines: one real specification for each of the seven slots, and seven that sound like specifications but still leave the system guessing. Tap a line, then tap the slot it belongs in (or drag it across). The tray stays pinned beside the slots while you work. The job ticket below rewrites itself as you go, showing what the system is now actually being asked to do; anything left open is filled with a <span style="color:#6d4a00;font-weight:600">default</span>. When all seven slots are filled, press <strong>Compile</strong>.</p>
           <div class="picks" id="compPicks" role="group" aria-label="Weak prompt to compile"></div>
-          <div class="layout">
-            <div>
-              <div class="weak" id="compWeak"><span class="k">Weak prompt</span><span id="compWeakTxt">—</span></div>
-              <div class="tray" id="compTray"><span class="traylbl">Tray</span></div>
-              <div class="slots" id="compSlots" style="margin-top:.6rem"></div>
-              <div class="tools">
-                <span class="counts"><span><b id="compPlaced">0</b> of 7 slots filled</span></span>
-                <span><button type="button" class="btn ghost" id="compReset">Start over</button> <button type="button" class="btn" id="compCompile" disabled>Compile</button></span>
-              </div>
-            </div>
-            <div class="ticket" id="compTicket">
+          <div class="weak" id="compWeak"><span class="k">Weak prompt</span><span id="compWeakTxt">—</span></div>
+          <div class="bench">
+            <div class="tray" id="compTray"><span class="traylbl">Tray</span></div>
+            <div class="slots" id="compSlots"></div>
+          </div>
+          <div class="tools">
+            <span class="counts"><span><b id="compPlaced">0</b> of 7 slots filled</span></span>
+            <span><button type="button" class="btn ghost" id="compReset">Start over</button> <button type="button" class="btn" id="compCompile" disabled>Compile</button></span>
+          </div>
+          <div class="ticket" id="compTicket">
               <div class="th"><span><span class="led" aria-hidden="true"></span>Job ticket</span><span id="compTicketState">7 defaults</span></div>
               <div class="log" id="compLog"></div>
               <div class="compiled" id="compOut" hidden><span class="k">Compiled prompt</span><span id="compOutTxt"></span></div>
-            </div>
           </div>
           <div class="tools">
             <span class="muted" style="font-size:.86rem">The compiled prompt feeds the version ladder in step 5.</span>
@@ -370,12 +375,12 @@
   /* Generic tap-or-drag placement */
   function placer(opts){
     var sel=null;
-    function select(t){if(sel===t){t.classList.remove("sel");sel=null;return}if(sel)sel.classList.remove("sel");sel=t;t.classList.add("sel");opts.onSelect&&opts.onSelect(t)}
+    function select(t){if(sel===t){t.classList.remove("sel");sel=null;opts.onClear&&opts.onClear();return}if(sel)sel.classList.remove("sel");sel=t;t.classList.add("sel");opts.onSelect&&opts.onSelect(t)}
     function wireTile(t){
       t.setAttribute("draggable","true");
       t.addEventListener("click",function(){select(t)});
       t.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();select(t)}});
-      t.addEventListener("dragstart",function(e){if(sel)sel.classList.remove("sel");sel=t;t.classList.add("sel");try{e.dataTransfer.setData("text/plain","x")}catch(x){}e.dataTransfer.effectAllowed="move"});
+      t.addEventListener("dragstart",function(e){if(sel)sel.classList.remove("sel");sel=t;t.classList.add("sel");try{e.dataTransfer.setData("text/plain","x")}catch(x){}e.dataTransfer.effectAllowed="move";opts.onSelect&&opts.onSelect(t)});
     }
     function wireTarget(tg,fn){
       if(!tg.hasAttribute("tabindex"))tg.tabIndex=0;if(!tg.getAttribute("role"))tg.setAttribute("role","button");
@@ -385,7 +390,7 @@
       tg.addEventListener("dragleave",function(){tg.classList.remove("over")});
       tg.addEventListener("drop",function(e){e.preventDefault();tg.classList.remove("over");if(sel){var t=sel;fn(t,tg);clear()}});
     }
-    function clear(){if(sel)sel.classList.remove("sel");sel=null}
+    function clear(){if(sel)sel.classList.remove("sel");sel=null;opts.onClear&&opts.onClear()}
     return {wireTile:wireTile,wireTarget:wireTarget,clear:clear};
   }
 
@@ -424,7 +429,14 @@
      good:{aud:"For my ninth-grade world history teacher, who will grade it.",pur:"To outline a five-minute presentation on the causes of World War I.",ctx:"I have read the textbook chapter and have three sources; the presentation is Thursday.",con:"Outline only, no full sentences for me to read aloud; stay within my three sources.",fmt:"A numbered outline with three main causes and two supporting facts each.",ex:"Example line: “1. Alliance system — Europe split into two armed camps by 1907.”",ver:"Cite which of my three sources supports each fact; write [not in sources] if none does."},
      bad:{aud:["For school.","“School” is a place, not a reader. Who grades it, and what do they expect?"],pur:["To help me get it done.","Describes your deadline pressure, not the task. What is the project?"],ctx:["It’s due soon and I’m behind.","Urgency is not context. The system still does not know the topic or what you have read."],con:["Don’t make it boring.","A wish, not a limit. The system cannot tell what you find boring."],fmt:["However you think is best.","Returns the decision about shape to the system."],ex:["Like a normal outline.","“Normal” is whatever the system guesses. One example line pins the shape."],ver:["Double-check everything.","The system cannot check anything against your sources unless you tell it what the sources are and how to mark gaps."]}}
   ];
-  var comp=store.get("ail34l-comp",{}),compPick=store.get("ail34l-comp-pick",""),cur=null,cp=placer({});
+  var comp=store.get("ail34l-comp",{}),compPick=store.get("ail34l-comp-pick",""),cur=null;
+  function compArm(t){
+    var inSlot=!!t.closest(".slot");
+    var h=$("compHold");if(h)h.textContent=inSlot?"":"Holding a line \u2192 tap a slot";
+    document.querySelectorAll("#compSlots .slot").forEach(function(sl){sl.classList.toggle("armed",!inSlot)});
+  }
+  function compDisarm(){var h=$("compHold");if(h)h.textContent="";document.querySelectorAll("#compSlots .slot.armed").forEach(function(sl){sl.classList.remove("armed")})}
+  var cp=placer({onSelect:compArm,onClear:compDisarm});
   function compState(){return comp[compPick]||(comp[compPick]={slots:{},checked:false})}
   function compSave(){store.set("ail34l-comp",comp)}
   function compStatus(kind,t){var s=$("compStatus");s.className="status"+(kind?" "+kind:"");s.textContent=t}
@@ -435,13 +447,13 @@
   function compRender(){
     var p=cur,st=compState();
     $("compWeakTxt").textContent=p?p.weak:"—";
-    var tray=$("compTray");tray.innerHTML="";tray.appendChild(el("span","traylbl","Tray"));
+    var tray=$("compTray");tray.innerHTML="";var tl=el("span","traylbl");tl.appendChild(el("span","","Tray"));var hold=el("span","hold");hold.id="compHold";tl.appendChild(hold);tray.appendChild(tl);
     var slots=$("compSlots");slots.innerHTML="";
     if(!p){$("compPlaced").textContent=0;$("compCompile").disabled=true;$("compCopy").disabled=true;compLog();return}
     var used={};SPEC.forEach(function(s){if(st.slots[s[0]])used[st.slots[s[0]]]=1});
     var keys=[];SPEC.forEach(function(s){keys.push("g"+s[0]);keys.push("b"+s[0])});
     var order=st.order||(st.order=shuffle(keys));compSave();
-    order.forEach(function(k){if(!used[k])tray.appendChild(tileFor(p,k))});
+    var left=0;order.forEach(function(k){if(!used[k]){tray.appendChild(tileFor(p,k));left++}});tray.classList.toggle("empty",left===0);tl.firstChild.textContent="Tray \u00b7 "+left+" line"+(left===1?"":"s");
     cp.wireTarget(tray,function(t,tg){var k=t.getAttribute("data-key");SPEC.forEach(function(s){if(st.slots[s[0]]===k)delete st.slots[s[0]]});st.checked=false;compSave();compRender()});
     var n=0;
     SPEC.forEach(function(s){
