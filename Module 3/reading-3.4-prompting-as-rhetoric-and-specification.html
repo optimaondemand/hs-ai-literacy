@@ -25,19 +25,22 @@
   .three .c p{margin:0;font-size:.98rem}
 
   /* ---------- Interpretation fan ---------- */
-  .fanw .stage{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(220px,1fr);gap:1rem;align-items:start}
-  @media (max-width:700px){.fanw .stage{grid-template-columns:1fr}}
+  .fanw .stage{display:grid;grid-template-columns:1fr;gap:1rem}
   .fanw .scene{background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25);overflow:hidden}
   .fanw .scene svg{display:block;width:100%;height:auto}
-  .fanw .ray{stroke:#4fd1e8;stroke-width:1.6;fill:none;transition:opacity .45s,stroke .45s}
+  .fanw .ray{stroke:#4fd1e8;stroke-width:2;fill:none;stroke-linecap:round;transition:opacity .45s,stroke .45s}
   .fanw .ray.off{opacity:.12;stroke-dasharray:4 5}
-  .fanw .rlab{font-family:"IBM Plex Mono",Consolas,monospace;font-size:11.5px;letter-spacing:.06em;fill:#dff4f9;transition:opacity .45s,fill .45s}
+  .fanw .rlab{font-family:"IBM Plex Mono",Consolas,monospace;font-size:15px;letter-spacing:.05em;fill:#dff4f9;transition:opacity .45s,fill .45s}
+  .fanw .rdot{fill:#4fd1e8;transition:opacity .45s}
+  .fanw .rdot.off{opacity:.15}
   .fanw .rlab.off{opacity:.25;text-decoration:line-through}
   .fanw .rlab.keep{fill:#d19a1e;font-weight:600}
-  .fanw .ptxt{font-family:"IBM Plex Mono",Consolas,monospace;font-size:13px;fill:#fff}
+  .fanw .rdot.keep{fill:#d19a1e}
+  .fanw .ray.keep{stroke:#d19a1e;stroke-width:2.6}
+  .fanw .ptxt{font-family:"IBM Plex Mono",Consolas,monospace;font-size:16px;fill:#fff}
   .fanw .pbox{fill:none;stroke:#4fd1e8;stroke-width:2}
-  .fanw .plab{font-family:"IBM Plex Mono",Consolas,monospace;font-size:10px;letter-spacing:.14em;fill:#4fd1e8}
-  .fanw .specs{display:grid;gap:.4rem}
+  .fanw .plab{font-family:"IBM Plex Mono",Consolas,monospace;font-size:12px;letter-spacing:.14em;fill:#4fd1e8}
+  .fanw .specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.5rem}
   .fanw .spec{display:flex;gap:.6rem;align-items:flex-start;padding:.5rem .65rem;border:1px solid var(--rule-strong);border-radius:10px;background:#fff;cursor:pointer;font:inherit;text-align:left;color:var(--ink);transition:border-color .2s,background .2s,box-shadow .2s}
   .fanw .spec:hover{border-color:var(--teal)}
   .fanw .spec[aria-pressed="true"]{background:var(--teal-pale);border-color:var(--teal);box-shadow:0 0 0 3px var(--glow)}
@@ -215,19 +218,20 @@
   var fan=store.get("ail34-fan",{});
   function fanScene(){
     var sc=$("fanScene");sc.innerHTML="";
-    var svg=svgEl("svg",{viewBox:"0 0 690 300",role:"img","aria-label":"A prompt on the left; rays to seven possible outputs on the right"});
-    svg.appendChild(svgEl("path",{"class":"pbox",d:"M24 118 H236 V182 H24 Z"}));
-    var pt=svgEl("text",{"class":"ptxt",x:"38",y:"156"});pt.textContent="Write about the water cycle.";svg.appendChild(pt);
-    var pl=svgEl("text",{"class":"plab",x:"24",y:"106"});pl.textContent="THE PROMPT";svg.appendChild(pl);
-    svg.appendChild(svgEl("path",{"class":"ray",d:"M236 150 H300"}));
-    svg.appendChild(svgEl("circle",{cx:"300",cy:"150",r:"4",fill:"#4fd1e8"}));
+    var svg=svgEl("svg",{viewBox:"0 0 800 400",role:"img","aria-label":"A prompt on the left; rays to seven possible outputs on the right"});
+    svg.appendChild(svgEl("path",{"class":"pbox",d:"M22 164 H318 V236 H22 Z"}));
+    var pt=svgEl("text",{"class":"ptxt",x:"38",y:"206"});pt.textContent="Write about the water cycle.";svg.appendChild(pt);
+    var pl=svgEl("text",{"class":"plab",x:"22",y:"150"});pl.textContent="THE PROMPT";svg.appendChild(pl);
+    svg.appendChild(svgEl("path",{"class":"ray",d:"M318 200 H372"}));
+    svg.appendChild(svgEl("circle",{cx:"372",cy:"200",r:"5",fill:"#4fd1e8"}));
     var all=RAYS.slice(0,4).concat([KEEP]).concat(RAYS.slice(4));
     all.forEach(function(r,i){
-      var y=34+i*31,dead=isDead(r.id);
-      svg.appendChild(svgEl("path",{"class":"ray"+(dead?" off":""),d:"M300 150 L410 "+y+" H440","data-ray":r.id}));
-      var t=svgEl("text",{"class":"rlab"+(dead?" off":"")+(r.id==="keep"?" keep":""),x:"448",y:String(y+4),"data-ray":r.id});t.textContent=r.t;svg.appendChild(t);
+      var y=48+i*44,dead=isDead(r.id),keep=r.id==="keep";
+      svg.appendChild(svgEl("path",{"class":"ray"+(dead?" off":"")+(keep?" keep":""),d:"M372 200 C430 200 430 "+y+" 480 "+y+" H500","data-ray":r.id}));
+      svg.appendChild(svgEl("circle",{"class":"rdot"+(dead?" off":"")+(keep?" keep":""),cx:"500",cy:String(y),r:keep?"4.5":"3.5"}));
+      var t=svgEl("text",{"class":"rlab"+(dead?" off":"")+(keep?" keep":""),x:"514",y:String(y+5),"data-ray":r.id});t.textContent=r.t;svg.appendChild(t);
     });
-    var ol=svgEl("text",{"class":"plab",x:"448",y:"20"});ol.textContent="WHAT COULD COME BACK";svg.appendChild(ol);
+    var ol=svgEl("text",{"class":"plab",x:"514",y:"22"});ol.textContent="WHAT COULD COME BACK";svg.appendChild(ol);
     sc.appendChild(svg);
   }
   function isDead(rid){return SPECS.some(function(s){return fan[s.id]&&s.kills.indexOf(rid)>=0})}

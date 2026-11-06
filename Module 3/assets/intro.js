@@ -40,14 +40,14 @@
   '.ail-intro.ail-fs{width:100vw;height:100vh}'+
   '.ail-intro .ail-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(79,209,232,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(79,209,232,.07) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}'+
   '.ail-intro canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}'+
-  '.ail-intro .ail-stage{position:relative;width:min(92vw,760px);display:flex;flex-direction:column;align-items:center;gap:1.2rem;transition:opacity .45s}'+
+  '.ail-intro .ail-stage{position:relative;width:min(94vw,820px);display:flex;flex-direction:column;align-items:center;gap:1.2rem;transition:opacity .45s}'+
   '.ail-intro .ail-stage.out{opacity:0}'+
-  '.ail-intro svg{display:block;width:min(88vw,620px);height:auto;overflow:visible}'+
+  '.ail-intro svg{display:block;width:min(92vw,800px);height:auto;overflow:visible}'+
   '.ail-intro .ln{fill:none;stroke:'+CYAN+';stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}'+
   '.ail-intro .thin{stroke-width:1.2;opacity:.55}'+
   '.ail-intro .card{stroke-dasharray:700;stroke-dashoffset:700;transition:stroke-dashoffset 1s cubic-bezier(.4,0,.2,1)}'+
   '.ail-intro.p1 .card{stroke-dashoffset:0}'+
-  '.ail-intro .ptxt{font-family:"IBM Plex Mono",Consolas,monospace;font-size:15px;fill:#fff;opacity:0;transition:opacity .5s .5s}'+
+  '.ail-intro .ptxt{font-family:"IBM Plex Mono",Consolas,monospace;font-size:16px;fill:#fff;opacity:0;transition:opacity .5s .5s}'+
   '.ail-intro.p1 .ptxt{opacity:1}'+
   '.ail-intro .caret{fill:'+CYAN+';opacity:0}'+
   '.ail-intro.p1 .caret{animation:ail-blink .9s steps(2) infinite}'+
@@ -61,11 +61,11 @@
   '.ail-intro.p2 .tok{animation:ail-fly 1.4s linear infinite}'+
   '.ail-intro .tok:nth-child(2){animation-delay:.47s!important}.ail-intro .tok:nth-child(3){animation-delay:.94s!important}'+
   '@keyframes ail-fly{0%{transform:translateX(-120px);opacity:0}15%{opacity:1}80%{opacity:1}100%{transform:translateX(0);opacity:0}}'+
-  '.ail-intro .fan{stroke-dasharray:260;stroke-dashoffset:260;transition:stroke-dashoffset .9s cubic-bezier(.4,0,.2,1)}'+
+  '.ail-intro .fan{stroke-dasharray:320;stroke-dashoffset:320;transition:stroke-dashoffset .9s cubic-bezier(.4,0,.2,1)}'+
   '.ail-intro.p2 .fan{stroke-dashoffset:0}'+
   '.ail-intro .fan.g{stroke:'+GOLD+'}'+
   '.ail-intro .fan:nth-of-type(2){transition-delay:.12s}.ail-intro .fan:nth-of-type(3){transition-delay:.24s}.ail-intro .fan:nth-of-type(4){transition-delay:.36s}.ail-intro .fan:nth-of-type(5){transition-delay:.48s}.ail-intro .fan:nth-of-type(6){transition-delay:.6s}.ail-intro .fan:nth-of-type(7){transition-delay:.72s}'+
-  '.ail-intro .ftxt{font-family:"IBM Plex Mono",Consolas,monospace;font-size:10px;letter-spacing:.08em;fill:#9fb3bf;opacity:0;transition:opacity .4s .9s}'+
+  '.ail-intro .ftxt{font-family:"IBM Plex Mono",Consolas,monospace;font-size:13px;letter-spacing:.06em;fill:#c7dbe3;opacity:0;transition:opacity .4s .9s}'+
   '.ail-intro.p2 .ftxt{opacity:.85}'+
   '.ail-intro .ftxt.g{fill:'+GOLD+'}'+
   '.ail-intro .word{font-family:"IBM Plex Mono",Consolas,monospace;font-weight:600;letter-spacing:.1em;fill:'+GOLD+';text-anchor:middle;dominant-baseline:middle;opacity:0;transition:opacity .3s}'+
@@ -102,43 +102,43 @@
     var canvas=document.createElement("canvas");overlay.appendChild(canvas);
     var stage=el("div","ail-stage");
 
-    // 620 x 300 viewBox. The prompt on the left (x 30..250), the output fanning out on the right (x 380..600).
-    var svg=svgEl("svg",{viewBox:"0 0 620 300","aria-hidden":"true"});
+    // 800 x 300 viewBox. The prompt on the left (x 20..316), the output fanning out on the right (x 436..610, labels to ~790).
+    var svg=svgEl("svg",{viewBox:"0 0 800 300","aria-hidden":"true"});
 
     // THE PROMPT: one short line in a card, with a blinking caret.
-    var card=svgEl("path",{"class":"ln card",d:"M30 112 H250 V188 H30 Z"});svg.appendChild(card);
-    var pt=svgEl("text",{"class":"ptxt",x:"44",y:"156"});pt.textContent=PROMPT;svg.appendChild(pt);
-    var caret=svgEl("rect",{"class":"caret",x:"236",y:"142",width:"3",height:"18"});svg.appendChild(caret);
-    var lw=svgEl("text",{"class":"lbl w",x:"140",y:"270","text-anchor":"middle"});lw.textContent="THE PROMPT";svg.appendChild(lw);
+    var card=svgEl("path",{"class":"ln card",d:"M20 108 H316 V192 H20 Z"});svg.appendChild(card);
+    var pt=svgEl("text",{"class":"ptxt",x:"36",y:"156"});pt.textContent=PROMPT;svg.appendChild(pt);
+    var caret=svgEl("rect",{"class":"caret",x:"306",y:"141",width:"3",height:"20"});svg.appendChild(caret);
+    var lw=svgEl("text",{"class":"lbl w",x:"168",y:"272","text-anchor":"middle"});lw.textContent="THE PROMPT";svg.appendChild(lw);
 
     // THE OUTPUT: seven lines fanning out from one point. Each is one thing the system could legitimately produce.
     var fanG=svgEl("g");
     var fans=[
-      ["M380 150 L600 48","FOR A THIRD GRADER",false],
-      ["M380 150 L600 82","FOR A BIOLOGIST",false],
-      ["M380 150 L600 116","A POEM",false],
-      ["M380 150 L600 150","FIVE BULLETS",true],
-      ["M380 150 L600 184","TWO THOUSAND WORDS",false],
-      ["M380 150 L600 218","IN SPANISH",false],
-      ["M380 150 L600 252","WITH MADE-UP FACTS",false]
+      ["M436 150 L610 42","FOR A THIRD GRADER",false],
+      ["M436 150 L610 78","FOR A BIOLOGIST",false],
+      ["M436 150 L610 114","A POEM",false],
+      ["M436 150 L610 150","FIVE BULLETS",true],
+      ["M436 150 L610 186","TWO THOUSAND WORDS",false],
+      ["M436 150 L610 222","IN SPANISH",false],
+      ["M436 150 L610 258","WITH MADE-UP FACTS",false]
     ];
     fans.forEach(function(f){fanG.appendChild(svgEl("path",{"class":"ln thin fan"+(f[2]?" g":""),d:f[0]}))});
     svg.appendChild(fanG);
-    fans.forEach(function(f){var m=/L(\d+) (\d+)/.exec(f[0]);var t=svgEl("text",{"class":"ftxt"+(f[2]?" g":""),x:String(+m[1]+6),y:String(+m[2]+3)});t.textContent=f[1];svg.appendChild(t)});
-    svg.appendChild(svgEl("circle",{"class":"ln",cx:"380",cy:"150",r:"5"}));
-    var lr=svgEl("text",{"class":"lbl",x:"485",y:"290","text-anchor":"middle"});lr.textContent="THE OUTPUT";svg.appendChild(lr);
+    fans.forEach(function(f){var m=/L(\d+) (\d+)/.exec(f[0]);var t=svgEl("text",{"class":"ftxt"+(f[2]?" g":""),x:String(+m[1]+8),y:String(+m[2]+4)});t.textContent=f[1];svg.appendChild(t)});
+    svg.appendChild(svgEl("circle",{"class":"ln",cx:"436",cy:"150",r:"5"}));
+    var lr=svgEl("text",{"class":"lbl",x:"620",y:"292","text-anchor":"middle"});lr.textContent="THE OUTPUT";svg.appendChild(lr);
 
     // GENERATE arrow and the tokens flying across
     var gA=svgEl("g",{"class":"arrow"});
-    gA.appendChild(svgEl("path",{"class":"ln",d:"M258 150 H364 M350 140 L364 150 L350 160"}));
-    var la=svgEl("text",{"class":"lbl",x:"311",y:"132","text-anchor":"middle"});la.textContent="GENERATE";gA.appendChild(la);
+    gA.appendChild(svgEl("path",{"class":"ln",d:"M326 150 H420 M406 140 L420 150 L406 160"}));
+    var la=svgEl("text",{"class":"lbl",x:"373",y:"132","text-anchor":"middle"});la.textContent="GENERATE";gA.appendChild(la);
     svg.appendChild(gA);
     var toks=svgEl("g",{"class":"arrow"});
-    ["write","about","the"].forEach(function(t,i){var x=svgEl("text",{"class":"tok",x:String(352-i*6),y:String(206+i*14),"text-anchor":"end"});x.textContent=t;toks.appendChild(x)});
+    ["write","about","the"].forEach(function(t,i){var x=svgEl("text",{"class":"tok",x:String(410-i*6),y:String(206+i*14),"text-anchor":"end"});x.textContent=t;toks.appendChild(x)});
     svg.appendChild(toks);
 
     // The word that was never specified, under the prompt card
-    var word=svgEl("text",{"class":"word",x:"140",y:"222","font-size":"22"});word.textContent="?";svg.appendChild(word);
+    var word=svgEl("text",{"class":"word",x:"168",y:"224","font-size":"24"});word.textContent="?";svg.appendChild(word);
     stage.appendChild(svg);
 
     var text=el("div","ail-text");
@@ -190,9 +190,9 @@
     later(function(){shatter(parts)},6200);
   }
 
-  // Size the word so it sits under the prompt card (keep it within 210 units).
+  // Size the word so it sits under the prompt card (keep it within 290 units).
   function fitWord(node,text){
-    var MAX=200,size=22;
+    var MAX=280,size=24;
     node.textContent=text;
     node.setAttribute("font-size",size);
     try{
