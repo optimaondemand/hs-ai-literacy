@@ -138,6 +138,36 @@
   .verc .refl .opts button:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
   .verc .refl textarea{width:100%;min-height:60px;font-family:var(--sans);font-size:.94rem;line-height:1.5;padding:.5rem .6rem;border:1px solid var(--rule-strong);border-radius:8px;background:#fff;resize:vertical;margin-top:.3rem}
   .verc .refl textarea:focus{outline:3px solid var(--glow);border-color:var(--teal)}
+
+  /* ---------- Guided lesson with Daniel Moreau (Arthur) ---------- */
+  .guide{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:1.4rem;align-items:center;margin:1.4rem 0 1.8rem;padding:1.2rem;background:var(--navy);border:1px solid var(--teal-deep);border-radius:var(--radius);box-shadow:inset 0 0 0 1px rgba(79,209,232,.25),var(--shadow);color:#dff4f9}
+  @media (max-width:680px){.guide{grid-template-columns:1fr}}
+  .guide .sheet{position:relative;display:block;border-radius:10px;overflow:hidden;border:1px solid rgba(79,209,232,.45);background:#0b0f16;box-shadow:0 10px 28px rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s}
+  .guide .sheet:hover,.guide .sheet:focus-visible{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.45);outline:none}
+  .guide .sheet:focus-visible{box-shadow:0 0 0 3px var(--cyan)}
+  .guide .sheet svg{display:block;width:100%;height:auto}
+  .guide .sheet .row{opacity:.25;animation:fillrow 7s linear infinite}
+  .guide .sheet .row:nth-of-type(2){animation-delay:.7s}
+  .guide .sheet .row:nth-of-type(3){animation-delay:1.4s}
+  .guide .sheet .row:nth-of-type(4){animation-delay:2.1s}
+  .guide .sheet .row:nth-of-type(5){animation-delay:2.8s}
+  .guide .sheet .row:nth-of-type(6){animation-delay:3.5s}
+  .guide .sheet .row:nth-of-type(7){animation-delay:4.2s}
+  @keyframes fillrow{0%,5%{opacity:.25}12%,88%{opacity:1}100%{opacity:.25}}
+  @media (prefers-reduced-motion:reduce){.guide .sheet .row{animation:none;opacity:1}}
+  .guide .sheet .len{position:absolute;right:.55rem;bottom:.55rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;padding:.2rem .5rem;border-radius:6px;background:rgba(0,0,0,.7);color:#fff}
+  .guide .info .k{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:.35rem}
+  .guide .info h2{margin:0 0 .5rem;font-size:1.35rem;line-height:1.25;color:#fff}
+  .guide .info p{margin:0 0 .8rem;font-size:.98rem;line-height:1.5;color:#c6dde5}
+  .guide .chips{list-style:none;margin:0 0 1rem;padding:0;display:flex;flex-wrap:wrap;gap:.4rem}
+  .guide .chips li{margin:0;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:.28rem .6rem;border-radius:999px;border:1px solid rgba(79,209,232,.45);color:#dff4f9}
+  .guide .go{display:inline-block;white-space:nowrap;background:var(--cyan);color:var(--navy);text-decoration:none;font-weight:700;font-size:.95rem;padding:.65rem 1.1rem;border-radius:8px;transition:transform .15s,box-shadow .15s}
+  .guide .go:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(79,209,232,.35);color:var(--navy)}
+  .guide .go:focus-visible{outline:3px solid #fff;outline-offset:2px}
+  .guide .aiuse{font-size:.86rem;line-height:1.45;color:#f3e7c9;margin:.9rem 0 0;padding:.6rem .75rem;border:1px solid rgba(209,154,30,.45);border-left:3px solid var(--gold);background:rgba(209,154,30,.12);border-radius:0 8px 8px 0}
+  .guide .aiuse strong{color:#fff}
+  .guide .aiuse em{color:#ffe3a3}
+  @media print{.guide{display:none}}
 </style>
 </head>
 <body>
@@ -150,6 +180,49 @@
     <p class="lede">Canvas Page + Practice</p>
     <span class="ornament" aria-hidden="true">❦</span>
   </header>
+
+  <section class="guide" aria-label="Guided lesson with Daniel Moreau">
+    <a class="sheet" href="https://mind.arthur.digital/ask/9dbhrwbr4aquu7" target="_blank" rel="noopener noreferrer" aria-label="Start the guided Lesson 3.4 with Daniel Moreau (opens in a new tab)">
+      <svg viewBox="0 0 400 234" role="img" aria-label="A short, vague prompt on a card beside a specification sheet whose seven lines fill in one at a time: audience, purpose, context, constraints, format, examples, verification.">
+        <rect width="400" height="234" fill="#0b1420"/>
+        <g stroke="#16263a" stroke-width="1"><path d="M0 39h400M0 78h400M0 117h400M0 156h400M0 195h400M50 0v234M100 0v234M150 0v234M200 0v234M250 0v234M300 0v234M350 0v234"/></g>
+        <!-- weak prompt card -->
+        <g transform="rotate(-4 74 112)">
+          <rect x="18" y="74" width="112" height="76" rx="6" fill="#f4f7fa"/>
+          <text x="28" y="94" font-family="IBM Plex Mono,Consolas,monospace" font-size="8" letter-spacing="1" fill="#0e8fa8">PROMPT</text>
+          <rect x="28" y="104" width="86" height="6" rx="3" fill="#0b3b4f"/>
+          <rect x="28" y="118" width="52" height="6" rx="3" fill="#c2ccd7"/>
+          <rect x="28" y="132" width="70" height="6" rx="3" fill="#dfe5ec"/>
+        </g>
+        <!-- arrow -->
+        <path d="M140 112h30" stroke="#4fd1e8" stroke-width="3" stroke-linecap="round"/>
+        <path d="M166 104l10 8-10 8" fill="none" stroke="#4fd1e8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- specification sheet -->
+        <rect x="190" y="18" width="192" height="188" rx="8" fill="#101c2c" stroke="#4fd1e8" stroke-opacity=".55"/>
+        <text x="204" y="38" font-family="IBM Plex Mono,Consolas,monospace" font-size="8" letter-spacing="1.4" fill="#4fd1e8">SPECIFICATION · 7 LINES</text>
+        <g font-family="IBM Plex Mono,Consolas,monospace" font-size="9" fill="#dff4f9">
+          <g class="row"><rect x="204" y="48" width="9" height="9" rx="2" fill="#4fd1e8"/><text x="220" y="56">AUDIENCE</text><rect x="300" y="50" width="68" height="5" rx="2.5" fill="#35506a"/></g>
+          <g class="row"><rect x="204" y="70" width="9" height="9" rx="2" fill="#4fd1e8"/><text x="220" y="78">PURPOSE</text><rect x="300" y="72" width="52" height="5" rx="2.5" fill="#35506a"/></g>
+          <g class="row"><rect x="204" y="92" width="9" height="9" rx="2" fill="#4fd1e8"/><text x="220" y="100">CONTEXT</text><rect x="300" y="94" width="62" height="5" rx="2.5" fill="#35506a"/></g>
+          <g class="row"><rect x="204" y="114" width="9" height="9" rx="2" fill="#4fd1e8"/><text x="220" y="122">CONSTRAINTS</text><rect x="300" y="116" width="44" height="5" rx="2.5" fill="#35506a"/></g>
+          <g class="row"><rect x="204" y="136" width="9" height="9" rx="2" fill="#4fd1e8"/><text x="220" y="144">FORMAT</text><rect x="300" y="138" width="58" height="5" rx="2.5" fill="#35506a"/></g>
+          <g class="row"><rect x="204" y="158" width="9" height="9" rx="2" fill="#4fd1e8"/><text x="220" y="166">EXAMPLES</text><rect x="300" y="160" width="48" height="5" rx="2.5" fill="#35506a"/></g>
+          <g class="row"><rect x="204" y="180" width="9" height="9" rx="2" fill="#d19a1e"/><text x="220" y="188">VERIFICATION</text><rect x="300" y="182" width="66" height="5" rx="2.5" fill="#6a5320"/></g>
+        </g>
+      </svg>
+      <span class="len" aria-hidden="true">About 25 min</span>
+    </a>
+    <div class="info">
+      <span class="k">Guided lesson · Optional</span>
+      <h2>Want a guide? Rebuild a prompt with Daniel Moreau.</h2>
+      <p>Daniel Moreau, the course AI guide, leads this lesson in nine steps. A prompt is a specification: everything you leave unsaid, the system decides for you. You diagnose weak prompts, then rebuild one until a stranger could carry it out and you could check the result. Then come back here for the activities and Assignment 3.4.</p>
+      <ul class="chips" aria-label="Details">
+        <li>About 25 min</li><li>9 steps</li><li>No account needed</li><li>Opens in a new tab</li>
+      </ul>
+      <a class="go" href="https://mind.arthur.digital/ask/9dbhrwbr4aquu7" target="_blank" rel="noopener noreferrer">Start with Daniel ↗</a>
+      <p class="aiuse"><strong>Daniel is an AI, so using this guide counts as AI use.</strong> If you use it, name it in your Assignment 3.4 AI-use disclosure under <em>Tool(s) used</em>, for example <em>Daniel Moreau (course guide), led me through the lesson steps.</em></p>
+    </div>
+  </section>
 
   <div class="rail" id="rail" aria-label="Lesson progress">
     <span class="label">Lesson progress</span>
